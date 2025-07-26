@@ -20,53 +20,32 @@ const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
   const page = await browser.newPage();
   await page.setViewportSize(VIEWPORT);
 
-  // 2a. Go and dismiss the privacy modal
-  await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 120_000 });
+  // navigate & wait for initial HTML
+  await page.goto(URL, {
+    waitUntil: 'domcontentloaded',
+    timeout: 120_000
+  });
 
+  // 2a. Dismiss CNN’s “Legal Terms and Privacy” modal by clicking “Agree”
   try {
-    // 1) click the “Agree” button if present
-    const agreeBtn = page.getByRole('button', { name: 'Agree' });
-    if (await agreeBtn.count() > 0) {
-      await agreeBtn.first().click();
-      console.log('🔓 Privacy modal dismissed via button');
-      await page.waitForTimeout(1_000);
-    } else {
-      throw new Error('no button');
-    }
-  } catch {
-    // 2) remove any giant fixed overlay
-    await page.evaluate(() => {
-      document.querySelectorAll('div').forEach(el => {
-        const s = window.getComputedStyle(el);
-        if (
-          s.position === 'fixed' &&
-          parseFloat(s.width) / window.innerWidth > 0.5 &&
-          parseFloat(s.height) / window.innerHeight > 0.2
-        ) el.remove();
-      });
-    });
-    console.log('🔓 Privacy modal removed by fallback');
-
-    // 3) *last‑ditch*: remove any node whose text includes the modal title
-    await page.evaluate(() => {
-      for (const el of document.querySelectorAll('div')) {
-        if (el.textContent.includes('Legal Terms and Privacy')) {
-          el.remove();
-          return;
-        }
-      }
-    });
-    console.log('🔓 Privacy modal removed by text match');
+    const agreeBtn = page.locator('button:has-text("Agree")');
+    await agreeBtn.waitFor({ state: 'visible', timeout: 10_000 });
+    console.log('🔓 “Agree” button is visible');
+    await agreeBtn.click({ force: true });
+    console.log('🔓 Privacy modal dismissed via button click');
+    await page.waitForTimeout(1_000);
+  } catch (e) {
+    console.warn('⚠️ Could not find or click “Agree”:', e);
   }
 
-  // 2b. wait up to 30s for the gauge value to show
+  // 2b. wait up to 30s for the gauge value to be injected
   await page.waitForFunction(() => {
     const el = document.querySelector('.market-fng-gauge__dial-number-value');
-    return el?.textContent.trim().length > 0;
+    return el?.textContent?.trim().length > 0;
   }, { timeout: 30_000 });
   console.log('⏱ Gauge value is present');
 
-  // 2c. screenshot
+  // once the number is present, grab the screenshot
   const buffer = await page.screenshot({ clip: CLIP });
   await browser.close();
 
