@@ -7,7 +7,8 @@ console.log('channel id :', process.env.CHANNEL_ID);
 
 const URL      = 'https://edition.cnn.com/markets/fear-and-greed';
 const VIEWPORT = { width: 1200, height: 2800 };
-const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
+// const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
+const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
 
 (async () => {
   // 1. Discord login
