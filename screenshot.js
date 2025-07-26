@@ -36,17 +36,18 @@ const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
   console.log('⏱ Gauge value is present');
 
   // 4. Try to click the “Agree” link by your CSS path
-  const agreeLink = page.locator('body > div:nth-child(16) > div:nth-child(1) > a:nth-child(3)');
+  const agreeLink = page.locator('a:has-text("Agree")');
   try {
-    await agreeLink.waitFor({ state: 'visible', timeout: 5_000 });
+    await agreeLink.waitFor({ timeout: 5000 });
     await agreeLink.click({ force: true });
-    console.log('🔓 Clicked “Agree” via CSS selector');
     // give it a moment to go away
-    await page.waitForTimeout(1_000);
+    await page.waitForTimeout(5_000);
   } catch {
     console.log('⚠️ “Agree” link not found via CSS path, falling back...');
-    // (you can add your old fallback here if you like)
+    // "Agree" link didn’t appear within 5s — continue normally
   }
+  
+
 
   // 6. Screenshot & send
   const buffer = await page.screenshot({ clip: CLIP });
