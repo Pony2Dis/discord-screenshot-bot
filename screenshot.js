@@ -15,62 +15,43 @@ const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
   await bot.login(process.env.DISCORD_TOKEN);
   console.log('✅ Logged in');
 
-  // 2. Screenshot with Playwright/Firefox
+  // 2. Launch browser in “US mode”
   const browser = await firefox.launch({ headless: true });
-  // create a US‑based context:
   const context = await browser.newContext({
     locale: 'en-US',
     timezoneId: 'America/New_York',
-    geolocation: { latitude: 40.7128, longitude: -74.0060 },
-    permissions: ['geolocation'],
-    extraHTTPHeaders: {
-      // force US‑style content
-      'Accept-Language': 'en-US,en;q=0.9'
-    }
+    extraHTTPHeaders: { 'Accept-Language': 'en-US,en;q=0.9' }
   });
-
   const page = await context.newPage();
   await page.setViewportSize(VIEWPORT);
 
-  // navigate & wait for initial HTML
-  await page.goto(URL, {
-    waitUntil: 'domcontentloaded',
-    timeout: 120_000
-  });
+  // 3. Go to the page
+  await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 120_000 });
 
-  //
-  // 2a. Try dismissing either the “Agree” popup or the OneTrust cookie banner
-  //
-  //  — CNN U.S. version:
-  const usAgree = page.locator('a:has-text("Agree")');
-  if (await usAgree.count() > 0) {
-    console.log('🔓 Found U.S. “Agree” link, clicking…');
-    await usAgree.first().click({ force: true });
+  // 4. Try to click the “Agree” link by your CSS path
+  const agreeLink = page.locator('body > div:nth-child(16) > div:nth-child(1) > a:nth-child(3)');
+  try {
+    await agreeLink.waitFor({ state: 'visible', timeout: 5_000 });
+    await agreeLink.click({ force: true });
+    console.log('🔓 Clicked “Agree” via CSS selector');
+    // give it a moment to go away
     await page.waitForTimeout(1_000);
-  } else {
-    // — E.U. version: OneTrust banner
-    const euAccept = page.locator('#onetrust-accept-btn-handler');
-    if (await euAccept.count() > 0) {
-      console.log('🔓 Found E.U. “Accept All” button, clicking…');
-      await euAccept.first().click({ force: true });
-      await page.waitForTimeout(1_000);
-    } else {
-      console.log('⚠️ No known banner found; continuing anyway.');
-    }
+  } catch {
+    console.log('⚠️ “Agree” link not found via CSS path, falling back...');
+    // (you can add your old fallback here if you like)
   }
 
-  // 2b. wait up to 30s for the gauge value to be injected
+  // 5. Wait for the Fear & Greed gauge
   await page.waitForFunction(() => {
     const el = document.querySelector('.market-fng-gauge__dial-number-value');
     return el?.textContent?.trim().length > 0;
   }, { timeout: 30_000 });
   console.log('⏱ Gauge value is present');
 
-  // once the number is present, grab the screenshot
+  // 6. Screenshot & send
   const buffer = await page.screenshot({ clip: CLIP });
   await browser.close();
 
-  // 3. Post to Discord
   const channel = await bot.channels.fetch(process.env.CHANNEL_ID);
   await channel.send({
     files: [ new AttachmentBuilder(buffer, { name: 'fear-and-greed.png' }) ]
