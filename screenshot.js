@@ -7,8 +7,7 @@ console.log('channel id :', process.env.CHANNEL_ID);
 
 const URL      = 'https://edition.cnn.com/markets/fear-and-greed';
 const VIEWPORT = { width: 1200, height: 2800 };
-// const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
-const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
+const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
 
 (async () => {
   // 1. Discord login
@@ -27,11 +26,24 @@ const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
     timeout: 120_000
   });
 
-  // wait up to 30s for the gauge value to be injected
+  // 2a. Dismiss CNN’s “Legal Terms and Privacy” modal if it shows up
+  try {
+    // wait up to 5s for the “Agree” button to appear
+    await page.waitForSelector('button:has-text("Agree")', { timeout: 5_000 });
+    await page.click('button:has-text("Agree")');
+    // give the page a moment to re-render
+    await page.waitForTimeout(1_000);
+    console.log('🔓 Privacy modal dismissed');
+  } catch (e) {
+    // no modal appeared—carry on
+  }
+
+  // 2b. wait up to 30s for the gauge value to be injected
   await page.waitForFunction(() => {
     const el = document.querySelector('.market-fng-gauge__dial-number-value');
     return el?.textContent?.trim().length > 0;
   }, { timeout: 30_000 });
+  console.log('⏱ Gauge value is present');
 
   // once the number is present, grab the screenshot
   const buffer = await page.screenshot({ clip: CLIP });
