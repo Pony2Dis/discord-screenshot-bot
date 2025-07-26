@@ -17,7 +17,19 @@ const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
 
   // 2. Screenshot with Playwright/Firefox
   const browser = await firefox.launch({ headless: true });
-  const page = await browser.newPage();
+  // create a US‑based context:
+  const context = await browser.newContext({
+    locale: 'en-US',
+    timezoneId: 'America/New_York',
+    geolocation: { latitude: 40.7128, longitude: -74.0060 },
+    permissions: ['geolocation'],
+    extraHTTPHeaders: {
+      // force US‑style content
+      'Accept-Language': 'en-US,en;q=0.9'
+    }
+  });
+
+  const page = await context.newPage();
   await page.setViewportSize(VIEWPORT);
 
   // navigate & wait for initial HTML
@@ -26,23 +38,25 @@ const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
     timeout: 120_000
   });
 
-  // 2a. Dismiss CNN’s “Legal Terms and Privacy” modal by clicking “Agree”
-  try {
-    const agreeBtn = page.locator('button:has-text("Agree")');
-    await agreeBtn.waitFor({ state: 'visible', timeout: 3_000 });
-    console.log('🔓 “Agree” button is visible');
-    await agreeBtn.click({ force: true });
-    console.log('🔓 Privacy modal dismissed via button click');
+  //
+  // 2a. Try dismissing either the “Agree” popup or the OneTrust cookie banner
+  //
+  //  — CNN U.S. version:
+  const usAgree = page.locator('a:has-text("Agree")');
+  if (await usAgree.count() > 0) {
+    console.log('🔓 Found U.S. “Agree” link, clicking…');
+    await usAgree.first().click({ force: true });
     await page.waitForTimeout(1_000);
-  } catch (e) {
-    console.warn('⚠️ Could not find or click “Agree”:', e);
-
-    const acceptBtn = page.locator('button:has-text("Accept All")');
-    await acceptBtn.waitFor({ state: 'visible', timeout: 3_000 });
-    console.log('🔓 “Agree” button is visible');
-    await acceptBtn.click({ force: true });
-    console.log('🔓 Privacy modal dismissed via button click');
-    await page.waitForTimeout(1_000);
+  } else {
+    // — E.U. version: OneTrust banner
+    const euAccept = page.locator('#onetrust-accept-btn-handler');
+    if (await euAccept.count() > 0) {
+      console.log('🔓 Found E.U. “Accept All” button, clicking…');
+      await euAccept.first().click({ force: true });
+      await page.waitForTimeout(1_000);
+    } else {
+      console.log('⚠️ No known banner found; continuing anyway.');
+    }
   }
 
   // 2b. wait up to 30s for the gauge value to be injected
