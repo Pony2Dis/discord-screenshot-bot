@@ -7,7 +7,8 @@ console.log('channel id :', process.env.CHANNEL_ID);
 
 const URL      = 'https://edition.cnn.com/markets/fear-and-greed';
 const VIEWPORT = { width: 1200, height: 2800 };
-const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
+// const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
+const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
 
 (async () => {
   // 1. Discord login
@@ -28,14 +29,30 @@ const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
 
   // 2a. Dismiss CNN’s “Legal Terms and Privacy” modal if it shows up
   try {
-    // wait up to 5s for the “Agree” button to appear
-    await page.waitForSelector('button:has-text("Agree")', { timeout: 5_000 });
-    await page.click('button:has-text("Agree")');
-    // give the page a moment to re-render
-    await page.waitForTimeout(1_000);
-    console.log('🔓 Privacy modal dismissed');
+    // try to find a real “Agree” button by its text
+    const agreeBtn = page.locator('button').filter({ hasText: 'Agree' });
+    if (await agreeBtn.count() > 0) {
+      await agreeBtn.first().click();
+      console.log('🔓 Privacy modal dismissed via button');
+      await page.waitForTimeout(3000);
+    } else {
+      // fallback: remove any big centered overlays
+      await page.evaluate(() => {
+        document.querySelectorAll('div').forEach(el => {
+          const s = window.getComputedStyle(el);
+          if (
+            s.position === 'fixed' &&
+            parseInt(s.width, 10) / window.innerWidth > 0.5 &&
+            parseInt(s.height, 10) / window.innerHeight > 0.2
+          ) {
+            el.remove();
+          }
+        });
+      });
+      console.log('🔓 Privacy modal removed by fallback');
+    }
   } catch (e) {
-    // no modal appeared—carry on
+    console.warn('⚠️ Could not dismiss privacy modal:', e);
   }
 
   // 2b. wait up to 30s for the gauge value to be injected
