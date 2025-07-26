@@ -1,17 +1,28 @@
-name: Periodic Screenshot → Discord
+# .github/workflows/screenshot.yml
+name: Screenshot → Discord
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'  # every 15 minutes
-  workflow_dispatch:     # ← add this
+  workflow_dispatch:
+  schedule: 
+    - cron: '*/15 * * * *'
 
 jobs:
   screenshot:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Install Playwright Firefox
+        run: npx playwright install --with-deps firefox
+
       - name: Run screenshot
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
