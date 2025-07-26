@@ -29,13 +29,20 @@ const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
   // 2a. Dismiss CNN’s “Legal Terms and Privacy” modal by clicking “Agree”
   try {
     const agreeBtn = page.locator('button:has-text("Agree")');
-    await agreeBtn.waitFor({ state: 'visible', timeout: 10_000 });
+    await agreeBtn.waitFor({ state: 'visible', timeout: 3_000 });
     console.log('🔓 “Agree” button is visible');
     await agreeBtn.click({ force: true });
     console.log('🔓 Privacy modal dismissed via button click');
     await page.waitForTimeout(1_000);
   } catch (e) {
     console.warn('⚠️ Could not find or click “Agree”:', e);
+
+    const acceptBtn = page.locator('button:has-text("Accept All")');
+    await acceptBtn.waitFor({ state: 'visible', timeout: 3_000 });
+    console.log('🔓 “Agree” button is visible');
+    await acceptBtn.click({ force: true });
+    console.log('🔓 Privacy modal dismissed via button click');
+    await page.waitForTimeout(1_000);
   }
 
   // 2b. wait up to 30s for the gauge value to be injected
