@@ -1,0 +1,11 @@
+{
+    "name": "discord-screenshot-bot",
+    "version": "1.0.0",
+    "main": "screenshot.js",
+    "scripts": { "start": "node screenshot.js" },
+    "dependencies": {
+      "puppeteer": "^21.0.0",
+      "discord.js": "^14.0.0"
+    }
+  }
+  
