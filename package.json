@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "main": "screenshot.js",
   "scripts": {
-    "start": "node screenshot.js"
+    "start": "node screenshot.js",
+    "rss":   "node getrss.js"
   },
   "dependencies": {
     "discord.js": "^14.0.0",
     "playwright": "^1.38.0",
-    "dotenv": "^17.2.1"
+    "dotenv":     "^17.2.1",
+    "rss-parser": "^3.12.0"
   }
 }

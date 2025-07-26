@@ -1,0 +1,28 @@
+name: 📸 Get the RSS News
+
+on:
+  schedule:
+    - cron: '*\15 * * * *' # Every 15 minutes
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  take-screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run rss bot
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          NEWS_CHANNEL_ID:    ${{ secrets.NEWS_CHANNEL_ID }}
+        run: node getrss.js
