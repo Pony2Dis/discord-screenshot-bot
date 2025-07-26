@@ -1,9 +1,9 @@
 name: 📸 Take CNN Fear & Greed Screenshot
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '1 * * * *'  # every hour (adjust as you like)
+    - cron: '5 * * * *'  # every 5 minute (adjust as you like)
+  workflow_dispatch:
 
 jobs:
   take-screenshot:
