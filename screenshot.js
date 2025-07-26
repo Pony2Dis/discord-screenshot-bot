@@ -28,6 +28,13 @@ const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
   // 3. Go to the page
   await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 120_000 });
 
+  // 5. Wait for the Fear & Greed gauge
+  await page.waitForFunction(() => {
+    const el = document.querySelector('.market-fng-gauge__dial-number-value');
+    return el?.textContent?.trim().length > 0;
+  }, { timeout: 30_000 });
+  console.log('⏱ Gauge value is present');
+
   // 4. Try to click the “Agree” link by your CSS path
   const agreeLink = page.locator('body > div:nth-child(16) > div:nth-child(1) > a:nth-child(3)');
   try {
@@ -40,13 +47,6 @@ const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
     console.log('⚠️ “Agree” link not found via CSS path, falling back...');
     // (you can add your old fallback here if you like)
   }
-
-  // 5. Wait for the Fear & Greed gauge
-  await page.waitForFunction(() => {
-    const el = document.querySelector('.market-fng-gauge__dial-number-value');
-    return el?.textContent?.trim().length > 0;
-  }, { timeout: 30_000 });
-  console.log('⏱ Gauge value is present');
 
   // 6. Screenshot & send
   const buffer = await page.screenshot({ clip: CLIP });
