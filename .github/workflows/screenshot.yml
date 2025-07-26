@@ -2,7 +2,7 @@ name: 📸 Take CNN Fear & Greed Screenshot
 
 on:
   schedule:
-    - cron: '*/30 * * * *' # Every 30 minutes
+    - cron: '1 * * * *' # Every 30 minutes
   workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
