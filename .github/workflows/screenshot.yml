@@ -2,7 +2,7 @@ name: 📸 Take CNN Fear & Greed Screenshot
 
 on:
   schedule:
-    - cron: '5 * * * *'  # every 5 minute (adjust as you like)
+    - cron: '*/5 * * * *' # Every 5 minutes
 
 jobs:
   take-screenshot:
