@@ -7,7 +7,7 @@ console.log('channel id :', process.env.CHANNEL_ID);
 
 const URL      = 'https://edition.cnn.com/markets/fear-and-greed';
 const VIEWPORT = { width: 1200, height: 2800 };
-const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
+const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
 
 (async () => {
   // 1. Discord login
@@ -28,14 +28,14 @@ const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
   // 3. Go to the page
   await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 120_000 });
 
-  // 5. Wait for the Fear & Greed gauge
+  // 4. Wait for the Fear & Greed gauge
   await page.waitForFunction(() => {
     const el = document.querySelector('.market-fng-gauge__dial-number-value');
     return el?.textContent?.trim().length > 0;
   }, { timeout: 30_000 });
   console.log('⏱ Gauge value is present');
 
-  // 4. Try to click the “Agree” link by your CSS path
+  // 5. Try to click the “Agree” link by your CSS path
   const agreeLink = page.locator('a:has-text("Agree")');
   try {
     await agreeLink.waitFor({ timeout: 5000 });
@@ -47,8 +47,6 @@ const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
     // "Agree" link didn’t appear within 5s — continue normally
   }
   
-
-
   // 6. Screenshot & send
   const buffer = await page.screenshot({ clip: CLIP });
   await browser.close();
