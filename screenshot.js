@@ -1,11 +1,11 @@
-// screenshot.js
 const puppeteer = require('puppeteer');
-const { Client, Intents, MessageAttachment } = require('discord.js');
+const { Client, GatewayIntentBits, AttachmentBuilder } = require('discord.js');
 
-const bot = new Client({ intents: [Intents.FLAGS.GUILDS] });
-const URL        = 'https://edition.cnn.com/markets/fear-and-greed';
-const VIEWPORT   = { width: 1200, height: 800 };
-const CLIP       = { x: 100, y: 200, width: 800, height: 400 };
+const URL      = 'https://edition.cnn.com/markets/fear-and-greed';
+const VIEWPORT = { width: 1200, height: 800 };
+const CLIP     = { x: 100, y: 200, width: 800, height: 400 };
+
+const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 bot.once('ready', () => {
   (async () => {
@@ -17,9 +17,13 @@ bot.once('ready', () => {
     await browser.close();
 
     const channel = await bot.channels.fetch(process.env.CHANNEL_ID);
-    await channel.send({ files: [new MessageAttachment(buffer, 'shot.png')] });
+    const attachment = new AttachmentBuilder(buffer, { name: 'shot.png' });
+    await channel.send({ files: [attachment] });
     process.exit(0);
-  })();
+  })().catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
 });
 
 bot.login(process.env.DISCORD_TOKEN);
