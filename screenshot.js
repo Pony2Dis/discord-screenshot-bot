@@ -7,7 +7,6 @@ console.log('channel id :', process.env.CHANNEL_ID);
 
 const URL      = 'https://edition.cnn.com/markets/fear-and-greed';
 const VIEWPORT = { width: 1200, height: 2800 };
-// const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
 const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
 
 (async () => {
@@ -21,48 +20,53 @@ const CLIP     = { x: 0, y: 0, width: 1200, height: 2800 };
   const page = await browser.newPage();
   await page.setViewportSize(VIEWPORT);
 
-  // navigate & wait for initial HTML
-  await page.goto(URL, {
-    waitUntil: 'domcontentloaded',
-    timeout: 120_000
-  });
+  // 2a. Go and dismiss the privacy modal
+  await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 120_000 });
 
-  // 2a. Dismiss CNN’s “Legal Terms and Privacy” modal if it shows up
   try {
-    // try to find a real “Agree” button by its text
-    const agreeBtn = page.locator('button').filter({ hasText: 'Agree' });
+    // 1) click the “Agree” button if present
+    const agreeBtn = page.getByRole('button', { name: 'Agree' });
     if (await agreeBtn.count() > 0) {
       await agreeBtn.first().click();
       console.log('🔓 Privacy modal dismissed via button');
-      await page.waitForTimeout(3000);
+      await page.waitForTimeout(1_000);
     } else {
-      // fallback: remove any big centered overlays
-      await page.evaluate(() => {
-        document.querySelectorAll('div').forEach(el => {
-          const s = window.getComputedStyle(el);
-          if (
-            s.position === 'fixed' &&
-            parseInt(s.width, 10) / window.innerWidth > 0.5 &&
-            parseInt(s.height, 10) / window.innerHeight > 0.2
-          ) {
-            el.remove();
-          }
-        });
-      });
-      console.log('🔓 Privacy modal removed by fallback');
+      throw new Error('no button');
     }
-  } catch (e) {
-    console.warn('⚠️ Could not dismiss privacy modal:', e);
+  } catch {
+    // 2) remove any giant fixed overlay
+    await page.evaluate(() => {
+      document.querySelectorAll('div').forEach(el => {
+        const s = window.getComputedStyle(el);
+        if (
+          s.position === 'fixed' &&
+          parseFloat(s.width) / window.innerWidth > 0.5 &&
+          parseFloat(s.height) / window.innerHeight > 0.2
+        ) el.remove();
+      });
+    });
+    console.log('🔓 Privacy modal removed by fallback');
+
+    // 3) *last‑ditch*: remove any node whose text includes the modal title
+    await page.evaluate(() => {
+      for (const el of document.querySelectorAll('div')) {
+        if (el.textContent.includes('Legal Terms and Privacy')) {
+          el.remove();
+          return;
+        }
+      }
+    });
+    console.log('🔓 Privacy modal removed by text match');
   }
 
-  // 2b. wait up to 30s for the gauge value to be injected
+  // 2b. wait up to 30s for the gauge value to show
   await page.waitForFunction(() => {
     const el = document.querySelector('.market-fng-gauge__dial-number-value');
-    return el?.textContent?.trim().length > 0;
+    return el?.textContent.trim().length > 0;
   }, { timeout: 30_000 });
   console.log('⏱ Gauge value is present');
 
-  // once the number is present, grab the screenshot
+  // 2c. screenshot
   const buffer = await page.screenshot({ clip: CLIP });
   await browser.close();
 
