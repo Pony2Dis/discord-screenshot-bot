@@ -6,9 +6,6 @@ import Parser from 'rss-parser';
 import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js';
 import cheerio from 'cheerio';               // for HTML parsing
 
-// Node 18+ has global fetch
-// If running older Node, install node-fetch and import: `import fetch from 'node-fetch';`
-
 const DISCORD_TOKEN   = process.env.DISCORD_TOKEN;
 const NEWS_CHANNEL_ID = process.env.NEWS_CHANNEL_ID;
 const STATE_FILE      = path.resolve('./rss-state.json');
