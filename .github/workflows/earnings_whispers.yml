@@ -9,7 +9,7 @@ permissions:
   contents: write    # allow GITHUB_TOKEN to push
 
 jobs:
-  read-rss:
+  fetch-earnings-from-whispers:
     runs-on: ubuntu-latest
     steps:
 
