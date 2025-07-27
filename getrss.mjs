@@ -21,6 +21,17 @@ async function saveState(state) {
   console.log(`State saved in ${Date.now() - t0} ms`);
 }
 
+const axios = require('axios');
+async function getFinalUrl(googleUrl) {
+  try {
+    const response = await axios.get(googleUrl, { maxRedirects: 5, validateStatus: status => status >= 200 && status < 303 });
+    return response.request.res.responseUrl || googleUrl;
+  } catch (error) {
+    console.error(`⚠️ Could not unwrap ${googleUrl}:`, error.message);
+    return googleUrl;
+  }
+}
+
 async function main() {
   const parser = new Parser({ requestOptions: { timeout: 10000 } });
   const state  = await loadState();
@@ -69,7 +80,7 @@ async function main() {
 
     const embed = new EmbedBuilder()
       .setTitle(item.title)
-      .setURL(item.link)
+      .setURL(getFinalUrl(item.link))
       .setTimestamp(new Date(item.pubDate));
 
     const snippet = item.contentSnippet?.slice(0, 200);
