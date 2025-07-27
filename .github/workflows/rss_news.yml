@@ -2,11 +2,11 @@ name: 📸 Get the RSS News
 
 on:
   schedule:
-    - cron: '*\15 * * * *' # Every 15 minutes
+    - cron: '*/15 * * * *' # Every 15 minutes
   workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
-  take-screenshot:
+  read-rss:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
