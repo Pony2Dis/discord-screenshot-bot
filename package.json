@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node screenshot.js",
     "newa":   "node getrss.mjs",
-    "earnings": "node fetchEarnings.mjs",
+    "earnings": "node fetchEarnings.mjs"
   },
   "dependencies": {
     "discord.js": "^14.0.0",
