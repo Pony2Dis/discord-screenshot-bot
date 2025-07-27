@@ -24,5 +24,6 @@ jobs:
       - name: Run rss bot
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-          NEWS_CHANNEL_ID:    ${{ secrets.NEWS_CHANNEL_ID }}
+          NEWS_CHANNEL_ID: ${{ secrets.NEWS_CHANNEL_ID }}
+          RSS_FEEDS: ${{ vars.RSS_FEEDS }}
         run: node getrss.mjs
