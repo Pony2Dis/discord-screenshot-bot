@@ -2,7 +2,7 @@ name: 💰 Get the RSS Earnings
 
 on:
   schedule:
-    - cron: '*/55 * * * *'
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 permissions:
