@@ -1,23 +1,10 @@
 {
-  "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069": [
-    "108176372",
-    "108175214",
-    "108176596",
-    "108176902"
-  ],
+  "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069": [],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147": [],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258": [],
   "https://www.prnewswire.com/rss/energy-latest-news/energy-latest-news-list.rss": [],
-  "https://feeds.marketwatch.com/marketwatch/topstories/": [
-    "WP-MKTW-0004335770",
-    "WP-MKTW-0004339936",
-    "WP-MKTW-0004343087",
-    "WP-MKTW-0004342854",
-    "WP-MKTW-0004347722"
-  ],
-  "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
-    "108175214"
-  ],
+  "https://feeds.marketwatch.com/marketwatch/topstories/": [],
+  "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [],
   "https://finance.yahoo.com/news/rssindex": [],
   "https://www.sec.gov/news/pressreleases.rss": []
 }
