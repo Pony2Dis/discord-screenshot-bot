@@ -38,7 +38,7 @@ async function main() {
 
   // last‑17h cutoff
   const now = new Date();
-  const cutoff = new Date(now.getTime() - 17 * 60 * 60 * 1000);
+  const cutoff = new Date(now.getTime() - 48 * 60 * 60 * 1000);
 
   const FEEDS = (process.env.RSS_FEEDS || "")
     .split(/[\r\n,]+/)
