@@ -47,11 +47,11 @@ async function main() {
     }
     const seen = new Set(state[url] || []);
     for (const item of feed.items) {
-      const id = item.guid || item.link;
-      if (!seen.has(id) && new Date(item.pubDate) >= cutoff) {
+      const uniqueId = item.link;
+      if (!seen.has(uniqueId) && new Date(item.pubDate) >= cutoff) {
         console.log(`  ✔ Queued (17h): ${item.title}`);
         allNew.push({ item });
-        seen.add(id);
+        seen.add(uniqueId);
       }
     }
     state[url] = Array.from(seen);
@@ -66,26 +66,26 @@ async function main() {
   for (const { item } of sorted) {
     console.log(`Posting now: ${item.title} (${item.pubDate})`);
 
-    const embed = new EmbedBuilder()
-      .setTitle(item.title || '')
-      .setURL(item.link)
-      .setTimestamp(new Date(item.pubDate || Date.now()));
+    // const embed = new EmbedBuilder()
+    //   .setTitle(item.title || '')
+    //   .setURL(item.link)
+    //   .setTimestamp(new Date(item.pubDate || Date.now()));
 
-    const snippet = item.contentSnippet?.slice(0, 200);
-    if (snippet) embed.setDescription(snippet);
+    // const snippet = item.contentSnippet?.slice(0, 200);
+    // if (snippet) embed.setDescription(snippet);
 
-    // **NEW**: If the RSS gives an image…
-    if (item.enclosure?.url) 
-      embed.setImage(item.enclosure.url);
+    // // **NEW**: If the RSS gives an image…
+    // if (item.enclosure?.url) 
+    //   embed.setImage(item.enclosure.url);
 
     // **NEW**: include the link in `content` so Discord will unfurl it
     await channel.send({
       content: `[לינק לכתבה](${item.link})`,
     });
-    
-    await channel.send({
-      embeds: [embed]
-    });
+
+    // await channel.send({
+    //   embeds: [embed]
+    // });
   }
 
   await saveState(state);
