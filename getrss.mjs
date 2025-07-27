@@ -74,6 +74,7 @@ async function main() {
     try {
       const res = await fetch(item.link, { redirect: 'follow' });
       finalUrl = res.url;
+      console.log(`  Final URL: ${finalUrl}`);
     } catch (err) {
       console.error(`Failed to resolve redirect for ${item.link}:`, err);
     }
