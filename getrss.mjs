@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import Parser from 'rss-parser';
 import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js';
-import cheerio from 'cheerio';               // for HTML parsing
+import * as cheerio from 'cheerio'; // for HTML parsing
 
 const DISCORD_TOKEN   = process.env.DISCORD_TOKEN;
 const NEWS_CHANNEL_ID = process.env.NEWS_CHANNEL_ID;
