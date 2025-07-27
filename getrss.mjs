@@ -19,9 +19,7 @@ async function saveState(state) {
 }
 
 async function main() {
-  const parser = new Parser({
-    requestOptions: { timeout: 10000 }
-  });
+  const parser = new Parser({ requestOptions: { timeout: 10000 } });
   const state  = await loadState();
   const client = new Client({ intents: [GatewayIntentBits.Guilds] });
   await client.login(DISCORD_TOKEN);
@@ -53,7 +51,10 @@ async function main() {
           d.getMonth()    === now.getMonth() &&
           d.getDate()     === now.getDate()
         ) {
+          console.log(`  ✔ Queued for today: ${item.title}`);
           allNew.push({ item });
+        } else {
+          console.log(`  ✖ Ignored (not today): ${item.title}`);
         }
         seen.add(id);
       }
@@ -61,18 +62,19 @@ async function main() {
     state[url] = Array.from(seen);
   }
 
-  // sort & post in sequence
+  console.log(`\nTotal new items to post: ${allNew.length}`);
+  console.log(`Sorting and posting…`);
   const sorted = allNew.sort(
     (a, b) => new Date(a.item.pubDate) - new Date(b.item.pubDate)
   );
   for (const { item } of sorted) {
+    console.log(`Posting now: ${item.title} (${item.pubDate})`);
     const embed = new EmbedBuilder()
       .setTitle(item.title)
       .setURL(item.link)
       .setTimestamp(new Date(item.pubDate));
     const snippet = item.contentSnippet?.slice(0, 200);
     if (snippet) embed.setDescription(snippet);
-    console.log(`Posting: ${item.title}`);
     await channel.send({ embeds: [embed] });
   }
 
