@@ -79,9 +79,9 @@ async function main() {
     console.log(`Posting now: ${item.title} (${item.pubDate})`);
 
     const embed = new EmbedBuilder()
-      .setTitle(item.title)
-      .setURL(getFinalUrl(item.link))
-      .setTimestamp(new Date(item.pubDate));
+      .setTitle(item.title || '')
+      .setURL(getFinalUrl(item.link) || item.link)
+      .setTimestamp(new Date(item.pubDate || Date.now()));
 
     const snippet = item.contentSnippet?.slice(0, 200);
     if (snippet) embed.setDescription(snippet);
