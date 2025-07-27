@@ -14,7 +14,10 @@ async function loadState() {
 }
 
 async function saveState(state) {
+  console.log(`Saving state to ${STATE_FILE}…`);
+  const t0 = Date.now();
   await fs.promises.writeFile(STATE_FILE, JSON.stringify(state, null, 2));
+  console.log(`State saved in ${Date.now() - t0} ms`);
 }
 
 async function main() {
@@ -24,19 +27,29 @@ async function main() {
   await client.login(DISCORD_TOKEN);
   const channel = await client.channels.fetch(NEWS_CHANNEL_ID);
 
-  const cutoff = Date.now() - 17 * 60 * 60 * 1000;
-  const FEEDS = (process.env.RSS_FEEDS || '').split(/[\r\n,]+/).filter(Boolean);
+  // last‑17h cutoff
+  const now    = new Date();
+  const cutoff = new Date(now.getTime() - 17 * 60 * 60 * 1000);
+
+  const FEEDS = (process.env.RSS_FEEDS || '')
+    .split(/[\r\n,]+/).map(u => u.trim()).filter(Boolean);
+
   const allNew = [];
 
   for (const url of FEEDS) {
+    console.log(`Fetching: ${url}`);
     let feed;
-    try { feed = await parser.parseURL(url); }
-    catch { continue; }
-
+    try {
+      feed = await parser.parseURL(url);
+    } catch (err) {
+      console.error(`⚠️ Skipping ${url}: ${err.message}`);
+      continue;
+    }
     const seen = new Set(state[url] || []);
     for (const item of feed.items) {
       const id = item.guid || item.link;
-      if (!seen.has(id) && new Date(item.pubDate).getTime() >= cutoff) {
+      if (!seen.has(id) && new Date(item.pubDate) >= cutoff) {
+        console.log(`  ✔ Queued (17h): ${item.title}`);
         allNew.push({ item });
         seen.add(id);
       }
@@ -44,30 +57,38 @@ async function main() {
     state[url] = Array.from(seen);
   }
 
-  allNew
-    .sort((a,b) => new Date(a.item.pubDate) - new Date(b.item.pubDate))
-    .forEach(async ({ item }) => {
-      const embed = new EmbedBuilder()
-        .setTitle(item.title || '')
-        .setURL(item.link)
-        .setTimestamp(new Date(item.pubDate || Date.now()));
+  console.log(`\nTotal new items to post: ${allNew.length}`);
+  console.log(`Sorting and posting…`);
+  const sorted = allNew.sort(
+    (a, b) => new Date(a.item.pubDate) - new Date(b.item.pubDate)
+  );
 
-      if (item.contentSnippet) 
-        embed.setDescription(item.contentSnippet.slice(0, 200));
+  for (const { item } of sorted) {
+    console.log(`Posting now: ${item.title} (${item.pubDate})`);
 
-      // **NEW**: If the RSS gives an image…
-      if (item.enclosure?.url) 
-        embed.setImage(item.enclosure.url);
+    const embed = new EmbedBuilder()
+      .setTitle(item.title || '')
+      .setURL(item.link)
+      .setTimestamp(new Date(item.pubDate || Date.now()));
 
-      // **NEW**: include the link in `content` so Discord will unfurl it
-      await channel.send({
-        content: `[לינק לכתבה](${item.link})`,
-        embeds: [embed]
-      });
+    const snippet = item.contentSnippet?.slice(0, 200);
+    if (snippet) embed.setDescription(snippet);
+
+    // **NEW**: If the RSS gives an image…
+    if (item.enclosure?.url) 
+      embed.setImage(item.enclosure.url);
+
+    // **NEW**: include the link in `content` so Discord will unfurl it
+    await channel.send({
+      content: `[לינק לכתבה](${item.link})`,
+      embeds: [embed]
     });
+  }
 
   await saveState(state);
+  console.log(`\n✅ All done! destroying client…`);
   client.destroy();
+  console.log(`✅ Client destroyed, exiting…`);
 }
 
 main().catch(err => {
