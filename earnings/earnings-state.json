@@ -1126,5 +1126,29 @@
     "revenueSurprise": 0.1181932023729714,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.2189367830983969
+  },
+  {
+    "epsDate": "2025-07-27T17:25:00",
+    "ticker": "CNC",
+    "name": "Centene Corporation",
+    "summary": "Centene (CNC) reported a loss of $0.16 per share on revenue of $48.74 billion for the .  The consensus earnings estimate was $0.68 per share on  revenue of $44.28 billion. The company missed consensus estimates by 123.53% while revenue grew 22.36% on a year-over-year basis.<br /><br />The company  said during its <a href=\"https://app.webinar.net/NR6KbwxLVn8\">conference call</a> it expects  2025  earnings of approximately $1.75 per share. The company previously withdrew its initial guidance for earnings of at least $7.25 per share and the current consensus earnings estimate is $3.55 per share for the year ending December 31, 2025.<br /><br />Centene Corp is a diversified multi-national healthcare enterprise. The Company provides programs and services to government sponsored healthcare\r\nprograms, focusing on under-insured and uninsured individuals.",
+    "subject": "Centene Missed Consensus Estimates",
+    "quarter": "",
+    "fileName": "2507278068",
+    "eps": -0.16,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.68,
+    "whisper": 999,
+    "highEstimate": 2.1,
+    "lowEstimate": 0.3,
+    "revenue": 48742,
+    "revenueEstimate": 44280,
+    "earningsGrowth": -1.0661157024793388,
+    "revenueGrowth": 0.22356662315493522,
+    "earningsSurprise": -1.2352941176470589,
+    "revenueSurprise": 0.10076784101174345,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.153760487044324
   }
 ]
