@@ -1,10 +1,9 @@
-// getrss.mjs
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 import Parser from 'rss-parser';
 import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js';
-import axios from 'axios';
+import { chromium } from 'playwright';
 
 const DISCORD_TOKEN   = process.env.DISCORD_TOKEN;
 const NEWS_CHANNEL_ID = process.env.NEWS_CHANNEL_ID;
@@ -23,13 +22,12 @@ async function saveState(state) {
 }
 
 async function getFinalUrl(googleUrl) {
-  try {
-    const response = await axios.get(googleUrl, { maxRedirects: 5, validateStatus: status => status >= 200 && status < 303 });
-    return response.request.res.responseUrl || googleUrl;
-  } catch (error) {
-    console.error(`⚠️ Could not unwrap ${googleUrl}:`, error.message);
-    return googleUrl;
-  }
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage();
+  await page.goto(googleUrl, { waitUntil: 'networkidle', timeout: 10000 });
+  const finalUrl = page.url();
+  await browser.close();
+  return finalUrl || googleUrl;
 }
 
 async function main() {
