@@ -68,10 +68,17 @@ async function main() {
       e => e.epsDate === item.epsDate && e.ticker === item.ticker
     );
     if (!exists) {
+
+      const statusEmoji = item.subject.includes("Beat Expectations")
+        ? "✅"
+        : item.subject.includes("Missed Expectations")
+          ? "❌"
+          : "";
+
       // format the earning report
       const embed = new EmbedBuilder()
       .setColor(0x1abc9c)                              // teal sidebar
-      .setTitle(`${item.ticker} — ${item.subject}`)    // big header
+      .setTitle(`${statusEmoji} ${item.ticker} — ${item.subject}`)    // big header
       .setURL(`https://www.earningswhispers.com/epsdetails/${item.ticker}`)
       .setAuthor({ name: item.name })                  // company name
       .addFields(
