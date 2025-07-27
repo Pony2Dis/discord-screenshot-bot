@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import Parser from 'rss-parser';
 import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js';
-import { firefox } from 'playwright';
 
 const DISCORD_TOKEN   = process.env.DISCORD_TOKEN;
 const NEWS_CHANNEL_ID = process.env.NEWS_CHANNEL_ID;
@@ -21,21 +20,6 @@ async function saveState(state) {
   console.log(`State saved in ${Date.now() - t0} ms`);
 }
 
-async function getFinalUrl(googleUrl) {
-  let finalUrl = googleUrl; // Fallback to original URL
-  const browser = await firefox.launch({ headless: true });
-  const page = await browser.newPage();
-  try {
-    await page.goto(googleUrl, { waitUntil: 'load', timeout: 10000 }); // Initial load with 10s timeout
-    await page.waitForTimeout(10000); // Wait an additional 10s
-    finalUrl = page.url();
-  } catch (err) {
-    console.error(`⚠️ Timeout or error unwrapping ${googleUrl}:`, err.message);
-  } finally {
-    await browser.close();
-  }
-  return finalUrl;
-}
 async function main() {
   const parser = new Parser({ requestOptions: { timeout: 10000 } });
   const state  = await loadState();
@@ -82,12 +66,9 @@ async function main() {
   for (const { item } of sorted) {
     console.log(`Posting now: ${item.title} (${item.pubDate})`);
 
-    const finalLink = await getFinalUrl(item.link);
-    console.log(`Final URL: ${finalLink}`);
-
     const embed = new EmbedBuilder()
       .setTitle(item.title || '')
-      .setURL(finalLink || item.link)
+      .setURL(item.link)
       .setTimestamp(new Date(item.pubDate || Date.now()));
 
     const snippet = item.contentSnippet?.slice(0, 200);
