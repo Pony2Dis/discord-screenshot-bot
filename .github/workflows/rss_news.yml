@@ -34,6 +34,11 @@ jobs:
           EMBED_HOSTS:       ${{ vars.EMBED_HOSTS }}
         run: node getrss.mjs
 
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Commit updated state
         run: |
           git config user.name "github-actions[bot]"
