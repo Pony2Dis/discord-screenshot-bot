@@ -4,6 +4,7 @@ import path from "path";
 import axios from "axios";
 import { CookieJar } from "tough-cookie";
 import { wrapper } from "axios-cookiejar-support";
+import { Client, GatewayIntentBits, EmbedBuilder } from "discord.js";
 
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 const EARNINGS_CHANNEL_ID = process.env.EARNINGS_CHANNEL_ID;
