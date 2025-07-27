@@ -28,11 +28,14 @@ async function main() {
   await client.login(DISCORD_TOKEN);
   const channel = await client.channels.fetch(NEWS_CHANNEL_ID);
 
+  // post items from the last 17 hours
+  const now    = new Date();
+  const cutoff = new Date(now.getTime() - 17 * 60 * 60 * 1000);
+
   const FEEDS = (process.env.RSS_FEEDS || '')
     .split(/[\r\n,]+/).map(u => u.trim()).filter(Boolean);
 
   const allNew = [];
-  const now = new Date();
 
   for (const url of FEEDS) {
     console.log(`Fetching: ${url}`);
@@ -49,15 +52,11 @@ async function main() {
       const id = item.guid || item.link;
       if (!seen.has(id)) {
         const d = new Date(item.pubDate);
-        if (
-          d.getFullYear() === now.getFullYear() &&
-          d.getMonth()    === now.getMonth() &&
-          d.getDate()     === now.getDate()
-        ) {
-          console.log(`  ✔ Queued for today: ${item.title}`);
+        if (d >= cutoff) {
+          console.log(`  ✔ Queued (within 17h): ${item.title} — ${item.pubDate}`);
           allNew.push({ item });
         } else {
-          console.log(`  ✖ Ignored (not today): ${item.title}`);
+          console.log(`  ✖ Skipped (older than 17h): ${item.title}`);
         }
         seen.add(id);
       }
