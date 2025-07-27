@@ -4,7 +4,6 @@ import fs from 'fs';
 import path from 'path';
 import Parser from 'rss-parser';
 import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js';
-import fetch from 'node-fetch';               // if Node<18
 import cheerio from 'cheerio';               // for HTML parsing
 
 // Node 18+ has global fetch

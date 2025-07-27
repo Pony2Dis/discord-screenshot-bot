@@ -4,7 +4,7 @@
   "main": "screenshot.js",
   "scripts": {
     "start": "node screenshot.js",
-    "rss":   "node getrss.js"
+    "rss":   "node getrss.mjs"
   },
   "dependencies": {
     "discord.js": "^14.0.0",
