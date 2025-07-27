@@ -78,9 +78,12 @@ async function main() {
   for (const { item } of sorted) {
     console.log(`Posting now: ${item.title} (${item.pubDate})`);
 
+    const finalLink = await getFinalUrl(item.link);
+    console.log(`Final URL: ${finalLink}`);
+
     const embed = new EmbedBuilder()
       .setTitle(item.title || '')
-      .setURL(getFinalUrl(item.link) || item.link)
+      .setURL(finalLink || item.link)
       .setTimestamp(new Date(item.pubDate || Date.now()));
 
     const snippet = item.contentSnippet?.slice(0, 200);
