@@ -4,6 +4,8 @@ import fs from 'fs';
 import path from 'path';
 import Parser from 'rss-parser';
 import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js';
+import fetch from 'node-fetch';               // if Node<18
+import cheerio from 'cheerio';               // for HTML parsing
 
 // Node 18+ has global fetch
 // If running older Node, install node-fetch and import: `import fetch from 'node-fetch';`
@@ -69,14 +71,18 @@ async function main() {
 
   for (const { item } of sorted) {
     console.log(`Posting now: ${item.title} (${item.pubDate})`);
-    // follow redirects to get final URL
+    // fetch HTML and extract the real article URL
     let finalUrl = item.link;
     try {
-      const res = await fetch(item.link, { redirect: 'follow' });
-      finalUrl = res.url;
-      console.log(`  Final URL: ${finalUrl}`);
+      const resp = await fetch(item.link, { timeout: 10000 });
+      const html = await resp.text();
+      const $ = cheerio.load(html);
+      // try Open Graph first
+      finalUrl = $('meta[property="og:url"]').attr('content')
+        || $('a').first().attr('href')
+        || finalUrl;
     } catch (err) {
-      console.error(`Failed to resolve redirect for ${item.link}:`, err);
+      console.error(`⚠️ Could not unwrap ${item.link}:`, err.message);
     }
 
     const embed = new EmbedBuilder()
