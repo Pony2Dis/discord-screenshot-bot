@@ -69,25 +69,34 @@ async function main() {
     );
     if (!exists) {
       // format the earning report
-      const earningReport = `**${item.subject}**\n` +
-        `$(${item.ticker}) - **${item.name}**\n` +
-        `**Earnings Date:** ${new Date(item.epsDate).toLocaleString("en-US", { timeZone: "America/New_York" })}\n` +
-        `**Summary:** ${item.summary}\n` +
-        `**Earnings Per Share:** ${item.eps} (Estimate: ${item.estimate}, Whisper: ${item.whisper})\n` +
-        `**Revenue:** $${(item.revenue / 1e9).toFixed(2)}B (Estimate: $${(item.revenueEstimate / 1e9).toFixed(2)}B)\n` +
-        `**Earnings Surprise:** ${((item.earningsSurprise || 0) * 100).toFixed(2)}%\n` +
-        `**Revenue Surprise:** ${((item.revenueSurprise || 0) * 100).toFixed(2)}%\n` +
-        `**Previous Earnings Growth:** ${item.prevEarningsGrowth ? (item.prevEarningsGrowth * 100).toFixed(2) + '%' : 'N/A'}\n` +
-        `**Previous Revenue Growth:** ${item.prevRevenueGrowth ? (item.prevRevenueGrowth * 100).toFixed(2) + '%' : 'N/A'}\n` +
-        `**High Estimate:** ${item.highEstimate}, **Low Estimate:** ${item.lowEstimate}\n` +
-        `**Earnings Whispers Grade:** ${item.ewGrade || 'N/A'}, **Power Rating:** ${item.pwrRating || 'N/A'}\n` +
-        `**Conference Call:** [Link](https://app.webinar.net/${item.fileName})\n` +
-        `**Source:** [Earnings Whispers](https://www.earningswhispers.com/earnings/${item.fileName})`;
-
+      const embed = new EmbedBuilder()
+      .setColor(0x1abc9c)                              // teal sidebar
+      .setTitle(`${item.ticker} — ${item.subject}`)    // big header
+      .setURL(`https://www.earningswhispers.com/epsdetails/${item.ticker}`)
+      .setAuthor({ name: item.name })                  // company name
+      .addFields(
+        { name: "Earnings Date", value: new Date(item.epsDate).toLocaleString(), inline: true },
+        { name: "EPS (est/whisp)", value: `${item.eps} (Estimate: ${item.estimate} / Whisper: ${item.whisper})`, inline: true },
+        { name: "Revenue (est)", value: `$${(item.revenue/1e9).toFixed(2)}B (Estimate: $${(item.revenueEstimate/1e9).toFixed(2)}B)`, inline: true },
+        { name: "Earnings Surprise %", value: `EPS ${(item.earningsSurprise*100).toFixed(2)}%`, inline: true },
+        { name: "Revenue Surprise %", value: `${(item.revenueSurprise*100).toFixed(2)}%`, inline: true },
+        { name: "Previous Earnings Growth", value: `${item.prevEarningsGrowth ? (item.prevEarningsGrowth*100).toFixed(1)+'%' : 'N/A'}`, inline: true },
+        { name: "Previous Revenue Growth", value: `${item.prevRevenueGrowth ? (item.prevRevenueGrowth*100).toFixed(1)+'%' : 'N/A'}`, inline: true },
+        { name: "High / Low Est.",  value: `${item.highEstimate} / ${item.lowEstimate}`, inline: true },
+        { name: "Earnings Whispers Grade", value: item.ewGrade || "N/A", inline: true },
+        { name: "Power Rating", value: item.pwrRating || "N/A", inline: true },
+        { name: "Conference Call", value: `[Link](https://app.webinar.net/${item.fileName})`, inline: true },
+      )
+      .setDescription(
+        item.summary
+          .replace(/<br \/>/g, "\n")
+          .replace(/<a [^>]+>([^<]+)<\/a>/g, "[$1]")
+      )
+      .setFooter({ text: "Source: Earnings Whispers" })
+      .setTimestamp();
+      
       // send the earning report to Discord
-      await channel.send({
-        content: earningReport,
-      });
+      await channel.send({ embeds: [embed] });
 
       // add to state
       state.push(item);
