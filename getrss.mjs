@@ -91,7 +91,9 @@ async function main() {
   }
 
   await saveState(state);
+  console.log(`\n✅ All done! destroying client…`);
   client.destroy();
+  console.log(`✅ Client destroyed, exiting…`);
 }
 
 main().catch(err => {
