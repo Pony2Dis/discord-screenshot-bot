@@ -61,7 +61,7 @@ async function main() {
 
       // **NEW**: include the link in `content` so Discord will unfurl it
       await channel.send({
-        content: item.link,
+        content: `[לינק לכתבה](${item.link})`,
         embeds: [embed]
       });
     });
