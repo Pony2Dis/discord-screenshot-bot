@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import Parser from 'rss-parser';
 import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js';
+import axios from 'axios';
 
 const DISCORD_TOKEN   = process.env.DISCORD_TOKEN;
 const NEWS_CHANNEL_ID = process.env.NEWS_CHANNEL_ID;
@@ -21,7 +22,6 @@ async function saveState(state) {
   console.log(`State saved in ${Date.now() - t0} ms`);
 }
 
-const axios = require('axios');
 async function getFinalUrl(googleUrl) {
   try {
     const response = await axios.get(googleUrl, { maxRedirects: 5, validateStatus: status => status >= 200 && status < 303 });
