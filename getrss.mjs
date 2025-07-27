@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import Parser from 'rss-parser';
 import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js';
-import { chromium } from 'playwright';
+import { firefox } from 'playwright';
 
 const DISCORD_TOKEN   = process.env.DISCORD_TOKEN;
 const NEWS_CHANNEL_ID = process.env.NEWS_CHANNEL_ID;
@@ -22,14 +22,20 @@ async function saveState(state) {
 }
 
 async function getFinalUrl(googleUrl) {
-  const browser = await chromium.launch({ headless: true });
+  let finalUrl = googleUrl; // Fallback to original URL
+  const browser = await firefox.launch({ headless: true });
   const page = await browser.newPage();
-  await page.goto(googleUrl, { waitUntil: 'networkidle', timeout: 10000 });
-  const finalUrl = page.url();
-  await browser.close();
-  return finalUrl || googleUrl;
+  try {
+    await page.goto(googleUrl, { waitUntil: 'load', timeout: 10000 }); // Initial load with 10s timeout
+    await page.waitForTimeout(10000); // Wait an additional 10s
+    finalUrl = page.url();
+  } catch (err) {
+    console.error(`⚠️ Timeout or error unwrapping ${googleUrl}:`, err.message);
+  } finally {
+    await browser.close();
+  }
+  return finalUrl;
 }
-
 async function main() {
   const parser = new Parser({ requestOptions: { timeout: 10000 } });
   const state  = await loadState();

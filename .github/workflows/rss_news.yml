@@ -28,7 +28,7 @@ jobs:
 
       - name: Install Playwright browsers
         # this will pull down firefox (and others if you omit --with-deps)
-        run: npx playwright install --with-deps chromium firefox
+        run: npx playwright install --with-deps firefox
 
       - name: Run rss bot
         env:
