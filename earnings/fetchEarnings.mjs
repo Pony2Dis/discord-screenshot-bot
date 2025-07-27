@@ -107,6 +107,9 @@ async function main() {
 
   await saveState(state);
   console.log(`Total records: ${state.length}`);
+
+  await discordClient.destroy()
+  process.exit(0)
 }
 
 main().catch((err) => {
