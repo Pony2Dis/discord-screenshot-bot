@@ -15,7 +15,10 @@ async function loadState() {
 }
 
 async function saveState(state) {
+  console.log(`Saving state to ${STATE_FILE}…`);
+  const t0 = Date.now();
   await fs.promises.writeFile(STATE_FILE, JSON.stringify(state, null, 2));
+  console.log(`State saved in ${Date.now() - t0} ms`);
 }
 
 async function main() {
