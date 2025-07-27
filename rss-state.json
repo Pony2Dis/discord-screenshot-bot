@@ -36,7 +36,16 @@
     "https://finance.yahoo.com/news/visa-inc-v-expands-four-141355380.html",
     "https://finance.yahoo.com/news/mark-gains-buy-rating-amid-141150391.html",
     "https://finance.yahoo.com/news/chemed-updates-2025-forecast-q1-141124209.html",
-    "https://finance.yahoo.com/news/coca-cola-company-strengthens-long-141006318.html"
+    "https://finance.yahoo.com/news/coca-cola-company-strengthens-long-141006318.html",
+    "https://finance.yahoo.com/news/hpe-next-big-ai-stock-144138706.html",
+    "https://finance.yahoo.com/news/ibm-stock-downgraded-310-target-144107994.html"
   ],
-  "https://www.sec.gov/news/pressreleases.rss": []
+  "https://www.sec.gov/news/pressreleases.rss": [],
+  "https://fetchrss.com/feed/aIY7D11o9AUyaIY6se6UEXUy.rss": [
+    "https://www.businessinsider.com/stock-market-crash-high-valuations-1987-dot-com-pimco-2025-6",
+    "https://www.businessinsider.com/economic-outlook-growth-tariffs-global-gdp-trump-economy-world-bank-2025-6",
+    "https://www.businessinsider.com/us-economic-outlook-job-market-hiring-data-revisions-tariffs-inflation-2025-6",
+    "https://markets.businessinsider.com/news/stocks/elon-musk-donald-trump-tax-bill-dogecoin-price-tesla-doge-2025-6",
+    "https://markets.businessinsider.com/news/stocks/palantir-stock-price-pltr-alex-karp-ai-government-retail-traders-2025-6"
+  ]
 }
