@@ -11,6 +11,8 @@ const EMBED_HOSTS = (process.env.EMBED_HOSTS || "")
   .map(h => h.trim())
   .filter(Boolean);
 const STATE_FILE = path.resolve("./rss-state.json");
+const sleep = ms => new Promise(res => setTimeout(res, ms));
+const SLEEP_BETWEEN_SENDS = 3000;
 
 async function loadState() {
   try {
@@ -99,6 +101,10 @@ async function main() {
         content: `[לינק לכתבה](${item.link})`,
       });
     }
+
+    // wait a bit to avoid hitting Discord rate limits
+    await sleep(SLEEP_BETWEEN_SENDS);
+
   }
 
   await saveState(state);
