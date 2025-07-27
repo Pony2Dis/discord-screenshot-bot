@@ -4,7 +4,6 @@ import fs from 'fs';
 import path from 'path';
 import Parser from 'rss-parser';
 import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js';
-import * as cheerio from 'cheerio'; // for HTML parsing
 
 const DISCORD_TOKEN   = process.env.DISCORD_TOKEN;
 const NEWS_CHANNEL_ID = process.env.NEWS_CHANNEL_ID;
@@ -67,23 +66,10 @@ async function main() {
 
   for (const { item } of sorted) {
     console.log(`Posting now: ${item.title} (${item.pubDate})`);
-    // fetch HTML and extract the real article URL
-    let finalUrl = item.link;
-    try {
-      const resp = await fetch(item.link, { timeout: 10000 });
-      const html = await resp.text();
-      const $ = cheerio.load(html);
-      // try Open Graph first
-      finalUrl = $('meta[property="og:url"]').attr('content')
-        || $('a').first().attr('href')
-        || finalUrl;
-    } catch (err) {
-      console.error(`⚠️ Could not unwrap ${item.link}:`, err.message);
-    }
 
     const embed = new EmbedBuilder()
       .setTitle(item.title)
-      .setURL(finalUrl)
+      .setURL(item.link)
       .setTimestamp(new Date(item.pubDate));
 
     const snippet = item.contentSnippet?.slice(0, 200);
