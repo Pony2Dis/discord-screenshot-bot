@@ -25,4 +25,4 @@ jobs:
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
           NEWS_CHANNEL_ID:    ${{ secrets.NEWS_CHANNEL_ID }}
-        run: node getrss.js
+        run: node getrss.mjs
