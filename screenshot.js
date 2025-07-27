@@ -32,7 +32,7 @@ const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
   await page.waitForFunction(() => {
     const el = document.querySelector('.market-fng-gauge__dial-number-value');
     return el?.textContent?.trim().length > 0;
-  }, { timeout: 30_000 });
+  }, { timeout: 60_000 });
   console.log('⏱ Gauge value is present');
 
   // 5. Try to click the “Agree” link by your CSS path
@@ -41,7 +41,7 @@ const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
     await agreeLink.waitFor({ timeout: 5000 });
     await agreeLink.click({ force: true });
     // give it a moment to go away
-    await page.waitForTimeout(5_000);
+    await page.waitForTimeout(10_000);
   } catch {
     console.log('⚠️ “Agree” link not found via CSS path, falling back...');
     // "Agree" link didn’t appear within 5s — continue normally
