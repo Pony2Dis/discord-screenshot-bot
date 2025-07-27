@@ -1,16 +1,23 @@
-import 'dotenv/config';
-import fs from 'fs';
-import path from 'path';
-import Parser from 'rss-parser';
-import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js';
+import "dotenv/config";
+import fs from "fs";
+import path from "path";
+import Parser from "rss-parser";
+import { Client, GatewayIntentBits, EmbedBuilder } from "discord.js";
 
-const DISCORD_TOKEN   = process.env.DISCORD_TOKEN;
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 const NEWS_CHANNEL_ID = process.env.NEWS_CHANNEL_ID;
-const STATE_FILE      = path.resolve('./rss-state.json');
+const EMBED_HOSTS = (process.env.EMBED_HOSTS || "")
+  .split(/\r?\n/)
+  .map(h => h.trim())
+  .filter(Boolean);
+const STATE_FILE = path.resolve("./rss-state.json");
 
 async function loadState() {
-  try { return JSON.parse(await fs.promises.readFile(STATE_FILE, 'utf-8')); }
-  catch { return {}; }
+  try {
+    return JSON.parse(await fs.promises.readFile(STATE_FILE, "utf-8"));
+  } catch {
+    return {};
+  }
 }
 
 async function saveState(state) {
@@ -22,17 +29,19 @@ async function saveState(state) {
 
 async function main() {
   const parser = new Parser({ requestOptions: { timeout: 10000 } });
-  const state  = await loadState();
+  const state = await loadState();
   const client = new Client({ intents: [GatewayIntentBits.Guilds] });
   await client.login(DISCORD_TOKEN);
   const channel = await client.channels.fetch(NEWS_CHANNEL_ID);
 
   // last‑17h cutoff
-  const now    = new Date();
+  const now = new Date();
   const cutoff = new Date(now.getTime() - 17 * 60 * 60 * 1000);
 
-  const FEEDS = (process.env.RSS_FEEDS || '')
-    .split(/[\r\n,]+/).map(u => u.trim()).filter(Boolean);
+  const FEEDS = (process.env.RSS_FEEDS || "")
+    .split(/[\r\n,]+/)
+    .map((u) => u.trim())
+    .filter(Boolean);
 
   const allNew = [];
 
@@ -66,26 +75,30 @@ async function main() {
   for (const { item } of sorted) {
     console.log(`Posting now: ${item.title} (${item.pubDate})`);
 
-    // const embed = new EmbedBuilder()
-    //   .setTitle(item.title || '')
-    //   .setURL(item.link)
-    //   .setTimestamp(new Date(item.pubDate || Date.now()));
+    // get the hostname from the link
+    const { hostname } = new URL(item.link);
 
-    // const snippet = item.contentSnippet?.slice(0, 200);
-    // if (snippet) embed.setDescription(snippet);
+    if (EMBED_HOSTS.some(domain => hostname.includes(domain))) {
+      const embed = new EmbedBuilder()
+        .setTitle(item.title || "")
+        .setURL(item.link)
+        .setTimestamp(new Date(item.pubDate || Date.now()));
 
-    // // **NEW**: If the RSS gives an image…
-    // if (item.enclosure?.url) 
-    //   embed.setImage(item.enclosure.url);
+      const snippet = item.contentSnippet?.slice(0, 200);
+      if (snippet) embed.setDescription(snippet);
 
-    // **NEW**: include the link in `content` so Discord will unfurl it
-    await channel.send({
-      content: `[לינק לכתבה](${item.link})`,
-    });
+      // If the RSS gives an image…
+      if (item.enclosure?.url) embed.setImage(item.enclosure.url);
 
-    // await channel.send({
-    //   embeds: [embed]
-    // });
+      await channel.send({
+        embeds: [embed],
+      });
+    } else {
+      // include the link in `content` so Discord will unfurl it
+      await channel.send({
+        content: `[לינק לכתבה](${item.link})`,
+      });
+    }
   }
 
   await saveState(state);
@@ -94,7 +107,7 @@ async function main() {
   console.log(`✅ Client destroyed, exiting…`);
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
