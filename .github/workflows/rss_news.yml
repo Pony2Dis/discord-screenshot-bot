@@ -6,17 +6,22 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: write    # allow GITHUB_TOKEN to push
 
 jobs:
   read-rss:
     runs-on: ubuntu-latest
     steps:
+
+      # 1) Checkout with full history and persist the token
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0           # full history so git push will work
+          ref: main                # explicitly checkout `main`
           persist-credentials: true
 
+      # 2) Setup & run your RSS bot
       - name: Use Node.js 24
         uses: actions/setup-node@v4
         with:
@@ -31,18 +36,15 @@ jobs:
           DISCORD_TOKEN:   ${{ secrets.DISCORD_TOKEN }}
           NEWS_CHANNEL_ID: ${{ secrets.NEWS_CHANNEL_ID }}
           RSS_FEEDS:       ${{ vars.RSS_FEEDS }}
-          EMBED_HOSTS:       ${{ vars.EMBED_HOSTS }}
+          EMBED_HOSTS:     ${{ vars.EMBED_HOSTS }}
         run: node getrss.mjs
 
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
+      # 3) Commit & push only if there are changes
       - name: Commit updated state
         run: |
-          git config user.name "github-actions[bot]"
+          git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add rss-state.json
+          # if there's something to commit, do it
           git diff --cached --quiet || git commit -m "ci: update rss-state.json"
           git push
