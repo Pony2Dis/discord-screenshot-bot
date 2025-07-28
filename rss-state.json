@@ -19,13 +19,16 @@
     "https://www.cnbc.com/2025/07/25/investor-dan-niles-favorite-picks-for-the-rest-of-earnings-season.html",
     "https://www.cnbc.com/2025/07/28/jpmorgan-downgrades-american-eagle-following-sydney-sweeney-inspired-rally.html",
     "https://www.cnbc.com/2025/07/28/bernstein-upgrades-charter-to-outperform-on-recovering-financials-predicts-more-than-20percent-upside-ahead.html",
-    "https://www.cnbc.com/2025/07/28/jpmorgan-upgrades-nike-to-overweight-citing-a-multi-year-recover-path.html"
+    "https://www.cnbc.com/2025/07/28/jpmorgan-upgrades-nike-to-overweight-citing-a-multi-year-recover-path.html",
+    "https://www.cnbc.com/2025/07/28/wolfe-research-upgrades-texas-instruments-to-outperform-sees-cyclical-recovery-ahead.html"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147": [
     "https://www.cnbc.com/2025/07/27/boeing-ceo-ortberg-airplane-deliveries-defense.html",
     "https://www.cnbc.com/2025/07/26/cbs-canceling-colbert-raises-late-night-questions.html",
     "https://www.cnbc.com/2025/07/25/nfl-to-fine-players-for-reselling-super-bowl-tickets-at-a-profit.html",
-    "https://www.cnbc.com/2025/07/28/unitedhealth-unh-q2-earnings-preview.html"
+    "https://www.cnbc.com/2025/07/28/unitedhealth-unh-q2-earnings-preview.html",
+    "https://www.cnbc.com/2025/07/28/ionq-hires-former-jpmorgan-chase-applied-research-head.html",
+    "https://www.cnbc.com/2025/07/27/marvels-fantastic-four-first-steps-opens-to-118-million.html"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258": [
     "https://www.cnbc.com/2025/07/25/trump-says-he-believes-powell-is-ready-to-start-lowering-rates.html"
@@ -65,7 +68,25 @@
     "https://www.prnewswire.com/news-releases/new-gold-reports-second-quarter-2025-results-302514305.html",
     "https://www.prnewswire.com/news-releases/lithium-ion-battery-anode-market-worth-81-24-billion-by-2030--exclusive-report-by-marketsandmarkets-302514696.html",
     "https://www.prnewswire.com/news-releases/raytron-unveils-4-key-technologies-behind-ai-thermal-cameras-for-247-security-monitoring-302514814.html",
-    "https://www.prnewswire.com/news-releases/us-goldmining-applauds-state-of-alaskas-plans-to-advance-critical-road-infrastructure-to-the-whistler-gold-copper-project-alaska-302514587.html"
+    "https://www.prnewswire.com/news-releases/us-goldmining-applauds-state-of-alaskas-plans-to-advance-critical-road-infrastructure-to-the-whistler-gold-copper-project-alaska-302514587.html",
+    "https://www.prnewswire.com/news-releases/dmegc-solar-obtiene-la-prestigiosa-certificacion-dibt-para-aplicaciones-aereas-302514957.html",
+    "https://www.prnewswire.com/news-releases/upm-kymmene-oyj-sami-pauni-appointed-executive-vice-president-general-counsel-302514939.html",
+    "https://www.prnewswire.com/news-releases/scaling-clean-energy-storage-rheenergise-kicks-off-north-american-fundraising-on-republic-302514935.html",
+    "https://www.prnewswire.com/news-releases/beko-refuerza-su-compromiso-climatico-con-electricidad-verde-y-reacondicionamiento-302514931.html",
+    "https://www.prnewswire.com/news-releases/republic-services-marks-emissions-reduction-milestone-in-latest-sustainability-report-302513466.html",
+    "https://www.prnewswire.com/news-releases/galan-lithium-limited-incentive-regime-for-hmw-project-in-argentina-302514518.html",
+    "https://www.prnewswire.com/news-releases/homeowners-in-hawthorne-can-now-fund-hvac-roofing-renewable-energy-ev-charging-earthquake-resiliency-and-water-saving-projects-through-property-assessed-clean-energy-pace-financing-with-home-run-financing-302514294.html",
+    "https://www.prnewswire.com/news-releases/apera-ai-secures-series-a-financing-and-welcomes-four-new-executives-to-fuel-rapid-expansion-302514885.html",
+    "https://www.prnewswire.com/news-releases/vortex-promotes-chuck-parsons-and-ryan-helmuth-to-key-positions-designed-to-strengthen-operations-throughout-the-vortex-platform-of-businesses-302514873.html",
+    "https://www.prnewswire.com/news-releases/husqvarna-and-daniel-stowe-conservancy-partner-to-advance-sustainable-groundskeeping-in-north-carolina-302514850.html",
+    "https://www.prnewswire.com/news-releases/veriforce-and-disa-announce-strategic-integration-to-streamline-contractor-compliance-and-accelerate-workforce-qualification-302513907.html",
+    "https://www.prnewswire.com/news-releases/claros-technologies-demuestra-con-exito-la-destruccion-de-pfas-de-alto-rendimiento-302514849.html",
+    "https://www.prnewswire.com/news-releases/claros-technologies-successfully-demonstrates-high-throughput-pfas-destruction-in-landmark-pilot-302514662.html",
+    "https://www.prnewswire.com/news-releases/the-foundation-for-energy-security-and-innovation-fesi-names-rick-stockburger-as-inaugural-ceo-302514512.html",
+    "https://www.prnewswire.com/news-releases/claros-technologies-successfully-demonstrates-high-throughput-pfas-destruction-in-landmark-pilot-302514673.html",
+    "https://www.prnewswire.com/news-releases/gridiron-capital-partners-with-greenix-302514564.html",
+    "https://www.prnewswire.com/news-releases/claros-technologies-reussit-la-demonstration-de-la-destruction-a-haut-debit-des-pfas-dans-le-cadre-dun-projet-pilote-historique-302514731.html",
+    "https://www.prnewswire.com/news-releases/calumet-announces-120-million-extension-with-stonebriar-302514866.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -93,7 +114,10 @@
     "https://www.marketwatch.com/story/s-p-500-now-more-likely-to-reach-7-200-next-year-according-to-morgan-stanleys-wilson-8553ce2d?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/this-researcher-finds-eerie-parallels-between-now-and-the-pullback-of-1998-ffa0f0e9?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/i-have-type-1-diabetes-im-64-with-a-1-3-million-401-k-is-it-too-late-for-long-term-care-insurance-15c4555a?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/powell-faces-his-most-pivotal-test-yet-trump-pressure-fed-dissent-and-a-sky-high-stock-market-2ae5a93f?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/powell-faces-his-most-pivotal-test-yet-trump-pressure-fed-dissent-and-a-sky-high-stock-market-2ae5a93f?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/how-opendoors-meme-stock-rally-helped-fix-a-listing-requirement-problem-for-now-b4c9fe27?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/vegas-is-not-fun-anymore-9-cups-of-coffee-and-pricier-rooms-are-steering-travelers-away-from-the-vacation-mecca-fc01db0d?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/the-emerging-markets-bandwagon-rumbles-on-and-now-china-is-climbing-aboard-f98c8a2f?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -396,7 +420,47 @@
     "https://finance.yahoo.com/news/stocks-set-extend-record-rally-100243652.html",
     "https://finance.yahoo.com/personal-finance/banking/article/best-savings-interest-rates-today-monday-july-28-2025-100057890.html",
     "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-refinance-interest-rates-today-monday-july-28-2025-100049431.html",
-    "https://finance.yahoo.com/news/3-things-matter-vertex-pharmaceuticals-111500457.html"
+    "https://finance.yahoo.com/news/3-things-matter-vertex-pharmaceuticals-111500457.html",
+    "https://finance.yahoo.com/news/fortenova-slashes-debt-since-emerging-135257432.html",
+    "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-trump-trade-deal-tesla-tsla-stock/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/wall-street-bull-calls-for-11-rally-in-sp-500-to-end-2025-as-trade-uncertainty-subsides-134559033.html",
+    "https://www.investors.com/news/nike-stock-breakout-jpmorgan-earnings-revival-dow-jones-giant/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-nudge-higher-as-trump-eu-trade-deal-kicks-off-huge-week-003043435.html",
+    "https://finance.yahoo.com/news/global-coal-demand-remain-stable-134612790.html",
+    "https://www.investors.com/news/tesla-stock-market-billion-dollar-ai-chip-deal-samsung-elon-musk-says-this/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/veeva-systems-veev-surpassed-expectations-132240637.html",
+    "https://finance.yahoo.com/news/copart-cprt-fell-missed-revenue-132003144.html",
+    "https://finance.yahoo.com/news/india-milky-mist-dairy-files-133748382.html",
+    "https://finance.yahoo.com/news/makes-cloudflare-net-compelling-long-131539360.html",
+    "https://finance.yahoo.com/news/idexx-laboratories-idxx-rallied-q2-131302202.html",
+    "https://finance.yahoo.com/news/oppenheimer-lifts-p-500-end-131103745.html",
+    "https://finance.yahoo.com/news/nike-stock-gets-upgrade-jpmorgan-133721180.html",
+    "https://finance.yahoo.com/news/bentley-systems-bsy-reported-13th-131053848.html",
+    "https://finance.yahoo.com/news/transfers-rouble-backed-crypto-coin-130910131.html",
+    "https://finance.yahoo.com/news/carlyle-picks-insiders-newly-minted-130438555.html",
+    "https://finance.yahoo.com/news/radeberger-getr-nke-hoffman-edeka-132337006.html",
+    "https://finance.yahoo.com/news/why-energy-recovery-erii-fell-130335959.html",
+    "https://finance.yahoo.com/news/conestoga-capital-advisors-views-hillman-130040681.html",
+    "https://finance.yahoo.com/news/lucid-motors-stock-buy-sell-130002893.html",
+    "https://finance.yahoo.com/news/coupang-keeps-hitting-highs-buy-130002368.html",
+    "https://finance.yahoo.com/news/4-wealth-transfer-strategies-most-131914875.html",
+    "https://finance.yahoo.com/news/kohl-stock-buy-sell-hold-130002507.html",
+    "https://finance.yahoo.com/news/montrose-environmental-group-meg-rallied-125617580.html",
+    "https://finance.yahoo.com/news/lifted-olo-olo-q2-125350336.html",
+    "https://www.investors.com/news/technology/cisco-stock-downgraded-analyst-wants-disclosure-artificial-intelligence-revenue/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/sui-joins-bitcoin-ethereum-own-130508590.html",
+    "https://finance.yahoo.com/news/driving-willdan-group-wldn-broad-125137242.html",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-28-2025/card/what-is-the-outlook-for-stocks-why-70s-style-returns-could-make-a-comeback-yMaXU4ELiPaU9Y1WwZEU?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/soybeans-slipping-lower-despite-trade-124032575.html",
+    "https://finance.yahoo.com/news/cheniere-energy-stock-jumps-us-124952250.html",
+    "https://finance.yahoo.com/news/corn-facing-pressure-start-week-124032904.html",
+    "https://finance.yahoo.com/news/cotton-starting-week-slight-strength-124032863.html",
+    "https://finance.yahoo.com/news/wheat-weakness-extending-week-124032497.html",
+    "https://finance.yahoo.com/news/abnb-stock-price-prediction-where-123711938.html",
+    "https://www.wsj.com/finance/investing/jgb-futures-edge-higher-on-possible-position-adjustments-fcaf64f2?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/expect-fedexs-next-quarterly-earnings-123011849.html",
+    "https://www.barrons.com/advisor/articles/allan-roth-stock-picking-odds-bf5d9850?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/accounts-receivable-neglected-function-strategic-123650252.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [],
   "https://www.investing.com/rss/news_25.rss": [
@@ -438,6 +502,13 @@
     "https://www.investing.com/news/stock-market-news/firefly-aerospace-launches-ipo-roadshow-for-up-to-186-million-shares-432SI-4154910",
     "https://www.investing.com/news/stock-market-news/firefly-aerospace-files-for-162m-share-ipo-at-3539sh-432SI-4154906",
     "https://www.investing.com/news/stock-market-news/tesla-deal-could-be-a-longterm-growth-catalyst-for-samsungs-foundry-business-4154837",
-    "https://www.investing.com/news/stock-market-news/tsx-futures-edge-higher-after-useu-trade-deal-announced-4154799"
+    "https://www.investing.com/news/stock-market-news/tsx-futures-edge-higher-after-useu-trade-deal-announced-4154799",
+    "https://www.investing.com/news/stock-market-news/stifel-expects-strong-print-and-guide-from-microsoft-lifts-stock-target-4155536",
+    "https://www.investing.com/news/stock-market-news/us-lng-producers-soar-as-eu-agrees-to-250-billion-in-annual-purchases-4154743",
+    "https://www.investing.com/news/stock-market-news/interactive-brokers-considers-launching-new-stablecoin-for-customers-4154734",
+    "https://www.investing.com/news/stock-market-news/europe-reacts-with-mix-of-relief-and-concern-to-us-trade-deal-4154702",
+    "https://www.investing.com/news/stock-market-news/opendoor-stock-surges-after-adjourning-reverse-split-meeting-93CH-4155447",
+    "https://www.investing.com/news/stock-market-news/gilead-sciences-stock-falls-amid-reports-of-preventive-health-panel-dismissal-4155440",
+    "https://www.investing.com/news/stock-market-news/cisco-upside-now-largely-priced-in-evercore-isi-downgrades-stock-4155437"
   ]
 }
