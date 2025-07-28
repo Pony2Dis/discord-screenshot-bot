@@ -69,11 +69,11 @@ async function main() {
     );
     if (!exists) {
 
-      const statusEmoji = item.subject.includes("Beat Expectations")
-        ? "✅"
-        : item.subject.includes("Missed Expectations")
-          ? "❌"
-          : "";
+      const statusEmoji = item.subject.includes("Beat Expectations") || item.subject.includes("Beat Consensus Estimates")
+        ? "🟢"
+        : item.subject.includes("Missed Expectations") || item.subject.includes("Missed Consensus Estimates")
+          ? "🔴"
+          : "🔵";
 
       // format the earning report
       const embed = new EmbedBuilder()
