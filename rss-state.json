@@ -1,5 +1,11 @@
 {
-  "https://fetchrss.com/feed/aIY7D11o9AUyaIY-59aSB8ji.rss": [],
+  "https://fetchrss.com/feed/aIY7D11o9AUyaIY-59aSB8ji.rss": [
+    "https://www.bloomberg.com/news/articles/2025-07-28/qube-to-merge-two-hedge-funds-into-a-pool-worth-over-20-billion?srnd=phx-deals",
+    "https://www.bloomberg.com/news/articles/2025-07-28/abanca-may-consider-potential-ipo-if-bank-valuations-stay-high?srnd=phx-deals",
+    "https://www.bloomberg.com/news/articles/2025-07-28/carlyle-s-schwartz-names-co-presidents-solidifying-top-ranks?srnd=phx-deals",
+    "https://www.bloomberg.com/news/articles/2025-07-28/btg-pactual-buys-hsbc-s-uruguay-unit-in-international-expansion?srnd=phx-deals",
+    "https://www.bloomberg.com/news/articles/2025-07-28/adnoc-s-12-billion-covestro-takeover-hit-by-eu-subsidy-probe?srnd=phx-deals"
+  ],
   "https://fetchrss.com/feed/aIY7D11o9AUyaIY6se6UEXUy.rss": [
     "https://www.businessinsider.com/stock-market-crash-high-valuations-1987-dot-com-pimco-2025-6",
     "https://www.businessinsider.com/economic-outlook-growth-tariffs-global-gdp-trump-economy-world-bank-2025-6",
@@ -20,7 +26,9 @@
     "https://www.cnbc.com/2025/07/28/jpmorgan-downgrades-american-eagle-following-sydney-sweeney-inspired-rally.html",
     "https://www.cnbc.com/2025/07/28/bernstein-upgrades-charter-to-outperform-on-recovering-financials-predicts-more-than-20percent-upside-ahead.html",
     "https://www.cnbc.com/2025/07/28/jpmorgan-upgrades-nike-to-overweight-citing-a-multi-year-recover-path.html",
-    "https://www.cnbc.com/2025/07/28/wolfe-research-upgrades-texas-instruments-to-outperform-sees-cyclical-recovery-ahead.html"
+    "https://www.cnbc.com/2025/07/28/wolfe-research-upgrades-texas-instruments-to-outperform-sees-cyclical-recovery-ahead.html",
+    "https://www.cnbc.com/2025/07/28/options-traders-are-expecting-a-huge-move-on-earnings-from-doordash-how-to-trade-it.html",
+    "https://www.cnbc.com/2025/07/28/morgan-stanley-upgrades-an-under-the-radar-china-robotics-play-sees-big-upside.html"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147": [
     "https://www.cnbc.com/2025/07/27/boeing-ceo-ortberg-airplane-deliveries-defense.html",
@@ -28,7 +36,8 @@
     "https://www.cnbc.com/2025/07/25/nfl-to-fine-players-for-reselling-super-bowl-tickets-at-a-profit.html",
     "https://www.cnbc.com/2025/07/28/unitedhealth-unh-q2-earnings-preview.html",
     "https://www.cnbc.com/2025/07/28/ionq-hires-former-jpmorgan-chase-applied-research-head.html",
-    "https://www.cnbc.com/2025/07/27/marvels-fantastic-four-first-steps-opens-to-118-million.html"
+    "https://www.cnbc.com/2025/07/27/marvels-fantastic-four-first-steps-opens-to-118-million.html",
+    "https://www.cnbc.com/2025/07/28/las-vegas-sphere-wizard-of-oz-film.html"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258": [
     "https://www.cnbc.com/2025/07/25/trump-says-he-believes-powell-is-ready-to-start-lowering-rates.html"
@@ -86,7 +95,11 @@
     "https://www.prnewswire.com/news-releases/claros-technologies-successfully-demonstrates-high-throughput-pfas-destruction-in-landmark-pilot-302514673.html",
     "https://www.prnewswire.com/news-releases/gridiron-capital-partners-with-greenix-302514564.html",
     "https://www.prnewswire.com/news-releases/claros-technologies-reussit-la-demonstration-de-la-destruction-a-haut-debit-des-pfas-dans-le-cadre-dun-projet-pilote-historique-302514731.html",
-    "https://www.prnewswire.com/news-releases/calumet-announces-120-million-extension-with-stonebriar-302514866.html"
+    "https://www.prnewswire.com/news-releases/calumet-announces-120-million-extension-with-stonebriar-302514866.html",
+    "https://www.prnewswire.com/news-releases/raytron-lanza-cuatro-tecnologias-clave-detras-de-las-camaras-termicas-con-ia-para-monitoreo-de-seguridad-247-302515001.html",
+    "https://www.prnewswire.com/news-releases/lewis-ropp-to-join-entergy-board-of-directors-302514960.html",
+    "https://www.prnewswire.com/news-releases/solid-state-battery-market-worth-1-77-billion-by-2031---exclusive-report-by-marketsandmarkets-302514786.html",
+    "https://www.prnewswire.com/news-releases/okuma-america-corporation-positions-for-strategic-growth-in-industry-302514961.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -117,7 +130,10 @@
     "https://www.marketwatch.com/story/powell-faces-his-most-pivotal-test-yet-trump-pressure-fed-dissent-and-a-sky-high-stock-market-2ae5a93f?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/how-opendoors-meme-stock-rally-helped-fix-a-listing-requirement-problem-for-now-b4c9fe27?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/vegas-is-not-fun-anymore-9-cups-of-coffee-and-pricier-rooms-are-steering-travelers-away-from-the-vacation-mecca-fc01db0d?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/the-emerging-markets-bandwagon-rumbles-on-and-now-china-is-climbing-aboard-f98c8a2f?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/the-emerging-markets-bandwagon-rumbles-on-and-now-china-is-climbing-aboard-f98c8a2f?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/trumps-trade-deals-extension-of-truce-with-china-looks-likely-other-agreements-also-expected-by-friday-07e107f5?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/i-keep-getting-the-same-song-and-dance-my-salary-has-not-kept-up-with-inflation-is-my-company-cheating-me-ebcbfc53?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/nikes-stock-jumps-after-an-analyst-says-just-buy-it-ahead-of-soccer-world-cup-5e6cd3ea?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -460,7 +476,48 @@
     "https://www.wsj.com/finance/investing/jgb-futures-edge-higher-on-possible-position-adjustments-fcaf64f2?siteid=yhoof2&yptr=yahoo",
     "https://finance.yahoo.com/news/expect-fedexs-next-quarterly-earnings-123011849.html",
     "https://www.barrons.com/advisor/articles/allan-roth-stock-picking-odds-bf5d9850?siteid=yhoof2&yptr=yahoo",
-    "https://finance.yahoo.com/news/accounts-receivable-neglected-function-strategic-123650252.html"
+    "https://finance.yahoo.com/news/accounts-receivable-neglected-function-strategic-123650252.html",
+    "https://finance.yahoo.com/news/figma-targets-18-8-billion-153957352.html",
+    "https://finance.yahoo.com/news/frieslandcampina-profits-rise-pressures-flagged-115156900.html",
+    "https://finance.yahoo.com/news/european-carmakers-reality-check-trump-153007245.html",
+    "https://www.investors.com/research/how-to-find-the-best-stocks-to-buy/argan-stock-smashes-nvidia-meta-tesla-magnificent-seven-stocks-ytd/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/deckers-outdoor-deck-surges-14-152902039.html",
+    "https://finance.yahoo.com/news/coursera-cour-skyrockets-41-revenue-152725129.html",
+    "https://finance.yahoo.com/news/2-things-big-beautiful-bill-152933441.html",
+    "https://finance.yahoo.com/news/bloom-energy-jumps-37-deal-152716317.html",
+    "https://finance.yahoo.com/news/cleveland-cliffs-clf-surges-20-152710165.html",
+    "https://finance.yahoo.com/news/gentex-gntx-surges-19-5-152658570.html",
+    "https://finance.yahoo.com/news/american-eagle-aeo-soars-18-152649896.html",
+    "https://finance.yahoo.com/news/wipro-secures-smart-meter-data-152841012.html",
+    "https://finance.yahoo.com/news/pony-ai-pony-soars-16-152640122.html",
+    "https://finance.yahoo.com/news/baker-hughes-bkr-gets-16-152630365.html",
+    "https://finance.yahoo.com/news/liberty-energy-lbrt-jumps-15-152620467.html",
+    "https://finance.yahoo.com/news/hims-hers-hims-jumps-14-152317948.html",
+    "https://finance.yahoo.com/news/aicpa-survey-shows-37-americans-152700445.html",
+    "https://www.investors.com/news/technology/meta-stock-q2-2025-preview-zuckerberg-ai-facebook/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/microsoft-has-to-hit-its-earnings-out-of-the-park-opening-bid-top-takeaway-151556520.html",
+    "https://finance.yahoo.com/news/national-bank-raises-canada-natural-151219436.html",
+    "https://finance.yahoo.com/news/whats-going-super-micro-stock-152607244.html",
+    "https://finance.yahoo.com/news/equinox-gold-highlights-strong-2024-151216143.html",
+    "https://finance.yahoo.com/news/cgi-city-rockville-partner-cloud-151214677.html",
+    "https://finance.yahoo.com/news/b2gold-reveals-positive-feasibility-study-151212779.html",
+    "https://finance.yahoo.com/news/ero-copper-completes-phase-1-151210238.html",
+    "https://finance.yahoo.com/news/why-chargepoint-stock-crashed-today-152143905.html",
+    "https://finance.yahoo.com/news/national-bank-downgrades-centerra-gold-151208471.html",
+    "https://finance.yahoo.com/news/lululemon-expands-global-footprint-first-151205278.html",
+    "https://finance.yahoo.com/news/national-bank-lifts-iamgold-iag-151203584.html",
+    "https://finance.yahoo.com/news/cibc-raises-cenovus-energy-cve-151159369.html",
+    "https://finance.yahoo.com/news/comsa-construct-railway-maintenance-workshop-152005286.html",
+    "https://finance.yahoo.com/news/mcewen-mining-process-bulk-samples-151157288.html",
+    "https://finance.yahoo.com/news/enerflex-extends-800m-revolving-credit-151155417.html",
+    "https://finance.yahoo.com/news/mizuho-cuts-northern-oil-gas-151153806.html",
+    "https://finance.yahoo.com/news/barclays-increases-renaissancere-rnr-pt-151150943.html",
+    "https://finance.yahoo.com/news/nvidia-just-beat-apple-crazy-151822348.html",
+    "https://finance.yahoo.com/news/piper-sandler-lifts-civitas-resources-151148182.html",
+    "https://finance.yahoo.com/news/riley-reduces-lantheus-holdings-lnth-151141085.html",
+    "https://finance.yahoo.com/news/canaccord-downgrades-globus-medical-gmed-151138280.html",
+    "https://finance.yahoo.com/news/td-cowen-initiates-norwegian-cruise-151135598.html",
+    "https://finance.yahoo.com/news/google-searches-buy-bitcoin-spiking-151605210.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [],
   "https://www.investing.com/rss/news_25.rss": [
@@ -509,6 +566,15 @@
     "https://www.investing.com/news/stock-market-news/europe-reacts-with-mix-of-relief-and-concern-to-us-trade-deal-4154702",
     "https://www.investing.com/news/stock-market-news/opendoor-stock-surges-after-adjourning-reverse-split-meeting-93CH-4155447",
     "https://www.investing.com/news/stock-market-news/gilead-sciences-stock-falls-amid-reports-of-preventive-health-panel-dismissal-4155440",
-    "https://www.investing.com/news/stock-market-news/cisco-upside-now-largely-priced-in-evercore-isi-downgrades-stock-4155437"
+    "https://www.investing.com/news/stock-market-news/cisco-upside-now-largely-priced-in-evercore-isi-downgrades-stock-4155437",
+    "https://www.investing.com/news/stock-market-news/denmark-stocks-lower-at-close-of-trade-omx-copenhagen-20-down-034-4155685",
+    "https://www.investing.com/news/stock-market-news/revvity-trims-2025-profit-forecast-as-china-policy-changes-hit-diagnostics-demand-4155678",
+    "https://www.investing.com/news/stock-market-news/morocco-stocks-lower-at-close-of-trade-moroccan-all-shares-down-047-4155668",
+    "https://www.investing.com/news/stock-market-news/figma-raises-ipo-pricing-range-to-3032-432SI-4155662",
+    "https://www.investing.com/news/stock-market-news/figma-ipo-analyst-says-this-is-the-ideal-candidate-to-lead-the-way-4155661",
+    "https://www.investing.com/news/stock-market-news/jpm-upgrades-marathon-on-better-hashrate-visibility-downgrades-iren-and-riot-4155655",
+    "https://www.investing.com/news/stock-market-news/norway-stocks-higher-at-close-of-trade-oslo-obx-up-067-4155641",
+    "https://www.investing.com/news/stock-market-news/israel-stocks-higher-at-close-of-trade-ta-35-up-082-4155640",
+    "https://www.investing.com/news/stock-market-news/bell-canada-and-cohere-strike-ai-partnership-to-bolster-domestic-data-sovereignty-4155639"
   ]
 }
