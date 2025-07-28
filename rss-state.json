@@ -21,7 +21,8 @@
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147": [
     "https://www.cnbc.com/2025/07/27/boeing-ceo-ortberg-airplane-deliveries-defense.html",
     "https://www.cnbc.com/2025/07/26/cbs-canceling-colbert-raises-late-night-questions.html",
-    "https://www.cnbc.com/2025/07/25/nfl-to-fine-players-for-reselling-super-bowl-tickets-at-a-profit.html"
+    "https://www.cnbc.com/2025/07/25/nfl-to-fine-players-for-reselling-super-bowl-tickets-at-a-profit.html",
+    "https://www.cnbc.com/2025/07/28/unitedhealth-unh-q2-earnings-preview.html"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258": [
     "https://www.cnbc.com/2025/07/25/trump-says-he-believes-powell-is-ready-to-start-lowering-rates.html"
@@ -70,11 +71,15 @@
     "https://www.marketwatch.com/story/stock-futures-rise-after-u-s-e-u-trade-deal-and-ahead-of-big-fed-meeting-b52da443?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/i-have-a-degree-in-economics-im-70-earn-250k-a-year-and-have-3-7-million-in-investments-is-it-time-to-retire-4cf10c13?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/i-have-felt-invisible-disrespected-and-heartbroken-my-firstborn-son-wants-nothing-to-do-with-me-do-i-cut-him-off-a17bb951?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/musk-says-tesla-is-the-unnamed-client-in-samsungs-16-5-billion-microchip-deal-929dc1eb?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/musk-says-tesla-is-the-unnamed-client-in-samsungs-16-5-billion-microchip-deal-929dc1eb?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/economists-cheer-end-of-crippling-uncertainty-but-u-s-tariff-deal-gets-frosty-reception-in-europe-6d3d3fe4?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/while-most-athletes-look-to-be-sponsored-by-clothing-brands-dallas-wings-star-paige-bueckers-wants-something-much-bigger-6422414f?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/selena-gomez-and-benny-blanco-share-a-glimpse-of-their-35-million-beverly-hills-mansion-b28d3e1f?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
-    "https://www.cnbc.com/2025/07/25/intel-drops-9percent-as-ceo-warns-of-chip-manufacturing-issues.html"
+    "https://www.cnbc.com/2025/07/25/intel-drops-9percent-as-ceo-warns-of-chip-manufacturing-issues.html",
+    "https://www.cnbc.com/2025/07/28/china-laopu-gold-shares-fall-despite-forecast-of-tripling-profits.html"
   ],
   "https://finance.yahoo.com/news/rssindex": [
     "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-meta-amazon-earnings-fed-meeting-trump-tariffs-tesla-robotaxi/?src=A00220&yptr=yahoo",
@@ -284,7 +289,52 @@
     "https://finance.yahoo.com/news/amazon-com-inc-amzn-ceo-234741929.html",
     "https://finance.yahoo.com/news/boeing-company-ba-huge-backlog-234801683.html",
     "https://finance.yahoo.com/news/sbil-sparks-controversy-etf-innovation-002000053.html",
-    "https://finance.yahoo.com/news/smartest-fintech-stocks-buy-500-224100791.html"
+    "https://finance.yahoo.com/news/smartest-fintech-stocks-buy-500-224100791.html",
+    "https://www.wsj.com/finance/commodities-futures/gold-edges-lower-weighed-by-u-s-eu-trade-agreement-12a105de?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/pttep-acquires-full-control-mtjda-093116403.html",
+    "https://finance.yahoo.com/news/federal-reserve-meeting-july-jobs-report-and-big-tech-earnings-what-to-watch-this-week-113756523.html",
+    "https://www.wsj.com/finance/investing/trump-and-bessent-bring-new-style-to-managing-americas-debt-5c2de0cc?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/finance/credit-card-users-are-cautious-now-rate-cuts-could-open-the-floodgates-55227817?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-28-2025/card/stocks-to-watch-monday-samsung-tesla-cheniere-asml-tmRGwRDtSpv66gfFrrjr?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/ceconomy-enters-talks-china-jd-092611825.html",
+    "https://finance.yahoo.com/news/hedge-funds-ditch-tech-buy-092350562.html",
+    "https://finance.yahoo.com/news/health-insurance-companies-have-a-problem--people-are-using-their-plans-more-092016719.html",
+    "https://www.barrons.com/livecoverage/stock-market-news-today-072825/card/stock-futures-rise-after-trump-eu-strike-trade-deal-5KjM6MKZ9I5UZv0012nM?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/nelipak-starts-construction-healthcare-packaging-092501355.html",
+    "https://www.wsj.com/business/earnings/heineken-expects-flat-sales-volumes-after-hit-from-europe-retailer-talks-b6f2f101?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/finance/global-markets-rise-after-u-s-and-eu-reach-deal-1b626c17?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/europe-inc-swerves-trump-trade-083854739.html",
+    "https://www.wsj.com/business/autos/european-auto-sector-gains-on-new-u-s-trade-pact-9c1dc8f5?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/amazon-quietly-building-massive-advertising-092300665.html",
+    "https://finance.yahoo.com/news/vws-skoda-posts-12-profit-082356084.html",
+    "https://www.barrons.com/livecoverage/stock-market-news-today-072825/card/treasury-yields-fall-following-us-eu-trade-agreement-i4emeuwyo0zl1bj7vHwl?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-28-2025/card/wall-street-s-bargain-hunters-are-back-3M65fElKWDeuzNMoCAfB?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-futures-climb-as-trump-eu-trade-deal-kicks-off-huge-week-in-markets-003043981.html",
+    "https://finance.yahoo.com/news/lges-signs-copper-foil-deal-092112979.html",
+    "https://www.wsj.com/finance/currencies/asian-currencies-consolidate-hopes-for-more-trade-deals-may-support-8ba85464?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/finance/commodities-futures/oil-edges-higher-amid-positive-sentiment-8cc5907d?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-28-2025/card/podcast-how-to-navigate-an-ai-bull-market-g5wfnCZ7W5Ns0ESmq9i8?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/business/deals/bavarian-nordic-agrees-to-2-99-billion-private-equity-takeover-89d99349?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/kia-reports-record-revenues-q2-091856866.html",
+    "https://finance.yahoo.com/news/canaccord-genuity-maintains-buy-rating-072231796.html",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-28-2025/card/tariff-deadline-jobs-report-tech-earnings-what-to-watch-this-week-gNFCA91rE5nobMGl2Zz1?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/pricesmart-inc-nasdaq-psmt-sees-072229935.html",
+    "https://finance.yahoo.com/news/ubs-lifts-price-target-national-072227202.html",
+    "https://finance.yahoo.com/news/too-buy-palantir-stock-091500613.html",
+    "https://finance.yahoo.com/news/citi-reiterates-buy-rating-coty-072225171.html",
+    "https://finance.yahoo.com/news/wells-fargo-reduces-pt-post-072222562.html",
+    "https://finance.yahoo.com/news/bmo-capital-maintains-hold-rating-072218336.html",
+    "https://finance.yahoo.com/news/stifel-reduces-pt-conagra-brands-072212025.html",
+    "https://finance.yahoo.com/news/nvidia-stock-skyrocket-another-370-091500784.html",
+    "https://finance.yahoo.com/news/piper-sandler-reduces-pt-campbell-072206130.html",
+    "https://finance.yahoo.com/news/jefferies-raises-pt-darling-ingredients-072208766.html",
+    "https://finance.yahoo.com/news/wells-fargo-reduces-pt-lamb-072202750.html",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-28-2025/card/heard-on-the-street-friday-recap-european-negotiation-nmxvEwBLxDpmV6TU5MkW?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/pepsicos-snack-soda-synergy-consumer-091400417.html",
+    "https://www.wsj.com/business/earnings/audi-cuts-guidance-as-tariffs-and-restructuring-hit-earnings-22e6a071?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/exclusive-chinese-consumer-complaints-show-071326344.html",
+    "https://www.wsj.com/business/deals/mfe-mediaforeurope-makes-sweetened-2-4-billion-prosiebensat-1-takeover-offer-bc8235d2?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/vws-audi-cuts-full-outlook-070507366.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [],
   "https://www.investing.com/rss/news_25.rss": [
@@ -313,6 +363,10 @@
     "https://www.investing.com/news/stock-market-news/explainerwhy-big-alcohol-needs-us-tariff-relief-in-five-charts-4154501",
     "https://www.investing.com/news/stock-market-news/stv-shares-tumble-as-profit-forecast-slashed-on-weak-ad-market-4154495",
     "https://www.investing.com/news/stock-market-news/prosiebensat1-shares-jump-on-mfes-improved-24bn-takeover-bid-4154492",
-    "https://www.investing.com/news/stock-market-news/bavarian-nordic-agrees-to-299-billion-takeover-by-permira-nordic-capital-93CH-4154484"
+    "https://www.investing.com/news/stock-market-news/bavarian-nordic-agrees-to-299-billion-takeover-by-permira-nordic-capital-93CH-4154484",
+    "https://www.investing.com/news/stock-market-news/wall-st-futures-rise-after-useu-trade-deal-pivotal-week-ahead-4154240",
+    "https://www.investing.com/news/stock-market-news/aeroflot-cancels-flights-after-system-failure-hackers-claim-responsibility-93CH-4154623",
+    "https://www.investing.com/news/stock-market-news/european-chipmakers-rise-after-us-and-eu-notch-trade-agreement-4154602",
+    "https://www.investing.com/news/stock-market-news/firstgroup-stock-rises-after-acquiring-tetleys-coaches-in-leeds-93CH-4154570"
   ]
 }
