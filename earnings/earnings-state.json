@@ -1150,5 +1150,29 @@
     "revenueSurprise": 0.10076784101174345,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.153760487044324
+  },
+  {
+    "epsDate": "2025-07-28T06:00:00",
+    "ticker": "RVTY",
+    "name": "Revvity, Inc. ",
+    "summary": "Revvity, Inc. (RVTY) reported earnings of $1.18 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $1.14 per share on  revenue of $711.27 million. The Earnings Whisper number was $1.20 per share. The company missed expectations by 1.67%.<br /><br />Revvity provides health science solutions, technologies, expertise, and services that deliver complete workflows from discovery to development, and diagnosis to cure.",
+    "subject": "Revvity, Inc. Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2507280540",
+    "eps": 1.18,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 1.14,
+    "whisper": 1.2,
+    "highEstimate": 1.15,
+    "lowEstimate": 1.13,
+    "revenue": null,
+    "revenueEstimate": 711.27,
+    "earningsGrowth": -0.03278688524590164,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.016666666666666666,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.022836656819300836
   }
 ]
