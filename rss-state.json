@@ -48,7 +48,8 @@
     "https://www.cnbc.com/2025/07/28/warner-bros-discovery-names-spinoff-companies.html"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258": [
-    "https://www.cnbc.com/2025/07/25/trump-says-he-believes-powell-is-ready-to-start-lowering-rates.html"
+    "https://www.cnbc.com/2025/07/25/trump-says-he-believes-powell-is-ready-to-start-lowering-rates.html",
+    "https://www.cnbc.com/2025/07/28/trumps-trade-war-is-starting-to-look-not-so-scary-on-wall-street.html"
   ],
   "https://www.prnewswire.com/rss/energy-latest-news/energy-latest-news-list.rss": [
     "https://www.prnewswire.com/news-releases/arnold--itkin-files-lawsuit-against-chevron-following-refinery-explosion-302514322.html",
@@ -113,7 +114,8 @@
     "https://www.prnewswire.com/news-releases/pardee-resources-company-solar-pv-investment-302515103.html",
     "https://www.prnewswire.com/news-releases/inventhelp-inventor-develops-repair-kit-for-underground-utility-covers-sbt-2050-302511621.html",
     "https://www.prnewswire.com/news-releases/mountain-province-diamonds-announces-us10-million-additional-borrowings-under-bridge-facility-302515150.html",
-    "https://www.prnewswire.com/news-releases/lennox-wins-multiple-hvac-all-star-awards-from-achr-news-302515135.html"
+    "https://www.prnewswire.com/news-releases/lennox-wins-multiple-hvac-all-star-awards-from-achr-news-302515135.html",
+    "https://www.prnewswire.com/news-releases/claros-technologies-demonstriert-erfolgreiche-zerstorung-von-pfas-mit-hohem-durchsatz-bei-wegweisendem-pilotprojekt-302515211.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -151,7 +153,8 @@
     "https://www.marketwatch.com/story/figmas-hot-ipo-may-open-the-door-for-more-big-software-deals-7cfe9df6?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/coinbase-investors-should-cash-in-the-stock-has-rallied-too-much-ahead-of-earnings-analyst-says-dad5fff0?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/will-intel-give-up-on-chip-manufacturing-heres-how-that-could-have-big-ripple-effects-dd76aa75?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/walmart-shoppers-behavior-hasnt-changed-much-even-as-tariffs-push-prices-higher-analysts-say-2538448b?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/walmart-shoppers-behavior-hasnt-changed-much-even-as-tariffs-push-prices-higher-analysts-say-2538448b?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/where-morgan-stanley-is-looking-for-value-after-powerful-rebound-in-u-s-stocks-4130ed4a?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -620,7 +623,11 @@
     "https://finance.yahoo.com/research/reports/ARGUS_44227_StockPicks_1753704243000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
     "https://finance.yahoo.com/news/want-decades-passive-income-buy-102200271.html",
     "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-monday-july-28-2025-gold-stalls-with-progress-on-trade-deals-115011653.html",
-    "https://finance.yahoo.com/news/why-archer-aviation-stock-plummeted-102300926.html"
+    "https://finance.yahoo.com/news/why-archer-aviation-stock-plummeted-102300926.html",
+    "https://finance.yahoo.com/news/smartest-growth-stocks-buy-500-104500244.html",
+    "https://finance.yahoo.com/news/robinhood-stock-buy-now-110000656.html",
+    "https://finance.yahoo.com/news/americas-growing-copper-crisis-finds-110011809.html",
+    "https://finance.yahoo.com/news/don-t-tech-bro-crypto-110246960.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [],
   "https://www.investing.com/rss/news_25.rss": [
@@ -705,6 +712,8 @@
     "https://www.investing.com/news/stock-market-news/microsoft-launches-new-aipowered-copilot-mode-for-edge-browser-93CH-4155861",
     "https://www.investing.com/news/stock-market-news/faas-newark-airspace-relocation-decision-under-investigation-93CH-4155860",
     "https://www.investing.com/news/stock-market-news/amd-and-tesla-lead-mondays-market-cap-stock-movers-93CH-4155859",
-    "https://www.investing.com/news/stock-market-news/jolts-job-openings-consumer-confidence-data-to-shape-tuesdays-markets-93CH-4155857"
+    "https://www.investing.com/news/stock-market-news/jolts-job-openings-consumer-confidence-data-to-shape-tuesdays-markets-93CH-4155857",
+    "https://www.investing.com/news/stock-market-news/ew-scripps-gets-caa2-rating-for-new-notes-outlook-changed-to-stable-93CH-4155892",
+    "https://www.investing.com/news/stock-market-news/moodys-revises-oracles-outlook-to-negative-amid-ai-expansion-93CH-4155891"
   ]
 }
