@@ -37,8 +37,8 @@ async function main() {
   const url = `https://finnhub.io/api/v1/calendar/earnings?from=${oneWeekAgo}&to=${today}&token=${FINNHUB_TOKEN}`;
 
   const { data } = await axios.get(url);
-  const earnings = data.earningsCalendar || [];
-  earnings = earnings.sort((a, b) => new Date(a.date) - new Date(b.date));
+  const unsorted_earnings = data.earningsCalendar || [];
+  const earnings = unsorted_earnings.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   const discordClient = new Client({ intents: [GatewayIntentBits.Guilds] });
   await discordClient.login(DISCORD_TOKEN);
