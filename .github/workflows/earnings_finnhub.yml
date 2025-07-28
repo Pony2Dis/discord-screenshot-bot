@@ -43,6 +43,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
           git add earnings/earnings-finnhub-state.json
           # if there's something to commit, do it
           git diff --cached --quiet || git commit -m "ci: update earnings-finnhub-state.json"
