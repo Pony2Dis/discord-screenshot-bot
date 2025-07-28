@@ -60,7 +60,7 @@ async function main() {
         .addFields(
           { name: "Earnings Date", value: item.date, inline: true },
           { name: "Report Hour", value: item.hour === "bmo" ? "Before Market Open" : item.hour === "amc" ? "After Market Close" : item.hour === "dmh" ? "During Market Hours" : "Unknown", inline: true},
-          { name: "Quarter", value: item.quarter, inline: true },
+          { name: "Quarter", value: String(item.quarter), inline: true },
           { name: "EPS", value: `${item.epsActual ?? "N/A"}`, inline: true },
           { name: "EPS Estimate", value: `${item.epsEstimate ?? "N/A"}`, inline: true },
           { name: "Revenue", value: `${item.revenueActual ? "$" + (item.revenueActual / 1e9).toFixed(2) + "B" : "N/A"}`, inline: true },
