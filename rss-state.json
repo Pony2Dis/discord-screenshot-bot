@@ -258,5 +258,17 @@
     "https://finance.yahoo.com/news/federal-funds-itself-including-renovations-203308285.html",
     "https://finance.yahoo.com/news/visa-inc-v-only-wants-234622151.html"
   ],
-  "https://www.sec.gov/news/pressreleases.rss": []
+  "https://www.sec.gov/news/pressreleases.rss": [],
+  "https://www.investing.com/rss/news_25.rss": [
+    "https://www.investing.com/news/stock-market-news/brewer-heinekens-firsthalf-profits-beat-forecasts-4154297",
+    "https://www.investing.com/news/stock-market-news/samsung-to-make-teslas-ai6-chips-under-165-billion-deal-musk-says-4154350",
+    "https://www.investing.com/news/stock-market-news/french-ministers-say-euus-trade-deal-has-merits-but-is-also-unbalanced-4154348",
+    "https://www.investing.com/news/stock-market-news/four-themes-powering-europes-equity-bull-market-4154343",
+    "https://www.investing.com/news/stock-market-news/australia-stocks-higher-at-close-of-trade-spasx-200-up-036-4154347",
+    "https://www.investing.com/news/stock-market-news/oxford-biomedica-reports-strong-h1-with-revenue-up-3844-93CH-4154338",
+    "https://www.investing.com/news/stock-market-news/samsung-elec-signs-165-billion-contract-to-supply-semiconductors-4154237",
+    "https://www.investing.com/news/stock-market-news/several-us-executives-to-visit-china-this-week-sources-4154319",
+    "https://www.investing.com/news/stock-market-news/taiwan-stocks-lower-at-close-of-trade-taiwan-weighted-down-004-4154317",
+    "https://www.investing.com/news/stock-market-news/us-china-to-launch-new-talks-on-tariff-truce-extension-easing-path-for-trumpxi-meeting-4154251"
+  ]
 }
