@@ -34,8 +34,8 @@ jobs:
       - name: Run Fetch Finnhub earnings bot
         env:
           DISCORD_TOKEN:   ${{ secrets.DISCORD_TOKEN }}
+          FINNHUB_TOKEN: ${{ secrets.FINNHUB_TOKEN }}
           EARNINGS_CHANNEL_ID: ${{ vars.EARNINGS_CHANNEL_ID }}
-          FINNHUB_TOKEN: ${{ vars.FINNHUB_TOKEN }}
         run: node earnings/fetchEarningsFromFinnhub.mjs
       
       # 3) Commit & push only if there are changes
