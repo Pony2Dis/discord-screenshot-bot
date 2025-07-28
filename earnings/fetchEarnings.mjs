@@ -84,7 +84,8 @@ async function main() {
       .addFields(
         { name: "Earnings Date", value: new Date(item.epsDate).toLocaleString(), inline: true },
         { name: "EPS (est/whisp)", value: `${item.eps} (Estimate: ${item.estimate} / Whisper: ${item.whisper})`, inline: true },
-        { name: "Revenue (est)", value: `$${(item.revenue/1e9).toFixed(2)}B (Estimate: $${(item.revenueEstimate/1e9).toFixed(2)}B)`, inline: true },
+        { name: "Revenue", value: `$${(item.revenue/1e9).toFixed(2)}B`, inline: true },
+        { name: "Revenue Estimate", value: `$${(item.revenueEstimate/1e9).toFixed(2)}B)`, inline: true },
         { name: "Earnings Surprise %", value: `EPS ${(item.earningsSurprise*100).toFixed(2)}%`, inline: true },
         { name: "Revenue Surprise %", value: `${(item.revenueSurprise*100).toFixed(2)}%`, inline: true },
         { name: "Previous Earnings Growth", value: `${item.prevEarningsGrowth ? (item.prevEarningsGrowth*100).toFixed(1)+'%' : 'N/A'}`, inline: true },
