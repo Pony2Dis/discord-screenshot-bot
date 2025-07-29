@@ -2350,5 +2350,29 @@
     "revenueSurprise": -0.0022900456669925407,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.0442225392296719
+  },
+  {
+    "epsDate": "2025-07-29T07:30:00",
+    "ticker": "BA",
+    "name": "Boeing Co.",
+    "summary": "Boeing (BA) reported a loss of $1.24 per share on revenue of $22.75 billion for the  second quarter ended June 2025.  The consensus estimate was a loss of $1.54 per share on  revenue of $21.17 billion. The Earnings Whisper number was a loss of $1.22 per share. The company missed expectations by 1.64% while revenue grew 34.88% on a year-over-year basis.<br /><br />Boeing Co, together with its subsidiaries designs, develops, manufactures, sells and supports commercial jetliners, military aircraft, satellites, missile defense, human space flight and launch systems and services.",
+    "subject": "Boeing Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2507299237",
+    "eps": -1.24,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -1.54,
+    "whisper": -1.22,
+    "highEstimate": -1.13,
+    "lowEstimate": -1.85,
+    "revenue": 22749,
+    "revenueEstimate": 21170,
+    "earningsGrowth": 0.5724137931034483,
+    "revenueGrowth": 0.3488082532906439,
+    "earningsSurprise": -0.01639344262295082,
+    "revenueSurprise": 0.07458667926310818,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.1766551994688877
   }
 ]
