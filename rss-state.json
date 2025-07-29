@@ -133,7 +133,12 @@
     "https://www.prnewswire.com/news-releases/sanmina-reports-third-quarter-fiscal-2025-financial-results-302515184.html",
     "https://www.prnewswire.com/news-releases/vice-president-jd-vance-visits-metallus-to-highlight-the-significance-of-investing-in-american-workers-302515320.html",
     "https://www.prnewswire.com/news-releases/new-etc-report-demonstrates-that-wind-and-solar-dominant-power-systems-are-competitive-reliable-and-technically-and-economically-feasible-302515174.html",
-    "https://www.prnewswire.com/news-releases/new-etc-report-demonstrates-that-wind-and-solar-dominant-power-systems-are-competitive-reliable-and-technically-and-economically-feasible-302515154.html"
+    "https://www.prnewswire.com/news-releases/new-etc-report-demonstrates-that-wind-and-solar-dominant-power-systems-are-competitive-reliable-and-technically-and-economically-feasible-302515154.html",
+    "https://www.prnewswire.com/news-releases/liyu-group-invited-to-attend-sustainable-markets-initiative-china-forum-302515696.html",
+    "https://www.prnewswire.com/news-releases/oxford-business-group-ghana-targets-industrial-transformation-through-local-steel-production-and-regional-trade-integration-302515065.html",
+    "https://www.prnewswire.com/news-releases/guozi-robotics-and-tz-group-build-a-flagship-end-to-end-intelligent-logistics-project-for-the-construction-machinery-sector-302515561.html",
+    "https://www.prnewswire.com/news-releases/raytron-stellt-vier-schlusseltechnologien-hinter-ki-warmebildkameras-fur-die-247-sicherheitsuberwachung-vor-302515462.html",
+    "https://www.prnewswire.com/news-releases/raytron-devoile-4-technologies-cles-derriere-les-cameras-thermiques-ia-pour-la-surveillance-de-securite-24h24-et-7j7-302515458.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -669,7 +674,16 @@
     "https://finance.yahoo.com/news/inside-puerto-rico-land-grab-134759581.html",
     "https://finance.yahoo.com/news/robert-kiyosaki-top-advice-probably-133546162.html",
     "https://finance.yahoo.com/news/us-exceptionalism-roars-back-markets-160548726.html",
-    "https://finance.yahoo.com/news/70s-260k-mortgage-3-interest-162300639.html"
+    "https://finance.yahoo.com/news/70s-260k-mortgage-3-interest-162300639.html",
+    "https://finance.yahoo.com/news/does-2025-corn-crop-pollination-230054863.html",
+    "https://finance.yahoo.com/news/illinois-woman-property-tax-poised-230700243.html",
+    "https://www.wsj.com/finance/stocks/five-signs-of-a-market-bubble-investors-are-tracking-ddbea944?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/business/retail/surge-grocery-prices-electronic-shelf-labels-a3d47701?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/economy/housing/with-individual-home-buyers-on-the-sidelines-investors-swoop-into-the-market-f0daf356?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/finance/stocks/asian-stocks-mixed-as-investors-await-clarity-about-u-s-eu-trade-deal-2e5da649?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/lifestyle/careers/layoff-business-strategy-reduce-staff-11796d66?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/finance/small-insurance-company-hurricanes-a41766d9?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/stocks-cheer-art-trumps-trade-011627968.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [],
   "https://www.investing.com/rss/news_25.rss": [
@@ -782,6 +796,15 @@
     "https://www.investing.com/news/stock-market-news/baker-hughes-nears-136-billion-deal-to-buy-chart-over-the-head-of-rival-suitor-ft-reports-4156278",
     "https://www.investing.com/news/stock-market-news/exclusivecadence-nears-deal-to-pay-over-100-million-to-us-for-china-sales-sources-say-4155915",
     "https://www.investing.com/news/stock-market-news/waymo-to-launch-autonomous-ridehailing-in-dallas-next-year-4156269",
-    "https://www.investing.com/news/stock-market-news/exclusivetrump-team-hears-pitches-on-access-to-myanmars-rare-earths-4156266"
+    "https://www.investing.com/news/stock-market-news/exclusivetrump-team-hears-pitches-on-access-to-myanmars-rare-earths-4156266",
+    "https://www.investing.com/news/stock-market-news/ubs-orders-bankers-to-scale-back-sale-of-complex-currency-products-ft-reports-4156385",
+    "https://www.investing.com/news/stock-market-news/nvidia-orders-300000-h20-chips-as-china-demand-surges-reuters-reports-4156369",
+    "https://www.investing.com/news/stock-market-news/asia-stocks-slip-as-looming-tariff-deadline-eclipses-trade-progress-4156362",
+    "https://www.investing.com/news/stock-market-news/chinas-changan-restructured-as-independent-stateowned-automaker-cctv-reports-4156360",
+    "https://www.investing.com/news/stock-market-news/exclusivenvidia-orders-300000-h20-chips-from-tsmc-due-to-robust-china-demand-sources-say-4156359",
+    "https://www.investing.com/news/stock-market-news/factboxuribe-joins-list-of-former-latin-american-presidents-with-criminal-convictions-4156353",
+    "https://www.investing.com/news/stock-market-news/australian-lender-cba-to-cut-45-jobs-in-ai-shift-draws-union-backlash-4156352",
+    "https://www.investing.com/news/stock-market-news/south-koreas-celltrion-says-tapped-to-buy-us-pharma-factory-to-offset-tariff-risk-4156341",
+    "https://www.investing.com/news/stock-market-news/us-justice-department-files-misconduct-complaint-against-prominent-judge-4156286"
   ]
 }
