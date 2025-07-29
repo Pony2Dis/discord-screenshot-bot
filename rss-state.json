@@ -145,7 +145,9 @@
     "https://www.prnewswire.com/news-releases/brewing-innovation-univers-and-starbucks-china-redefine-green-retail-from-store-to-supplier-302515755.html",
     "https://www.prnewswire.com/news-releases/metlen-energy--metals-plc-metlen-plc-or-the-offeror-announces-the-successful-outcome-of-its-voluntary-share-exchange-tender-offer-made-to-acquire-the-ordinary-registered-shares-of-metlen-energy--metals-sa-metlen-sa-302515888.html",
     "https://www.prnewswire.com/news-releases/cnooc-limited-brings-on-stream-dongfang-1-1-gas-field-13-3-block-development-project-302515615.html",
-    "https://www.prnewswire.com/news-releases/elimini-and-hofor-sign-strategic-agreements-for-landmark-danish-beccs-project-to-permanently-remove-co2-302514970.html"
+    "https://www.prnewswire.com/news-releases/elimini-and-hofor-sign-strategic-agreements-for-landmark-danish-beccs-project-to-permanently-remove-co2-302514970.html",
+    "https://www.prnewswire.com/news-releases/guidehouse-research-estimates-number-of-grid-interactive-buildings-to-reach-282-million-by-2034-302515418.html",
+    "https://www.prnewswire.com/news-releases/pad-mounted-switchgear-market-worth-7-97-billion-by-2030--marketsandmarkets-302515815.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -190,13 +192,18 @@
     "https://www.marketwatch.com/story/this-company-nailed-a-moon-landing-now-its-preparing-to-go-public-59e9b63c?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/nba-star-kyrie-irving-says-it-puts-a-target-on-someones-life-when-fans-know-how-much-money-players-earn-5f503ab9?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/bed-bath-beyond-parent-companys-latest-problem-has-nothing-to-do-with-retail-b7f1f5bb?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/philips-lifts-profit-outlook-on-tariff-mitigation-as-stellantis-flags-1-7-billion-hit-from-levies-7e2b9dfa?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/philips-lifts-profit-outlook-on-tariff-mitigation-as-stellantis-flags-1-7-billion-hit-from-levies-7e2b9dfa?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/he-is-currently-in-jail-my-daughters-husband-has-bipolar-i-disorder-can-he-sign-divorce-papers-ecd23e32?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/the-fed-risks-a-deflationary-spiral-by-not-cutting-rates-these-bond-experts-say-76b1523f?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/musician-adam-lambert-sells-hollywood-hills-home-at-a-loss-for-6-2-million-0dbb254e?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/after-living-in-it-for-just-one-month-ellen-degeneres-and-portia-de-rossi-are-selling-u-k-farmhouse-for-30-million-b58dc737?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
     "https://www.cnbc.com/2025/07/25/intel-drops-9percent-as-ceo-warns-of-chip-manufacturing-issues.html",
     "https://www.cnbc.com/2025/07/28/china-laopu-gold-shares-fall-despite-forecast-of-tripling-profits.html",
-    "https://www.cnbc.com/2025/07/29/stellantis-h1-earnings.html"
+    "https://www.cnbc.com/2025/07/29/stellantis-h1-earnings.html",
+    "https://www.cnbc.com/2025/07/29/barclays-q2-earnings-2025.html"
   ],
   "https://finance.yahoo.com/news/rssindex": [
     "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-meta-amazon-earnings-fed-meeting-trump-tariffs-tesla-robotaxi/?src=A00220&yptr=yahoo",
@@ -714,7 +721,42 @@
     "https://finance.yahoo.com/news/rbc-capital-sees-strong-growth-054202287.html",
     "https://finance.yahoo.com/news/morgan-stanley-sees-balanced-outlook-054204464.html",
     "https://finance.yahoo.com/news/costco-cost-stock-reaffirmed-outperform-054206561.html",
-    "https://finance.yahoo.com/news/t-mobile-tmus-stock-upgraded-054209197.html"
+    "https://finance.yahoo.com/news/t-mobile-tmus-stock-upgraded-054209197.html",
+    "https://finance.yahoo.com/news/eqt-cpp-investments-acquire-neogov-094620569.html",
+    "https://www.wsj.com/business/energy-oil/ai-data-center-power-costs-bbfcd862?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/tech/apple-stock-service-value-growth-analysis-f265a5e7?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/economy/central-banking/federal-reserve-voting-members-d3fbda07?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/finance/currencies/asian-currencies-consolidate-trade-deal-hopes-may-support-5d2a2a1d?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/temu-risks-fines-6-revenue-094501562.html",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-29-2025/card/whirlpool-stock-sinks-after-appliance-maker-slashes-earnings-outlook-LuvDqAAZmsZKZXEhWT5q?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-29-2025/card/stocks-to-watch-tuesday-unitedhealth-p-g-whirlpool-stellantis-oEuVT5pQ2nUTKWYYzr8G?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/us-travel-bookings-rebound-august-090821937.html",
+    "https://finance.yahoo.com/news/jk-paper-acquire-borkar-packaging-093517971.html",
+    "https://finance.yahoo.com/news/spotify-set-to-report-earnings-as-investor-optimism-meets-cautious-guidance-201026571.html",
+    "https://www.wsj.com/us-news/law/top-justice-department-antitrust-officials-fired-amid-internal-feud-0c98d57c?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/procter--gamble-announces-new-ceo-as-it-aims-to-unlock-next-era-of-growth-223946565.html",
+    "https://www.wsj.com/business/earnings/philips-raises-full-year-profitability-guidance-on-lower-tariff-impact-36fca1b1?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/levine-leichtman-capital-partners-acquires-091942256.html",
+    "https://finance.yahoo.com/news/starbucks-set-to-report-6th-straight-us-sales-decline-as-ceo-brian-niccol-continues-turnaround-efforts-202028271.html",
+    "https://finance.yahoo.com/news/buffetts-berkshire-sell-one-third-212921022.html",
+    "https://www.barrons.com/livecoverage/stock-market-news-today-072925/card/the-fed-meeting-kicks-off-today-what-the-market-thinks-will-happen-on-rates--wbyn3wHkRz3h1bq7ykug?siteid=yhoof2&yptr=yahoo",
+    "https://www.barrons.com/livecoverage/stock-market-news-today-072925/card/s-p-500-heads-for-another-high-ahead-of-fed-and-big-tech-earnings-as-stock-futures-rise-ISlVwtItG1utYE1Ucc5M?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/baker-hughes-finalise-13-6bn-091551653.html",
+    "https://finance.yahoo.com/news/live/stock-market-today-sp-500-nasdaq-eke-out-records-as-markets-kick-off-huge-week-for-us-economy-200500414.html",
+    "https://www.wsj.com/finance/global-markets-mixed-ahead-of-fed-rate-decision-ccb6ad80?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/business/earnings/astrazeneca-books-record-quarterly-revenue-as-oncology-boosts-growth-b9b57fd9?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/yahoo-finance-chartbook-35-charts-tell-the-story-of-markets-and-the-economy-midway-through-2025-080012747.html",
+    "https://finance.yahoo.com/news/c3-ai-enterprise-ai-stock-091500965.html",
+    "https://www.wsj.com/finance/commodities-futures/gold-consolidates-trade-deal-hopes-may-weigh-547bde1b?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-29-2025/card/tariff-deadline-jobs-report-tech-earnings-what-to-watch-this-week-T7IbjYfojoistBRucY2F?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-29-2025/card/heard-in-the-street-monday-recap-done-deal-sOQRzRX1hYxVrxxZL9kP?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/business/earnings/stellantis-reinstates-guidance-expects-second-half-rebound-despite-tariffs-49cdebad?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/databricks-quietly-becoming-one-most-091400349.html",
+    "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-futures-climb-as-huge-week-of-market-watched-events-rolls-on-233720178.html",
+    "https://www.barrons.com/articles/starbucks-earnings-stock-price-9b692996?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/woodside-assume-operatorship-bass-strait-091053481.html",
+    "https://finance.yahoo.com/news/betmgm-raises-2025-forecast-strong-065826723.html",
+    "https://finance.yahoo.com/news/uk-retail-sales-downturn-stretches-091041295.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [],
   "https://www.investing.com/rss/news_25.rss": [
@@ -855,6 +897,11 @@
     "https://www.investing.com/news/stock-market-news/european-stocks-rise-useu-trade-agreement-earnings-and-fed-meeting-in-focus-4156470",
     "https://www.investing.com/news/stock-market-news/indonesia-stocks-higher-at-close-of-trade-idx-composite-index-up-066-4156623",
     "https://www.investing.com/news/stock-market-news/fitch-says-us-tariffs-alone-wont-trigger-eu-rating-downgrades-4156575",
-    "https://www.investing.com/news/stock-market-news/ams-osram-stock-rises-after-selling-lamp-business-to-ushio-for-114m-93CH-4156573"
+    "https://www.investing.com/news/stock-market-news/ams-osram-stock-rises-after-selling-lamp-business-to-ushio-for-114m-93CH-4156573",
+    "https://www.investing.com/news/stock-market-news/norsk-hydro-could-benefit-from-possible-useu-metals-alliance--rbc-4156688",
+    "https://www.investing.com/news/stock-market-news/bofa-clients-sold-equities-last-week-as-buybacks-slow-4156687",
+    "https://www.investing.com/news/stock-market-news/us-travel-bookings-rebound-for-august-boosting-companies-revenue-outlook-4156671",
+    "https://www.investing.com/news/stock-market-news/more-than-360-million-in-cfpb-consumer-payouts-at-risk-consumer-groups-say-4156670",
+    "https://www.investing.com/news/stock-market-news/nomura-q1-profit-jumps-52-as-markets-investment-bank-units-ride-out-volatility-4156633"
   ]
 }
