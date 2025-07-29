@@ -52,7 +52,8 @@
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258": [
     "https://www.cnbc.com/2025/07/25/trump-says-he-believes-powell-is-ready-to-start-lowering-rates.html",
-    "https://www.cnbc.com/2025/07/28/trumps-trade-war-is-starting-to-look-not-so-scary-on-wall-street.html"
+    "https://www.cnbc.com/2025/07/28/trumps-trade-war-is-starting-to-look-not-so-scary-on-wall-street.html",
+    "https://www.cnbc.com/2025/07/29/the-eu-us-trade-deal-could-have-one-unexpected-winner-the-uk.html"
   ],
   "https://www.prnewswire.com/rss/energy-latest-news/energy-latest-news-list.rss": [
     "https://www.prnewswire.com/news-releases/arnold--itkin-files-lawsuit-against-chevron-following-refinery-explosion-302514322.html",
@@ -141,7 +142,10 @@
     "https://www.prnewswire.com/news-releases/raytron-devoile-4-technologies-cles-derriere-les-cameras-thermiques-ia-pour-la-surveillance-de-securite-24h24-et-7j7-302515458.html",
     "https://www.prnewswire.com/news-releases/brewing-innovation-univers-and-starbucks-china-redefine-green-retail-from-store-to-supplier-302515770.html",
     "https://www.prnewswire.com/news-releases/huasun-releases-industrys-first-heterojunction-vertical-pv-product--application-overview-302515766.html",
-    "https://www.prnewswire.com/news-releases/brewing-innovation-univers-and-starbucks-china-redefine-green-retail-from-store-to-supplier-302515755.html"
+    "https://www.prnewswire.com/news-releases/brewing-innovation-univers-and-starbucks-china-redefine-green-retail-from-store-to-supplier-302515755.html",
+    "https://www.prnewswire.com/news-releases/metlen-energy--metals-plc-metlen-plc-or-the-offeror-announces-the-successful-outcome-of-its-voluntary-share-exchange-tender-offer-made-to-acquire-the-ordinary-registered-shares-of-metlen-energy--metals-sa-metlen-sa-302515888.html",
+    "https://www.prnewswire.com/news-releases/cnooc-limited-brings-on-stream-dongfang-1-1-gas-field-13-3-block-development-project-302515615.html",
+    "https://www.prnewswire.com/news-releases/elimini-and-hofor-sign-strategic-agreements-for-landmark-danish-beccs-project-to-permanently-remove-co2-302514970.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -185,7 +189,8 @@
     "https://www.marketwatch.com/story/whirlpool-says-rivals-have-raced-to-do-this-to-sidestep-tariffs-c442fa93?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/this-company-nailed-a-moon-landing-now-its-preparing-to-go-public-59e9b63c?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/nba-star-kyrie-irving-says-it-puts-a-target-on-someones-life-when-fans-know-how-much-money-players-earn-5f503ab9?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/bed-bath-beyond-parent-companys-latest-problem-has-nothing-to-do-with-retail-b7f1f5bb?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/bed-bath-beyond-parent-companys-latest-problem-has-nothing-to-do-with-retail-b7f1f5bb?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/philips-lifts-profit-outlook-on-tariff-mitigation-as-stellantis-flags-1-7-billion-hit-from-levies-7e2b9dfa?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -692,7 +697,24 @@
     "https://finance.yahoo.com/news/why-flowers-foods-flo-top-041721831.html",
     "https://finance.yahoo.com/news/analyzing-hormel-foods-corporation-hrl-041832280.html",
     "https://finance.yahoo.com/news/j-m-smucker-company-sjm-042309503.html",
-    "https://finance.yahoo.com/news/investing-archer-daniels-midland-company-042413601.html"
+    "https://finance.yahoo.com/news/investing-archer-daniels-midland-company-042413601.html",
+    "https://finance.yahoo.com/news/makes-hershey-company-hsy-stable-042650161.html",
+    "https://finance.yahoo.com/news/morning-bid-us-eu-avert-043145828.html",
+    "https://finance.yahoo.com/news/asian-shares-mixed-wall-street-043419354.html",
+    "https://finance.yahoo.com/news/mondelez-international-mdlz-strong-contender-044111611.html",
+    "https://finance.yahoo.com/news/why-starbucks-sbux-gaining-attention-044641525.html",
+    "https://finance.yahoo.com/news/mcdonald-mcd-financial-health-dividend-045245681.html",
+    "https://finance.yahoo.com/news/kraft-heinz-khc-role-food-045308777.html",
+    "https://finance.yahoo.com/news/dow-futures-rise-us-eu-222131469.html",
+    "https://finance.yahoo.com/news/general-mills-gis-food-dividend-045323759.html",
+    "https://finance.yahoo.com/news/brewer-heinekens-first-half-profits-050542356.html",
+    "https://finance.yahoo.com/news/eli-lilly-lly-gets-price-054155560.html",
+    "https://finance.yahoo.com/news/td-cowen-sees-upside-thermo-054158820.html",
+    "https://finance.yahoo.com/news/unitedhealth-unh-stock-rated-outperform-054200806.html",
+    "https://finance.yahoo.com/news/rbc-capital-sees-strong-growth-054202287.html",
+    "https://finance.yahoo.com/news/morgan-stanley-sees-balanced-outlook-054204464.html",
+    "https://finance.yahoo.com/news/costco-cost-stock-reaffirmed-outperform-054206561.html",
+    "https://finance.yahoo.com/news/t-mobile-tmus-stock-upgraded-054209197.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [],
   "https://www.investing.com/rss/news_25.rss": [
@@ -830,6 +852,9 @@
     "https://www.investing.com/news/stock-market-news/european-stocks-rise-amid-earnings-flurry-investors-asses-useu-trade-deal-4156511",
     "https://www.investing.com/news/stock-market-news/samsung-electronics-chief-heads-to-washington-to-support-us-trade-talks-yonhap-says-4156490",
     "https://www.investing.com/news/stock-market-news/uniphar-reports-8-organic-growth-in-h1-reaffirms-fullyear-targets-93CH-4156487",
-    "https://www.investing.com/news/stock-market-news/european-stocks-rise-useu-trade-agreement-earnings-and-fed-meeting-in-focus-4156470"
+    "https://www.investing.com/news/stock-market-news/european-stocks-rise-useu-trade-agreement-earnings-and-fed-meeting-in-focus-4156470",
+    "https://www.investing.com/news/stock-market-news/indonesia-stocks-higher-at-close-of-trade-idx-composite-index-up-066-4156623",
+    "https://www.investing.com/news/stock-market-news/fitch-says-us-tariffs-alone-wont-trigger-eu-rating-downgrades-4156575",
+    "https://www.investing.com/news/stock-market-news/ams-osram-stock-rises-after-selling-lamp-business-to-ushio-for-114m-93CH-4156573"
   ]
 }
