@@ -49,7 +49,8 @@
     "https://www.cnbc.com/2025/07/29/apple-likely-to-launch-foldable-iphone-in-september-2026-predicts-jpmorgan.html",
     "https://www.cnbc.com/2025/07/29/starbucks-earnings-are-coming-tuesday-heres-what-top-analysts-expect.html",
     "https://www.cnbc.com/2025/07/29/cadence-design-systems-is-up-huge-on-earnings-what-the-charts-say-to-do-next.html",
-    "https://www.cnbc.com/2025/07/29/steady-compounder-stocks-that-have-delivered-solid-earnings-growth-bofa.html"
+    "https://www.cnbc.com/2025/07/29/steady-compounder-stocks-that-have-delivered-solid-earnings-growth-bofa.html",
+    "https://www.cnbc.com/2025/07/29/wednesdays-big-stock-stories-whats-likely-to-move-the-market.html"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147": [
     "https://www.cnbc.com/2025/07/27/boeing-ceo-ortberg-airplane-deliveries-defense.html",
@@ -225,7 +226,8 @@
     "https://www.prnewswire.com/news-releases/nabors-announces-second-quarter-2025-results-302516486.html",
     "https://www.prnewswire.com/news-releases/select-water-solutions-announces-release-of-2024-sustainability-report-302516551.html",
     "https://www.prnewswire.com/news-releases/huasun-lanza-el-primer-producto-fotovoltaico-vertical-de-heterounion-de-la-industria-302516583.html",
-    "https://www.prnewswire.com/news-releases/tetra-technologies-inc-announces-strong-second-quarter-2025-results-and-provides-full-year-guidance-302516535.html"
+    "https://www.prnewswire.com/news-releases/tetra-technologies-inc-announces-strong-second-quarter-2025-results-and-provides-full-year-guidance-302516535.html",
+    "https://www.prnewswire.com/news-releases/carbon-upcycling-technologies-and-ash-grove-break-ground-on-canadian-first-of-its-kind-carbon-capture-and-utilization-facility-302516684.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -309,7 +311,8 @@
     "https://www.marketwatch.com/story/ambiq-will-soon-make-its-ipo-debut-heres-what-to-know-about-the-ai-chip-company-debc787b?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/this-oil-company-is-spending-14-billion-to-be-part-of-the-ai-data-center-business-b162139b?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/upss-stock-sinks-after-profit-misses-forecasts-and-earnings-guidance-still-not-provided-2e9b0ab2?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/why-the-man-behind-the-haters-guide-to-the-ai-bubble-thinks-wall-streets-hottest-trade-will-go-bust-ac398ce0?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/why-the-man-behind-the-haters-guide-to-the-ai-bubble-thinks-wall-streets-hottest-trade-will-go-bust-ac398ce0?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/social-security-wants-to-make-a-change-that-would-cause-3-4-million-more-people-to-have-to-visit-its-field-offices-fcc697a8?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -1092,7 +1095,15 @@
     "https://www.barrons.com/articles/nuclear-energy-stocks-etf-oklo-peg-a3f82512?siteid=yhoof2&yptr=yahoo",
     "https://www.barrons.com/livecoverage/stock-market-news-today-072825/card/stocks-hover-near-record-levels-ahead-of-a-busy-week-for-markets-LkDQBf7mWzDSMZNopunP?siteid=yhoof2&yptr=yahoo",
     "https://finance.yahoo.com/news/analyst-says-eth-could-hit-130555396.html",
-    "https://finance.yahoo.com/news/mining-profitability-climbed-over-5-130505171.html"
+    "https://finance.yahoo.com/news/mining-profitability-climbed-over-5-130505171.html",
+    "https://finance.yahoo.com/news/housing-market-purgatory-existing-home-153005247.html",
+    "https://www.barrons.com/livecoverage/stock-market-news-today-072825/card/why-is-the-dow-lagging-the-market-is-buying-risk-and-not-much-else--37hG99aI70CQA561RyDH?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/trade-deals-earnings-optimism-boost-152133694.html",
+    "https://finance.yahoo.com/news/copyright-lawsuit-over-pirated-books-152803100.html",
+    "https://finance.yahoo.com/news/morgan-stanley-makes-bold-p-152644686.html",
+    "https://finance.yahoo.com/news/fbs-analysis-highlights-liquidity-trends-151624633.html",
+    "https://finance.yahoo.com/news/paypal-reports-q2-earnings-july-151525794.html",
+    "https://finance.yahoo.com/news/google-patent-straightens-ai-training-151500173.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps"
@@ -1312,6 +1323,12 @@
     "https://www.investing.com/news/stock-market-news/russia-stocks-higher-at-close-of-trade-moex-russia-index-up-103-4158631",
     "https://www.investing.com/news/stock-market-news/lockheed-martin-awarded-165-million-in-f35-contracts-93CH-4158619",
     "https://www.investing.com/news/stock-market-news/boeing-awarded-379-million-contract-for-p8a-canada-training-systems-93CH-4158617",
-    "https://www.investing.com/news/stock-market-news/raytheon-secures-675-million-contract-for-evolved-seasparrow-missiles-93CH-4158616"
+    "https://www.investing.com/news/stock-market-news/raytheon-secures-675-million-contract-for-evolved-seasparrow-missiles-93CH-4158616",
+    "https://www.investing.com/news/stock-market-news/beloved-blackstone-executive-lepatner-killed-in-manhattan-remembered-as-industry-leader-4158754",
+    "https://www.investing.com/news/stock-market-news/starbucks-posts-steeperthanexpected-drop-in-global-sales-4158385",
+    "https://www.investing.com/news/stock-market-news/kraken-seeks-500-million-funding-at-15-billion-valuation-the-information-reports-4158739",
+    "https://www.investing.com/news/stock-market-news/baker-hughes-to-buy-chart-industries-in-136-billion-deal-4156898",
+    "https://www.investing.com/news/stock-market-news/boeing-posts-smaller-loss-as-jet-deliveries-rise-4157152",
+    "https://www.investing.com/news/stock-market-news/australia-adds-youtube-to-social-media-ban-for-children-4158734"
   ]
 }
