@@ -2134,5 +2134,29 @@
     "revenueSurprise": 0.4402884615384615,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.04646878198567042
+  },
+  {
+    "epsDate": "2025-07-29T06:00:00",
+    "ticker": "SWK",
+    "name": "Stanley Black & Decker",
+    "summary": "Stanley Black & Decker (SWK) reported earnings of $1.08 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.38 per share on  revenue of $4.00 billion. The Earnings Whisper number was $0.46 per share. The company beat expectations by 134.78%.<br /><br />Stanley Black & Decker is a worldwide leader in tools and outdoor operating manufacturing facilities worldwide.",
+    "subject": "Stanley Black & Decker Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2507299132",
+    "eps": 1.08,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.38,
+    "whisper": 0.46,
+    "highEstimate": 0.64,
+    "lowEstimate": 0.09,
+    "revenue": null,
+    "revenueEstimate": 4000,
+    "earningsGrowth": -0.009174311926605505,
+    "revenueGrowth": null,
+    "earningsSurprise": 1.3478260869565217,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.0322780721023388
   }
 ]
