@@ -2,7 +2,7 @@ name: 💰 Get Finnhub Earnings Reports
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/55 * * * *'
   workflow_dispatch:
 
 permissions:
