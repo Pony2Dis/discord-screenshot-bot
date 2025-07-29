@@ -64,7 +64,7 @@ async function main() {
           { name: "EPS", value: `${item.epsActual ?? "N/A"}`, inline: true },
           { name: "EPS Estimate", value: `${item.epsEstimate ?? "N/A"}`, inline: true },
           { name: "Revenue", value: `${item.revenueActual ? "$" + (item.revenueActual / 1e9).toFixed(2) + "B" : "N/A"}`, inline: true },
-          { name: "Revenue Estimate", value: `${item.revenueEstimate ? "$" + (item.revenueEstimate / 1e9).toFixed(2) + "B" : "N/A"})`, inline: true }
+          { name: "Revenue Estimate", value: `${item.revenueEstimate ? "$" + (item.revenueEstimate / 1e9).toFixed(2) + "B" : "N/A"}`, inline: true }
         )
         .setFooter({ text: `Earnings Hub: https://earningshub.com/quote/${item.symbol}\nEarnings Whisper: https://www.earningswhispers.com/epsdetails/${item.symbol}\nYahoo Finance: https://finance.yahoo.com/quote/${item.symbol}` })
         .setAuthor({ name: "Source: Finnhub" })
