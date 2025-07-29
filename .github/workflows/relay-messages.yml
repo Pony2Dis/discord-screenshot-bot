@@ -31,7 +31,7 @@ jobs:
           DISCORD_TOKEN:    ${{ secrets.DISCORD_TOKEN }}
           YT_SOURCE_CHANNEL_ID: ${{ vars.YT_SOURCE_CHANNEL_ID }}
           YT_TARGET_CHANNEL_ID: ${{ vars.YT_TARGET_CHANNEL_ID }}
-        run: node youtube/relay.js
+        run: node youtube/relay.mjs
       
       # 5) Commit & push only if there are changes
       - name: Commit updated state
