@@ -190,7 +190,8 @@
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
     "https://www.cnbc.com/2025/07/25/intel-drops-9percent-as-ceo-warns-of-chip-manufacturing-issues.html",
-    "https://www.cnbc.com/2025/07/28/china-laopu-gold-shares-fall-despite-forecast-of-tripling-profits.html"
+    "https://www.cnbc.com/2025/07/28/china-laopu-gold-shares-fall-despite-forecast-of-tripling-profits.html",
+    "https://www.cnbc.com/2025/07/29/stellantis-h1-earnings.html"
   ],
   "https://finance.yahoo.com/news/rssindex": [
     "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-meta-amazon-earnings-fed-meeting-trump-tariffs-tesla-robotaxi/?src=A00220&yptr=yahoo",
@@ -690,7 +691,8 @@
     "https://finance.yahoo.com/news/investors-face-week-rife-risks-193800209.html",
     "https://finance.yahoo.com/news/why-flowers-foods-flo-top-041721831.html",
     "https://finance.yahoo.com/news/analyzing-hormel-foods-corporation-hrl-041832280.html",
-    "https://finance.yahoo.com/news/j-m-smucker-company-sjm-042309503.html"
+    "https://finance.yahoo.com/news/j-m-smucker-company-sjm-042309503.html",
+    "https://finance.yahoo.com/news/investing-archer-daniels-midland-company-042413601.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [],
   "https://www.investing.com/rss/news_25.rss": [
@@ -821,6 +823,13 @@
     "https://www.investing.com/news/stock-market-news/siltronic-cuts-2025-guidance-on-forex-headwinds-despite-q2-beat-93CH-4156438",
     "https://www.investing.com/news/stock-market-news/essentra-reports-h1-results-in-line-with-expectations-maintains-outlook-93CH-4156434",
     "https://www.investing.com/news/stock-market-news/stellantis-expects-gradual-recovery-in-h2-and-more-tough-decisions-4156425",
-    "https://www.investing.com/news/stock-market-news/taiwan-stocks-higher-at-close-of-trade-taiwan-weighted-up-021-4156424"
+    "https://www.investing.com/news/stock-market-news/taiwan-stocks-higher-at-close-of-trade-taiwan-weighted-up-021-4156424",
+    "https://www.investing.com/news/stock-market-news/ssp-group-q3-sales-softer-than-expected-but-maintains-fullyear-outlook-93CH-4156542",
+    "https://www.investing.com/news/stock-market-news/major-developments-in-trumps-trade-war-4156528",
+    "https://www.investing.com/news/stock-market-news/allfunds-group-maintains-guidance-despite-slight-1h25-revenue-miss-93CH-4156517",
+    "https://www.investing.com/news/stock-market-news/european-stocks-rise-amid-earnings-flurry-investors-asses-useu-trade-deal-4156511",
+    "https://www.investing.com/news/stock-market-news/samsung-electronics-chief-heads-to-washington-to-support-us-trade-talks-yonhap-says-4156490",
+    "https://www.investing.com/news/stock-market-news/uniphar-reports-8-organic-growth-in-h1-reaffirms-fullyear-targets-93CH-4156487",
+    "https://www.investing.com/news/stock-market-news/european-stocks-rise-useu-trade-agreement-earnings-and-fed-meeting-in-focus-4156470"
   ]
 }
