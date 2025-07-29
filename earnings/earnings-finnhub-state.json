@@ -1970,5 +1970,89 @@
   {
     "symbol": "WU",
     "date": "2025-07-28"
+  },
+  {
+    "symbol": "RMBS",
+    "date": "2025-07-28"
+  },
+  {
+    "symbol": "HRI",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "CSTM",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "RCL",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "BRSL",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "AWI",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "SWK",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "UNH",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "PERF",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "SPOT",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "LAD",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "AUDC",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "EXP",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "MRK",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "UPS",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "GPK",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "WGS",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "PII",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "CARR",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "CVEO",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "ARCC",
+    "date": "2025-07-29"
   }
 ]
