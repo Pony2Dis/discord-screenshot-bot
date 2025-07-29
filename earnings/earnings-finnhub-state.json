@@ -1970,5 +1970,165 @@
   {
     "symbol": "WU",
     "date": "2025-07-28"
+  },
+  {
+    "symbol": "RMBS",
+    "date": "2025-07-28"
+  },
+  {
+    "symbol": "HRI",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "CSTM",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "RCL",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "BRSL",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "AWI",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "SWK",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "UNH",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "PERF",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "SPOT",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "LAD",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "AUDC",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "EXP",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "MRK",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "UPS",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "GPK",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "WGS",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "PII",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "CARR",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "CVEO",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "ARCC",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "QURE",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "SOFI",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "DTE",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "PYPL",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "PG",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "NEOG",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "XPRO",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "CNOB",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "JBLU",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "CBRE",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "ABG",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "JCI",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "NEO",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "PJT",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "BAND",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "AMT",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "ALKS",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "INCY",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "GLW",
+    "date": "2025-07-29"
   }
 ]
