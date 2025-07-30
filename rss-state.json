@@ -227,7 +227,9 @@
     "https://www.prnewswire.com/news-releases/select-water-solutions-announces-release-of-2024-sustainability-report-302516551.html",
     "https://www.prnewswire.com/news-releases/huasun-lanza-el-primer-producto-fotovoltaico-vertical-de-heterounion-de-la-industria-302516583.html",
     "https://www.prnewswire.com/news-releases/tetra-technologies-inc-announces-strong-second-quarter-2025-results-and-provides-full-year-guidance-302516535.html",
-    "https://www.prnewswire.com/news-releases/carbon-upcycling-technologies-and-ash-grove-break-ground-on-canadian-first-of-its-kind-carbon-capture-and-utilization-facility-302516684.html"
+    "https://www.prnewswire.com/news-releases/carbon-upcycling-technologies-and-ash-grove-break-ground-on-canadian-first-of-its-kind-carbon-capture-and-utilization-facility-302516684.html",
+    "https://www.prnewswire.com/news-releases/china-southern-power-grid-showcases-multiple-ai-achievements-at-2025-world-artificial-intelligence-conference-302516883.html",
+    "https://www.prnewswire.com/news-releases/sungrow-inverters-successfully-pass-the-brazilian-grid-operator-validations-302516835.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -312,7 +314,8 @@
     "https://www.marketwatch.com/story/this-oil-company-is-spending-14-billion-to-be-part-of-the-ai-data-center-business-b162139b?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/upss-stock-sinks-after-profit-misses-forecasts-and-earnings-guidance-still-not-provided-2e9b0ab2?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/why-the-man-behind-the-haters-guide-to-the-ai-bubble-thinks-wall-streets-hottest-trade-will-go-bust-ac398ce0?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/social-security-wants-to-make-a-change-that-would-cause-3-4-million-more-people-to-have-to-visit-its-field-offices-fcc697a8?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/social-security-wants-to-make-a-change-that-would-cause-3-4-million-more-people-to-have-to-visit-its-field-offices-fcc697a8?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/heres-how-much-todays-65-year-olds-will-spend-on-healthcare-in-retirement-21dd0e0a?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -1110,7 +1113,39 @@
     "https://finance.yahoo.com/news/why-nano-nuclear-energy-stock-154027885.html",
     "https://finance.yahoo.com/news/mexicos-pemex-swings-net-profit-155807957.html",
     "https://finance.yahoo.com/news/revvity-slashes-outlook-china-policy-155141265.html",
-    "https://finance.yahoo.com/news/top-stock-movers-now-nike-155556815.html"
+    "https://finance.yahoo.com/news/top-stock-movers-now-nike-155556815.html",
+    "https://finance.yahoo.com/news/changing-landscape-european-bodystyles-175707195.html",
+    "https://finance.yahoo.com/news/chinas-steel-market-navigates-property-180000490.html",
+    "https://www.barrons.com/articles/google-monopoly-apple-alphabet-stocks-b401df6d?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/bnb-token-rallies-record-high-175825428.html",
+    "https://finance.yahoo.com/news/credit-score-could-big-change-181500177.html",
+    "https://www.barrons.com/livecoverage/stock-market-news-today-072825/card/nasdaq-reaches-for-another-record-as-bad-breadth-plagues-s-p-500-T2AISD6H0LT6LLnWRlJY?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/5-fancy-money-moves-help-175927896.html",
+    "https://finance.yahoo.com/news/strength-crude-oil-sparks-short-182338234.html",
+    "https://finance.yahoo.com/news/fiserv-stock-gets-pummeled-earnings-182637699.html",
+    "https://finance.yahoo.com/news/dear-microsoft-stock-fans-mark-183317374.html",
+    "https://finance.yahoo.com/news/ethereum-native-treasuries-tipped-rival-180104620.html",
+    "https://www.barrons.com/articles/mid-cap-index-funds-performance-gaps-91d77cd9?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/company-surging-plans-become-microstrategy-184403360.html",
+    "https://finance.yahoo.com/news/waiting-game-fed-holds-steady-185444036.html",
+    "https://finance.yahoo.com/news/highly-shorted-stock-surging-buy-185454561.html",
+    "https://finance.yahoo.com/news/apples-slim-iphone-cheaper-macs-174858441.html",
+    "https://finance.yahoo.com/news/investment-firm-pair-carrier-koleaseco-185541529.html",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-28-2025/card/investors-aren-t-buying-eu-pledge-for-750-billion-energy-buying-bonanza-opvJXfmBGFS2rR74DZCb?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/corn-bulls-bending-not-breaking-190002763.html",
+    "https://finance.yahoo.com/news/penny-stock-surging-ai-defense-185903429.html",
+    "https://finance.yahoo.com/news/walmart-expands-b2b-payment-terms-180708596.html",
+    "https://www.wsj.com/finance/stocks/wise-shareholder-vote-kristo-kaarmann-6793e6e5?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/analysts-think-amazon-stock-ahead-174440681.html",
+    "https://finance.yahoo.com/news/dutch-bros-stock-flashing-sure-191351454.html",
+    "https://finance.yahoo.com/news/nat-gas-prices-fall-forecasts-191923145.html",
+    "https://finance.yahoo.com/news/one-buy-rated-stock-unbreakable-192114135.html",
+    "https://finance.yahoo.com/news/heres-much-unitedhealth-group-stock-174510648.html",
+    "https://finance.yahoo.com/news/crude-oil-sharply-higher-concerns-192059800.html",
+    "https://finance.yahoo.com/news/rbc-capital-lifts-algonquin-power-192721275.html",
+    "https://finance.yahoo.com/news/national-bank-financial-upgrades-pembina-192753045.html",
+    "https://finance.yahoo.com/news/meme-coins-reflect-crypto-market-181631010.html",
+    "https://finance.yahoo.com/news/hudbay-minerals-hbm-taps-local-192819977.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps"
@@ -1336,6 +1371,15 @@
     "https://www.investing.com/news/stock-market-news/kraken-seeks-500-million-funding-at-15-billion-valuation-the-information-reports-4158739",
     "https://www.investing.com/news/stock-market-news/baker-hughes-to-buy-chart-industries-in-136-billion-deal-4156898",
     "https://www.investing.com/news/stock-market-news/boeing-posts-smaller-loss-as-jet-deliveries-rise-4157152",
-    "https://www.investing.com/news/stock-market-news/australia-adds-youtube-to-social-media-ban-for-children-4158734"
+    "https://www.investing.com/news/stock-market-news/australia-adds-youtube-to-social-media-ban-for-children-4158734",
+    "https://www.investing.com/news/stock-market-news/strong-chinese-demand-help-danone-q2-sales-beat-expectations-4158882",
+    "https://www.investing.com/news/stock-market-news/adidas-records-q2-tariffs-hit-flags-cost-increases-4158878",
+    "https://www.investing.com/news/stock-market-news/capgemini-narrows-fullyear-guidance-as-it-heads-into-uncertain-thirdquarter-4158868",
+    "https://www.investing.com/news/stock-market-news/mercedesbenz-forecasts-profit-margins-at-4-to-6-this-year-4158863",
+    "https://www.investing.com/news/stock-market-news/ubs-beats-expectations-with-24-billion-secondquarter-profit-4158861",
+    "https://www.investing.com/news/stock-market-news/hsbc-firsthalf-profit-falls-26-misses-estimates-4158851",
+    "https://www.investing.com/news/stock-market-news/exclusivelg-energy-solution-tesla-sign-43-billion-battery-supply-deal-source-says-4158814",
+    "https://www.investing.com/news/stock-market-news/toyota-global-output-sales-hit-record-highs-in-januaryjune-4158859",
+    "https://www.investing.com/news/stock-market-news/hsbc-firsthalf-profit-falls-27-due-to-oneoffs-announces-3-bln-buyback-4158856"
   ]
 }
