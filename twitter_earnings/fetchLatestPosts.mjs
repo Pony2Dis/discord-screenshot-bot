@@ -1,49 +1,79 @@
+// twitter/fetchLatestPosts.mjs
 import { firefox } from 'playwright';
 
 export async function fetchLatestPosts(username, limit = 5, days = 7) {
   const browser = await firefox.launch();
   const page = await browser.newPage();
 
-  // collect tweet objects from GraphQL responses
-  const tweets = [];
-  page.on('response', async res => {
-    const url = res.url();
-    if (url.includes('/i/api/graphql/') && url.includes('UserTweets')) {
-      try {
-        const body = await res.json();
-        const entries = body.data?.user?.result?.timeline?.timeline?.instructions
-          .flatMap(inst => inst.entries || [])
-          .filter(e => e.content?.itemContent?.tweet_results)
-          .map(e => e.content.itemContent.tweet_results.result);
-        tweets.push(...entries);
-      } catch {}
-    }
-  });
-
-  // go to profile and scroll a few times
+  // Intercept the guest token and CSRF token from the page
   await page.goto(`https://x.com/${username}`, { waitUntil: 'networkidle' });
-  for (let i = 0; i < 3; i++) {
-    await page.evaluate(() => window.scrollBy(0, document.body.scrollHeight));
-    await page.waitForTimeout(2000);
-  }
+  const guestToken = await page.evaluate(() =>
+    window.__INITIAL_STATE__?.guestToken ||
+      document.cookie.match(/ct0=([^;]+)/)?.[1]
+  );
+  const crumb = await page.evaluate(() =>
+    document.cookie.match(/ct0=([^;]+)/)?.[1]
+  );
 
+  // Build the GraphQL URL exactly as your HAR shows it:
+  const queryId = '0uQE4rvNofAr4pboHOZWVA';  // the UserTweets operation you saw
+  const vars = {
+    userId: null,
+    count: 20,
+    includePromotedContent: true,
+    withQuickPromoteEligibilityTweetFields: true,
+    withVoice: true
+  };
+
+  // We need the numeric userId for that handle:
+  const profileJson = await page.evaluate(() =>
+    JSON.parse(
+      document.querySelector('script[id="__NEXT_DATA__"]')?.textContent || '{}'
+    )
+  );
+  // navigate the Next.js data to find the userId
+  const userObj = profileJson.props?.pageProps?.user;
+  vars.userId = userObj?.legacy?.rest_id || userObj?.rest_id;
+
+  // Fetch the GraphQL timeline JSON inside the browser (so cookies + tokens flow automatically)
+  const resp = await page.evaluate(
+    async (queryId, vars) => {
+      const url =
+        `https://x.com/i/api/graphql/${queryId}/UserTweets?` +
+        `variables=${encodeURIComponent(JSON.stringify(vars))}` +
+        `&features=${encodeURIComponent('{}')}`;
+      const r = await fetch(url, { credentials: 'include' });
+      return r.json();
+    },
+    queryId,
+    vars
+  );
   await browser.close();
 
-  // now filter and build URLs
-  const cutoff = Date.now() - days * 24 * 3600 * 1000;
+  // Pull out the tweets, filter by age & dedupe
+  const cutoff = Date.now() - days * 24 * 3600 * 1e3;
   const seen = new Set();
-  const urls = tweets
-    .filter(t => {
-      const dt = new Date(t.legacy.created_at).getTime();
-      return dt >= cutoff && /^\d+$/.test(t.rest_id);
-    })
-    .map(t => {
-      const url = `https://x.com/${username}/status/${t.rest_id}`;
-      if (seen.has(url)) return null;
-      seen.add(url);
-      return url;
-    })
-    .filter(Boolean);
+  const urls = [];
 
-  return urls.slice(0, limit);
+  const instructions =
+    resp.data?.user?.result?.timeline?.timeline?.instructions || [];
+
+  for (let inst of instructions) {
+    for (let entry of inst.entries || []) {
+      const tr = entry.content?.itemContent?.tweet_results?.result;
+      if (!tr) continue;
+      const t = tr.legacy;
+      const tdate = new Date(t.created_at).getTime();
+      if (tdate < cutoff) continue;
+      const link = `https://x.com/${username}/status/${tr.rest_id}`;
+      if (!seen.has(link)) {
+        seen.add(link);
+        urls.push(link);
+        if (urls.length === limit) break;
+      }
+    }
+    if (urls.length === limit) break;
+  }
+
+  return urls;
 }
