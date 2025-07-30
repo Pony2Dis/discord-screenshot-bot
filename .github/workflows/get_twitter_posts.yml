@@ -26,6 +26,10 @@ jobs:
       - name: Install deps
         run: npm install
 
+      - name: Install Playwright browsers
+        # this will pull down firefox (and others if you omit --with-deps)
+        run: npx playwright install --with-deps firefox
+
       - name: Run bot
         env:
           DISCORD_TOKEN:      ${{ secrets.DISCORD_TOKEN }}

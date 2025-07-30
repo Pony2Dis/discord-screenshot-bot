@@ -1,7 +1,7 @@
-import { chromium } from 'playwright';
+import { firefox } from 'playwright';
 
 export async function fetchLatestPosts(username, limit = 5) {
-  const browser = await chromium.launch();
+  const browser = await firefox.launch();
   const page = await browser.newPage();
   await page.goto(`https://x.com/${username}`, { waitUntil: 'networkidle' });
   const links = await page.$$eval('article a[href*="/status/"]', els =>
