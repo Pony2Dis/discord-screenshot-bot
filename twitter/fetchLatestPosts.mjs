@@ -11,9 +11,11 @@ export async function fetchLatestPosts(username, limit = 5) {
     els => Array.from(new Set(els.map(a => a.href)))
   );
 
-  // filter out any ".../status/ID/analytics" links
-  const filtered = all.filter(link => !/\/analytics$/.test(link));
+  // keep only pure "/status/{id}" URLs
+  const pure = all.filter(link =>
+    /^https:\/\/x\.com\/[^\/]+\/status\/\d+$/.test(link)
+  );
 
   await browser.close();
-  return filtered.slice(0, limit);
+  return pure.slice(0, limit);
 }
