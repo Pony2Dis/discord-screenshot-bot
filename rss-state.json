@@ -472,7 +472,8 @@
     "https://www.marketwatch.com/story/robinhood-sets-record-for-trading-in-volatile-quarter-reports-profit-and-revenue-jumps-a04b70c8?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/amazons-earnings-are-due-it-needs-to-prove-it-isnt-a-one-hit-wonder-4b0867ef?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/ford-warns-its-tariff-hit-will-grow-to-2-billion-offers-downbeat-guidance-48eabfca?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/as-stocks-soar-talk-of-a-bubble-is-making-a-comeback-on-wall-street-should-investors-be-worried-dadfed10?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/as-stocks-soar-talk-of-a-bubble-is-making-a-comeback-on-wall-street-should-investors-be-worried-dadfed10?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/carvanas-profit-jumps-and-its-all-because-of-this-metric-d32684c1?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -1773,7 +1774,18 @@
     "https://finance.yahoo.com/news/unitedhealth-group-stock-price-drops-121500409.html",
     "https://finance.yahoo.com/personal-finance/banking/article/bank-financially-sound-bauer-financial-180757668.html",
     "https://finance.yahoo.com/personal-finance/mortgages/article/will-mortgage-rates-go-up-to-7-184023225.html",
-    "https://finance.yahoo.com/news/unitedhealth-expects-lower-profits-2025-121542869.html"
+    "https://finance.yahoo.com/news/unitedhealth-expects-lower-profits-2025-121542869.html",
+    "https://finance.yahoo.com/news/overstock-eyes-luxury-expansion-rolex-122900361.html",
+    "https://finance.yahoo.com/news/health-tech-investment-bolstered-ai-123300108.html",
+    "https://finance.yahoo.com/news/ozempic-wegovy-maker-cuts-outlook-122736060.html",
+    "https://finance.yahoo.com/news/novo-nordisk-cut-outlook-named-123325436.html",
+    "https://finance.yahoo.com/news/mara-holder-nearly-6b-btc-124235962.html",
+    "https://finance.yahoo.com/news/loss-central-bank-independence-could-130300727.html",
+    "https://finance.yahoo.com/news/almost-half-americans-want-crypto-123103003.html",
+    "https://finance.yahoo.com/news/stellantis-posts-first-half-losses-122800388.html",
+    "https://finance.yahoo.com/news/earnings-preview-expect-paychexs-report-130940038.html",
+    "https://finance.yahoo.com/news/bitmine-immersion-sets-1b-buyback-122602435.html",
+    "https://finance.yahoo.com/personal-finance/insurance/article/how-to-compare-pet-insurance-quotes-185726523.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps"
@@ -2093,6 +2105,12 @@
     "https://www.investing.com/news/stock-market-news/mgm-resorts-quarterly-revenue-rises-on-sports-betting-strength-4161141",
     "https://www.investing.com/news/stock-market-news/microsofttops-quarterly-revenue-estimates-on-strong-azure-demand-4161045",
     "https://www.investing.com/news/stock-market-news/ford-raises-projected-tariff-hit-to-results-trims-annual-guidance-4161036",
-    "https://www.investing.com/news/stock-market-news/chip-tech-provider-arm-looks-to-design-own-processors-in-major-shift-4161049"
+    "https://www.investing.com/news/stock-market-news/chip-tech-provider-arm-looks-to-design-own-processors-in-major-shift-4161049",
+    "https://www.investing.com/news/stock-market-news/allstate-quarterly-profit-jumps-on-underwriting-strength-4161283",
+    "https://www.investing.com/news/stock-market-news/cognizant-sees-quarterly-revenue-above-estimates-on-strong-enterprise-demand-4161223",
+    "https://www.investing.com/news/stock-market-news/china-chikungunya-outbreak-prompts-cdc-to-prepare-travel-notice-93CH-4161189",
+    "https://www.investing.com/news/stock-market-news/us-stocks-mixed-at-close-of-trade-dow-jones-industrial-average-down-038-4161186",
+    "https://www.investing.com/news/stock-market-news/canada-stocks-lower-at-close-of-trade-sptsx-composite-down-062-4161180",
+    "https://www.investing.com/news/stock-market-news/brazil-stocks-higher-at-close-of-trade-bovespa-up-095-4161178"
   ]
 }
