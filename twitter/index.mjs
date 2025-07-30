@@ -16,9 +16,11 @@ async function saveLast(file, link) {
 }
 
 async function run() {
-  const channel = await (await client.login(DISCORD_TOKEN))
-    .channels.fetch(DISCORD_CHANNEL_ID);
+  // 1) log in
+  await client.login(DISCORD_TOKEN);
+  const channel = await client.channels.fetch(DISCORD_CHANNEL_ID);
 
+  // 2) loop over each username
   const users = X_USERNAMES
     .split(/\r?\n/)
     .map(u => u.trim())
@@ -29,11 +31,13 @@ async function run() {
     const last = await loadLast(stateFile);
     const links = await fetchLatestPosts(username, 10);
     const newLinks = last ? links.filter(l => l !== last) : links;
-    if (newLinks.length === 0) continue;
+    if (!newLinks.length) continue;
 
+    // 3) send oldest→newest
     for (let link of newLinks.reverse()) {
       await channel.send(link);
     }
+    // 4) update state
     await saveLast(stateFile, newLinks[0]);
   }
 
