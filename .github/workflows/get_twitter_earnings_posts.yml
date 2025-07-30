@@ -1,0 +1,55 @@
+name: ⚡ Get X.com Earnings Posts
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  get_x_posts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install deps
+        run: npm install
+
+      - name: Install Playwright browsers
+        # this will pull down Firefox
+        run: npx playwright install --with-deps firefox
+
+      - name: Run bot
+        env:
+          DISCORD_TOKEN:      ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_CHANNEL_ID: ${{ vars.X_EARNINGS_CHANNEL_ID }}
+          X_USERNAMES:        ${{ vars.X_EARNINGS_USERNAMES }}
+        run: node twitter_earnings/index.mjs
+
+      - name: Commit state
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+          # sync any remote changes first
+          git pull --rebase origin main
+
+          # stage per-user state files
+          git add twitter_earnings/last_link_*.txt
+
+          # commit only if there are changes
+          git diff --cached --quiet || git commit -m "Update last seen links"
+
+          # push back to GitHub
+          git push
