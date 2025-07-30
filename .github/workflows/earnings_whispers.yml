@@ -42,6 +42,12 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+      
+          # stash local changes before pulling
+          git stash --include-untracked
+          git pull --rebase origin main
+          git stash pop
+      
           git add earnings/earnings-state.json
           # if there's something to commit, do it
           git diff --cached --quiet || git commit -m "ci: update rss-earnings-state.json"
