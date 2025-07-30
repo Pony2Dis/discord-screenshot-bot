@@ -6,39 +6,37 @@ import { fetchLatestPosts } from "./fetchLatestPosts.mjs";
 const { DISCORD_TOKEN, DISCORD_CHANNEL_ID, X_USERNAMES } = process.env;
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-async function loadLast(file) {
-  try { return (await fs.readFile(file, "utf-8")).trim(); }
-  catch { return null; }
+async function loadSent(file) {
+  try {
+    const txt = await fs.readFile(file, "utf-8");
+    return JSON.parse(txt);
+  } catch {
+    return [];
+  }
 }
 
-async function saveLast(file, link) {
-  await fs.writeFile(file, link, "utf-8");
+async function saveSent(file, sent) {
+  await fs.writeFile(file, JSON.stringify(sent, null, 2), "utf-8");
 }
 
 async function run() {
-  // 1) log in
   await client.login(DISCORD_TOKEN);
   const channel = await client.channels.fetch(DISCORD_CHANNEL_ID);
 
-  // 2) loop over each username
-  const users = X_USERNAMES
-    .split(/\r?\n/)
-    .map(u => u.trim())
-    .filter(Boolean);
+  const users = X_USERNAMES.split(/\r?\n/).map(u => u.trim()).filter(Boolean);
 
   for (const username of users) {
-    const stateFile = `./twitter/last_link_${username}.txt`;
-    const last = await loadLast(stateFile);
+    const stateFile = `./twitter/last_link_${username}.json`;
+    const sent = await loadSent(stateFile);
     const links = await fetchLatestPosts(username, 10);
-    const newLinks = last ? links.filter(l => l !== last) : links;
+    const newLinks = links.filter(l => !sent.includes(l));
     if (!newLinks.length) continue;
 
-    // 3) send oldest→newest
     for (let link of newLinks.reverse()) {
       await channel.send(link);
     }
-    // 4) update state
-    await saveLast(stateFile, newLinks[0]);
+    // save the growing array of all sent links
+    await saveSent(stateFile, sent.concat(newLinks));
   }
 
   await client.destroy();
