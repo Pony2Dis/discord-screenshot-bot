@@ -62,7 +62,8 @@
     "https://www.cnbc.com/2025/07/30/an-options-strategy-to-buy-the-dip-on-this-volatile-chipmaker-that-recently-pulled-back.html",
     "https://www.cnbc.com/2025/07/30/microsoft-earnings-are-coming-wednesday-heres-what-top-analysts-expect.html",
     "https://www.cnbc.com/2025/07/30/fundstrats-tom-lee-probabilities-favor-stocks-rising-following-the-fed-decision.html",
-    "https://www.cnbc.com/2025/07/30/what-top-wall-street-analysts-are-watching-in-metas-earnings-on-wednesday.html"
+    "https://www.cnbc.com/2025/07/30/what-top-wall-street-analysts-are-watching-in-metas-earnings-on-wednesday.html",
+    "https://www.cnbc.com/2025/07/30/this-water-purification-stock-is-set-to-have-a-bullish-breakout-according-to-the-charts.html"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147": [
     "https://www.cnbc.com/2025/07/27/boeing-ceo-ortberg-airplane-deliveries-defense.html",
@@ -433,7 +434,13 @@
     "https://www.marketwatch.com/story/the-great-wealth-transfer-is-coming-many-people-will-be-rich-but-theyre-not-ready-e206232f?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/trump-to-penalize-india-for-buying-russian-oil-heres-how-much-it-purchases-17bf8097?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/starbucks-is-juggling-lots-of-new-ideas-to-turn-itself-around-heres-when-you-might-see-the-newest-menu-offerings-bfa1837a?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/new-estate-tax-rules-only-increase-inequality-6b3e5eb9?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/new-estate-tax-rules-only-increase-inequality-6b3e5eb9?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/josh-hawleys-600-rebates-bill-shows-why-republicans-win-869c9bec?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/ambiqs-stock-soars-after-ipo-heres-where-the-company-sees-its-place-in-the-ai-boom-436b40c2?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/is-another-s-p-500-change-on-the-horizon-heres-what-to-know-dacea437?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/this-is-why-meme-stocks-have-bubbled-back-to-the-surface-fund-manager-says-42a92af5?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/fed-leaves-interest-rates-unchanged-despite-pressure-from-trump-172204ba?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/motorcycle-sales-keep-falling-but-harleys-stock-is-soaring-heres-why-ee57689b?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -1627,7 +1634,44 @@
     "https://finance.yahoo.com/news/arbitrum-scooped-3m-three-months-170917171.html",
     "https://finance.yahoo.com/news/averitt-pay-increase-could-sign-164148460.html",
     "https://finance.yahoo.com/news/cheesecake-factory-adds-value-oriented-170835829.html",
-    "https://finance.yahoo.com/news/why-marvell-stock-popped-today-170639133.html"
+    "https://finance.yahoo.com/news/why-marvell-stock-popped-today-170639133.html",
+    "https://finance.yahoo.com/news/weride-uber-expand-robotaxi-reach-101346952.html",
+    "https://finance.yahoo.com/news/feds-policy-toolkit-may-headed-101237382.html",
+    "https://finance.yahoo.com/news/unitedhealth-forecasts-annual-profit-below-100650891.html",
+    "https://finance.yahoo.com/news/ups-posts-fall-second-quarter-100547852.html",
+    "https://finance.yahoo.com/news/p-futures-gain-focus-u-100354844.html",
+    "https://finance.yahoo.com/news/us-stock-futures-higher-eu-101215378.html",
+    "https://finance.yahoo.com/news/metas-bold-superintelligence-bets-unlikely-100231484.html",
+    "https://finance.yahoo.com/news/ai-set-play-more-role-100500936.html",
+    "https://www.barrons.com/articles/bitcoin-price-xrp-crypto-today-ebd17cce?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/the-market-is-finally-getting-what-it-wants-100042401.html",
+    "https://finance.yahoo.com/research/reports/ARGUS_3821_AnalystReport_1753894632000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "https://finance.yahoo.com/news/baker-tilly-international-adds-member-100613959.html",
+    "https://finance.yahoo.com/news/spotify-forecasts-quarterly-profit-below-100238060.html",
+    "https://finance.yahoo.com/news/maintaining-client-relationships-during-off-100000892.html",
+    "https://www.wsj.com/articles/wework-wants-you-to-know-its-a-grown-up-real-estate-firm-now-cd861e25?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/wall-street-futures-rise-focus-095254735.html",
+    "https://finance.yahoo.com/research/reports/ARGUS_4884_AnalystReport_1753894632000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "https://finance.yahoo.com/news/smartest-cryptocurrency-buy-500-now-101000495.html",
+    "https://www.wsj.com/business/essilorluxottica-touts-growth-potential-of-smart-glasses-b32b52d3?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/dave-ramsey-gets-frank-seattle-094500374.html",
+    "https://finance.yahoo.com/research/reports/ARGUS_3420_AnalystReport_1753894632000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "https://finance.yahoo.com/news/capital-one-delivers-few-details-100400836.html",
+    "https://finance.yahoo.com/news/nike-pulling-off-comeback-plan-093000294.html",
+    "https://finance.yahoo.com/news/tesla-samsung-salvation-other-093000016.html",
+    "https://www.barrons.com/livecoverage/stock-market-news-today-072925/card/fear-index-slides-ahead-of-fed-meeting-4NsZecdT90R6gIct3ciO?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/research/reports/ARGUS_3529_AnalystReport_1753894632000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "https://finance.yahoo.com/news/bridgehaven-europe-acquire-irish-insurer-100229242.html",
+    "https://finance.yahoo.com/news/net-worth-crazy-once-pass-091500673.html",
+    "https://finance.yahoo.com/news/bond-investors-warm-risk-fed-101909083.html",
+    "https://finance.yahoo.com/news/first-look-norfolk-southern-earnings-102000288.html",
+    "https://finance.yahoo.com/research/reports/ARGUS_2711_AnalystReport_1753894632000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "https://finance.yahoo.com/news/cleared-takeoff-truist-suggests-2-100336890.html",
+    "https://finance.yahoo.com/news/unitedhealth-falls-short-second-quarter-102136375.html",
+    "https://finance.yahoo.com/research/reports/ARGUS_3041_AnalystReport_1753894632000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "https://finance.yahoo.com/news/ppe-fashion-show-highlights-safe-100200695.html",
+    "https://finance.yahoo.com/news/axa-xl-names-chief-underwriting-100137501.html",
+    "https://finance.yahoo.com/news/merck-cut-jobs-costs-demand-103547609.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps"
@@ -1925,6 +1969,13 @@
     "https://www.investing.com/news/stock-market-news/exclusivesafran-to-pick-france-over-canada-us-for-major-factory-investment-sources-say-4160830",
     "https://www.investing.com/news/stock-market-news/mercedesbenz-pauses-ev-deliveries-to-the-us-as-demand-falters-4160105",
     "https://www.investing.com/news/stock-market-news/upstart-holdings-stock-rises-as-eric-jackson-builds-position-93CH-4160815",
-    "https://www.investing.com/news/stock-market-news/voice-actors-push-back-as-ai-threatens-dubbing-industry-4159020"
+    "https://www.investing.com/news/stock-market-news/voice-actors-push-back-as-ai-threatens-dubbing-industry-4159020",
+    "https://www.investing.com/news/stock-market-news/freeportmcmoran-stock-tumbles-after-trump-imposes-copper-tariffs-93CH-4160940",
+    "https://www.investing.com/news/stock-market-news/what-are-the-main-issues-facing-new-renault-ceo-provost-4160938",
+    "https://www.investing.com/news/stock-market-news/renault-names-procurement-chief-francois-provost-as-new-ceo-4160737",
+    "https://www.investing.com/news/stock-market-news/three-groups-eyeing-bids-for-sapporos-27-billion-property-business-sources-say-4159143",
+    "https://www.investing.com/news/stock-market-news/us-probes-army-helicopter-altitude-data-in-fatal-january-crash-with-jet-4160726",
+    "https://www.investing.com/news/stock-market-news/marvell-fortress-transport-lead-market-cap-stock-movers-wednesday-93CH-4160909",
+    "https://www.investing.com/news/stock-market-news/apple-amazon-klatencor-set-to-report-earnings-thursday-93CH-4160903"
   ]
 }
