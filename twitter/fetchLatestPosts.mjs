@@ -5,6 +5,12 @@ export async function fetchLatestPosts(username, limit = 5) {
   const page = await browser.newPage();
   await page.goto(`https://x.com/${username}`, { waitUntil: 'networkidle' });
 
+  // scroll down 3 times to trigger async loading of older posts
+  for (let i = 0; i < 3; i++) {
+    await page.evaluate(() => window.scrollBy(0, document.body.scrollHeight));
+    await page.waitForTimeout(2000); // wait for network & rendering
+  }
+
   // extract each article’s URL + timestamp
   const items = await page.$$eval('article', articles =>
     articles.map(a => {
