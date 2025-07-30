@@ -1,30 +1,49 @@
 import { firefox } from 'playwright';
 
-export async function fetchLatestPosts(username, limit = 5) {
+export async function fetchLatestPosts(username, limit = 5, days = 7) {
   const browser = await firefox.launch();
   const page = await browser.newPage();
-  await page.goto(`https://x.com/${username}`, { waitUntil: 'networkidle' });
 
-  // extract each article’s URL + timestamp
-  const items = await page.$$eval('article', articles =>
-    articles.map(a => {
-      const link = a.querySelector('a[href*="/status/"]')?.href;
-      const date = a.querySelector('time')?.getAttribute('datetime');
-      return link && date ? { url: link, date } : null;
-    }).filter(Boolean)
-  );
+  // collect tweet objects from GraphQL responses
+  const tweets = [];
+  page.on('response', async res => {
+    const url = res.url();
+    if (url.includes('/i/api/graphql/') && url.includes('UserTweets')) {
+      try {
+        const body = await res.json();
+        const entries = body.data?.user?.result?.timeline?.timeline?.instructions
+          .flatMap(inst => inst.entries || [])
+          .filter(e => e.content?.itemContent?.tweet_results)
+          .map(e => e.content.itemContent.tweet_results.result);
+        tweets.push(...entries);
+      } catch {}
+    }
+  });
+
+  // go to profile and scroll a few times
+  await page.goto(`https://x.com/${username}`, { waitUntil: 'networkidle' });
+  for (let i = 0; i < 3; i++) {
+    await page.evaluate(() => window.scrollBy(0, document.body.scrollHeight));
+    await page.waitForTimeout(2000);
+  }
 
   await browser.close();
 
-  // only keep posts ≤7 days old
-  const cutoff = Date.now() - 7 * 24 * 3600 * 1000;
-  const recent = items
-    .filter(i => new Date(i.date).getTime() >= cutoff)
-    .map(i => i.url);
+  // now filter and build URLs
+  const cutoff = Date.now() - days * 24 * 3600 * 1000;
+  const seen = new Set();
+  const urls = tweets
+    .filter(t => {
+      const dt = new Date(t.legacy.created_at).getTime();
+      return dt >= cutoff && /^\d+$/.test(t.rest_id);
+    })
+    .map(t => {
+      const url = `https://x.com/${username}/status/${t.rest_id}`;
+      if (seen.has(url)) return null;
+      seen.add(url);
+      return url;
+    })
+    .filter(Boolean);
 
-  // dedupe & only exact "/status/{id}" URLs, then limit
-  const unique = Array.from(new Set(recent))
-    .filter(u => /^https:\/\/x\.com\/[^\/]+\/status\/\d+$/.test(u));
-
-  return unique.slice(0, limit);
+  return urls.slice(0, limit);
 }
