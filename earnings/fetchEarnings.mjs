@@ -75,6 +75,27 @@ async function main() {
           ? "🔴"
           : "🔵";
 
+      // format the revenue
+      var revenue = "$" + item.revenue.toFixed(2); // default to millions
+      // if item.revenue is in thousand, convert to billions
+      if (item.revenue > 999) {
+        revenue = "$" + (item.revenue / 1000).toFixed(2) + "B";
+      } else if (item.revenue < 1000 && item.revenue >= 1) {
+        revenue = "$" + item.revenue.toFixed(2) + "M";
+      } else if (item.revenue < 1) {
+        revenue = "$" + (item.revenue * 1000).toFixed(2) + "K"; // convert to thousands
+      }
+
+      // format the revenue estimate
+      var revenueEstimate = "$" + item.revenueEstimate.toFixed(2); // default to millions
+      if (item.revenueEstimate > 999) {
+        revenue = "$" + (item.revenueEstimate / 1000).toFixed(2) + "B";
+      } else if (item.revenueEstimate < 1000 && item.revenueEstimate >= 1) {
+        revenue = "$" + item.revenueEstimate.toFixed(2) + "M";
+      } else if (item.revenueEstimate < 1) {
+        revenue = "$" + (item.revenueEstimate * 1000).toFixed(2) + "K"; // convert to thousands
+      }
+
       // format the earning report
       const embed = new EmbedBuilder()
       .setColor(0x1abc9c)                              // teal sidebar
@@ -84,8 +105,8 @@ async function main() {
       .addFields(
         { name: "Earnings Date", value: new Date(item.epsDate).toLocaleString(), inline: true },
         { name: "EPS (est/whisp)", value: `${item.eps} (Estimate: ${item.estimate} / Whisper: ${item.whisper})`, inline: true },
-        { name: "Revenue", value: `$${(item.revenue/1e9).toFixed(2)}B`, inline: true },
-        { name: "Revenue Estimate", value: `$${(item.revenueEstimate/1e9).toFixed(2)}B)`, inline: true },
+        { name: "Revenue", value: revenue, inline: true },
+        { name: "Revenue Estimate", value: revenueEstimate, inline: true },
         { name: "Earnings Surprise %", value: `EPS ${(item.earningsSurprise*100).toFixed(2)}%`, inline: true },
         { name: "Revenue Surprise %", value: `${(item.revenueSurprise*100).toFixed(2)}%`, inline: true },
         { name: "Previous Earnings Growth", value: `${item.prevEarningsGrowth ? (item.prevEarningsGrowth*100).toFixed(1)+'%' : 'N/A'}`, inline: true },
