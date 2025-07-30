@@ -14,7 +14,7 @@ export async function fetchLatestPosts(username, limit = 5, days = 7) {
 
   // 2) Scroll & extract loop
   const maxScrolls = 10;
-  let lastCount = 0;
+  // let lastCount = 0;
 
   for (let i = 0; i < maxScrolls && links.length < limit; i++) {
     // extract all status links in the viewport
@@ -45,11 +45,11 @@ export async function fetchLatestPosts(username, limit = 5, days = 7) {
       if (links.length >= limit) break;
     }
 
-    if (links.length === lastCount) {
-      // nothing new this scroll → give up
-      break;
-    }
-    lastCount = links.length;
+    // if (links.length === lastCount) {
+    //   // nothing new this scroll → give up
+    //   break;
+    // }
+    // lastCount = links.length;
 
     // scroll and wait for new tweets to load
     await page.evaluate(() => window.scrollBy(0, window.innerHeight));
