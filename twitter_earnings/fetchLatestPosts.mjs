@@ -1,63 +1,46 @@
+// twitter/fetchLatestPosts.mjs
 import { firefox } from 'playwright';
 
 export async function fetchLatestPosts(username, limit = 5, days = 7) {
   const browser = await firefox.launch();
   const page = await browser.newPage();
 
-  // 1) Prime the page to set cookies/guest token
+  const tweets = [];
+  page.on('response', async res => {
+    const url = res.url();
+    if (url.includes('/i/api/graphql/') && url.includes('UserTweets')) {
+      try {
+        const json = await res.json();
+        const inst = json.data?.user?.result?.timeline?.timeline?.instructions || [];
+        for (let entry of inst.flatMap(i => i.entries || [])) {
+          const t = entry.content?.itemContent?.tweet_results?.result;
+          if (t) tweets.push(t);
+        }
+      } catch {}
+    }
+  });
+
   await page.goto(`https://x.com/${username}`, { waitUntil: 'networkidle' });
-
-  // 2) Extract numeric userId from Next.js data
-  const profileJson = await page.evaluate(() =>
-    JSON.parse(document.querySelector('script[id="__NEXT_DATA__"]')?.textContent || '{}')
-  );
-  const userObj = profileJson.props?.pageProps?.user;
-  const userId = userObj?.legacy?.rest_id || userObj?.rest_id;
-
-  // 3) Call the same GraphQL endpoint your HAR shows, passing both args as one object
-  const queryId = '0uQE4rvNofAr4pboHOZWVA';
-  const vars = {
-    userId,
-    count: 20,
-    includePromotedContent: true,
-    withQuickPromoteEligibilityTweetFields: true,
-    withVoice: true
-  };
-  const resp = await page.evaluate(
-    async ({ queryId, vars }) => {
-      const url =
-        `https://x.com/i/api/graphql/${queryId}/UserTweets?` +
-        `variables=${encodeURIComponent(JSON.stringify(vars))}` +
-        `&features=${encodeURIComponent('{}')}`;
-      const r = await fetch(url, { credentials: 'include' });
-      return r.json();
-    },
-    { queryId, vars }
-  );
-
+  // scroll so those GraphQL calls fire
+  for (let i = 0; i < 3; i++) {
+    await page.evaluate(() => window.scrollBy(0, document.body.scrollHeight));
+    await page.waitForTimeout(2000);
+  }
   await browser.close();
 
-  // 4) Filter, dedupe & limit
+  // now filter by age & dedupe
   const cutoff = Date.now() - days * 24 * 3600 * 1000;
   const seen = new Set();
   const urls = [];
-  const instructions = resp.data?.user?.result?.timeline?.timeline?.instructions || [];
-
-  for (let inst of instructions) {
-    for (let entry of inst.entries || []) {
-      const tr = entry.content?.itemContent?.tweet_results?.result;
-      if (!tr) continue;
-      const tdate = new Date(tr.legacy.created_at).getTime();
-      if (tdate < cutoff) continue;
-      const link = `https://x.com/${username}/status/${tr.rest_id}`;
-      if (!seen.has(link)) {
-        seen.add(link);
-        urls.push(link);
-        if (urls.length >= limit) break;
-      }
+  for (let t of tweets) {
+    const tdate = new Date(t.legacy.created_at).getTime();
+    if (tdate < cutoff) continue;
+    const link = `https://x.com/${username}/status/${t.rest_id}`;
+    if (!seen.has(link)) {
+      seen.add(link);
+      urls.push(link);
+      if (urls.length >= limit) break;
     }
-    if (urls.length >= limit) break;
   }
-
   return urls;
 }
