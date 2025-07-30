@@ -2,7 +2,7 @@ name: ⚡ Get X.com Posts
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 permissions:
