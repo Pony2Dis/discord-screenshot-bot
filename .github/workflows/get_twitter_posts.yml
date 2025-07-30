@@ -43,7 +43,7 @@ jobs:
           git config user.email github-actions@github.com
 
           # sync any remote changes first
-          git pull --rebase origin main
+          git pull --rebase --autostash origin main
 
           # stage per-user state files
           git add twitter/last_link_*.txt
