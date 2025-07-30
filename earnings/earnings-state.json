@@ -2974,5 +2974,29 @@
     "revenueSurprise": 0.03026116504854369,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.059428319537419894
+  },
+  {
+    "epsDate": "2025-07-30T08:15:00",
+    "ticker": "ADP",
+    "name": "Automatic Data Processing, Inc.",
+    "summary": "Automatic Data Processing (ADP) reported earnings of $2.26 per share on revenue of $5.13 billion for the  fiscal fourth quarter ended June 2025.  The consensus earnings estimate was $2.22 per share on  revenue of $5.05 billion. The Earnings Whisper number was $2.26 per share. The company reported in-line with expectations while revenue grew 7.51% on a year-over-year basis.<br /><br />Automatic Data Processing is the provider of technology-based outsourcing solutions to employers and vehicle retailers and manufacturers.",
+    "subject": "Automatic Data Processing Reported In-line with Expectations",
+    "quarter": " fiscal fourth quarter ended June 2025",
+    "fileName": "2507300659",
+    "eps": 2.26,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 2.22,
+    "whisper": 2.26,
+    "highEstimate": 2.23,
+    "lowEstimate": 2.21,
+    "revenue": 5126.8,
+    "revenueEstimate": 5050,
+    "earningsGrowth": 0.08133971291866028,
+    "revenueGrowth": 0.07513893257837895,
+    "earningsSurprise": 0,
+    "revenueSurprise": 0.015207920792079208,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.056949255776771096
   }
 ]
