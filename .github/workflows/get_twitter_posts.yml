@@ -41,6 +41,6 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add twitter/last_link.txt
+          git add twitter/last_link_*.txt
           git commit -m "Update last seen link" || echo "No updates"
           git push
