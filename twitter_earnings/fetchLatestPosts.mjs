@@ -1,52 +1,61 @@
+// twitter/fetchLatestPosts.mjs
 import { firefox } from 'playwright';
 
 export async function fetchLatestPosts(username, limit = 5, days = 7) {
   const browser = await firefox.launch();
   const page = await browser.newPage();
 
-  // 1) Intercept all UserTweets GraphQL responses
-  const tweets = [];
-  page.on('response', async res => {
-    const url = res.url();
-    if (url.includes('/i/api/graphql/') && url.includes('UserTweets')) {
-      try {
-        const json = await res.json();
-        const inst = json.data?.user?.result?.timeline?.timeline?.instructions || [];
-        for (let entry of inst.flatMap(i => i.entries || [])) {
-          const t = entry.content?.itemContent?.tweet_results?.result;
-          if (t) tweets.push(t);
-        }
-      } catch {}
-    }
-  });
-
-  // 2) Go to the profile and scroll until we have enough
+  // 1) Go to profile
   await page.goto(`https://x.com/${username}`, { waitUntil: 'networkidle' });
-  let previousCount = 0;
-  for (let i = 0; i < 10 && tweets.length < limit * 2; i++) {
-    await page.evaluate(() => window.scrollBy(0, document.body.scrollHeight));
+
+  const cutoff = Date.now() - days * 24 * 3600 * 1000;
+  const seen = new Set();
+  let links = [];
+
+  // 2) Scroll & extract loop
+  const maxScrolls = 10;
+  let lastCount = 0;
+
+  for (let i = 0; i < maxScrolls && links.length < limit; i++) {
+    // extract all status links in the viewport
+    const newOnPage = await page.$$eval(
+      'article[data-testid="tweet"] a[href*="/status/"]',
+      (as, username) => {
+        return as
+          .map(a => a.getAttribute('href'))
+          .filter(h => {
+            // exactly /{user}/status/{id}, no extra path
+            const m = h.match(new RegExp(`^/${username}/status/\\d+$`));
+            return m;
+          });
+      },
+      username
+    );
+
+    // dedupe + filter by age
+    for (let path of newOnPage) {
+      if (seen.has(path)) continue;
+      // grab timestamp for that tweet
+      const timeSel = `a[href="${path}"] time`;
+      const ts = await page.$eval(timeSel, t => t.dateTime).catch(() => null);
+      if (!ts || new Date(ts).getTime() < cutoff) continue;
+
+      seen.add(path);
+      links.push(`https://x.com${path}`);
+      if (links.length >= limit) break;
+    }
+
+    if (links.length === lastCount) {
+      // nothing new this scroll → give up
+      break;
+    }
+    lastCount = links.length;
+
+    // scroll and wait for new tweets to load
+    await page.evaluate(() => window.scrollBy(0, window.innerHeight));
     await page.waitForTimeout(2000);
-    // stop early if no new tweets arrived in this scroll
-    if (tweets.length === previousCount) break;
-    previousCount = tweets.length;
   }
 
   await browser.close();
-
-  // 3) Filter by age, dedupe, build URLs, and limit
-  const cutoff = Date.now() - days * 24 * 3600 * 1000;
-  const seen = new Set();
-  const urls = [];
-  for (let t of tweets) {
-    const tdate = new Date(t.legacy.created_at).getTime();
-    if (tdate < cutoff) continue;
-    const link = `https://x.com/${username}/status/${t.rest_id}`;
-    if (!seen.has(link)) {
-      seen.add(link);
-      urls.push(link);
-      if (urls.length >= limit) break;
-    }
-  }
-
-  return urls;
+  return links.slice(0, limit);
 }
