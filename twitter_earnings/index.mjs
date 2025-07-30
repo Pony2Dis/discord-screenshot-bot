@@ -28,7 +28,7 @@ async function run() {
   for (const username of users) {
     const stateFile = `./twitter_earnings/last_link_${username}.json`;
     const sent = await loadSent(stateFile);
-    const links = await fetchLatestPosts(username, 10);
+    const links = await fetchLatestPosts(username, 100);
     console.log(`Fetched links for ${username}:`, links);
 
     const newLinks = links.filter(l => !sent.includes(l));
