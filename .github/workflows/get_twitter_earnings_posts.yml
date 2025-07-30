@@ -46,7 +46,7 @@ jobs:
           git pull --rebase --autostash origin main
 
           # stage per-user state files
-          git add twitter_earnings/last_link_*.txt
+          git add twitter_earnings/last_link_*.json
 
           # commit only if there are changes
           git diff --cached --quiet || git commit -m "Update last seen links"

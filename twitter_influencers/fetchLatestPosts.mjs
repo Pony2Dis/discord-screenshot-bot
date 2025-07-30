@@ -16,8 +16,8 @@ export async function fetchLatestPosts(username, limit = 5) {
 
   await browser.close();
 
-  // only keep posts ≤2 days old
-  const cutoff = Date.now() - 2 * 24 * 3600 * 1000;
+  // only keep posts ≤7 days old
+  const cutoff = Date.now() - 7 * 24 * 3600 * 1000;
   const recent = items
     .filter(i => new Date(i.date).getTime() >= cutoff)
     .map(i => i.url);
