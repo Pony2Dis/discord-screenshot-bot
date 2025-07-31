@@ -360,7 +360,10 @@
     "https://www.prnewswire.com/news-releases/hon-hai-technology-group-foxconn-und-teco-verkunden-strategische-allianz-zur-errichtung-von-ki-rechenzentren-302518334.html",
     "https://www.prnewswire.com/news-releases/hon-hai-technology-group-foxconn-et-teco-annoncent-une-alliance-strategique-en-matiere-de-capacites-des-centres-de-donnees-dia-302518333.html",
     "https://www.prnewswire.com/news-releases/china-southern-power-grid-presente-de-nombreuses-realisations-en-matiere-dintelligence-artificielle-au-cours-de-la-conference-mondiale-sur-lintelligence-artificielle-2025-302518300.html",
-    "https://www.prnewswire.com/news-releases/china-southern-power-grid-prasentiert-auf-der-2025-world-artificial-intelligence-conference-zahlreiche-errungenschaften-im-bereich-ki-302518294.html"
+    "https://www.prnewswire.com/news-releases/china-southern-power-grid-prasentiert-auf-der-2025-world-artificial-intelligence-conference-zahlreiche-errungenschaften-im-bereich-ki-302518294.html",
+    "https://www.prnewswire.com/news-releases/luxshare-precision-reaffirms-commitment-to-cross-cultural-friendship-and-unity-through-luxshare-cup-global-relay-302518367.html",
+    "https://www.prnewswire.com/news-releases/betolar-develops-low-carbon-mining-solution-for-mandalay-resources-and-enters-australias-leading-mining-market-302518360.html",
+    "https://www.prnewswire.com/news-releases/nscale-aker-and-openai-to-establish-stargate-norway-a-100-000-nvidia-gpu-ai-gigafactory-powered-by-renewable-energy-in-northern-norway-302518358.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -1919,7 +1922,37 @@
     "https://finance.yahoo.com/news/215-ytd-grab-growth-stock-181509585.html",
     "https://www.barrons.com/articles/cyberark-software-palo-alto-stock-takeover-8a7e6245?siteid=yhoof2&yptr=yahoo",
     "https://finance.yahoo.com/news/us-consumer-finance-watchdog-says-182000199.html",
-    "https://finance.yahoo.com/news/amazon-amzn-price-target-raised-182123888.html"
+    "https://finance.yahoo.com/news/amazon-amzn-price-target-raised-182123888.html",
+    "https://finance.yahoo.com/news/jpmorgan-chase-close-deal-taking-175705291.html",
+    "https://finance.yahoo.com/news/doge-sol-xrp-lead-altcoin-175623913.html",
+    "https://finance.yahoo.com/video/access-future-openai-models-means-180400428.html",
+    "https://finance.yahoo.com/news/microsoft-msft-ai-revolution-could-182428925.html",
+    "https://finance.yahoo.com/news/1-analyst-thinks-former-pandemic-182754457.html",
+    "https://finance.yahoo.com/news/alphabet-googl-ai-strategy-drives-182830787.html",
+    "https://finance.yahoo.com/news/shoes-toys-more-seeing-price-180255902.html",
+    "https://finance.yahoo.com/news/soaring-crude-oil-prices-support-182820641.html",
+    "https://finance.yahoo.com/news/trump-gets-tariffs-americans-price-180747935.html",
+    "https://www.investors.com/news/technology/palo-alto-eyes-cyberark-in-20-billion-deal-that-would-shake-up-cybersecurity-market/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/intel-announces-drastic-decision-fix-180300180.html",
+    "https://finance.yahoo.com/news/shell-plc-shel-good-option-183306191.html",
+    "https://finance.yahoo.com/news/kinder-morgan-kmi-top-energy-183417996.html",
+    "https://finance.yahoo.com/news/jpmorgan-reaffirms-nvidia-nvda-top-183138843.html",
+    "https://finance.yahoo.com/news/fujitsu-oceania-accelerates-retail-innovation-180306260.html",
+    "https://finance.yahoo.com/news/warren-buffett-berkshire-hathaway-now-183209750.html",
+    "https://finance.yahoo.com/news/permian-resources-pr-among-best-183323338.html",
+    "https://finance.yahoo.com/news/why-occidental-petroleum-oxy-top-183524869.html",
+    "https://finance.yahoo.com/news/marathon-petroleum-mpc-one-best-183433700.html",
+    "https://finance.yahoo.com/news/why-tmc-metals-company-stock-175406338.html",
+    "https://finance.yahoo.com/news/valero-energy-vlo-remains-top-183241984.html",
+    "https://finance.yahoo.com/news/eog-resources-eog-top-crude-183609068.html",
+    "https://finance.yahoo.com/news/devon-energy-dvn-top-crude-183456665.html",
+    "https://finance.yahoo.com/news/why-exxon-mobil-xom-favorite-183713190.html",
+    "https://finance.yahoo.com/news/american-tower-sees-slightly-weaker-180715060.html",
+    "https://finance.yahoo.com/news/conocophillips-cop-top-crude-oil-183829291.html",
+    "https://finance.yahoo.com/news/its-not-just-big-tech-industrial-stocks-are-on-fire-183841489.html",
+    "https://finance.yahoo.com/news/chevron-cvx-top-crude-oil-183852551.html",
+    "https://finance.yahoo.com/news/why-hedge-funds-piling-schlumberger-183815580.html",
+    "https://finance.yahoo.com/news/ascent-hospitality-management-names-nicholas-181317544.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps"
@@ -2276,6 +2309,13 @@
     "https://www.investing.com/news/stock-market-news/standard-chartered-q2-profit-beats-expectations-announces-13-bln-buyback-4161651",
     "https://www.investing.com/news/stock-market-news/stanchart-sets-13-billion-buyback-after-h1-profit-beats-handily-4161650",
     "https://www.investing.com/news/stock-market-news/f35-fighter-jet-crashes-in-california-pilot-ejects-safely-4161647",
-    "https://www.investing.com/news/stock-market-news/toyota-supplier-densos-quarterly-profit-falls-on-tariffs-strong-yen-4161644"
+    "https://www.investing.com/news/stock-market-news/toyota-supplier-densos-quarterly-profit-falls-on-tariffs-strong-yen-4161644",
+    "https://www.investing.com/news/stock-market-news/schneider-electric-confirms-2025-outlook-as-data-centres-drive-growth-4161683",
+    "https://www.investing.com/news/stock-market-news/arcelormittal-posts-slight-core-profit-beat-for-second-quarter-4161673",
+    "https://www.investing.com/news/stock-market-news/bmw-maintains-guidance-but-forecasts-tariff-blow-to-auto-profitability-4161678",
+    "https://www.investing.com/news/stock-market-news/brewer-ab-inbev-beats-secondquarter-profit-forecasts-but-volumes-drag-4161669",
+    "https://www.investing.com/news/stock-market-news/lufthansa-reports-higherthanexpected-q2-earnings-4161658",
+    "https://www.investing.com/news/stock-market-news/major-developments-in-trumps-trade-war-4159938",
+    "https://www.investing.com/news/stock-market-news/renault-reports-first-half-loss-of-112-billion-euros-4161657"
   ]
 }
