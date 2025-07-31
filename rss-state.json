@@ -363,7 +363,8 @@
     "https://www.prnewswire.com/news-releases/china-southern-power-grid-prasentiert-auf-der-2025-world-artificial-intelligence-conference-zahlreiche-errungenschaften-im-bereich-ki-302518294.html",
     "https://www.prnewswire.com/news-releases/luxshare-precision-reaffirms-commitment-to-cross-cultural-friendship-and-unity-through-luxshare-cup-global-relay-302518367.html",
     "https://www.prnewswire.com/news-releases/betolar-develops-low-carbon-mining-solution-for-mandalay-resources-and-enters-australias-leading-mining-market-302518360.html",
-    "https://www.prnewswire.com/news-releases/nscale-aker-and-openai-to-establish-stargate-norway-a-100-000-nvidia-gpu-ai-gigafactory-powered-by-renewable-energy-in-northern-norway-302518358.html"
+    "https://www.prnewswire.com/news-releases/nscale-aker-and-openai-to-establish-stargate-norway-a-100-000-nvidia-gpu-ai-gigafactory-powered-by-renewable-energy-in-northern-norway-302518358.html",
+    "https://www.prnewswire.com/news-releases/superconducting-wire-market-worth-2-19-billion-by-2030--marketsandmarkets-302518355.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -541,7 +542,8 @@
     "https://www.cnbc.com/2025/07/30/arm-stock-q1-earnings.html",
     "https://www.cnbc.com/2025/07/30/ebay-stock-surges-on-earnings-beat-rosy-guidance.html",
     "https://www.cnbc.com/2025/07/30/were-raising-our-meta-price-target-big-time-after-a-stellar-quarter-and-an-incredible-guide.html",
-    "https://www.cnbc.com/2025/07/30/microsofts-monster-quarter-and-strong-outlook-cements-its-status-as-an-ai-leader.html"
+    "https://www.cnbc.com/2025/07/30/microsofts-monster-quarter-and-strong-outlook-cements-its-status-as-an-ai-leader.html",
+    "https://www.cnbc.com/2025/07/31/oil-giant-shell-beats-expectations-despite-sharp-drop-in-profit.html"
   ],
   "https://finance.yahoo.com/news/rssindex": [
     "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-meta-amazon-earnings-fed-meeting-trump-tariffs-tesla-robotaxi/?src=A00220&yptr=yahoo",
@@ -1952,7 +1954,43 @@
     "https://finance.yahoo.com/news/its-not-just-big-tech-industrial-stocks-are-on-fire-183841489.html",
     "https://finance.yahoo.com/news/chevron-cvx-top-crude-oil-183852551.html",
     "https://finance.yahoo.com/news/why-hedge-funds-piling-schlumberger-183815580.html",
-    "https://finance.yahoo.com/news/ascent-hospitality-management-names-nicholas-181317544.html"
+    "https://finance.yahoo.com/news/ascent-hospitality-management-names-nicholas-181317544.html",
+    "https://finance.yahoo.com/video/sofi-appeals-overachievers-ceo-says-185915734.html",
+    "https://finance.yahoo.com/news/platinum-become-rich-person-gold-190002474.html",
+    "https://www.investors.com/news/technology/sofi-stock-sofi-earnings-q22025/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/video/cea-industries-launches-bnb-treasury-185940129.html",
+    "https://www.barrons.com/advisor/articles/continuing-education-credit-cheating-suspension-047602f2?siteid=yhoof2&yptr=yahoo",
+    "https://www.barrons.com/livecoverage/stock-market-news-today-072925/card/stocks-lose-momentum-big-tech-is-to-blame--w12SLnLCvEAIUErdYAR4?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/kohl-corporation-kss-looks-meme-194048026.html",
+    "https://finance.yahoo.com/news/walmart-inc-wmt-didn-t-194217069.html",
+    "https://finance.yahoo.com/news/anthropic-reportedly-nears-170b-valuation-185936964.html",
+    "https://www.barrons.com/livecoverage/stock-market-news-today-072925/card/gold-rises-ahead-of-fed-decision-TcxipKraKvB4XngImqMT?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/union-pacific-corporation-unp-might-194109175.html",
+    "https://finance.yahoo.com/news/amc-entertainment-holdings-inc-amc-194031905.html",
+    "https://finance.yahoo.com/news/costco-wholesale-corporation-cost-inflation-194127306.html",
+    "https://finance.yahoo.com/news/d-r-horton-inc-dhi-193931938.html",
+    "https://finance.yahoo.com/news/doordash-adds-6-grocery-retailers-193857566.html",
+    "https://finance.yahoo.com/news/oscar-health-inc-oscr-told-193913523.html",
+    "https://finance.yahoo.com/news/cleveland-cliffs-inc-clf-wants-193954542.html",
+    "https://finance.yahoo.com/news/dollar-gains-euro-weakness-over-193738731.html",
+    "https://www.wsj.com/finance/investing/jgbs-consolidate-ahead-of-japans-two-year-bond-auction-c4237ba7?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/oil-holds-gain-trump-russia-233945514.html",
+    "https://finance.yahoo.com/news/norfolk-southern-corporation-nsc-benefited-194338659.html",
+    "https://finance.yahoo.com/news/palantir-technologies-inc-pltr-driving-194447895.html",
+    "https://www.barrons.com/articles/apple-earnings-stock-ai-814001ab?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/lockheed-martin-corporation-lmt-long-194657019.html",
+    "https://finance.yahoo.com/video/pnc-seeking-client-access-crypto-193911199.html",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-29-2025/card/canadian-lumber-hit-with-higher-antidumping-duty-z7xFwQbk5GHIuR4GZhoo?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/crude-prices-surge-president-trump-192009210.html",
+    "https://finance.yahoo.com/news/astrazeneca-increasing-focus-on-us-market-as-it-is-first-to-provide-access-to-patients-cfo-191056328.html",
+    "https://finance.yahoo.com/news/meta-reports-earnings-tomorrow-heres-193352827.html",
+    "https://finance.yahoo.com/news/csx-corporation-csx-might-not-194821561.html",
+    "https://finance.yahoo.com/news/hot-us-weather-forecasts-push-191749691.html",
+    "https://finance.yahoo.com/news/rtx-corporation-rtx-doing-better-194918399.html",
+    "https://finance.yahoo.com/news/lilly-set-strong-quarter-novo-194939677.html",
+    "https://finance.yahoo.com/video/spotify-continues-video-push-earnings-194532835.html",
+    "https://www.barrons.com/articles/starbucks-earnings-stock-luckin-coffee-eb7b8197?siteid=yhoof2&yptr=yahoo",
+    "https://www.investors.com/research/coinbase-stock-buy-now-july-2025/?src=A00220&yptr=yahoo"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps"
