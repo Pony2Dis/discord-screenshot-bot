@@ -5,8 +5,6 @@ import { fetchLatestPosts } from "./fetchLatestPosts.mjs";
 
 const { DISCORD_TOKEN, DISCORD_CHANNEL_ID, X_USERNAMES } = process.env;
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-
-// sleep helper
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 
 async function loadSent(file) {
@@ -25,16 +23,19 @@ async function saveSent(file, sent) {
 async function run() {
   await client.login(DISCORD_TOKEN);
   const channel = await client.channels.fetch(DISCORD_CHANNEL_ID);
-
-  const users = X_USERNAMES
-    .split(/\r?\n/)
-    .map(u => u.trim())
-    .filter(Boolean);
+  const users = X_USERNAMES.split(/\r?\n/).map(u => u.trim()).filter(Boolean);
 
   for (const username of users) {
     const stateFile = `./twitter/last_link_${username}.json`;
     const sent = await loadSent(stateFile);
-    const links = await fetchLatestPosts(username, 10);
+
+    // fetch and filter out posts older than 2 days
+    const rawPosts  = await fetchLatestPosts(username, 10);            // returns [{ url, date }]
+    const twoDaysAgo = Date.now() - 2 * 24 * 60 * 60 * 1000;
+    const links     = rawPosts
+                        .filter(p => new Date(p.date).getTime() >= twoDaysAgo)
+                        .map(p => p.url);
+
     console.log(`Fetched links for ${username}:`, links);
 
     const newLinks = links.filter(l => !sent.includes(l));
