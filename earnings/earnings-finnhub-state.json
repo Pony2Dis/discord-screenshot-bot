@@ -3934,5 +3934,185 @@
   {
     "symbol": "IP",
     "date": "2025-07-31"
+  },
+  {
+    "symbol": "AAMI",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "SO",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "MA",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "MGPI",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "FFWM",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "NSIT",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "ABBV",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "IDCC",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "JHG",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "NREF",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "APLS",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "ITRI",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "SNDR",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "OIS",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "AGCO",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "HGV",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "DSGR",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "BTU",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "IDA",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "ATI",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "SILC",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "VCEL",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "PPL",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "ARW",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "LAUR",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "HEPS",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "EME",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "VNDA",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "CRS",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "SQNS",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "ICE",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "CRAI",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "RBLX",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "MPW",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "APG",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "CWT",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "ALNY",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "PATK",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "CFR",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "GCI",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "UPLD",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "COHN",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "LECO",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "BGC",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "BDC",
+    "date": "2025-07-31"
   }
 ]
