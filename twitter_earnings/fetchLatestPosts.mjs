@@ -32,7 +32,7 @@ export async function fetchLatestPosts(username, limit = 5, days = 7) {
   await page.click('button:has-text("Log in")');
 
   // wait for your home feed to load (detect by profile link showing up)
-  await page.waitForSelector("a[aria-label='Profile']", { timeout: 10000 });
+  await page.waitForSelector("a[aria-label='Profile']", { timeout: 30000 });
 
   // ————————————————————————————————————————————————
   // 2) NAVIGATE TO THE USER’S PROFILE
