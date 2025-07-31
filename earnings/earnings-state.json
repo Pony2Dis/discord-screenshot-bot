@@ -3358,5 +3358,29 @@
     "revenueSurprise": 0.0014492753623188406,
     "prevEarningsGrowth": 3.1553398058252426,
     "prevRevenueGrowth": 0.16934710831824476
+  },
+  {
+    "epsDate": "2025-07-30T18:43:00",
+    "ticker": "MGM",
+    "name": "MGM Resorts International",
+    "summary": "MGM Resorts International (MGM) reported earnings of $0.79 per share on revenue of $4.40 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $0.58 per share on  revenue of $4.29 billion. The Earnings Whisper number was $0.69 per share. The company beat expectations by 14.49% while revenue grew 1.79% on a year-over-year basis.<br /><br />MGM Resorts International is a holding company. The Company through its wholly-owned subsidiaries, owns and operates casino resorts. Its offering includes; gaming, hotel, convention, dining, entertainment, retail and other resort amenities.",
+    "subject": "MGM Resorts International Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2507300653",
+    "eps": 0.79,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.58,
+    "whisper": 0.69,
+    "highEstimate": 0.79,
+    "lowEstimate": 0.33,
+    "revenue": 4404.87,
+    "revenueEstimate": 4290,
+    "earningsGrowth": -0.08139534883720931,
+    "revenueGrowth": 0.01790808515555042,
+    "earningsSurprise": 0.14492753623188406,
+    "revenueSurprise": 0.026776223776223775,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.024270269900330103
   }
 ]

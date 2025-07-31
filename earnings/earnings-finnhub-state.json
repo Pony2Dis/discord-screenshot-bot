@@ -3178,5 +3178,277 @@
   {
     "symbol": "MDXG",
     "date": "2025-07-30"
+  },
+  {
+    "symbol": "SMHI",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "RM",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "RDN",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "SCI",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "COMP",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "AWK",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "MMSI",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "CNMD",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "USLM",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "EZPW",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "PGRE",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "IRT",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "ALKT",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "FBRT",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "RGR",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "MYRG",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "MUSA",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "OPI",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "WAY",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "PI",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "BNL",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "CLMB",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "THG",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "AUR",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "BKH",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "UIS",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "VSEC",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "PLPC",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "CTOS",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "ETD",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "MORN",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "MKL",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "SPSC",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "SUI",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "TTEK",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "GRBK",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "CVI",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "QTWO",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "MCW",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "AIN",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "EOSE",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "APLD",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "SIMO",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "FMBM",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "CNXN",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "EPR",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "HDSN",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "UAN",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "TROX",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "MOD",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "GH",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "CBZ",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "AM",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "MTG",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "WHD",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "CGNX",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "AX",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "PPC",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "TMDX",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "ACR",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "NEU",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "ESI",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "LUNG",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "NFG",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "HVT",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "FMC",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "HBB",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "PBI",
+    "date": "2025-07-30"
   }
 ]
