@@ -72,7 +72,8 @@
     "https://www.cnbc.com/2025/07/31/baird-downgrades-unitedhealth-shares-cites-concerns-over-optum-health-business.html",
     "https://www.cnbc.com/2025/07/31/thursday-top-wall-street-stocks-by-analysts-like-nvidia.html",
     "https://www.cnbc.com/2025/07/31/amazon-earnings-are-out-thursday-heres-what-top-analysts-expect.html",
-    "https://www.cnbc.com/2025/07/31/bank-of-america-has-identified-a-new-under-the-radar-ai-data-center-play.html"
+    "https://www.cnbc.com/2025/07/31/bank-of-america-has-identified-a-new-under-the-radar-ai-data-center-play.html",
+    "https://www.cnbc.com/2025/07/31/an-options-trade-that-bets-on-consumer-stocks-rebounding-while-hedging-risk.html"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147": [
     "https://www.cnbc.com/2025/07/27/boeing-ceo-ortberg-airplane-deliveries-defense.html",
@@ -431,7 +432,13 @@
     "https://www.prnewswire.com/news-releases/smt-energy-energizes-first-standalone-battery-energy-storage-project-in-the-city-of-dallas-302518047.html",
     "https://www.prnewswire.com/news-releases/flacktek-expands-large-machine-lineup-with-new-50kg-capacity-models-for-agile-scalable-production-302518718.html",
     "https://www.prnewswire.com/news-releases/xtool-debuts-silicon-valley-hq-igniting-a-new-era-of-the-maker-movement-in-the-us-302518580.html",
-    "https://www.prnewswire.com/news-releases/guru-wireless-adds-dr-douglas-c-blake-to-its-advisory-board-to-accelerate-defense-sector-strategy-302518480.html"
+    "https://www.prnewswire.com/news-releases/guru-wireless-adds-dr-douglas-c-blake-to-its-advisory-board-to-accelerate-defense-sector-strategy-302518480.html",
+    "https://www.prnewswire.com/news-releases/beko-accelere-sa-trajectoire-vers-lobjectif-de-zero-emission-nette-dici-2050-grace-a-lelectricite-verte-et-renforce-ses-actions-en-faveur-du-climat-302518839.html",
+    "https://www.prnewswire.com/news-releases/1-4-billion-nickel-sale-to-global-metals-trading-firm-traxys-positions-westwin-elements-as-us-critical-minerals-powerhouse-302518827.html",
+    "https://www.prnewswire.com/news-releases/trek-bicycle-announces-industry-first-shift-to-low-emission-aluminum-302518199.html",
+    "https://www.prnewswire.com/news-releases/indovinya-unveils-new-brand-positioning-inspired-by-the-transformative-power-of-chemistry-302518631.html",
+    "https://www.prnewswire.com/news-releases/pharmaceutical-metal-detectors-market-worth-us197-7-million-by-2030-with-4-7-cagr--marketsandmarkets-302518559.html",
+    "https://www.prnewswire.com/news-releases/hergestellt-in-europa-topbands-hochwertige-fertigung-in-aktion-302518787.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -633,7 +640,8 @@
     "https://www.cnbc.com/2025/07/31/ab-inbev-abi-earnings-q2-2025.html",
     "https://www.cnbc.com/2025/07/31/cvs-health-cvs-earnings-report-q2-2025.html",
     "https://www.cnbc.com/2025/07/31/comcast-cmcsa-earnings-q2-2025.html",
-    "https://www.cnbc.com/2025/07/31/roblox-rblx-stock-earnings.html"
+    "https://www.cnbc.com/2025/07/31/roblox-rblx-stock-earnings.html",
+    "https://www.cnbc.com/2025/07/31/microsoft-competitors-filings.html"
   ],
   "https://finance.yahoo.com/news/rssindex": [
     "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-meta-amazon-earnings-fed-meeting-trump-tariffs-tesla-robotaxi/?src=A00220&yptr=yahoo",
@@ -2299,7 +2307,37 @@
     "https://www.investors.com/research/options/uber-stock-cash-secured-put-options/?src=A00220&yptr=yahoo",
     "https://finance.yahoo.com/news/stocks-rally-stellar-earnings-microsoft-140039675.html",
     "https://finance.yahoo.com/news/microsoft-joins-nvidia-4-trillion-141629769.html",
-    "https://finance.yahoo.com/news/analysis-credit-agricoles-tortoise-strategy-135813657.html"
+    "https://finance.yahoo.com/news/analysis-credit-agricoles-tortoise-strategy-135813657.html",
+    "https://finance.yahoo.com/news/apogee-therapeutics-inc-apge-soars-153823030.html",
+    "https://finance.yahoo.com/news/viking-therapeutics-inc-vktx-nears-153723414.html",
+    "https://finance.yahoo.com/news/vaxcyte-inc-pcvx-vax-24-153533930.html",
+    "https://finance.yahoo.com/news/ultragenyx-pharmaceutical-inc-rare-gets-153500869.html",
+    "https://finance.yahoo.com/news/howmet-aerospace-posts-record-profit-153445664.html",
+    "https://finance.yahoo.com/news/immunitybio-inc-ibrx-gains-uk-153419085.html",
+    "https://finance.yahoo.com/news/nvidia-nvda-boosts-h20-chip-153028104.html",
+    "https://finance.yahoo.com/news/tether-posts-4-9b-profit-153302133.html",
+    "https://finance.yahoo.com/news/apple-aapl-ai-strategy-falls-152017715.html",
+    "https://www.investors.com/stock-lists/sector-leaders/the-bancorp-stock-tbbk-financial-services/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/rbc-tesla-tsla-valuation-could-151630211.html",
+    "https://finance.yahoo.com/news/carvana-stock-hits-time-high-152924185.html",
+    "https://finance.yahoo.com/news/amd-reports-august-5-analyst-151421941.html",
+    "https://finance.yahoo.com/research/reports/ARGUS_5946_AnalystReport_1753959884000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "https://finance.yahoo.com/news/heres-much-traders-expect-apple-152030910.html",
+    "https://finance.yahoo.com/news/wall-street-analysts-bullish-delta-145910656.html",
+    "https://finance.yahoo.com/news/mark-zuckerberg-wooing-wall-street-145849679.html",
+    "https://finance.yahoo.com/news/reddit-set-to-report-q2-earnings-as-wall-street-scrutinizes-daily-active-user-growth-205631108.html",
+    "https://www.investors.com/news/technology/microsoft-stock-msft-fiscal-q4-2025/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/abbvie-lifts-outlook-eyes-parkinsons-151856455.html",
+    "https://finance.yahoo.com/news/ford-reports-q2-earnings-beat-but-takes-800m-tariff-hit-200716165.html",
+    "https://finance.yahoo.com/news/robinhood-outgrows-meme-frenzy-era-144928439.html",
+    "https://finance.yahoo.com/news/micron-mu-unveils-world-first-144917080.html",
+    "https://finance.yahoo.com/news/fermi-america-hyundai-sign-mou-151626517.html",
+    "https://finance.yahoo.com/news/3-stocks-shoppers-love-wall-144539501.html",
+    "https://finance.yahoo.com/news/martin-shkreli-shorting-strong-buy-144045824.html",
+    "https://finance.yahoo.com/news/microsoft-set-hit-4-trillion-082114125.html",
+    "https://finance.yahoo.com/news/activist-investor-reap-handsome-return-144026615.html",
+    "https://finance.yahoo.com/news/powell-standing-ground-interest-rates-143531788.html",
+    "https://finance.yahoo.com/news/got-1-000-3-cryptocurrencies-150900819.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps"
@@ -2716,6 +2754,13 @@
     "https://www.investing.com/news/stock-market-news/meta-align-tech-lead-thursdays-market-cap-stock-movers-93CH-4163642",
     "https://www.investing.com/news/stock-market-news/keybanc-downgrades-palo-alto-networks-on-cyberark-acquisition-concerns-4163622",
     "https://www.investing.com/news/stock-market-news/vistek-limited-files-for-225m-share-ipo-at-46sh-432SI-4163621",
-    "https://www.investing.com/news/stock-market-news/victoria-plc-downgraded-to-ccc-amid-distressed-debt-exchange-proposal-93CH-4163607"
+    "https://www.investing.com/news/stock-market-news/victoria-plc-downgraded-to-ccc-amid-distressed-debt-exchange-proposal-93CH-4163607",
+    "https://www.investing.com/news/stock-market-news/att-to-dual-list-on-nyse-texas-4163539",
+    "https://www.investing.com/news/stock-market-news/astronauts-set-for-launch-to-iss-as-us-russian-space-chiefs-plan-rare-meeting-4163827",
+    "https://www.investing.com/news/stock-market-news/neuralink-launches-first-clinical-study-in-great-britain-93CH-4163824",
+    "https://www.investing.com/news/stock-market-news/morocco-stocks-higher-at-close-of-trade-moroccan-all-shares-up-097-4163806",
+    "https://www.investing.com/news/stock-market-news/nyseparent-ices-secondquarter-profit-rises-on-robust-trading-volume-4162811",
+    "https://www.investing.com/news/stock-market-news/evercore-bullish-on-chevron-on-stronger-cash-flow-trajectory-after-hess-deal-4163785",
+    "https://www.investing.com/news/stock-market-news/norway-stocks-higher-at-close-of-trade-oslo-obx-up-009-4163753"
   ]
 }
