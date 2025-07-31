@@ -12,36 +12,27 @@ export async function fetchLatestPosts(username, limit = 5, days = 7) {
   const browser = await firefox.launch({ headless: true });
   const context = await browser.newContext();
   const page = await context.newPage();
-  await page.setViewportSize(VIEWPORT);
+  // await page.setViewportSize(VIEWPORT);
 
   // ————————————————————————————————————————————————
-  // 1) LOGIN (if not already)
-  // check for some element only visible when logged in, e.g. "Tweet" button
-  const loggedIn = await page.goto("https://x.com/home", { waitUntil: "networkidle" })
-    .then(() => page.$("a[aria-label='Profile']"))
-    .then(el => !!el)
-    .catch(() => false);
+  // 1) LOGIN
+  await page.goto("https://x.com/login", { waitUntil: "networkidle" });
 
-  if (!loggedIn) {
-    // go to login flow
-    await page.goto("https://x.com/login", { waitUntil: "networkidle" });
+  // fill email/username
+  await page.fill('input[name="text"]', X_EMAIL);
+  await page.click('button:has-text("Next")');
+  // wait for password input to appear
+  await page.waitForSelector('input[name="password"]', { timeout: 5000 });
 
-    // fill email/username
-    await page.fill('input[name="text"]', X_EMAIL);
-    await page.click('button:has-text("Next")');
-    // wait for password input to appear
-    await page.waitForSelector('input[name="password"]', { timeout: 5000 });
+  // sleep a bit to avoid being rate-limited
+  await page.waitForTimeout(1000);
 
-    // sleep a bit to avoid being rate-limited
-    await page.waitForTimeout(1000);
+  // fill password
+  await page.fill('input[name="password"]', X_PASSWORD);
+  await page.click('button:has-text("Log in")');
 
-    // fill password
-    await page.fill('input[name="password"]', X_PASSWORD);
-    await page.click('button:has-text("Log in")');
-
-    // wait for your home feed to load (detect by profile link showing up)
-    await page.waitForSelector("a[aria-label='Profile']", { timeout: 10000 });
-  }
+  // wait for your home feed to load (detect by profile link showing up)
+  await page.waitForSelector("a[aria-label='Profile']", { timeout: 10000 });
 
   // ————————————————————————————————————————————————
   // 2) NAVIGATE TO THE USER’S PROFILE
