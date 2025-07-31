@@ -36,6 +36,9 @@ async function run() {
 
     for (let link of newLinks.reverse()) {
       await channel.send(link);
+
+      // sleep a bit to avoid being rate-limited
+      await page.waitForTimeout(1000);
     }
     // save the growing array of all sent links
     await saveSent(stateFile, sent.concat(newLinks));
