@@ -506,7 +506,9 @@
     "https://www.marketwatch.com/story/trump-crypto-groups-report-skips-strategic-bitcoin-reserve-but-industry-remains-unfazed-969b1bdf?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/why-is-metas-stock-soaring-after-earnings-its-about-far-more-than-the-numbers-174b1113?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/figma-prices-ipo-at-33-a-share-raising-1-2-billion-b8df6eca?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/ab-inbev-stock-sees-worst-day-since-covid-struck-after-volume-miss-dc959b9d?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/ab-inbev-stock-sees-worst-day-since-covid-struck-after-volume-miss-dc959b9d?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/nvidia-got-u-s-greenlight-to-sell-its-h20-chips-in-china-but-now-china-is-worried-about-security-99a4c989?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/rolls-royce-is-britains-answer-to-nvidia-it-just-hiked-its-outlook-again-80bff8c8?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -2026,7 +2028,40 @@
     "https://www.barrons.com/articles/polaris-earnings-stock-price-4d3b96b6?siteid=yhoof2&yptr=yahoo",
     "https://finance.yahoo.com/news/citi-hires-goel-jpmorgan-boost-203121166.html",
     "https://www.barrons.com/articles/boeing-earnings-stock-price-63e956f4?siteid=yhoof2&yptr=yahoo",
-    "https://www.barrons.com/articles/tesla-ev-stock-price-dip-9764e2bc?siteid=yhoof2&yptr=yahoo"
+    "https://www.barrons.com/articles/tesla-ev-stock-price-dip-9764e2bc?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/first-look-werner-quarterly-report-210129550.html",
+    "https://finance.yahoo.com/news/why-man-behind-hater-guide-205800652.html",
+    "https://www.wsj.com/business/earnings/spotify-spot-q2-earnings-report-2025-3b85cdbe?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/business/earnings/visa-profit-sales-rise-on-resilient-consumer-spending-8d83c9e3?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/nvidia-gets-ready-china-h20-205416992.html",
+    "https://www.barrons.com/articles/visa-stock-price-earnings-78731984?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/parent-company-charmin-tide-brands-205857993.html",
+    "https://www.wsj.com/business/earnings/booking-posts-quarterly-sales-jump-sees-steady-demand-79b7a95b?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/trading-day-stocks-stumble-dollar-210457364.html",
+    "https://www.wsj.com/business/earnings/mondelez-logs-higher-profit-revenue-in-second-quarter-cbd1f7b4?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/cheesecake-factory-reports-1-2-205407134.html",
+    "https://www.wsj.com/business/basic-materials-roundup-market-talk-c7eaeabd?siteid=yhoof2&yptr=yahoo",
+    "https://www.barrons.com/articles/stock-movers-95d6cd61?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/health/health-care-roundup-market-talk-c931628f?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/ethereum-investors-want-treasuries-buy-205325304.html",
+    "https://www.wsj.com/business/energy-utilities-roundup-market-talk-687e9564?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/lifestyle/careers/ai-entry-level-jobs-graduates-b224d624?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/finance/banking/financial-services-roundup-market-talk-3949f6fb?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/visas-earnings-topped-expectations-ceo-205726854.html",
+    "https://www.wsj.com/tech/tech-media-telecom-roundup-market-talk-def1dbfc?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/business/auto-transport-roundup-market-talk-e21c314c?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/sec-approves-kind-redemptions-spot-205839895.html",
+    "https://www.wsj.com/business/syscos-new-compensation-model-cost-it-customers-last-year-now-its-paying-off-ceo-says-06680a9e?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/business/airlines/boeing-ba-2q-earnings-report-2025-14367be3?siteid=yhoof2&yptr=yahoo",
+    "https://www.investors.com/news/technology/novo-nordisk-nvo-stock-lower-guidance-new-ceo/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/novo-nordisk-shares-plunge-drag-213000705.html",
+    "https://finance.yahoo.com/news/visa-sees-no-sign-slowdown-211117957.html",
+    "https://www.barrons.com/articles/bond-investors-are-watching-closely-as-the-bessent-treasury-plans-1-trillion-in-new-borrowing-fbe18589?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/sec-postpones-decision-truth-social-214500588.html",
+    "https://finance.yahoo.com/news/alphapoint-bets-rise-institutional-crypto-211101050.html",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-29-2025/card/heard-on-the-street-big-swings-AQ4rOLJkIlGSohNRzsrd?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/why-markets-dont-seem-to-care-about-the-fuzzy-details-of-trumps-trade-deals-122130154.html",
+    "https://finance.yahoo.com/news/live/stock-market-today-sp-500-snaps-6-day-record-streak-stocks-fall-as-earnings-flood-in-fed-decision-looms-200412403.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps"
@@ -2399,6 +2434,12 @@
     "https://www.investing.com/news/stock-market-news/technip-energies-raises-tps-margin-guidance-despite-q2-earnings-miss-93CH-4161875",
     "https://www.investing.com/news/stock-market-news/weir-group-reports-healthy-1h25-results-upgrades-margin-guidance-93CH-4161870",
     "https://www.investing.com/news/stock-market-news/european-shares-edge-higher-amid-earnings-flurry-us-tariff-blitz-4161869",
-    "https://www.investing.com/news/stock-market-news/drax-extends-share-buyback-program-by-450m-amid-strong-earnings-93CH-4161866"
+    "https://www.investing.com/news/stock-market-news/drax-extends-share-buyback-program-by-450m-amid-strong-earnings-93CH-4161866",
+    "https://www.investing.com/news/stock-market-news/tesla-starts-ridehailing-in-san-francisco-no-reference-to-selfdriving-4162051",
+    "https://www.investing.com/news/stock-market-news/exclusivetop-china-polysilicon-firms-plan-to-shut-a-third-of-production-capacity-set-opecstyle-output-quotas-gcl-says-4162047",
+    "https://www.investing.com/news/stock-market-news/indonesia-stocks-lower-at-close-of-trade-idx-composite-index-down-086-4162034",
+    "https://www.investing.com/news/stock-market-news/microsoft-poised-for-4-trillion-valuation-after-solid-results-4162016",
+    "https://www.investing.com/news/stock-market-news/uk-insurer-just-group-stock-skyrockets-on-brookfield-acquisition-deal-4162011",
+    "https://www.investing.com/news/stock-market-news/prysmian-stock-rises-as-trump-copper-tariffs-benefit-us-operations-93CH-4161996"
   ]
 }
