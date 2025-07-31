@@ -2,86 +2,98 @@
 import "dotenv/config";
 import { firefox } from "playwright";
 
-export async function fetchLatestPosts(username, limit = 5, days = 7) {
-  const { X_EMAIL, X_PASSWORD } = process.env;
-  if (!X_EMAIL || !X_PASSWORD) {
-    throw new Error("Please set X_EMAIL and X_PASSWORD in your .env");
+export async function fetchLatestPosts(
+  username,
+  limit = 5,
+  days = 7
+) {
+  const { X_EMAIL, X_PASSWORD, X_USERNAME } = process.env;
+  if (!X_EMAIL || !X_PASSWORD || !X_USERNAME) {
+    throw new Error(
+      "Please set X_EMAIL, X_PASSWORD and X_USERNAME in your .env"
+    );
   }
 
+  // 1) spin up browser
   const browser = await firefox.launch({ headless: true });
   const context = await browser.newContext();
   const page = await context.newPage();
 
   // ————————————————————————————————————————————————
-  // 1) LOGIN
+  // 2) LOGIN FLOW
   await page.goto("https://x.com/login", { waitUntil: "networkidle" });
 
-  // fill email/username and hit Next
+  // enter your email
   await page.fill('input[name="text"]', X_EMAIL);
   await page.click('button:has-text("Next")');
 
-  // race between password field or a second username prompt
-  await Promise.race([
-    page.waitForSelector('input[name="password"]', { timeout: 5000 }),
-    page.waitForSelector('input[name="text"]',     { timeout: 5000 }),
-  ]);
+  // wait up to 15s for either password field or the extra username prompt
+  const start = Date.now();
+  while (Date.now() - start < 15_000) {
+    // if password input appears, break out
+    if (await page.$('input[name="password"]')) {
+      break;
+    }
 
-  // handle “enter phone or username” screen if it appears
-  if (await page.$('input[name="text"]')) {
-    // refill the same email/username
-    await page.fill('input[name="text"]', X_EMAIL);
-    await page.click('button:has-text("Next")');
-    // now wait for password field
-    await page.waitForSelector('input[name="password"]', { timeout: 5000 });
+    // if they’re asking again for text (phone/username), fill X_USERNAME
+    const extra = await page.$(
+      'input[name="text"][data-testid="ocfEnterTextTextInput"]'
+    );
+    if (extra) {
+      await page.fill('input[name="text"]', X_USERNAME);
+      await page.click('button:has-text("Next")');
+    }
+
+    await page.waitForTimeout(500);
   }
 
-  // tiny pause to mimic human pacing
-  await page.waitForTimeout(500);
-
-  // fill password and submit
+  // now password step
   await page.fill('input[name="password"]', X_PASSWORD);
   await page.click('button:has-text("Log in")');
-
-  // wait until we see the Profile link in the top bar
-  await page.waitForSelector("a[aria-label='Profile']", { timeout: 30000 });
+  await page.waitForSelector("a[aria-label='Profile']", {
+    timeout: 30_000,
+  });
 
   // ————————————————————————————————————————————————
-  // 2) NAVIGATE TO THE USER’S PROFILE
-  await page.goto(`https://x.com/${username}`, { waitUntil: "networkidle" });
+  // 3) GO TO TARGET PROFILE
+  await page.goto(`https://x.com/${username}`, {
+    waitUntil: "networkidle",
+  });
 
-  // cutoff for how far back we’ll go
-  const cutoff = Date.now() - days * 24 * 3600 * 1000;
+  const cutoff = Date.now() - days * 24 * 60 * 60 * 1000;
   const seen = new Set();
-  let links = [];
+  const links = [];
 
-  // 3) SCROLL & EXTRACT LOOP
+  // 4) SCROLL & EXTRACT
   for (let i = 0; i < 10 && links.length < limit; i++) {
-    const newOnPage = await page.$$eval(
+    const paths = await page.$$eval(
       'a[href*="/status/"]',
-      (els, username) =>
-        Array.from(els, a => a.getAttribute("href"))
-          .filter(h => new RegExp(`^/${username}/status/\\d+$`).test(h)),
+      (els, user) =>
+        Array.from(els, (a) => a.getAttribute("href"))
+          .filter((h) => new RegExp(`^/${user}/status/\\d+$`).test(h)),
       username
     );
+    console.log("found:", paths);
 
-    console.log("found:", newOnPage);
-
-    for (let path of newOnPage) {
+    for (const path of paths) {
       if (seen.has(path)) continue;
       const ts = await page
-        .$eval(`a[href="${path}"] time`, el => el.dateTime)
+        .$eval(`a[href="${path}"] time`, (t) => t.dateTime)
         .catch(() => null);
       if (!ts || new Date(ts).getTime() < cutoff) continue;
+
       seen.add(path);
       links.push(`https://x.com${path}`);
       if (links.length >= limit) break;
     }
 
-    // scroll and wait
-    await page.evaluate(() => window.scrollBy(0, window.innerHeight));
+    // scroll down & wait
+    await page.evaluate(() =>
+      window.scrollBy(0, window.innerHeight)
+    );
     await page.waitForTimeout(2000);
   }
 
   await browser.close();
-  return links.slice(0, limit);
+  return links;
 }
