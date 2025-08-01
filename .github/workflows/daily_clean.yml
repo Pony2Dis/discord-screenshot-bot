@@ -1,0 +1,44 @@
+name: 🧹 Clean Discord Channels
+
+on:
+  schedule:
+    # Runs at 00:00 Asia/Jerusalem (UTC+3) which is 21:00 in UTC time
+    - cron: '0 21 * * *'
+  workflow_dispatch:
+
+jobs:
+  clear-channel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: npm Install
+
+      - name: Clear Discord channel
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          CHANNELS_IDS_2_CLEAN: ${{ vars.CHANNELS_IDS_2_CLEAN }}
+        run: |
+          node <<'EOF'
+          const { Client, GatewayIntentBits } = require('discord.js');
+          const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
+          client.once('ready', async () => {
+            const ch = client.channels.cache.get(process.env.CHANNELS_IDS_2_CLEAN);
+            if (!ch?.isTextBased()) return process.exit(1);
+            let batch;
+            do {
+              batch = await ch.messages.fetch({ limit: 100 });
+              if (batch.size) await ch.bulkDelete(batch);
+            } while (batch.size >= 2);
+            console.log('Cleared channel', process.env.CHANNELS_IDS_2_CLEAN);
+            process.exit(0);
+          });
+          client.login(process.env.DISCORD_TOKEN);
+          EOF
