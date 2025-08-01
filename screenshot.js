@@ -38,7 +38,7 @@ const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
   // 5. Try to click the “Agree” link by your CSS path
   const agreeLink = page.locator('a:has-text("Agree")');
   try {
-    await agreeLink.waitFor({ timeout: 5000 });
+    await agreeLink.waitFor({ timeout: 10000 });
     await agreeLink.click({ force: true });
     // give it a moment to go away
     await page.waitForTimeout(10_000);
