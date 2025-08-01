@@ -4750,5 +4750,57 @@
   {
     "symbol": "PIPR",
     "date": "2025-08-01"
+  },
+  {
+    "symbol": "BEN",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "OCGN",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "RBC",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "CBOE",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "IRMD",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "D",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "GWW",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "MITT",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "IESC",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "NSP",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "LBTYA",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "MCS",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "ABR",
+    "date": "2025-08-01"
   }
 ]
