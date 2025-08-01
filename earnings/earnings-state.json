@@ -4006,5 +4006,29 @@
     "revenueSurprise": 0.08287731685789938,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.05596291613990729
+  },
+  {
+    "epsDate": "2025-08-01T07:00:00",
+    "ticker": "MRNA",
+    "name": "Moderna, Inc.,",
+    "summary": "Moderna, Inc., (MRNA) reported a loss of $2.13 per share on revenue of $142.00 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $2.99 per share on  revenue of $127.17 million. The Earnings Whisper number was a loss of $2.75 per share. The company beat expectations by 22.55% while revenue fell 41.08% compared to the same quarter a year ago.<br /><br />The company  said it expects  2025 revenue of $1.50 billion to $2.20 billion. The company's previous guidance was revenue of $1.50 billion to $2.50 billion and the current consensus revenue estimate is $2.08 billion for the year ending December 31, 2025.<br /><br />Moderna has transformed from a research-stage company advancing programs in the field of messenger RNA (mRNA), to an enterprise with a diverse clinical portfolio of vaccines and therapeutics across seven modalities, a broad intellectual property portfolio in areas including mRNA and lipid nanoparticle formulation, and an integrated manufacturing plant that allows for both clinical and commercial production at scale. ",
+    "subject": "Moderna, Inc., Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508015345",
+    "eps": -2.13,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -2.99,
+    "whisper": -2.75,
+    "highEstimate": -2.63,
+    "lowEstimate": -3.58,
+    "revenue": 142,
+    "revenueEstimate": 127.17,
+    "earningsGrowth": 0.36036036036036034,
+    "revenueGrowth": -0.4107883817427386,
+    "earningsSurprise": 0.22545454545454546,
+    "revenueSurprise": 0.1166155539828576,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.3532934131736527
   }
 ]
