@@ -5,6 +5,7 @@ import { fetchLatestPosts } from "../x.com/fetchPosts.mjs";
 
 const { DISCORD_TOKEN, DISCORD_CHANNEL_ID, X_USERNAMES } = process.env;
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const sleep = ms => new Promise(res => setTimeout(res, ms));
 
 async function loadSent(file) {
   try {
@@ -28,7 +29,7 @@ async function run() {
   for (const username of users) {
     const stateFile = `./twitter_earnings/last_link_${username}.json`;
     const sent = await loadSent(stateFile);
-    const links = await fetchLatestPosts(username, 100);
+    const links = await fetchLatestPosts(username, 50);
     console.log(`Fetched links for ${username}:`, links);
 
     const newLinks = links.filter(l => !sent.includes(l));
@@ -38,7 +39,7 @@ async function run() {
       await channel.send(link);
 
       // sleep a bit to avoid being rate-limited
-      await page.waitForTimeout(1000);
+      await sleep(1000);
     }
     // save the growing array of all sent links
     await saveSent(stateFile, sent.concat(newLinks));
