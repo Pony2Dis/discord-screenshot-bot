@@ -33,7 +33,7 @@ async function fetchLatestPosts(username, limit = 10, days = 7) {
       );
   
       console.log("Launching Firefox browser (non-headless)...");
-      browser = await firefox.launch({ headless: false });
+      browser = await firefox.launch({ headless: true });
       const context = await browser.newContext();
       await context.addCookies(cookies);
       const page = await context.newPage();
