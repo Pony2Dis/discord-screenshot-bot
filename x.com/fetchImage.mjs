@@ -5,6 +5,8 @@ import path from "path";
 
 export async function fetchFirstEarningsImage(searchTerm) {
   let browser;
+  let imgUrl = null;
+
   try {
     console.log("Reading cookies from cookies.txt...");
     const cookiesPath = path.resolve(process.cwd(), "x.com", "cookies.txt");
@@ -46,7 +48,7 @@ export async function fetchFirstEarningsImage(searchTerm) {
       throw new Error("No image found in first result");
     }
 
-    let imgUrl = await imgHandle.getAttribute("src");
+    imgUrl = await imgHandle.getAttribute("src");
     // strip “&name=small” if present
     if (imgUrl.includes("&name=small")) {
         imgUrl = imgUrl.replace(/&name=small/g, "");
