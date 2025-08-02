@@ -1,7 +1,7 @@
 import "dotenv/config";
 import fs from "fs/promises";
 import { Client, GatewayIntentBits } from "discord.js";
-import { fetchLatestPosts } from "./fetchLatestPosts.mjs";
+import { fetchLatestPosts } from "../x.com/fetchLatestPosts.mjs";
 
 const { DISCORD_TOKEN, DISCORD_CHANNEL_ID, X_USERNAMES } = process.env;
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
