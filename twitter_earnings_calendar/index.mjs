@@ -21,45 +21,52 @@ async function saveSent(file, sent) {
 }
 
 async function run() {
-  await client.login(DISCORD_TOKEN);
-  const channel = await client.channels.fetch(DISCORD_CHANNEL_ID);
+  try {
+    await client.login(DISCORD_TOKEN);
+    const channel = await client.channels.fetch(DISCORD_CHANNEL_ID);
 
-  const users = X_USERNAMES.split(/\r?\n/).map(u => u.trim()).filter(Boolean);
+    const users = X_USERNAMES.split(/\r?\n/).map(u => u.trim()).filter(Boolean);
 
-  for (const username of users) {
-    const stateFile = `./twitter_earning_calendar/last_link_${username}.json`;
-    const sent = await loadSent(stateFile);
+    for (const username of users) {
+      const stateFile = `./twitter_earning_calendar/last_link_${username}.json`;
+      const sent = await loadSent(stateFile);
 
-    const today = new Date();
-    const day = today.getDay();
-    const diff = day === 0 ? 6 : day - 1; // ISO-week: Monday=1…Sunday=0→treat Sunday as last
-    const monday = new Date(today);
-    monday.setDate(today.getDate() - diff);
-    
-    const monthNames = [
-      "January","February","March","April","May","June",
-      "July","August","September","October","November","December"
-    ];
-    const formatted = `${monthNames[monday.getMonth()]} ${monday.getDate()}, ${monday.getFullYear()}`;
-    const searchTerm = `from:${username} "#earnings for the week of ${formatted}"`;
-    
-    const imageUrl = await fetchFirstEarningsImage(searchTerm);
-    console.log(`Fetched link for ${username}:`, imageUrl);
+      const today = new Date();
+      const day = today.getDay();
+      const diff = day === 0 ? 6 : day - 1; // ISO-week: Monday=1…Sunday=0→treat Sunday as last
+      const monday = new Date(today);
+      monday.setDate(today.getDate() - diff);
+      
+      const monthNames = [
+        "January","February","March","April","May","June",
+        "July","August","September","October","November","December"
+      ];
+      const formatted = `${monthNames[monday.getMonth()]} ${monday.getDate()}, ${monday.getFullYear()}`;
+      const searchTerm = `from:${username} "#earnings for the week of ${formatted}"`;
+      
+      const imageUrl = await fetchFirstEarningsImage(searchTerm);
+      console.log(`Fetched link for ${username}:`, imageUrl);
 
-    const newLinks = [imageUrl].filter(l => !sent.includes(l));
-    if (!newLinks.length) continue;
+      const newLinks = [imageUrl].filter(l => !sent.includes(l));
+      if (!newLinks.length) continue;
 
-    // send the new link to Discord
-    await channel.send(newLinks[0]);
+      // send the new link to Discord
+      await channel.send(newLinks[0]);
 
-    // sleep a bit to avoid being rate-limited
-    await sleep(1000);
+      // sleep a bit to avoid being rate-limited
+      await sleep(1000);
 
-    // save the growing array of all sent links
-    await saveSent(stateFile, sent.concat(newLinks));
+      // save the growing array of all sent links
+      await saveSent(stateFile, sent.concat(newLinks));
+    }
   }
-
-  await client.destroy();
+  catch (error) {
+    console.error("Error in main execution:", error);
+  }
+  finally {
+    console.log("Finished processing all users.");
+    if(client) await client.destroy();
+  }
 }
 
 run().catch(console.error);
