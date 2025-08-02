@@ -2,7 +2,7 @@ import { firefox } from "playwright";
 import * as fs from "fs/promises";
 import * as path from "path";
 
-async function fetchLatestPosts(username, limit = 10, days = 7) {
+export async function fetchLatestPosts(username, limit = 10, days = 7) {
     // create results array for the returned urls, and init with empty array
     var results = [];
     var browser;
