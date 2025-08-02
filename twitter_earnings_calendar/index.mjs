@@ -42,6 +42,7 @@ async function run() {
       const day = today.getDay();
       const diff = day - 1;
       const thisMonday = new Date(today);
+      let newLinks = [];
       thisMonday.setDate(today.getDate() - diff);
       
       // loop over previous, current and next week
@@ -55,7 +56,7 @@ async function run() {
         const imageUrl = await fetchFirstEarningsImage(searchTerm);
         console.log(`Fetched ${tag}-week link for ${username}:`, imageUrl);
 
-        const newLinks = [imageUrl].filter(l => !sent.includes(l));
+        newLinks = [imageUrl].filter(l => !sent.includes(l));
         if (!newLinks.length) continue;
 
         // send the new link to Discord
@@ -67,7 +68,7 @@ async function run() {
         // add the new link to the sent array
         sent.push(newLinks[0]);
       }
-      
+
       // save the growing array of all sent links
       await saveSent(stateFile, sent.concat(newLinks));
     }
