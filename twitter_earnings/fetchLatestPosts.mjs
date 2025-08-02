@@ -1,99 +1,125 @@
-// twitter/fetchLatestPosts.mjs
-import "dotenv/config";
 import { firefox } from "playwright";
+import * as fs from "fs/promises";
+import * as path from "path";
 
-export async function fetchLatestPosts(
-  username,
-  limit = 5,
-  days = 7
-) {
-  const { X_EMAIL, X_PASSWORD, X_USERNAME } = process.env;
-  if (!X_EMAIL || !X_PASSWORD || !X_USERNAME) {
-    throw new Error(
-      "Please set X_EMAIL, X_PASSWORD and X_USERNAME in your .env"
-    );
-  }
+async function fetchLatestPosts(username, limit = 10) {
+  // create results array for the returned urls, and init with empty array
+  var results = [];
 
-  // 1) spin up browser
-  const browser = await firefox.launch({ headless: true });
-  const context = await browser.newContext();
-  const page = await context.newPage();
-
-  // ————————————————————————————————————————————————
-  // 2) LOGIN FLOW
-  await page.goto("https://x.com/login", { waitUntil: "networkidle" });
-
-  // enter your email
-  await page.fill('input[name="text"]', X_EMAIL);
-  await page.click('button:has-text("Next")');
-
-  // wait up to 15s for either password field or the extra username prompt
-  const start = Date.now();
-  while (Date.now() - start < 15_000) {
-    // if password input appears, break out
-    if (await page.$('input[name="password"]')) {
-      break;
+  try {
+    console.log("Reading cookies from cookies.txt...");
+    const cookieHeader = await fs.readFile("cookies.txt", "utf-8");
+    if (!cookieHeader) {
+      console.error("❌ cookies.txt is empty or not found");
+      process.exit(1);
     }
 
-    // if they’re asking again for text (phone/username), fill X_USERNAME
-    const extra = await page.$(
-      'input[name="text"][data-testid="ocfEnterTextTextInput"]'
+    console.log("Parsing cookies...");
+    const cookies = cookieHeader.split("; ").map((cookie) => {
+      const [name, value] = cookie.split("=");
+      return {
+        name,
+        value,
+        domain: ".x.com",
+        path: "/",
+        secure: true,
+      };
+    });
+    console.log(
+      "Cookies parsed:",
+      JSON.stringify(cookies.slice(0, 2), null, 2)
     );
-    if (extra) {
-      await page.fill('input[name="text"]', X_USERNAME);
-      await page.click('button:has-text("Next")');
+
+    console.log("Launching Firefox browser (non-headless)...");
+    const browser = await firefox.launch({ headless: true });
+    const context = await browser.newContext();
+    await context.addCookies(cookies);
+    const page = await context.newPage();
+
+    console.log(`Navigating to https://x.com/${username}...`);
+    try {
+      await page.goto(`https://x.com/${username}`, { timeout: 60000 });
+      console.log(
+        "Initial navigation completed, waiting 15 seconds for page to load..."
+      );
+      await page.waitForTimeout(15000); // Increased to 15 seconds
+      console.log("Checking for profile content...");
+      await page.waitForSelector("article", { timeout: 60000 }); // Wait for articles to appear
+      console.log("Profile page loaded with content");
+    } catch (navError) {
+      console.error("Navigation failed:", navError.message);
+      await page.screenshot({ path: "error-screenshot.png" });
+      console.log("Saved screenshot to error-screenshot.png");
+      await fs.writeFile("error-page.html", await page.content());
+      console.log("Saved page HTML to error-page.html");
+      await browser.close();
+      process.exit(1);
     }
 
-    await page.waitForTimeout(500);
-  }
+    console.log("Scrolling to load more posts...");
+    for (let i = 0; i < 30; i++) {
+      await page.evaluate(() => window.scrollBy(0, 700));
+      await page.waitForTimeout(1000);
+      console.log(`Scroll ${i + 1} completed`);
 
-  // now password step
-  await page.fill('input[name="password"]', X_PASSWORD);
-  await page.click('button:has-text("Log in")');
-  await page.waitForSelector("a[aria-label='Profile']", {
-    timeout: 30_000,
-  });
+      console.log("Extracting post URLs and timestamps...");
+      const items = await page.$$eval("article", (articles) =>
+        articles
+          .map((a) => {
+            const link = a.querySelector('a[href*="/status/"]')?.href;
+            const date = a.querySelector("time")?.getAttribute("datetime");
+            const text = a.querySelector("div[lang]")?.textContent?.trim();
+            return link && date ? { url: link, date, text } : null;
+          })
+          .filter(Boolean)
+      );
 
-  // ————————————————————————————————————————————————
-  // 3) GO TO TARGET PROFILE
-  await page.goto(`https://x.com/${username}`, {
-    waitUntil: "networkidle",
-  });
+      // check if items is empty
+      if (items.length === 0) {
+        console.log("No posts found in this scroll");
+        continue;
+      }
+      console.log(`Found ${items.length} posts in this scroll`);
 
-  const cutoff = Date.now() - days * 24 * 60 * 60 * 1000;
-  const seen = new Set();
-  const links = [];
+      // filter out duplicates based on URL
+      const uniqueItems = items.filter(
+        (item) => !results.some((r) => r.url === item.url)
+      );
+      if (uniqueItems.length === 0) {
+        console.log("No new unique posts found in this scroll");
+        continue;
+      }
+      console.log(`Adding ${uniqueItems.length} unique posts to results`);
 
-  // 4) SCROLL & EXTRACT
-  for (let i = 0; i < 10 && links.length < limit; i++) {
-    const paths = await page.$$eval(
-      'a[href*="/status/"]',
-      (els, user) =>
-        Array.from(els, (a) => a.getAttribute("href"))
-          .filter((h) => new RegExp(`^/${user}/status/\\d+$`).test(h)),
-      username
-    );
-    console.log("found:", paths);
-
-    for (const path of paths) {
-      if (seen.has(path)) continue;
-      const ts = await page
-        .$eval(`a[href="${path}"] time`, (t) => t.dateTime)
-        .catch(() => null);
-      if (!ts || new Date(ts).getTime() < cutoff) continue;
-
-      seen.add(path);
-      links.push(`https://x.com${path}`);
-      if (links.length >= limit) break;
+      // append unique items to results
+      results.push(...uniqueItems);
     }
 
-    // scroll down & wait
-    await page.evaluate(() =>
-      window.scrollBy(0, window.innerHeight)
-    );
-    await page.waitForTimeout(2000);
+    const cutoff = Date.now() - 7 * 24 * 3600 * 1000;
+    const recent = results.filter((i) => new Date(i.date).getTime() >= cutoff);
+    const regex = new RegExp(`^https://x\\.com/${username}/status/\\d+$`);
+
+    results = Array.from(new Set(recent.map((i) => i.url)))
+      .filter((u) => regex.test(u))
+      .slice(0, limit);
+
+    if (results.length === 0) {
+      console.log(`No posts found for ${username}`);
+      return;
+    }
+
+    console.log(`Latest ${results.length} posts from ${username}:`);
+    
+    // // before browser closure, allow the user to see the page for 4 minutes
+    // await page.waitForTimeout(240000); // Wait for 4 minutes
+
+    console.log("Closing browser...");
+    await browser.close();
+  } catch (error) {
+    console.error("❌ Error fetching posts:");
+    console.error(error.message);
+    process.exit(1);
   }
 
-  await browser.close();
-  return links;
+  return results;
 }
