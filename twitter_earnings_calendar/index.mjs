@@ -28,7 +28,7 @@ async function run() {
     const users = X_USERNAMES.split(/\r?\n/).map(u => u.trim()).filter(Boolean);
 
     for (const username of users) {
-      const stateFile = `./twitter_earning_calendar/last_link_${username}.json`;
+      const stateFile = `./twitter_earnings_calendar/last_link_${username}.json`;
       const sent = await loadSent(stateFile);
 
       const today = new Date();
