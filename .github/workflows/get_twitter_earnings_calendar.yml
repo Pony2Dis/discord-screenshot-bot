@@ -1,4 +1,4 @@
-name: ⚡ Get X.com Influencers Posts
+name: 📅 Get X.com Earnings Calendar
 
 on:
   schedule:
@@ -33,9 +33,9 @@ jobs:
       - name: Run bot
         env:
           DISCORD_TOKEN:      ${{ secrets.DISCORD_TOKEN }}
-          DISCORD_CHANNEL_ID: ${{ vars.X_INFLUENCERS_CHANNEL_ID }}
-          X_USERNAMES:        ${{ vars.X_INFLUENCERS_USERNAMES }}
-        run: node twitter_influencers/index.mjs
+          DISCORD_CHANNEL_ID: ${{ vars.X_EARNINGS_CAL_CHANNEL_ID }}
+          X_USERNAMES:        ${{ vars.X_EARNINGS__CAL_USERNAMES }}
+        run: node twitter_earnings_calendar/index.mjs
 
       - name: Commit state
         run: |
@@ -46,7 +46,7 @@ jobs:
           git pull --rebase --autostash origin main
 
           # stage per-user state files
-          git add twitter_influencers/last_link_*.json
+          git add twitter_earnings_calendar/last_link_*.json
 
           # commit only if there are changes
           git diff --cached --quiet || git commit -m "Update last seen links"

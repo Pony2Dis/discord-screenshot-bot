@@ -2,7 +2,7 @@ name: ⚡ Get X.com Earnings Posts
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -35,9 +35,6 @@ jobs:
           DISCORD_TOKEN:      ${{ secrets.DISCORD_TOKEN }}
           DISCORD_CHANNEL_ID: ${{ vars.X_EARNINGS_CHANNEL_ID }}
           X_USERNAMES:        ${{ vars.X_EARNINGS_USERNAMES }}
-          X_EMAIL:            ${{ secrets.X_EMAIL }}
-          X_USERNAME:         ${{ secrets.X_USERNAME }}
-          X_PASSWORD:         ${{ secrets.X_PASSWORD }}
         run: node twitter_earnings/index.mjs
 
       - name: Commit state
