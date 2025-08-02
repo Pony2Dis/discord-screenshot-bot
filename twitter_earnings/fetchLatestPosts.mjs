@@ -1,8 +1,7 @@
 import { firefox } from "playwright";
 import * as fs from "fs/promises";
-import * as path from "path";
 
-async function fetchLatestPosts(username, limit = 10) {
+export async function fetchLatestPosts(username, limit = 10, days = 7) {
   // create results array for the returned urls, and init with empty array
   var results = [];
 
@@ -95,7 +94,7 @@ async function fetchLatestPosts(username, limit = 10) {
       results.push(...uniqueItems);
     }
 
-    const cutoff = Date.now() - 7 * 24 * 3600 * 1000;
+    const cutoff = Date.now() - days * 24 * 3600 * 1000;
     const recent = results.filter((i) => new Date(i.date).getTime() >= cutoff);
     const regex = new RegExp(`^https://x\\.com/${username}/status/\\d+$`);
 
