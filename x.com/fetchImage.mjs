@@ -23,12 +23,14 @@ export async function fetchFirstEarningsImage(searchTerm) {
       JSON.stringify(cookies.slice(0, 2), null, 2)
     );
 
+    console.log("Launching Firefox browser...");
     browser = await firefox.launch({ headless: true });
     const context = await browser.newContext();
     await context.addCookies(cookies);
     const page = await context.newPage();
     await page.goto("https://x.com", { timeout: 60000 });
 
+    console.log("searching for:", searchTerm);
     await page.waitForSelector('input[data-testid="SearchBox_Search_Input"]', { timeout: 60000 });
     await page.click('input[data-testid="SearchBox_Search_Input"]');
     await page.fill('input[data-testid="SearchBox_Search_Input"]', searchTerm);
