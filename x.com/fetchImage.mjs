@@ -3,9 +3,10 @@ import { firefox } from "playwright";
 import fs from "fs/promises";
 import path from "path";
 
-export async function fetchFirstEarningsImage(searchTerm) {
+export async function fetchFirstEarningsImage(fromUser, formatted) {
   let browser;
   let imgUrl = null;
+  let result = null;
 
   try {
     console.log("Reading cookies from cookies.txt...");
@@ -26,21 +27,65 @@ export async function fetchFirstEarningsImage(searchTerm) {
     );
 
     console.log("Launching Firefox browser...");
-    browser = await firefox.launch({ headless: true });
+    browser = await firefox.launch({ headless: false });
     const context = await browser.newContext();
     await context.addCookies(cookies);
     const page = await context.newPage();
     await page.goto("https://x.com", { timeout: 60000 });
 
-    console.log("searching for:", searchTerm);
+    console.log("searching for:", formatted, "from:", fromUser);
+    const searchTerm = `from:${fromUser} "${formatted}"`;
     await page.waitForSelector('input[data-testid="SearchBox_Search_Input"]', { timeout: 60000 });
     await page.click('input[data-testid="SearchBox_Search_Input"]');
     await page.fill('input[data-testid="SearchBox_Search_Input"]', searchTerm);
     await page.keyboard.press("Enter");
 
     await page.waitForSelector("article", { timeout: 60000 });
+
+    // get the article post link
+    const items = await page.$$eval("article", (articles) =>
+      articles
+        .map((a) => {
+          const link = a.querySelector('a[href*="/status/"]')?.href;
+          const date = a.querySelector("time")?.getAttribute("datetime");
+          const text = a.querySelector("div[lang]")?.textContent?.trim();
+          return link && date
+            ? { url: link, date, text }
+            : null;
+        })
+        .filter(Boolean)
+    );
+
+    if (items.length === 0) {
+      console.error("❌ No posts found in search results");
+      throw new Error("No posts found in search results");
+    }
+
+    // loop through the items to find the first one that contains the exact search term in the text
+    const firstItem = items.find(item => item.text.includes(formatted));
+    if (!firstItem) {
+      console.error("❌ No matching post found for the search term");
+
+      console.log("post text:", items.map(item => item.text).join("\n"));
+
+      throw new Error("No matching post found for the search term");
+    }
+
+    console.log("First matching post found:", firstItem.url);
+
+    // navigate to the first post
+    await page.goto(firstItem.url, { timeout: 60000 });
+
+    // wait for the post image to load
+    console.log("Waiting for the image to load in the post...");
+    await page.waitForSelector(
+      'xpath=/html/body/div[1]/div/div/div[2]/main/div/div/div/div[1]/div/section/div/div/div[1]/div/div/article/div/div/div[3]/div[2]/div/div/div/div/div[1]/div/div/a/div/div[2]/div/img',
+      { timeout: 60000 }
+    );
+
+    // get the image URL from the first result
     const imgHandle = await page.$(
-      'xpath=/html/body/div[1]/div/div/div[2]/main/div/div/div/div[1]/div/div[3]/section/div/div/div[1]/div/div/article/div/div/div[2]/div[2]/div[3]/div/div/div/div[1]/div/div/a/div/div[2]/div/img'
+      'xpath=/html/body/div[1]/div/div/div[2]/main/div/div/div/div[1]/div/section/div/div/div[1]/div/div/article/div/div/div[3]/div[2]/div/div/div/div/div[1]/div/div/a/div/div[2]/div/img'
     );
 
     if (!imgHandle) {
@@ -54,18 +99,23 @@ export async function fetchFirstEarningsImage(searchTerm) {
         imgUrl = imgUrl.replace(/&name=small/g, "");
     }
     console.log("Image URL found:", imgUrl);
+    result = {postUrl: firstItem.url, imageUrl: imgUrl};
   } catch (err) {
     console.error("❌ Error fetching image:", err);
+    // wait 4 minutes before closing the browser to avoid rate limiting
+    await new Promise(resolve => setTimeout(resolve, 240000));
   } finally {
     if (browser) await browser.close();
   }
 
-  return imgUrl;
+  return result;
 }
 
 // Example usage:
-// (async () => {
-//   const term = 'from:eWhispers "#earnings for the week of August 4, 2025"';
-//   const imageUrl = await fetchFirstEarningsImage(term);
-//   console.log("Found image URL:", imageUrl);
-// })();
+(async () => {
+  const term = "#earnings for the week of August 4, 2025";
+  const username = "eWhispers";
+  const result = await fetchFirstEarningsImage(username, term);
+  console.log("Found image URL:", result.imageUrl);
+  console.log("Post URL:", result.postUrl);
+})();

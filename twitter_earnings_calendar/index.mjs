@@ -49,18 +49,20 @@ async function run() {
       for (const offset of [-1, 0, 1]) {
         const monday = new Date(thisMonday);
         monday.setDate(thisMonday.getDate() + offset * 7);
-        const formatted = `${monthNames[monday.getMonth()]} ${monday.getDate()}, ${monday.getFullYear()}`;
+        let formatted = `${monthNames[monday.getMonth()]} ${monday.getDate()}, ${monday.getFullYear()}`;
+        formatted = `#earnings for the week of ${formatted}`;
         const tag = offset < 0 ? 'previous' : offset > 0 ? 'next' : 'current';
-        const searchTerm = `from:${username} "#earnings for the week of ${formatted}"`;
         
-        const imageUrl = await fetchFirstEarningsImage(searchTerm);
-        console.log(`Fetched ${tag}-week link for ${username}:`, imageUrl);
+        const result = await fetchFirstEarningsImage(username, formatted);
+        const imageUrl = result.imageUrl;
+        const postUrl = result.postUrl;
+        console.log(`Fetched ${tag}-week link for ${username}:`, imageUrl, "at post:", postUrl);
 
-        newLinks = [imageUrl].filter(l => !sent.includes(l));
+        newLinks = [postUrl].filter(l => !sent.includes(l));
         if (!newLinks.length) continue;
 
         // send the new link to Discord
-        await channel.send(newLinks[0]);
+        await channel.send(imageUrl);
 
         // sleep a bit to avoid being rate-limited
         await sleep(1000);
@@ -70,7 +72,7 @@ async function run() {
       }
 
       // save the growing array of all sent links
-      await saveSent(stateFile, sent.concat(newLinks));
+      await saveSent(stateFile, sent);
     }
   }
   catch (error) {
