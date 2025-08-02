@@ -50,7 +50,7 @@ async function run() {
     if (!newLinks.length) continue;
 
     // send the new link to Discord
-    await channel.send(link);
+    await channel.send(newLinks[0]);
 
     // sleep a bit to avoid being rate-limited
     await sleep(1000);
