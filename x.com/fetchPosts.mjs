@@ -14,7 +14,7 @@ export async function fetchLatestPosts(username, limit = 10, days = 7) {
     const cookieHeader = await fs.readFile(cookiesPath, "utf-8");
     if (!cookieHeader) {
       console.error("❌ cookies.txt is empty or not found");
-      process.exit(1);
+      throw new Error("No cookies found in cookies.txt");
     }
     console.log("Parsing cookies...");
     const cookies = cookieHeader.split("; ").map((cookie) => {
@@ -99,7 +99,6 @@ export async function fetchLatestPosts(username, limit = 10, days = 7) {
   } catch (error) {
     console.error("❌ Error fetching posts:");
     console.error(error.message);
-    process.exit(1);
   } finally {
     console.log("Closing browser...");
     if (browser) await browser.close();
