@@ -46,7 +46,7 @@ async function run() {
     const imageUrl = await fetchFirstEarningsImage(searchTerm);
     console.log(`Fetched link for ${username}:`, imageUrl);
 
-    const newLinks = imageUrl.filter(l => !sent.includes(l));
+    const newLinks = [imageUrl].filter(l => !sent.includes(l));
     if (!newLinks.length) continue;
 
     // send the new link to Discord
