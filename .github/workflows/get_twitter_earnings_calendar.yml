@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  get_x_posts:
+  get_x_earnings_calendar:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
