@@ -27,7 +27,7 @@ export async function fetchFirstEarningsImage(fromUser, formatted) {
     );
 
     console.log("Launching Firefox browser...");
-    browser = await firefox.launch({ headless: false });
+    browser = await firefox.launch({ headless: true });
     const context = await browser.newContext();
     await context.addCookies(cookies);
     const page = await context.newPage();
