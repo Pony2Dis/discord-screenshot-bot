@@ -28,22 +28,27 @@ async function run() {
     const users = X_USERNAMES.split(/\r?\n/).map(u => u.trim()).filter(Boolean);
 
     for (const username of users) {
-      const stateFile = `./twitter_influencers/last_link_${username}.json`;
-      const sent = await loadSent(stateFile);
-      const links = await fetchLatestPosts(username, 10);
-      console.log(`Fetched links for ${username}:`, links);
-          
-      const newLinks = links.filter(l => !sent.includes(l));
-      if (!newLinks.length) continue;
+      try {
+        const stateFile = `./twitter_influencers/last_link_${username}.json`;
+        const sent = await loadSent(stateFile);
+        const links = await fetchLatestPosts(username, 10);
+        console.log(`Fetched links for ${username}:`, links);
+            
+        const newLinks = links.filter(l => !sent.includes(l));
+        if (!newLinks.length) continue;
 
-      for (let link of newLinks.reverse()) {
-        await channel.send(link);
+        for (let link of newLinks.reverse()) {
+          await channel.send(link);
 
-        // sleep a bit to avoid being rate-limited
-        await sleep(1000);
+          // sleep a bit to avoid being rate-limited
+          await sleep(1000);
+        }
+        // save the growing array of all sent links
+        await saveSent(stateFile, sent.concat(newLinks));
       }
-      // save the growing array of all sent links
-      await saveSent(stateFile, sent.concat(newLinks));
+      catch (error) {
+        console.error(`Error processing user ${username}:`, error);
+      }
     }
   }
   catch (error) {
