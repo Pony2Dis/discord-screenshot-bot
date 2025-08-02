@@ -1,6 +1,7 @@
 {
   "name": "discord-screenshot-bot",
   "version": "1.0.0",
+  "type": "commonjs",
   "main": "screenshot.js",
   "scripts": {
     "start": "node screenshot.js",
