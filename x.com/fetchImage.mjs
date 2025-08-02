@@ -11,7 +11,7 @@ export async function fetchFirstEarningsImage(searchTerm) {
     const cookieHeader = await fs.readFile(cookiesPath, "utf-8");
     if (!cookieHeader) {
       console.error("❌ cookies.txt is empty or not found");
-      process.exit(1);
+      throw new Error("No cookies found in cookies.txt");
     }
     console.log("Parsing cookies...");
     const cookies = cookieHeader.split("; ").map((cookie) => {
@@ -41,7 +41,7 @@ export async function fetchFirstEarningsImage(searchTerm) {
 
     if (!imgHandle) {
       console.error("❌ No image found in first result");
-      return null;
+      throw new Error("No image found in first result");
     }
 
     let imgUrl = await imgHandle.getAttribute("src");
@@ -50,13 +50,13 @@ export async function fetchFirstEarningsImage(searchTerm) {
         imgUrl = imgUrl.replace(/&name=small/g, "");
     }
     console.log("Image URL found:", imgUrl);
-    return imgUrl;
   } catch (err) {
     console.error("❌ Error fetching image:", err);
-    return null;
   } finally {
     if (browser) await browser.close();
   }
+
+  return imgUrl;
 }
 
 // Example usage:
