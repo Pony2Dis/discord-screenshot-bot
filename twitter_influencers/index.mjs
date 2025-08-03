@@ -59,6 +59,7 @@ async function run() {
 
         // ewmove duplicates from newLinks
         newLinks = new Set(newLinks);
+        newLinks = Array.from(newLinks);
 
         for (let link of newLinks.reverse()) {
           await channel.send(link);
