@@ -103,7 +103,7 @@ export async function fetchFirstEarningsImage(fromUser, formatted) {
     if (imgUrl.includes("&name=small")) {
         imgUrl = imgUrl.replace(/&name=small/g, "");
     }
-    
+
     console.log("Image URL found:", imgUrl);
     result = {postUrl: firstItem.url, imageUrl: imgUrl};
   } catch (err) {
@@ -117,11 +117,11 @@ export async function fetchFirstEarningsImage(fromUser, formatted) {
   return result;
 }
 
-// Example usage:
-(async () => {
-  const term = "#earnings for the week of August 4, 2025";
-  const username = "eWhispers";
-  const result = await fetchFirstEarningsImage(username, term);
-  console.log("Found image URL:", result.imageUrl);
-  console.log("Post URL:", result.postUrl);
-})();
+// // Example usage:
+// (async () => {
+//   const term = "#earnings for the week of August 4, 2025";
+//   const username = "eWhispers";
+//   const result = await fetchFirstEarningsImage(username, term);
+//   console.log("Found image URL:", result.imageUrl);
+//   console.log("Post URL:", result.postUrl);
+// })();
