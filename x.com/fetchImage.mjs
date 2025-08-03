@@ -97,8 +97,7 @@ export async function fetchFirstEarningsImage(fromUser, formatted) {
     result = { postUrl: firstItem.url, imageUrl: imgUrl };
   } catch (err) {
     console.error("❌ Error fetching image:", err);
-    // back off 4 minutes on failure
-    await new Promise(r => setTimeout(r, 240000));
+    throw err;
   }
 
   return result;
