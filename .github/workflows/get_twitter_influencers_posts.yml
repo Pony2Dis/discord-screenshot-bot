@@ -2,7 +2,7 @@ name: ⚡ Get X.com Influencers Posts
 
 on:
   repository_dispatch:
-    types: [get-x-influencers-posts] # Triggered by a repository dispatch event
+    types: [get-x-influencers-posts]
   workflow_dispatch:
 
 permissions:
@@ -10,52 +10,44 @@ permissions:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false # if action is already running, do not cancel it, wait for it to finish
-  
+  cancel-in-progress: false
+
 jobs:
   get_x_posts:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install deps
-        run: npm install
+      - run: npm install
+        name: Install deps
 
-      - name: Install Playwright browsers
-        # this will pull down Firefox
-        run: npx playwright install --with-deps firefox
+      - run: npx playwright install --with-deps firefox
+        name: Install Playwright browsers
 
       - name: Run bot
         env:
-          DISCORD_TOKEN:      ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_TOKEN:   ${{ secrets.DISCORD_TOKEN }}
           DISCORD_CHANNEL_ID: ${{ vars.X_INFLUENCERS_CHANNEL_ID }}
-          X_USERNAMES:        ${{ vars.X_INFLUENCERS_USERNAMES }}
-          X_COOKIE_HEADER:    ${{ vars.X_COOKIE_HEADER }}
+          X_USERNAMES:     ${{ vars.X_INFLUENCERS_USERNAMES }}
+          X_COOKIE_HEADER: ${{ vars.X_COOKIE_HEADER }}
         run: node twitter_influencers/index.mjs
 
       - name: Commit state
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-
-          # sync any remote changes first
           git pull --rebase --autostash origin main
-
-          # stage per-user state files
-          git add twitter_influencers/last_link_*.json
-          git add twitter_influencers/debug_*.html
-
-          # commit only if there are changes
+          shopt -s nullglob
+          files=(twitter_influencers/last_link_*.json twitter_influencers/debug_*.html)
+          if (( ${#files[@]} )); then
+            git add "${files[@]}"
+          fi
           git diff --cached --quiet || git commit -m "Update last seen links"
-
-          # push back to GitHub
           git push
