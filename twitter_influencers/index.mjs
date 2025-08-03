@@ -57,6 +57,9 @@ async function run() {
         });
         if (!newLinks.length) continue;
 
+        // ewmove duplicates from newLinks
+        newLinks = new Set(newLinks);
+
         for (let link of newLinks.reverse()) {
           await channel.send(link);
           await sleep(1000);
