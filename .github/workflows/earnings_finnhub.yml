@@ -1,8 +1,8 @@
 name: 💰 Get Finnhub Earnings Reports
 
 on:
-  schedule:
-    - cron: '*/55 * * * *'
+  repository_dispatch:
+    types: [fetch-earnings-from-finnhub] # Triggered by a repository dispatch event
   workflow_dispatch:
 
 permissions:
