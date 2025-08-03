@@ -1,19 +1,18 @@
 // fetchImage.mjs
 import { firefox } from "playwright";
-import fs from "fs/promises";
-import path from "path";
 
 let browser, context, page;
 
 async function initBrowser() {
   if (page) return;
-  console.log("Reading cookies from cookies.txt...");
-  const cookiesPath = path.resolve(process.cwd(), "x.com", "cookies.txt");
-  const cookieHeader = await fs.readFile(cookiesPath, "utf-8");
+
+  console.log("Reading cookies from env var COOKIE_HEADER...");
+  const cookieHeader = process.env.X_COOKIE_HEADER;
   if (!cookieHeader) {
-    console.error("❌ cookies.txt is empty or not found");
-    throw new Error("No cookies found in cookies.txt");
+    console.error("❌ COOKIE_HEADER env var is not set");
+    throw new Error("No cookies provided in COOKIE_HEADER");
   }
+
   console.log("Parsing cookies...");
   const cookies = cookieHeader.split("; ").map(cookie => {
     const [name, value] = cookie.split("=");
