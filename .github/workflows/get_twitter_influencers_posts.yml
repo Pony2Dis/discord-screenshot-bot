@@ -1,8 +1,8 @@
 name: ⚡ Get X.com Influencers Posts
 
 on:
-  schedule:
-    - cron: '*/5 * * * *'
+  repository_dispatch:
+    types: [get-x-influencers-posts] # Triggered by a repository dispatch event
   workflow_dispatch:
 
 permissions:
