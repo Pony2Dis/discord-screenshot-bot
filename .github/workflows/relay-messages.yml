@@ -2,8 +2,8 @@
 name: 🔁 Relay Discord Messages
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'   # every 30 minutes
+  repository_dispatch:
+    types: [relay-youtube-videos] # Triggered by a repository dispatch event
   workflow_dispatch:
 
 jobs:
