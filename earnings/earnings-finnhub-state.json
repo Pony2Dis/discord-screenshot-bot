@@ -4802,5 +4802,125 @@
   {
     "symbol": "ABR",
     "date": "2025-08-01"
+  },
+  {
+    "symbol": "HTO",
+    "date": "2025-07-29"
+  },
+  {
+    "symbol": "EEFT",
+    "date": "2025-07-30"
+  },
+  {
+    "symbol": "PFIS",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "K",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "CIO",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "CBIO",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "CRAWA",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "NEXA",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "IGMS",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "CMPS",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "HYMC",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "FBLG",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "RDDT",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "UNIT",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "SIMO",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "CDRO",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "SNCY",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "AHT",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "COCH",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "WBX",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "AVD",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "FMCC",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "NVNO",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "WT",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "SCCO",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "MLCO",
+    "date": "2025-07-31"
+  },
+  {
+    "symbol": "AU",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "FLGC",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "BEPC",
+    "date": "2025-08-01"
+  },
+  {
+    "symbol": "TXNM",
+    "date": "2025-08-01"
   }
 ]
