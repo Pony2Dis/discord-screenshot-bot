@@ -1,8 +1,8 @@
 name: 📸 Take CNN Fear & Greed Screenshot
 
 on:
-  schedule:
-    - cron: '1 * * * *' # Every 30 minutes
+  repository_dispatch:
+    types: [run-fear-greed-screenshot] # Triggered by a repository dispatch event
   workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
