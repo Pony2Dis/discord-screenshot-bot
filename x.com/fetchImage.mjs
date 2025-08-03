@@ -35,14 +35,17 @@ export async function fetchFirstEarningsImage(fromUser, formatted) {
 
     console.log("searching for:", formatted, "from:", fromUser);
     const searchTerm = `from:${fromUser} "${formatted}"`;
+    console.log("Waiting for the search box to appear...");
     await page.waitForSelector('input[data-testid="SearchBox_Search_Input"]', { timeout: 60000 });
     await page.click('input[data-testid="SearchBox_Search_Input"]');
     await page.fill('input[data-testid="SearchBox_Search_Input"]', searchTerm);
     await page.keyboard.press("Enter");
 
+    console.log("Waiting for search results to load...");
     await page.waitForSelector("article", { timeout: 60000 });
 
     // get the article post link
+    console.log("Fetching posts from search results...");
     const items = await page.$$eval("article", (articles) =>
       articles
         .map((a) => {
@@ -70,10 +73,10 @@ export async function fetchFirstEarningsImage(fromUser, formatted) {
 
       throw new Error("No matching post found for the search term");
     }
-
     console.log("First matching post found:", firstItem.url);
 
     // navigate to the first post
+    console.log("Navigating to the first post URL:", firstItem.url);
     await page.goto(firstItem.url, { timeout: 60000 });
 
     // wait for the post image to load
@@ -93,11 +96,14 @@ export async function fetchFirstEarningsImage(fromUser, formatted) {
       throw new Error("No image found in first result");
     }
 
+    console.log("Image found, extracting URL...");
     imgUrl = await imgHandle.getAttribute("src");
+
     // strip “&name=small” if present
     if (imgUrl.includes("&name=small")) {
         imgUrl = imgUrl.replace(/&name=small/g, "");
     }
+    
     console.log("Image URL found:", imgUrl);
     result = {postUrl: firstItem.url, imageUrl: imgUrl};
   } catch (err) {
