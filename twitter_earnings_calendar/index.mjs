@@ -67,8 +67,11 @@ async function run() {
           await sleep(1000);
           sent.push(postUrl);
         } catch (err) {
+          if (offset > 0) {
+            console.warn(`⚠️ No post yet for future week (“${formatted}”), skipping.`);
+            continue;
+          }
           console.error(`❌ Error fetching ${tag}-week image for ${username}:`, err);
-          await sleep(240000);
         }
       }
 
