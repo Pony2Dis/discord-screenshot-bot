@@ -49,7 +49,7 @@ async function run() {
           }
         };
         const normalizedSent = sent.map(normalizeUrl);
-        const newLinks = links.filter(link => {
+        let newLinks = links.filter(link => {
           if(!normalizedSent.includes(normalizeUrl(link))) {
             console.log(`New link found for ${username}:`, normalizeUrl(link), "sent:", normalizedSent);
             return true;

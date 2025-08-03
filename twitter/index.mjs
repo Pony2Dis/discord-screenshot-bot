@@ -34,8 +34,11 @@ async function run() {
         const links = await fetchLatestPosts(username, 10);
         console.log(`Fetched links for ${username}:`, links);
             
-        const newLinks = links.filter(l => !sent.includes(l));
+        let newLinks = links.filter(l => !sent.includes(l));
         if (!newLinks.length) continue;
+
+        // ewmove duplicates from newLinks
+        newLinks = new Set(newLinks);
 
         for (let link of newLinks.reverse()) {
           await channel.send(link);
