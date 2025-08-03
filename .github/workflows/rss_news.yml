@@ -1,10 +1,12 @@
 name: 📻 Get the RSS News
 
 on:
+  repository_dispatch:
+    types: [run-rss]
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
-
+    
 permissions:
   contents: write    # allow GITHUB_TOKEN to push
 
