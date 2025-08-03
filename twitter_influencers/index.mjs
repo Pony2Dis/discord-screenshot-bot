@@ -49,7 +49,12 @@ async function run() {
           }
         };
         const normalizedSent = sent.map(normalizeUrl);
-        const newLinks = links.filter(link => !normalizedSent.includes(normalizeUrl(link)));
+        const newLinks = links.filter(link => {
+          if(!normalizedSent.includes(normalizeUrl(link))) {
+            console.log(`New link found for ${username}:`, normalizeUrl(link), "sent:", normalizedSent);
+            return true;
+          }
+        });
         if (!newLinks.length) continue;
 
         for (let link of newLinks.reverse()) {
