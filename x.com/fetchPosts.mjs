@@ -1,30 +1,23 @@
 import { firefox } from "playwright";
-import fs from "fs/promises";
-import path from "path";
 
 export async function fetchLatestPosts(username, limit = 10, days = 7) {
-  // create results array for the returned urls, and init with empty array
   let results = [];
   let browser;
   let noNewCount = 0;
 
   try {
-    console.log("Reading cookies from cookies.txt...");
-    const cookiesPath = path.resolve(process.cwd(), "x.com", "cookies.txt");
-    const cookieHeader = await fs.readFile(cookiesPath, "utf-8");
+    console.log("Reading cookies from env var X_COOKIE_HEADER...");
+    const cookieHeader = process.env.X_COOKIE_HEADER;
     if (!cookieHeader) {
-      console.error("❌ cookies.txt is empty or not found");
-      throw new Error("No cookies found in cookies.txt");
+      console.error("❌ X_COOKIE_HEADER env var not set");
+      throw new Error("No cookies provided in X_COOKIE_HEADER");
     }
     console.log("Parsing cookies...");
     const cookies = cookieHeader.split("; ").map((cookie) => {
       const [name, value] = cookie.split("=");
       return { name, value, domain: ".x.com", path: "/", secure: true };
     });
-    console.log(
-      "Cookies parsed:",
-      JSON.stringify(cookies.slice(0, 2), null, 2)
-    );
+    console.log("Cookies parsed:", JSON.stringify(cookies.slice(0, 2), null, 2));
 
     console.log("Launching Firefox browser (headless)...");
     browser = await firefox.launch({ headless: true });
@@ -34,9 +27,8 @@ export async function fetchLatestPosts(username, limit = 10, days = 7) {
 
     console.log(`Navigating to https://x.com/${username}...`);
     await page.goto(`https://x.com/${username}`, { timeout: 60000 });
-    console.log("Initial navigation completed, waiting 15 seconds for page to load...");
+    console.log("Page loaded, waiting 15s for content...");
     await page.waitForTimeout(15000);
-    console.log("Checking for profile content...");
     await page.waitForSelector("article", { timeout: 60000 });
     console.log("Profile page loaded with content");
 
@@ -45,7 +37,6 @@ export async function fetchLatestPosts(username, limit = 10, days = 7) {
       await page.evaluate(() => window.scrollBy(0, 700));
       await page.waitForTimeout(1000);
       console.log(`Scroll ${i + 1} completed`);
-      console.log("Extracting post URLs and timestamps...");
 
       const items = await page.$$eval("article", (articles) =>
         articles
@@ -53,9 +44,7 @@ export async function fetchLatestPosts(username, limit = 10, days = 7) {
             const link = a.querySelector('a[href*="/status/"]')?.href;
             const date = a.querySelector("time")?.getAttribute("datetime");
             const text = a.querySelector("div[lang]")?.textContent?.trim();
-            return link && date
-              ? { url: link, date, text }
-              : null;
+            return link && date ? { url: link, date, text } : null;
           })
           .filter(Boolean)
       );
@@ -77,9 +66,8 @@ export async function fetchLatestPosts(username, limit = 10, days = 7) {
           break;
         }
         continue;
-      } else {
-        noNewCount = 0;
       }
+      noNewCount = 0;
       console.log(`Adding ${uniqueItems.length} unique posts to results`);
       results.push(...uniqueItems);
     }
@@ -91,14 +79,13 @@ export async function fetchLatestPosts(username, limit = 10, days = 7) {
       .filter((u) => regex.test(u))
       .slice(0, limit);
 
-    if (results.length === 0) {
+    if (!results.length) {
       console.log(`No posts found for ${username}`);
       return [];
     }
     console.log(`Latest ${results.length} posts from ${username}:`);
   } catch (error) {
-    console.error("❌ Error fetching posts:");
-    console.error(error.message);
+    console.error("❌ Error fetching posts:", error);
   } finally {
     console.log("Closing browser...");
     if (browser) await browser.close();
@@ -106,9 +93,3 @@ export async function fetchLatestPosts(username, limit = 10, days = 7) {
 
   return results;
 }
-
-// Example usage:
-// (async () => {
-//   const posts = await fetchLatestPosts("TheTranscript", 5);
-//   console.log("Fetched posts:", posts);
-// })();

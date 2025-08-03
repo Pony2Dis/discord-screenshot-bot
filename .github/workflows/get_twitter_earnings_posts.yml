@@ -39,6 +39,7 @@ jobs:
           DISCORD_TOKEN:      ${{ secrets.DISCORD_TOKEN }}
           DISCORD_CHANNEL_ID: ${{ vars.X_EARNINGS_CHANNEL_ID }}
           X_USERNAMES:        ${{ vars.X_EARNINGS_USERNAMES }}
+          X_COOKIE_HEADER:    ${{ vars.X_COOKIE_HEADER }}
         run: node twitter_earnings/index.mjs
 
       - name: Commit state
