@@ -30,7 +30,6 @@ async function initBrowser() {
 }
 
 export async function fetchFirstEarningsImage(fromUser, formatted) {
-  let imgUrl = null;
   let result = null;
 
   try {
@@ -76,25 +75,29 @@ export async function fetchFirstEarningsImage(fromUser, formatted) {
 
     console.log("Waiting for the image to load in the post...");
     await page.waitForSelector(
-      'xpath=/html/body/div[1]/div/div/div[2]/main/.../img',
+      'xpath=/html/body/div[1]/div/div/div[2]/main/div/div/div/div[1]/div/section/div/div/div[1]/div/div/article/div/div/div[3]/div[2]/div/div/div/div/div[1]/div/div/a/div/div[2]/div/img',
       { timeout: 60000 }
     );
 
     console.log("Image found, extracting URL...");
-    const imgHandle = await page.$('xpath=/html/body/div[1]/div/.../img');
+    const imgHandle = await page.$(
+      'xpath=/html/body/div[1]/div/div/div[2]/main/div/div/div/div[1]/div/section/div/div/div[1]/div/div/article/div/div/div[3]/div[2]/div/div/div/div/div[1]/div/div/a/div/div[2]/div/img'
+    );
     if (!imgHandle) {
       console.error("❌ No image found in first result");
       throw new Error("No image");
     }
 
-    imgUrl = await imgHandle.getAttribute("src");
+    let imgUrl = await imgHandle.getAttribute("src");
     if (imgUrl.includes("&name=small")) {
       imgUrl = imgUrl.replace(/&name=small/g, "");
     }
     console.log("Image URL found:", imgUrl);
+
     result = { postUrl: firstItem.url, imageUrl: imgUrl };
   } catch (err) {
     console.error("❌ Error fetching image:", err);
+    // back off 4 minutes on failure
     await new Promise(r => setTimeout(r, 240000));
   }
 

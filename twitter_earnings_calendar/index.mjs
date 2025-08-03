@@ -46,8 +46,7 @@ async function run() {
 
       // compute this week’s Monday
       const today = new Date();
-      const day   = today.getDay();
-      const diff  = day - 1;
+      const diff = today.getDay() - 1;
       const thisMonday = new Date(today);
       thisMonday.setDate(today.getDate() - diff);
 
@@ -61,9 +60,7 @@ async function run() {
 
         try {
           const { imageUrl, postUrl } = await fetchFirstEarningsImage(username, formatted);
-          if (!postUrl || sent.includes(postUrl)) {
-            continue;
-          }
+          if (!postUrl || sent.includes(postUrl)) continue;
 
           console.log(`Fetched ${tag}-week link for ${username}:`, imageUrl, "at post:", postUrl);
           await channel.send(imageUrl);
@@ -71,20 +68,18 @@ async function run() {
           sent.push(postUrl);
         } catch (err) {
           console.error(`❌ Error fetching ${tag}-week image for ${username}:`, err);
-          // back off 4 minutes if something goes wrong
           await sleep(240000);
         }
       }
 
       await saveSent(stateFile, sent);
     }
-
-    // close the shared browser once all users are done
-    await closeBrowser();
   } catch (err) {
     console.error("Error in main execution:", err);
   } finally {
     console.log("Finished processing all users.");
+    // close the shared browser so the Action can exit cleanly
+    await closeBrowser();
     if (client) await client.destroy();
   }
 }
