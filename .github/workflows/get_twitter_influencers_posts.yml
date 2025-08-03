@@ -52,6 +52,7 @@ jobs:
 
           # stage per-user state files
           git add twitter_influencers/last_link_*.json
+          git add twitter_influencers/debug_*.html
 
           # commit only if there are changes
           git diff --cached --quiet || git commit -m "Update last seen links"

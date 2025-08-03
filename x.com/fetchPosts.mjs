@@ -21,9 +21,22 @@ export async function fetchLatestPosts(username, limit = 10, days = 7) {
     const context = await browser.newContext();
     await context.addCookies(cookies);
     const page = await context.newPage();
+    console.log(`Fetching page link: https://x.com/${username}`);
     await page.goto(`https://x.com/${username}`, { timeout: 60000 });
+    console.log("Waiting for page to load...");
     await page.waitForTimeout(15000);
-    await page.waitForSelector("article", { timeout: 60000 });
+    console.log("waiting for article elements to appear...");
+    try {
+      await page.waitForSelector("article", { timeout: 30000 });
+    } catch (error) {
+      console.error("❌ Error waiting for articles:", error);
+      // save the current page html for debugging
+      const pageContent = await page.content();
+      const fs = require("fs");
+      fs.writeFileSync(`./debug_${username}.html`, pageContent);
+      console.log(`Saved current page content to debug_${username}.html`);
+      throw new Error("Failed to load articles on the page");
+    }
 
     for (let i = 0; i < limit * 1.5; i++) {
       await page.evaluate(() => window.scrollBy(0, 700));
