@@ -82,10 +82,13 @@ async function main() {
 
     if (EMBED_HOSTS.some(domain => hostname.includes(domain))) {
       const embed = new EmbedBuilder()
-        .setTitle(item.title || "")
         .setURL(item.link)
         .setTimestamp(new Date(item.pubDate || Date.now()));
 
+      if (item.title) {
+        embed.setTitle(item.title);
+      }
+      
       const snippet = item.contentSnippet?.slice(0, 200);
       if (snippet) embed.setDescription(snippet);
 
