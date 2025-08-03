@@ -1,6 +1,7 @@
 // Full updated x.com/fetchPosts.mjs
 
 import { firefox } from "playwright";
+import fs from "fs/promises";
 
 export async function fetchLatestPosts(username, limit = 10, days = 7) {
   let results = [];
@@ -32,7 +33,6 @@ export async function fetchLatestPosts(username, limit = 10, days = 7) {
       console.error("❌ Error waiting for articles:", error);
       // save the current page html for debugging
       const pageContent = await page.content();
-      const fs = require("fs");
       fs.writeFileSync(`./debug_${username}.html`, pageContent);
       console.log(`Saved current page content to debug_${username}.html`);
       throw new Error("Failed to load articles on the page");
