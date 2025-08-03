@@ -76,24 +76,27 @@ async function main() {
           : "🔵";
 
       // format the revenue
-      var revenue = "$" + item.revenue.toFixed(2); // default to millions
-      // if item.revenue is in thousand, convert to billions
-      if (item.revenue > 999) {
-        revenue = "$" + (item.revenue / 1000).toFixed(2) + "B";
-      } else if (item.revenue < 1000 && item.revenue >= 1) {
-        revenue = "$" + item.revenue.toFixed(2) + "M";
-      } else if (item.revenue < 1) {
-        revenue = "$" + (item.revenue * 1000).toFixed(2) + "K"; // convert to thousands
+      let revenue = "N/A";
+      if (item.revenue != null) {
+        if (item.revenue > 999) {
+          revenue = `$${(item.revenue / 1000).toFixed(2)}B`;
+        } else if (item.revenue >= 1) {
+          revenue = `$${item.revenue.toFixed(2)}M`;
+        } else {
+          revenue = `$${(item.revenue * 1000).toFixed(2)}K`;
+        }
       }
-
+      
       // format the revenue estimate
-      var revenueEstimate = "$" + item.revenueEstimate.toFixed(2); // default to millions
-      if (item.revenueEstimate > 999) {
-        revenue = "$" + (item.revenueEstimate / 1000).toFixed(2) + "B";
-      } else if (item.revenueEstimate < 1000 && item.revenueEstimate >= 1) {
-        revenue = "$" + item.revenueEstimate.toFixed(2) + "M";
-      } else if (item.revenueEstimate < 1) {
-        revenue = "$" + (item.revenueEstimate * 1000).toFixed(2) + "K"; // convert to thousands
+      let revenueEstimate = "N/A";
+      if (item.revenueEstimate != null) {
+        if (item.revenueEstimate > 999) {
+          revenueEstimate = `$${(item.revenueEstimate / 1000).toFixed(2)}B`;
+        } else if (item.revenueEstimate >= 1) {
+          revenueEstimate = `$${item.revenueEstimate.toFixed(2)}M`;
+        } else {
+          revenueEstimate = `$${(item.revenueEstimate * 1000).toFixed(2)}K`;
+        }
       }
 
       // format the earning report
