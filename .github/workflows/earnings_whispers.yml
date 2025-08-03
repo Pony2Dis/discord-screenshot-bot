@@ -1,8 +1,8 @@
 name: 💰 Get the RSS Earnings
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'
+  repository_dispatch:
+    types: [fetch-earnings-from-whispers] # Triggered by a repository dispatch event
   workflow_dispatch:
 
 permissions:
