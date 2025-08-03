@@ -44,7 +44,8 @@ export async function fetchLatestPosts(username, limit = 10, days = 7) {
 
       const newItems = [];
       for (const item of itemsRaw) {
-        if (!seenUrls.has(item.url)) {
+        // check if there is a url in seenUrls that is part of the sring: item.url
+        if (!Array.from(seenUrls).some(url => item.url.includes(url))) {
           seenUrls.add(item.url);
           newItems.push(item);
         }
