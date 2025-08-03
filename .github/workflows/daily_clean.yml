@@ -6,6 +6,10 @@ on:
     - cron: '0 21 * * *'
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false # if action is already running, do not cancel it, wait for it to finish
+    
 jobs:
   clear-channel:
     runs-on: ubuntu-latest

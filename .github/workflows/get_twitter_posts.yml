@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false # if action is already running, do not cancel it, wait for it to finish
+
 jobs:
   get_x_posts:
     runs-on: ubuntu-latest

@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write    # allow GITHUB_TOKEN to push
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false # if action is already running, do not cancel it, wait for it to finish
+  
 jobs:
   fetch-earnings-from-finnhub:
     runs-on: ubuntu-latest

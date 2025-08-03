@@ -5,6 +5,11 @@ on:
     types: [run-fear-greed-screenshot] # Triggered by a repository dispatch event
   workflow_dispatch: # Allows manual triggering of the workflow
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false # if action is already running, do not cancel it, wait for it to finish
+
+  
 jobs:
   take-screenshot:
     runs-on: ubuntu-latest
