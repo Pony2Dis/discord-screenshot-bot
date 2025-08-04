@@ -5062,5 +5062,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.19284100646568514
+  },
+  {
+    "epsDate": "2025-08-04T16:05:00",
+    "ticker": "ODD",
+    "name": "ODDITY Tech Ltd. ",
+    "summary": "ODDITY Tech Ltd. (ODD) reported earnings of $0.92 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.87 per share on  revenue of $239.16 million. The Earnings Whisper number was $0.90 per share. The company beat expectations by 2.22%.",
+    "subject": "ODDITY Tech Ltd. Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508045711",
+    "eps": 0.92,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.87,
+    "whisper": 0.9,
+    "highEstimate": 0.89,
+    "lowEstimate": 0.87,
+    "revenue": null,
+    "revenueEstimate": 239.16,
+    "earningsGrowth": 0.29577464788732394,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.022222222222222223,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.26673219044738883
   }
 ]
