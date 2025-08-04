@@ -4822,5 +4822,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.22386857787083267
+  },
+  {
+    "epsDate": "2025-08-04T08:00:00",
+    "ticker": "IEP",
+    "name": "Icahn Enterprises L.P.",
+    "summary": "Icahn Enterprises L.P. (IEP) reported a loss of $0.30 per share on revenue of $2.37 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $0.14 per share on  revenue of $2.39 billion. The company missed consensus estimates by 314.29% while revenue grew 0.30% on a year-over-year basis.<br /><br />Icahn Enterprises LP is a diversified holding company owning subsidiaries engaged in nine primary business segments: Investment, Automotive, Energy, Gaming, Railcar, Food Packaging, Metals, Real Estate and Home Fashion.",
+    "subject": "Icahn Enterprises L.P. Missed Consensus Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508043234",
+    "eps": -0.3,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.14,
+    "whisper": 999,
+    "highEstimate": 0.14,
+    "lowEstimate": 0.14,
+    "revenue": 2369,
+    "revenueEstimate": 2390,
+    "earningsGrowth": 0.5833333333333334,
+    "revenueGrowth": 0.0029635901778154107,
+    "earningsSurprise": -3.142857142857143,
+    "revenueSurprise": -0.008786610878661089,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.1680035650623886
   }
 ]
