@@ -4798,5 +4798,29 @@
     "revenueSurprise": 0.01863536316947909,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.0001529987760097919
+  },
+  {
+    "epsDate": "2025-08-04T08:00:00",
+    "ticker": "ON",
+    "name": "onsemi",
+    "summary": "onsemi (ON) reported earnings of $0.53 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.54 per share on  revenue of $1.45 billion. The Earnings Whisper number was $0.57 per share. The company missed expectations by 7.02%.<br /><br />ON Semiconductor is driving energy efficient electronics innovations that help make the world greener, safer, inclusive and connected. ",
+    "subject": "onsemi Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508045107",
+    "eps": 0.53,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.54,
+    "whisper": 0.57,
+    "highEstimate": 0.63,
+    "lowEstimate": 0.52,
+    "revenue": null,
+    "revenueEstimate": 1450,
+    "earningsGrowth": -0.4479166666666667,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.07017543859649122,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.22386857787083267
   }
 ]
