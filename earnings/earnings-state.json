@@ -5158,5 +5158,29 @@
     "revenueSurprise": 0.028381449689137663,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.1888394662353417
+  },
+  {
+    "epsDate": "2025-08-04T16:30:00",
+    "ticker": "MELI",
+    "name": "MercadoLibre Inc",
+    "summary": "MercadoLibre (MELI) reported earnings of $10.31 per share on revenue of $6.79 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $12.01 per share on  revenue of $6.52 billion. The Earnings Whisper number was $13.35 per share. The company missed expectations by 22.77% while revenue grew 33.85% on a year-over-year basis.<br /><br />Mercadolibre Inc together with its subsidiaries hosts the online commerce platform in Latin America, which is focused on enabling e-commerce and its related services.",
+    "subject": "MercadoLibre Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508045782",
+    "eps": 10.31,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 12.01,
+    "whisper": 13.35,
+    "highEstimate": 13.97,
+    "lowEstimate": 10.03,
+    "revenue": 6790,
+    "revenueEstimate": 6520,
+    "earningsGrowth": -0.016221374045801526,
+    "revenueGrowth": 0.33845850581509956,
+    "earningsSurprise": -0.22771535580524344,
+    "revenueSurprise": 0.04141104294478527,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.3697207477498269
   }
 ]
