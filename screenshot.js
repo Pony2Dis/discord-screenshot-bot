@@ -61,7 +61,6 @@ const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
     await bot.destroy();
   } catch (err) {
     console.error(err);
-    process.exit(1);
   } finally {
     if (bot) bot.destroy();
     console.log('🛑 Process finished');
