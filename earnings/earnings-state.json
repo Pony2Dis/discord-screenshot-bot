@@ -4654,5 +4654,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.03561059854060025
+  },
+  {
+    "epsDate": "2025-08-04T06:45:00",
+    "ticker": "BNTX",
+    "name": "BioNTech SE",
+    "summary": "BioNTech SE (BNTX) reported earnings of $1.85 per share on  for the  second quarter ended June 2025.  The consensus estimate was a loss of $1.31 per share on  revenue of $643.87 million. The company beat consensus estimates by 241.22%.<br /><br />Biopharmaceutical New Technologies is a next generation immunotherapy company pioneering novel therapies for cancer and other serious diseases.",
+    "subject": "BioNTech SE Beat Consensus Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508041267",
+    "eps": 1.85,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -1.31,
+    "whisper": 999,
+    "highEstimate": 3.78,
+    "lowEstimate": -3.29,
+    "revenue": null,
+    "revenueEstimate": 643.87,
+    "earningsGrowth": 1.511049723756906,
+    "revenueGrowth": null,
+    "earningsSurprise": 2.4122137404580153,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.05591422132978541
   }
 ]
