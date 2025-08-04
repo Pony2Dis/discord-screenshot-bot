@@ -544,7 +544,8 @@
     "https://www.prnewswire.com/news-releases/duke-energy-increases-financial-incentives-for-customer-energy-efficiency-and-demand-response-programs-in-south-carolina-302520806.html",
     "https://www.prnewswire.com/news-releases/circet-usa-acquires-sourceone-expanding-telecom-engineering-capabilities-302520800.html",
     "https://www.prnewswire.com/news-releases/sermatec-ziskal-v-bulharsku-projekt-na-skladovani-energie-o-kapacit-vice-ne-430-mwh-im-urychluje-energetickou-transformaci-ve-vychodni-evrop-302520838.html",
-    "https://www.prnewswire.com/news-releases/jaycon-earns-prestigious-iso90012015-certification-strengthening-domestic-competitiveness-302520864.html"
+    "https://www.prnewswire.com/news-releases/jaycon-earns-prestigious-iso90012015-certification-strengthening-domestic-competitiveness-302520864.html",
+    "https://www.prnewswire.com/news-releases/commonwealth-lng-awards-epc-contract-to-technip-energies-302520801.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -728,7 +729,8 @@
     "https://www.marketwatch.com/story/gold-prices-are-soaring-again-heres-why-a-new-record-could-be-right-around-the-corner-a440efd8?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/heres-how-to-know-if-the-s-p-500-is-in-the-midst-of-a-boom-or-a-bubble-4fc941fb?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/figmas-ipo-success-could-push-canva-and-these-other-software-companies-to-go-public-8ceb08fb?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/afraid-to-leave-your-job-right-now-heres-how-to-stay-put-without-killing-your-career-989565fe?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/afraid-to-leave-your-job-right-now-heres-how-to-stay-put-without-killing-your-career-989565fe?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/dont-blame-jerome-powell-or-the-fed-if-you-cant-afford-to-buy-a-house-right-now-92b04c0f?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -3031,7 +3033,11 @@
     "https://www.barrons.com/articles/bitcoin-microstrategy-stock-price-01e0e531?siteid=yhoof2&yptr=yahoo",
     "https://finance.yahoo.com/news/rachel-cruze-says-only-thing-153057529.html",
     "https://www.barrons.com/articles/joby-aviation-blade-stock-price-deal-3256b112?siteid=yhoof2&yptr=yahoo",
-    "https://finance.yahoo.com/news/why-shares-rigetti-computing-soaring-151655510.html"
+    "https://finance.yahoo.com/news/why-shares-rigetti-computing-soaring-151655510.html",
+    "https://finance.yahoo.com/research/reports/ARGUS_3193_AnalystReport_1754306153000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "https://www.wsj.com/finance/commodities-futures/u-s-natural-gas-futures-hover-around-3-8538ab08?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/business/harley-davidson-names-topgolf-leader-as-new-ceo-738bfd97?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/business/airlines/joby-aviation-to-buy-blade-air-mobility-unit-for-up-to-125-million-b52c1b16?siteid=yhoof2&yptr=yahoo"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
@@ -3608,6 +3614,8 @@
     "https://www.investing.com/news/stock-market-news/turkey-stocks-higher-at-close-of-trade-bist-100-up-099-4168301",
     "https://www.investing.com/news/stock-market-news/denmark-stocks-higher-at-close-of-trade-omx-copenhagen-20-up-097-4168299",
     "https://www.investing.com/news/stock-market-news/eric-and-trump-jrbacked-manufacturing-spac-files-for-300-million-us-ipo-4168287",
-    "https://www.investing.com/news/stock-market-news/rainbow-capital-holdings-files-for-1375m-share-ipo-at-45sh-432SI-4168257"
+    "https://www.investing.com/news/stock-market-news/rainbow-capital-holdings-files-for-1375m-share-ipo-at-45sh-432SI-4168257",
+    "https://www.investing.com/news/stock-market-news/finland-stocks-higher-at-close-of-trade-omx-helsinki-25-up-063-4168353",
+    "https://www.investing.com/news/stock-market-news/amazon-overhauls-wondery-podcast-studio-cuts-110-jobs-4168334"
   ]
 }
