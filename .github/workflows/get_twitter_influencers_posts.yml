@@ -36,7 +36,7 @@ jobs:
           DISCORD_TOKEN:   ${{ secrets.DISCORD_TOKEN }}
           DISCORD_CHANNEL_ID: ${{ vars.X_INFLUENCERS_CHANNEL_ID }}
           X_USERNAMES:     ${{ vars.X_INFLUENCERS_USERNAMES }}
-          X_COOKIE_HEADER: ${{ vars.X_COOKIE_HEADER }}
+          X_COOKIE_HEADER: ${{ vars.X_COOKIE_HEADER_1 }}
         run: node twitter_influencers/index.mjs
 
       - name: Commit state
@@ -45,7 +45,7 @@ jobs:
           git config user.email github-actions@github.com
           git pull --rebase --autostash origin main
           shopt -s nullglob
-          files=(twitter_influencers/last_link_*.json twitter_influencers/debug_*.html)
+          files=(twitter_influencers/last_link_*.json x.com/debug_*.html)
           if (( ${#files[@]} )); then
             git add "${files[@]}"
           fi
