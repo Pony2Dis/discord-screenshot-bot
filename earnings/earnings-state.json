@@ -4774,5 +4774,29 @@
     "revenueSurprise": 0.07058151980021406,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.619528260376805
+  },
+  {
+    "epsDate": "2025-08-04T07:30:00",
+    "ticker": "TSN",
+    "name": "Tyson Foods Inc.",
+    "summary": "Tyson Foods (TSN) reported earnings of $0.91 per share on revenue of $13.88 billion for the  fiscal third quarter ended June 2025.  The consensus earnings estimate was $0.72 per share on  revenue of $13.63 billion. The Earnings Whisper number was $0.69 per share. The company beat expectations by 31.88% while revenue grew 3.98% on a year-over-year basis.<br /><br />The company  said it expects fiscal  2025 revenue of $54.38 billion to $54.91 billion. The company's previous guidance was revenue of $53.31 billion to $53.84 billion and the current consensus revenue estimate is $54.72 billion for the year ending September 30, 2025.<br /><br />Tyson Foods Inc and its subsidiaries produce, distribute and market chicken, beef, pork, prepared foods and related allied products, including animal and pet food ingredients.",
+    "subject": "Tyson Foods Beat Expectations",
+    "quarter": " fiscal third quarter ended June 2025",
+    "fileName": "2508045339",
+    "eps": 0.91,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.72,
+    "whisper": 0.69,
+    "highEstimate": 0.8,
+    "lowEstimate": 0.64,
+    "revenue": 13884,
+    "revenueEstimate": 13630,
+    "earningsGrowth": 0.04597701149425287,
+    "revenueGrowth": 0.03976634464165356,
+    "earningsSurprise": 0.3188405797101449,
+    "revenueSurprise": 0.01863536316947909,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.0001529987760097919
   }
 ]
