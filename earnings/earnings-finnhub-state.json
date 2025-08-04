@@ -4926,5 +4926,37 @@
   {
     "symbol": "CMRC",
     "date": "2025-07-31"
+  },
+  {
+    "symbol": "ZEPP",
+    "date": "2025-08-03"
+  },
+  {
+    "symbol": "SOHU",
+    "date": "2025-08-04"
+  },
+  {
+    "symbol": "SPNT",
+    "date": "2025-08-04"
+  },
+  {
+    "symbol": "L",
+    "date": "2025-08-04"
+  },
+  {
+    "symbol": "ENR",
+    "date": "2025-08-04"
+  },
+  {
+    "symbol": "CNA",
+    "date": "2025-08-04"
+  },
+  {
+    "symbol": "KOS",
+    "date": "2025-08-04"
+  },
+  {
+    "symbol": "WAT",
+    "date": "2025-08-04"
   }
 ]
