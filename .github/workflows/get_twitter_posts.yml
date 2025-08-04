@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: twitter-account-1
+  group: twitter-account-2
   cancel-in-progress: false # if action is already running, do not cancel it, wait for it to finish
 
 jobs:

@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: twitter-account-2
+  group: twitter-account-3
   cancel-in-progress: false
 
 jobs:
