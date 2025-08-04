@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false # if action is already running, do not cancel it, wait for it to finish
 
 jobs:
-  get_x_posts:
+  get_x_news_posts:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

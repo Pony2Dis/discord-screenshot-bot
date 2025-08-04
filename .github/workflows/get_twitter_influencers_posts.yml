@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  get_x_posts:
+  get_x_influencers_posts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
