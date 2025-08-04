@@ -33,7 +33,7 @@ export async function fetchLatestPosts(username, limit = 10, days = 7) {
       console.error("❌ Error waiting for articles:", error);
       // save the current page html for debugging
       const pageContent = await page.content();
-      await fs.writeFileSync(`./debug_${username}.html`, pageContent);
+      await fs.writeFile(`./debug_${username}.html`, pageContent);
       console.log(`Saved current page content to debug_${username}.html`);
       throw new Error("Failed to load articles on the page");
     }
