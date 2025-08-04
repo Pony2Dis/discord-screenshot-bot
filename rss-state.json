@@ -164,7 +164,8 @@
     "https://www.cnbc.com/2025/08/01/jobs-report-july-2025.html",
     "https://www.cnbc.com/2025/08/01/switzerland-economic-blow-with-surprise-39percent-us-tariff.html",
     "https://www.cnbc.com/2025/08/04/trump-set-to-name-replacements-at-the-fed-and-bls-in-coming-days.html",
-    "https://www.cnbc.com/2025/08/04/housing-to-remain-weakest-part-of-economy-in-the-2nd-half-goldman-says.html"
+    "https://www.cnbc.com/2025/08/04/housing-to-remain-weakest-part-of-economy-in-the-2nd-half-goldman-says.html",
+    "https://www.cnbc.com/2025/08/04/contentious-july-jobs-report-confirms-the-us-economy-is-slowing-sharply.html"
   ],
   "https://www.prnewswire.com/rss/energy-latest-news/energy-latest-news-list.rss": [
     "https://www.prnewswire.com/news-releases/arnold--itkin-files-lawsuit-against-chevron-following-refinery-explosion-302514322.html",
@@ -550,7 +551,8 @@
     "https://www.prnewswire.com/news-releases/commonwealth-lng-awards-epc-contract-to-technip-energies-302520801.html",
     "https://www.prnewswire.com/news-releases/novelis-to-host-first-quarter-fiscal-year-2026-earnings-conference-call-on-august-11-302520897.html",
     "https://www.prnewswire.com/news-releases/metlen-nimmt-den-handel-an-der-londoner-borse-auf-302520920.html",
-    "https://www.prnewswire.com/news-releases/sermatec-ziskava-v-bulharsku-projekt-skladovania-energie-s-kapacitou-viac-ako-430-mwh-a-urychuje-energeticku-transformaciu-vychodnej-europy-302520957.html"
+    "https://www.prnewswire.com/news-releases/sermatec-ziskava-v-bulharsku-projekt-skladovania-energie-s-kapacitou-viac-ako-430-mwh-a-urychuje-energeticku-transformaciu-vychodnej-europy-302520957.html",
+    "https://www.prnewswire.com/news-releases/sila-services-accelerates-its-chicagoland-growth-with-two-important-new-acquisitions-302520982.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -3127,7 +3129,17 @@
     "https://finance.yahoo.com/news/grab-holdings-limited-grab-bull-173441621.html",
     "https://finance.yahoo.com/news/ies-holdings-inc-iesc-bull-173425146.html",
     "https://finance.yahoo.com/news/why-american-eagle-stock-went-172843925.html",
-    "https://finance.yahoo.com/news/space-startup-firefly-aims-raise-165452368.html"
+    "https://finance.yahoo.com/news/space-startup-firefly-aims-raise-165452368.html",
+    "https://finance.yahoo.com/news/alphabet-brilliant-fallback-plan-ai-091500236.html",
+    "https://finance.yahoo.com/news/buffered-etfs-reshape-portfolio-management-120000052.html",
+    "https://finance.yahoo.com/news/1-magnificent-p-500-dividend-091200417.html",
+    "https://finance.yahoo.com/news/forecasts-predict-dismal-decade-stocks-090505705.html",
+    "https://finance.yahoo.com/news/may-ai-order-please-133000898.html",
+    "https://finance.yahoo.com/news/3-dividend-stocks-double-now-092500033.html",
+    "https://finance.yahoo.com/news/could-energy-transfer-best-investment-090100012.html",
+    "https://finance.yahoo.com/news/trump-tariffs-stun-swiss-investors-090052030.html",
+    "https://finance.yahoo.com/news/1-green-flag-dutch-bros-092700086.html",
+    "https://finance.yahoo.com/news/analysts-think-disney-stock-ahead-090000092.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
