@@ -1,3 +1,4 @@
+// screenshot.js
 require('dotenv').config();
 const { firefox } = require('playwright');
 const { Client, GatewayIntentBits, AttachmentBuilder } = require('discord.js');
@@ -10,7 +11,8 @@ const VIEWPORT = { width: 1200, height: 2800 };
 const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
 const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-(async () => {
+async function main() {
+  console.log('🚀 Starting screenshot job');
   try {
     // 1. Discord login
     await bot.login(process.env.DISCORD_TOKEN);
@@ -36,18 +38,16 @@ const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
     }, { timeout: 60_000 });
     console.log('⏱ Gauge value is present');
 
-    // 5. Try to click the “Agree” link by your CSS path
+    // 5. Click “Agree” if it shows up
     const agreeLink = page.locator('a:has-text("Agree")');
     try {
-      await agreeLink.waitFor({ timeout: 10000 });
+      await agreeLink.waitFor({ timeout: 10_000 });
       await agreeLink.click({ force: true });
-      // give it a moment to go away
       await page.waitForTimeout(10_000);
     } catch {
-      console.log('⚠️ “Agree” link not found via CSS path, falling back...');
-      // "Agree" link didn’t appear within 5s — continue normally
+      console.log('⚠️ “Agree” link not found — continuing anyway');
     }
-    
+
     // 6. Screenshot & send
     const buffer = await page.screenshot({ clip: CLIP });
     await browser.close();
@@ -57,12 +57,12 @@ const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
       files: [ new AttachmentBuilder(buffer, { name: 'fear-and-greed.png' }) ]
     });
     console.log('📸 Screenshot sent');
-
-    await bot.destroy();
   } catch (err) {
     console.error(err);
   } finally {
-    if (bot) bot.destroy();
+    if (bot) await bot.destroy();
     console.log('🛑 Process finished');
   }
-});
+}
+
+main();
