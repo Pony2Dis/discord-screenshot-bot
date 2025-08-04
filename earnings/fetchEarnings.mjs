@@ -33,115 +33,123 @@ async function main() {
   const jar = new CookieJar();
   const client = wrapper(axios.create({ jar, withCredentials: true }));
 
-  // 1) hit the HTML page to grab cookies
-  await client.get("https://www.earningswhispers.com/earningsnews", {
-    headers: {
-      "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:140.0) Gecko/20100101 Firefox/140.0",
-      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    },
-  });
+  try {
 
-  // 2) call the API with those cookies
-  const { data } = await client.get(
-    "https://www.earningswhispers.com/api/todaysresults",
-    {
+    // 1) hit the HTML page to grab cookies
+    await client.get("https://www.earningswhispers.com/earningsnews", {
       headers: {
-        Accept: "application/json, text/javascript, */*; q=0.01",
-        "Accept-Language": "en-US,en;q=0.5",
-        "Cache-Control": "no-cache",
-        Pragma: "no-cache",
-        Referer: "https://www.earningswhispers.com/earningsnews",
-        "X-Requested-With": "XMLHttpRequest",
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:140.0) Gecko/20100101 Firefox/140.0",
+        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
       },
-    }
-  );
+    });
 
-  // connect to Discord and fetch the channel
-  const discordClient = new Client({ intents: [GatewayIntentBits.Guilds] });
-  await discordClient.login(DISCORD_TOKEN);
-  const channel = await discordClient.channels.fetch(EARNINGS_CHANNEL_ID);
-
-  // merge new entries if unique by epsDate + ticker
-  for (const item of data) {
-    const exists = state.some(
-      e => e.epsDate === item.epsDate && e.ticker === item.ticker
+    // 2) call the API with those cookies
+    const { data } = await client.get(
+      "https://www.earningswhispers.com/api/todaysresults",
+      {
+        headers: {
+          Accept: "application/json, text/javascript, */*; q=0.01",
+          "Accept-Language": "en-US,en;q=0.5",
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+          Referer: "https://www.earningswhispers.com/earningsnews",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
     );
-    if (!exists) {
 
-      const statusEmoji = item.subject.includes("Beat Expectations") || item.subject.includes("Beat Consensus Estimates")
-        ? "🟢"
-        : item.subject.includes("Missed Expectations") || item.subject.includes("Missed Consensus Estimates")
-          ? "🔴"
-          : "🔵";
+    // connect to Discord and fetch the channel
+    const discordClient = new Client({ intents: [GatewayIntentBits.Guilds] });
+    await discordClient.login(DISCORD_TOKEN);
+    const channel = await discordClient.channels.fetch(EARNINGS_CHANNEL_ID);
 
-      // format the revenue
-      let revenue = "N/A";
-      if (item.revenue != null) {
-        if (item.revenue > 999) {
-          revenue = `$${(item.revenue / 1000).toFixed(2)}B`;
-        } else if (item.revenue >= 1) {
-          revenue = `$${item.revenue.toFixed(2)}M`;
-        } else {
-          revenue = `$${(item.revenue * 1000).toFixed(2)}K`;
+    // merge new entries if unique by epsDate + ticker
+    for (const item of data) {
+      const exists = state.some(
+        e => e.epsDate === item.epsDate && e.ticker === item.ticker
+      );
+      if (!exists) {
+
+        const statusEmoji = item.subject.includes("Beat Expectations") || item.subject.includes("Beat Consensus Estimates")
+          ? "🟢"
+          : item.subject.includes("Missed Expectations") || item.subject.includes("Missed Consensus Estimates")
+            ? "🔴"
+            : "🔵";
+
+        // format the revenue
+        let revenue = "N/A";
+        if (item.revenue != null) {
+          if (item.revenue > 999) {
+            revenue = `$${(item.revenue / 1000).toFixed(2)}B`;
+          } else if (item.revenue >= 1) {
+            revenue = `$${item.revenue.toFixed(2)}M`;
+          } else {
+            revenue = `$${(item.revenue * 1000).toFixed(2)}K`;
+          }
         }
-      }
-      
-      // format the revenue estimate
-      let revenueEstimate = "N/A";
-      if (item.revenueEstimate != null) {
-        if (item.revenueEstimate > 999) {
-          revenueEstimate = `$${(item.revenueEstimate / 1000).toFixed(2)}B`;
-        } else if (item.revenueEstimate >= 1) {
-          revenueEstimate = `$${item.revenueEstimate.toFixed(2)}M`;
-        } else {
-          revenueEstimate = `$${(item.revenueEstimate * 1000).toFixed(2)}K`;
+        
+        // format the revenue estimate
+        let revenueEstimate = "N/A";
+        if (item.revenueEstimate != null) {
+          if (item.revenueEstimate > 999) {
+            revenueEstimate = `$${(item.revenueEstimate / 1000).toFixed(2)}B`;
+          } else if (item.revenueEstimate >= 1) {
+            revenueEstimate = `$${item.revenueEstimate.toFixed(2)}M`;
+          } else {
+            revenueEstimate = `$${(item.revenueEstimate * 1000).toFixed(2)}K`;
+          }
         }
+
+        // format the earning report
+        const embed = new EmbedBuilder()
+        .setColor(0x1abc9c)                              // teal sidebar
+        .setTitle(`${statusEmoji} ${item.ticker} — ${item.subject}`)    // big header
+        .setURL(`https://www.earningswhispers.com/epsdetails/${item.ticker}`)
+        .setAuthor({ name: item.name })                  // company name
+        .addFields(
+          { name: "Earnings Date", value: new Date(item.epsDate).toLocaleString(), inline: true },
+          { name: "EPS (est/whisp)", value: `${item.eps} (Estimate: ${item.estimate} / Whisper: ${item.whisper})`, inline: true },
+          { name: "Revenue", value: revenue, inline: true },
+          { name: "Revenue Estimate", value: revenueEstimate, inline: true },
+          { name: "Earnings Surprise %", value: `EPS ${(item.earningsSurprise*100).toFixed(2)}%`, inline: true },
+          { name: "Revenue Surprise %", value: `${(item.revenueSurprise*100).toFixed(2)}%`, inline: true },
+          { name: "Previous Earnings Growth", value: `${item.prevEarningsGrowth ? (item.prevEarningsGrowth*100).toFixed(1)+'%' : 'N/A'}`, inline: true },
+          { name: "Previous Revenue Growth", value: `${item.prevRevenueGrowth ? (item.prevRevenueGrowth*100).toFixed(1)+'%' : 'N/A'}`, inline: true },
+          { name: "High / Low Est.",  value: `${item.highEstimate} / ${item.lowEstimate}`, inline: true },
+          { name: "Earnings Whispers Grade", value: item.ewGrade || "N/A", inline: true },
+          { name: "Power Rating", value: item.pwrRating || "N/A", inline: true },
+          { name: "Conference Call", value: `[Link](https://app.webinar.net/${item.fileName})`, inline: true },
+        )
+        .setDescription(
+          item.summary
+            .replace(/<br \/>/g, "\n")
+            .replace(/<a [^>]+>([^<]+)<\/a>/g, "[$1]")
+        )
+        .setFooter({ text: "Source: Earnings Whispers" })
+        .setTimestamp();
+        
+        // send the earning report to Discord
+        await channel.send({ embeds: [embed] });
+
+        // add to state
+        state.push(item);
+        console.log(`✔ Queued: ${item.ticker} (${item.epsDate})`);
+        await sleep(SLEEP_BETWEEN_SENDS);
       }
+    }
+  } catch (error) {
+    console.error("❌ Error fetching earnings:", error);
+  }
+  finally {
+    await saveState(state);
+    console.log(`Total records: ${state.length}`);
 
-      // format the earning report
-      const embed = new EmbedBuilder()
-      .setColor(0x1abc9c)                              // teal sidebar
-      .setTitle(`${statusEmoji} ${item.ticker} — ${item.subject}`)    // big header
-      .setURL(`https://www.earningswhispers.com/epsdetails/${item.ticker}`)
-      .setAuthor({ name: item.name })                  // company name
-      .addFields(
-        { name: "Earnings Date", value: new Date(item.epsDate).toLocaleString(), inline: true },
-        { name: "EPS (est/whisp)", value: `${item.eps} (Estimate: ${item.estimate} / Whisper: ${item.whisper})`, inline: true },
-        { name: "Revenue", value: revenue, inline: true },
-        { name: "Revenue Estimate", value: revenueEstimate, inline: true },
-        { name: "Earnings Surprise %", value: `EPS ${(item.earningsSurprise*100).toFixed(2)}%`, inline: true },
-        { name: "Revenue Surprise %", value: `${(item.revenueSurprise*100).toFixed(2)}%`, inline: true },
-        { name: "Previous Earnings Growth", value: `${item.prevEarningsGrowth ? (item.prevEarningsGrowth*100).toFixed(1)+'%' : 'N/A'}`, inline: true },
-        { name: "Previous Revenue Growth", value: `${item.prevRevenueGrowth ? (item.prevRevenueGrowth*100).toFixed(1)+'%' : 'N/A'}`, inline: true },
-        { name: "High / Low Est.",  value: `${item.highEstimate} / ${item.lowEstimate}`, inline: true },
-        { name: "Earnings Whispers Grade", value: item.ewGrade || "N/A", inline: true },
-        { name: "Power Rating", value: item.pwrRating || "N/A", inline: true },
-        { name: "Conference Call", value: `[Link](https://app.webinar.net/${item.fileName})`, inline: true },
-      )
-      .setDescription(
-        item.summary
-          .replace(/<br \/>/g, "\n")
-          .replace(/<a [^>]+>([^<]+)<\/a>/g, "[$1]")
-      )
-      .setFooter({ text: "Source: Earnings Whispers" })
-      .setTimestamp();
-      
-      // send the earning report to Discord
-      await channel.send({ embeds: [embed] });
-
-      // add to state
-      state.push(item);
-      console.log(`✔ Queued: ${item.ticker} (${item.epsDate})`);
-      await sleep(SLEEP_BETWEEN_SENDS);
+    if (discordClient) {
+      console.log("Logging out of Discord...");
+      await discordClient.destroy();
     }
   }
-
-  await saveState(state);
-  console.log(`Total records: ${state.length}`);
-
-  await discordClient.destroy()
-  process.exit(0)
 }
 
 main().catch((err) => {
