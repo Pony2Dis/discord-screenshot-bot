@@ -1,0 +1,53 @@
+name: ⚡ Get X.com Graph Posts
+
+on:
+  repository_dispatch:
+    types: [get-x-graph-posts]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  get_graph_posts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - run: npm install
+        name: Install deps
+
+      - run: npx playwright install --with-deps firefox
+        name: Install Playwright browsers
+
+      - name: Run bot
+        env:
+          DISCORD_TOKEN:   ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_CHANNEL_ID: ${{ vars.X_GRAPH_CHANNEL_ID }}
+          X_USERNAMES:     ${{ vars.X_GRAPH_USERNAMES }}
+          X_COOKIE_HEADER: ${{ vars.X_COOKIE_HEADER }}
+        run: node twitter_graphs/index.mjs
+
+      - name: Commit state
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git pull --rebase --autostash origin main
+          shopt -s nullglob
+          files=(twitter_graphs/last_link_*.json x.com/debug_*.html)
+          if (( ${#files[@]} )); then
+            git add "${files[@]}"
+          fi
+          git diff --cached --quiet || git commit -m "Update last seen links"
+          git push
