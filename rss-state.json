@@ -533,7 +533,10 @@
     "https://www.prnewswire.com/news-releases/grid8-launches-free-interconnection-dashboard-to-unlock-faster-smarter-grid-access-for-data-centers-and-renewable-developers-302520754.html",
     "https://www.prnewswire.com/news-releases/mojo-energy-pouches-introduce-an-innovative-solution-for-caffeine-consumption-302519700.html",
     "https://www.prnewswire.com/news-releases/lexington-manufacturing-announces-acquisition-of-tru-cut-inc-302520705.html",
-    "https://www.prnewswire.com/news-releases/hahn-acquires-emic-communications-302519885.html"
+    "https://www.prnewswire.com/news-releases/hahn-acquires-emic-communications-302519885.html",
+    "https://www.prnewswire.com/news-releases/avas-acoustic-vehicle-alerting-system-market-experiences-11-6-growth-owing-to-regulatory-mandates--safety-norms--the-insight-partners-302520556.html",
+    "https://www.prnewswire.com/news-releases/global-vinyl-ester-resin-market-set-for-strong-growth-projected-to-hit-usd-175-3-billion-by-2033---market-research-intellect-302520702.html",
+    "https://www.prnewswire.com/news-releases/amcor-announces-shortlist-for-latest-lift-off-competition-302520743.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -712,7 +715,8 @@
     "https://www.marketwatch.com/story/tysons-chicken-business-is-growing-while-beef-is-losing-money-even-as-prices-jump-a7866720?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/luxury-cruise-lines-are-relaxing-their-evening-dress-codes-but-is-denim-at-dinner-too-much-1e28ab2b?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/20-stocks-of-s-p-500-companies-showing-the-fastest-sales-growth-5be27159?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/she-lives-alone-my-mother-in-law-86-gets-1-300-in-social-security-is-that-enough-to-live-on-8c45dd3a?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/she-lives-alone-my-mother-in-law-86-gets-1-300-in-social-security-is-that-enough-to-live-on-8c45dd3a?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/amds-stock-has-more-than-doubled-off-its-lows-does-that-bring-earnings-risk-31716cb2?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -2928,7 +2932,29 @@
     "https://finance.yahoo.com/news/tesla-board-approves-30-billion-alternative-pay-deal-for-musk-133123540.html",
     "https://www.barrons.com/articles/alphabet-sells-crowdstrike-stock-b386bbde?siteid=yhoof2&yptr=yahoo",
     "https://finance.yahoo.com/news/netflix-stock-buy-sell-hold-132500651.html",
-    "https://www.barrons.com/articles/on-semiconductor-earnings-stock-price-4cc1fdfc?siteid=yhoof2&yptr=yahoo"
+    "https://www.barrons.com/articles/on-semiconductor-earnings-stock-price-4cc1fdfc?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/navigator-holdings-nvgs-announced-partnership-140240257.html",
+    "https://finance.yahoo.com/news/william-blair-maintained-hold-rating-140239903.html",
+    "https://finance.yahoo.com/news/wpp-plc-wpp-announced-expanding-140237741.html",
+    "https://finance.yahoo.com/news/prudential-plc-puk-announced-settlement-140236652.html",
+    "https://finance.yahoo.com/news/carnival-corporation-cuk-announced-partnership-140234410.html",
+    "https://finance.yahoo.com/news/maxim-raised-firm-pt-caledonia-140233923.html",
+    "https://finance.yahoo.com/news/jefferies-maintained-buy-rating-livanova-140231233.html",
+    "https://finance.yahoo.com/news/nomad-foods-limited-nomd-approved-140230612.html",
+    "https://finance.yahoo.com/news/marex-group-plc-mrk-acquire-140229171.html",
+    "https://finance.yahoo.com/news/burford-capital-limited-bur-release-140227235.html",
+    "https://finance.yahoo.com/news/jefferies-lowered-firm-pt-gambling-140226485.html",
+    "https://finance.yahoo.com/news/knot-offshore-partners-knop-released-140224031.html",
+    "https://finance.yahoo.com/news/cipher-mining-cifr-terminates-board-140216411.html",
+    "https://finance.yahoo.com/news/ubs-downgrades-cme-group-cme-140214851.html",
+    "https://finance.yahoo.com/news/galaxy-digital-glxy-appoints-doug-140211942.html",
+    "https://finance.yahoo.com/news/ladenburg-thalmann-initiates-buy-cleanspark-140212242.html",
+    "https://finance.yahoo.com/news/oppenheimer-raises-wisdomtree-wt-price-140209322.html",
+    "https://finance.yahoo.com/news/jpmorgan-downgrades-riot-platforms-riot-140208112.html",
+    "https://finance.yahoo.com/news/strategy-incorporated-mstr-raises-2-140206374.html",
+    "https://finance.yahoo.com/news/coinbase-coin-partners-jpmorgan-chase-140204075.html",
+    "https://finance.yahoo.com/news/youre-not-using-ai-move-140111950.html",
+    "https://finance.yahoo.com/news/radico-khaitan-books-record-quarterly-135924875.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
@@ -3475,6 +3501,7 @@
     "https://www.investing.com/news/stock-market-news/atlasclear-stock-soars-after-securing-500000-debenture-investment-93CH-4167896",
     "https://www.investing.com/news/stock-market-news/warburg-pincusbacked-miami-international-eyes-up-to-17-billion-valuation-in-us-ipo-4168047",
     "https://www.investing.com/news/stock-market-news/stifel-downgrades-baxter-as-it-sees-longer-path-to-recovery-under-new-ceo-4168040",
-    "https://www.investing.com/news/stock-market-news/nyse-names-bryan-daniel-as-president-of-nyse-texas-4167872"
+    "https://www.investing.com/news/stock-market-news/nyse-names-bryan-daniel-as-president-of-nyse-texas-4167872",
+    "https://www.investing.com/news/stock-market-news/transmedics-stock-surges-after-fda-grants-conditional-approval-for-heart-trial-93CH-4168082"
   ]
 }
