@@ -5182,5 +5182,29 @@
     "revenueSurprise": 0.04141104294478527,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.3697207477498269
+  },
+  {
+    "epsDate": "2025-08-04T16:05:00",
+    "ticker": "TDUP",
+    "name": "ThredUp Inc.",
+    "summary": "ThredUp (TDUP) reported a loss of $0.01 per share on revenue of $77.66 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.05 per share on  revenue of $73.60 million. The Earnings Whisper number was a loss of $0.04 per share. The company beat expectations by 75.00% while revenue fell 2.63% compared to the same quarter a year ago.<br /><br />The company  said it expects  third quarter  revenue of $76.0 million to $78.0 million and 2025 revenue of $298.0 million to $302.0 million. The company's previous guidance was 2025 revenue of $281.0 million to $291.0 million. current consensus revenue estimate is $72.57 million for the quarter ending September 30, 2025 and revenue of $289.57 million for the year ending December 31, 2025.<br /><br />thredUP is transforming resale with technology and a mission to inspire a new generation of consumers to think secondhand first.",
+    "subject": "ThredUp Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508045729",
+    "eps": -0.01,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.05,
+    "whisper": -0.04,
+    "highEstimate": -0.04,
+    "lowEstimate": -0.07,
+    "revenue": 77.657,
+    "revenueEstimate": 73.6,
+    "earningsGrowth": 0.9230769230769231,
+    "revenueGrowth": -0.02630556077988841,
+    "earningsSurprise": 0.75,
+    "revenueSurprise": 0.05512228260869565,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.10424938432929587
   }
 ]
