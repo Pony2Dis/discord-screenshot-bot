@@ -62,7 +62,7 @@ jobs:
           done
 
           # Check for debug files in twitter directory (adjust path if needed)
-          for file in twitter/debug_*.html; do
+          for file in x.com/debug_*.html; do
             if [[ -f "$file" ]]; then
               git add "$file"
             fi

@@ -49,12 +49,24 @@ jobs:
 
           # sync any remote changes first
           git pull --rebase --autostash origin main
+          
+          # enable nullglob so non-matching globs are removed
+          shopt -s nullglob
 
-          # stage per-user state files
-          files=(twitter_earnings/last_link_*.json x.com/debug_*.html)
-          if (( ${#files[@]} )); then
-            git add "${files[@]}"
-          fi
+          # Stage only existing files
+          files=(twitter_earnings/last_link_*.json)
+          for file in "${files[@]}"; do
+            if [[ -f "$file" ]]; then
+              git add "$file"
+            fi
+          done
+
+          # Check for debug files in twitter directory (adjust path if needed)
+          for file in x.com/debug_*.html; do
+            if [[ -f "$file" ]]; then
+              git add "$file"
+            fi
+          done
 
           # commit only if there are changes
           git diff --cached --quiet || git commit -m "Update last seen links"
