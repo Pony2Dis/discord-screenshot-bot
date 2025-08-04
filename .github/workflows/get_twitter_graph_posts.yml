@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: twitter-account-2
   cancel-in-progress: false
 
 jobs:

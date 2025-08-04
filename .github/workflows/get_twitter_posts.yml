@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: twitter-account-1
   cancel-in-progress: false # if action is already running, do not cancel it, wait for it to finish
 
 jobs:
