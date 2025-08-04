@@ -3204,7 +3204,9 @@
     "https://finance.yahoo.com/news/trillions-sidelines-could-corporate-cash-123110031.html",
     "https://finance.yahoo.com/news/1-reason-wall-street-obsessed-122900988.html",
     "https://finance.yahoo.com/news/youd-invested-1-000-abbvie-130000841.html",
-    "https://finance.yahoo.com/news/professor-coin-gives-bitcoin-value-130103985.html"
+    "https://finance.yahoo.com/news/professor-coin-gives-bitcoin-value-130103985.html",
+    "https://finance.yahoo.com/news/denmark-economy-runs-novo-drugmaker-070026676.html",
+    "https://finance.yahoo.com/news/starbucks-stock-store-sales-slump-131500397.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
@@ -3815,6 +3817,15 @@
     "https://www.investing.com/news/stock-market-news/us-stocks-higher-at-close-of-trade-dow-jones-industrial-average-up-134-4168851",
     "https://www.investing.com/news/stock-market-news/brazil-stocks-higher-at-close-of-trade-bovespa-up-040-4168829",
     "https://www.investing.com/news/stock-market-news/broadcom-launches-jericho-chip-to-advance-ai-data-center-networks-4168943",
-    "https://www.investing.com/news/stock-market-news/afterhours-movers-palantir-hims--hers-vertex-pharma-and-more-432SI-4168858"
+    "https://www.investing.com/news/stock-market-news/afterhours-movers-palantir-hims--hers-vertex-pharma-and-more-432SI-4168858",
+    "https://www.investing.com/news/stock-market-news/simon-property-group-reports-rise-in-quarterly-real-estate-ffo-on-strong-leasing-demand-4168999",
+    "https://www.investing.com/news/stock-market-news/mexico-stocks-lower-at-close-of-trade-spbmv-ipc-down-044-4168995",
+    "https://www.investing.com/news/stock-market-news/kongsberg-defence--aerospace-wins-1179-million-us-marine-corps-contract-93CH-4168992",
+    "https://www.investing.com/news/stock-market-news/bae-systems-secures-181-million-contract-for-amphibious-combat-vehicles-93CH-4168991",
+    "https://www.investing.com/news/stock-market-news/agilon-health-stock-plunges-after-ceo-steps-down-amid-earnings-miss-93CH-4168984",
+    "https://www.investing.com/news/stock-market-news/russia-stocks-higher-at-close-of-trade-moex-russia-index-up-168-4168981",
+    "https://www.investing.com/news/stock-market-news/colombia-stocks-lower-at-close-of-trade-colcap-down-000-4168979",
+    "https://www.investing.com/news/stock-market-news/arteris-stock-soars-after-amd-licenses-flexgen-ip-for-ai-chiplet-design-93CH-4168973",
+    "https://www.investing.com/news/stock-market-news/axon-raises-annual-revenue-forecast-on-strong-security-demand-4168971"
   ]
 }
