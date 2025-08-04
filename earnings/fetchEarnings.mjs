@@ -32,6 +32,7 @@ async function main() {
   const state = await loadState();
   const jar = new CookieJar();
   const client = wrapper(axios.create({ jar, withCredentials: true }));
+  const discordClient = new Client({ intents: [GatewayIntentBits.Guilds] });
 
   try {
 
@@ -60,7 +61,6 @@ async function main() {
     );
 
     // connect to Discord and fetch the channel
-    const discordClient = new Client({ intents: [GatewayIntentBits.Guilds] });
     await discordClient.login(DISCORD_TOKEN);
     const channel = await discordClient.channels.fetch(EARNINGS_CHANNEL_ID);
 
