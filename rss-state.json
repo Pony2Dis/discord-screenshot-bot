@@ -573,7 +573,9 @@
     "https://www.prnewswire.com/news-releases/beatbot-y-jackery-se-asocian-para-llevar-la-energia-solar-a-las-piscinas-de-toda-europa-302521349.html",
     "https://www.prnewswire.com/news-releases/xkig-acquires-river-city-construction-302521386.html",
     "https://www.prnewswire.com/news-releases/higer-bus-etablit-son-premier-centre-europeen-de-pieces-detachees-et-de-services-au-luxembourg-302521463.html",
-    "https://www.prnewswire.com/news-releases/higer-bus-----------302521468.html"
+    "https://www.prnewswire.com/news-releases/higer-bus-----------302521468.html",
+    "https://www.prnewswire.com/news-releases/aquaporin-successfully-achieves-up-to-20-energy-savings-at-kranji-newater-factory-302521694.html",
+    "https://www.prnewswire.com/news-releases/aquaporin-successfully-achieves-up-to-20-energy-savings-at-kranji-newater-factory-302521692.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -826,7 +828,8 @@
     "https://www.cnbc.com/2025/08/01/amazon-earnings-ai-aws-tariffs.html",
     "https://www.cnbc.com/2025/08/04/what-a-rate-cut-means-for-stocks-plus-a-bullish-call-on-ai-spending.html",
     "https://www.cnbc.com/2025/08/04/palantir-pltr-q2-earnings-2025.html",
-    "https://www.cnbc.com/2025/08/04/hims-hers-hims-q2-earnings-2025.html"
+    "https://www.cnbc.com/2025/08/04/hims-hers-hims-q2-earnings-2025.html",
+    "https://www.cnbc.com/2025/08/05/bp-earnings-q2-2025.html"
   ],
   "https://finance.yahoo.com/news/rssindex": [
     "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-meta-amazon-earnings-fed-meeting-trump-tariffs-tesla-robotaxi/?src=A00220&yptr=yahoo",
@@ -3230,7 +3233,9 @@
     "https://finance.yahoo.com/news/mag-7-plans-fomo-650b-140000426.html",
     "https://finance.yahoo.com/news/asia-shares-sideswiped-us-economic-004028044.html",
     "https://finance.yahoo.com/news/bnsf-earnings-gain-lower-costs-004836616.html",
-    "https://finance.yahoo.com/news/goldman-keeps-brent-oil-forecast-015614033.html"
+    "https://finance.yahoo.com/news/goldman-keeps-brent-oil-forecast-015614033.html",
+    "https://finance.yahoo.com/news/higher-bitcoin-etf-options-limits-200000999.html",
+    "https://finance.yahoo.com/news/bp-strikes-major-oil-discovery-064121432.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
@@ -3867,6 +3872,15 @@
     "https://www.investing.com/news/stock-market-news/asia-stocks-climb-tracking-wall-streets-rebound-rbi-decision-looms-4169140",
     "https://www.investing.com/news/stock-market-news/toyota-honda-brace-for-profit-falls-as-us-tariffs-strong-yen-weigh-4169143",
     "https://www.investing.com/news/stock-market-news/austal-shares-hit-record-high-on-shipbuilding-deal-with-australia-govt-4169141",
-    "https://www.investing.com/news/stock-market-news/nio-shares-drop-as-july-deliveries-slide-16-mm-4169144"
+    "https://www.investing.com/news/stock-market-news/nio-shares-drop-as-july-deliveries-slide-16-mm-4169144",
+    "https://www.investing.com/news/stock-market-news/tsmc-cracks-down-on-potential-trade-secret-breach-initiates-legal-action-4169224",
+    "https://www.investing.com/news/stock-market-news/li-auto-shares-rise-on-cutting-price-of-new-i8-suv-4169222",
+    "https://www.investing.com/news/stock-market-news/diageo-forecasts-flat-organic-sales-growth-for-fiscal-2026-4169221",
+    "https://www.investing.com/news/stock-market-news/taiwan-stocks-lower-at-close-of-trade-taiwan-weighted-down-046-4169212",
+    "https://www.investing.com/news/stock-market-news/hugo-boss-reports-q2-operating-profit-beat-to-expectations-4169208",
+    "https://www.investing.com/news/stock-market-news/hklisted-xd-inc-shares-jump-25-on-stellar-hy-profit-forecast-4169202",
+    "https://www.investing.com/news/stock-market-news/analysiseuropes-old-power-plants-to-get-digital-makeover-driven-by-ai-boom-4169193",
+    "https://www.investing.com/news/stock-market-news/alcon-to-buy-eye-health-firm-staar-surgical-for-15-bln-4169195",
+    "https://www.investing.com/news/stock-market-news/core-scientific-shareholders-balk-at-terms-of-coreweave-merger-offer-ft-reports-4169150"
   ]
 }
