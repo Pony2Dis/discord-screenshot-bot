@@ -8,8 +8,8 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false # if action is already running, do not cancel it, wait for it to finish
-    
+  cancel-in-progress: false
+
 jobs:
   clear-channel:
     runs-on: ubuntu-latest
@@ -25,24 +25,40 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Clear Discord channel
+      - name: Clear Discord channel and post message
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
           CHANNELS_IDS_2_CLEAN: ${{ vars.CHANNELS_IDS_2_CLEAN }}
         run: |
           node <<'EOF'
           const { Client, GatewayIntentBits } = require('discord.js');
-          const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
+          const client = new Client({
+            intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]
+          });
+
           client.once('ready', async () => {
             const ch = client.channels.cache.get(process.env.CHANNELS_IDS_2_CLEAN);
             if (!ch?.isTextBased()) return process.exit(1);
+
             let batch;
             do {
               batch = await ch.messages.fetch({ limit: 100 });
               if (batch.size) await ch.bulkDelete(batch);
             } while (batch.size >= 2);
-            console.log('Cleared channel', process.env.CHANNELS_IDS_2_CLEAN);
+
+            // לאחר הניקוי שולחים את ההודעה המבוקשת
+            await ch.send(`חדר מצב היום שבו נרשום סקירה בפתיחת יום מסחר וסגירת יום מסחר,
+המידע בחדר ימחק בתחילת היום הבא (אוטומטית ב-00:00)
+
+לכל מי שיש דעה, תובנה או מידע שיכול להצביע איך יום המסחר עומד להיראות – שיכתוב כדי לידע את האחרים.
+
+לא חייב להיות בפורמט מסוים – אלא רשמים כלליים, למשל שער הקריפטו והמדדים בפתיחת יום, חוזים עתידיים, אג\"ח וכו'.
+
+ככה נוכל להיכנס בתחילת יום ולראות מה אנחנו חושבים במבט מהיר שיהיה היום, עם מידע עדכני בלבד`);
+
+            console.log('Cleared channel and posted message', process.env.CHANNELS_IDS_2_CLEAN);
             process.exit(0);
           });
+
           client.login(process.env.DISCORD_TOKEN);
           EOF
