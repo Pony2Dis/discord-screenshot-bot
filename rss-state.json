@@ -152,7 +152,8 @@
     "https://www.cnbc.com/2025/08/03/wealth-terminology-investors.html",
     "https://www.cnbc.com/2025/08/01/why-black-entrepreneurs-flock-to-marthas-vineyard-every-august.html",
     "https://www.cnbc.com/2025/08/04/boeing-defense-workers-go-on-strike-after-rejecting-contract.html",
-    "https://www.cnbc.com/2025/08/04/american-eagle-aeo-stock-sydney-sweeney-trump.html"
+    "https://www.cnbc.com/2025/08/04/american-eagle-aeo-stock-sydney-sweeney-trump.html",
+    "https://www.cnbc.com/2025/08/05/pfizer-pfe-q2-2025-earnings-report.html"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258": [
     "https://www.cnbc.com/2025/07/25/trump-says-he-believes-powell-is-ready-to-start-lowering-rates.html",
@@ -599,7 +600,10 @@
     "https://www.prnewswire.com/news-releases/uranium-energy-corp-sweetwater-project-designated-by-us-government-for-fast-track-permitting-to-add-in-situ-recovery-capability-creating-the-largest-dual-feed-uranium-facility-in-the-us-302521478.html",
     "https://www.prnewswire.com/news-releases/core-natural-resources-reports-second-quarter-2025-results-302521413.html",
     "https://www.prnewswire.com/news-releases/jacobs-reports-strong-fiscal-third-quarter-2025-results-302521205.html",
-    "https://www.prnewswire.com/news-releases/major-transmission-project-gets-regulatory-green-light-302521108.html"
+    "https://www.prnewswire.com/news-releases/major-transmission-project-gets-regulatory-green-light-302521108.html",
+    "https://www.prnewswire.com/news-releases/dana-incorporated-reports-2025-strong-second-quarter-financial-results-raises-2025-full-year-guidance-302521898.html",
+    "https://www.prnewswire.com/news-releases/iron--steel-market-worth-1-707-1-billion-by-2030--exclusive-report-by-marketsandmarkets-302521689.html",
+    "https://www.prnewswire.com/news-releases/duke-energy-partners-with-brookfield-to-secure-investment-in-duke-energy-florida-expands-capital-plan-to-87-billion-302521915.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -857,7 +861,8 @@
     "https://www.cnbc.com/2025/08/04/what-a-rate-cut-means-for-stocks-plus-a-bullish-call-on-ai-spending.html",
     "https://www.cnbc.com/2025/08/04/palantir-pltr-q2-earnings-2025.html",
     "https://www.cnbc.com/2025/08/04/hims-hers-hims-q2-earnings-2025.html",
-    "https://www.cnbc.com/2025/08/05/bp-earnings-q2-2025.html"
+    "https://www.cnbc.com/2025/08/05/bp-earnings-q2-2025.html",
+    "https://www.cnbc.com/2025/08/05/caterpillars-profit-falls-on-weak-equipment-demand-tariff-hit.html"
   ],
   "https://finance.yahoo.com/news/rssindex": [
     "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-meta-amazon-earnings-fed-meeting-trump-tariffs-tesla-robotaxi/?src=A00220&yptr=yahoo",
@@ -3374,7 +3379,16 @@
     "https://finance.yahoo.com/news/beaten-down-8-yielding-dividend-101900783.html",
     "https://finance.yahoo.com/news/wall-street-analysts-bullish-charles-094829935.html",
     "https://finance.yahoo.com/news/wall-street-analysts-target-price-094225203.html",
-    "https://finance.yahoo.com/news/wall-street-bullish-bearish-copart-094000530.html"
+    "https://finance.yahoo.com/news/wall-street-bullish-bearish-copart-094000530.html",
+    "https://finance.yahoo.com/news/pfizer-raises-annual-profit-forecast-105327447.html",
+    "https://www.investors.com/news/technology/zebra-stock-zbra-q2-2025-earnings/?src=A00220&yptr=yahoo",
+    "https://www.wsj.com/business/earnings/dupont-de-nemours-adjusts-2025-outlook-following-sales-gains-d11cd241?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/palantir-raises-annual-revenue-forecast-104840541.html",
+    "https://www.wsj.com/business/energy-oil/saudi-aramcos-net-profit-hurt-by-lower-oil-prices-declares-21-billion-dividend-10552431?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/caterpillars-second-quarter-profit-falls-104137421.html",
+    "https://www.wsj.com/finance/investing/jgb-yields-lower-as-fed-stimulus-hopes-grow-f04e5cb3?siteid=yhoof2&yptr=yahoo",
+    "https://www.wsj.com/finance/currencies/usd-weaker-focus-on-chinks-in-safe-haven-status-69470d09?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/heres-vanguard-401-k-participation-103000390.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
