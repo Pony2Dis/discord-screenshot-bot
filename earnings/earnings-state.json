@@ -5566,5 +5566,29 @@
     "revenueSurprise": -0.00018541907397952328,
     "prevEarningsGrowth": 3.411764705882353,
     "prevRevenueGrowth": 0.09452447454146523
+  },
+  {
+    "epsDate": "2025-08-04T16:15:00",
+    "ticker": "SES",
+    "name": "SES AI Corporation",
+    "summary": "SES AI (SES) reported a loss of $0.07 per share on revenue of $3.53 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.05 per share on  revenue of $4.50 million. The Earnings Whisper number was a loss of $0.03 per share. The company missed expectations by 133.33%.<br /><br />The company  said it continues to expect  2025 revenue of $15.0 million to $25.0 million. The current consensus revenue estimate is $20.80 million for the year ending December 31, 2025.<br /><br />ES is a global leader in development and production of high-performance Li-Metal rechargeable batteries for electric vehicles (EVs) and other applications. ",
+    "subject": "SES AI Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508045777",
+    "eps": -0.07,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.05,
+    "whisper": -0.03,
+    "highEstimate": -0.03,
+    "lowEstimate": -0.07,
+    "revenue": 3.527,
+    "revenueEstimate": 4.5,
+    "earningsGrowth": -0.16666666666666666,
+    "revenueGrowth": null,
+    "earningsSurprise": -1.3333333333333333,
+    "revenueSurprise": -0.21622222222222223,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": null
   }
 ]
