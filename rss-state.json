@@ -685,7 +685,8 @@
     "https://www.prnewswire.com/news-releases/american-enrichment-company-general-matter-signs-landmark-lease-with-department-of-energy-to-bring-uranium-enrichment-back-to-paducah-the-industrial-atomic-city-302522370.html",
     "https://www.prnewswire.com/news-releases/michael-baker-international-names-hratch-rich-pakhchanian-pe-regional-operations-lead--bridge-302522376.html",
     "https://www.prnewswire.com/news-releases/diamond-porta-potty-highlights-trends-in-portable-sanitation-across-the-us-302522392.html",
-    "https://www.prnewswire.com/news-releases/brightnight-spins-off-apac-business-unlocking-stronger-regional-focus--growth-302522424.html"
+    "https://www.prnewswire.com/news-releases/brightnight-spins-off-apac-business-unlocking-stronger-regional-focus--growth-302522424.html",
+    "https://www.prnewswire.com/news-releases/cmta-searches-for-the-2025-coolest-thing-made-in-california-302522438.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -909,7 +910,8 @@
     "https://www.marketwatch.com/story/nasa-reportedly-wants-to-put-a-nuclear-reactor-on-the-moon-this-companys-stock-is-soaring-6a8f1f0e?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/why-your-credit-card-company-might-jack-up-your-cards-apr-even-when-the-fed-holds-rates-steady-6d6e161d?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/high-tariffs-drive-china-imports-down-to-a-16-year-low-but-u-s-trade-deficits-are-still-as-big-as-ever-f68b04a7?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/coronas-parent-is-looking-for-more-beer-drinkers-why-budweiser-could-be-the-buzzkill-c2b72cb0?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/coronas-parent-is-looking-for-more-beer-drinkers-why-budweiser-could-be-the-buzzkill-c2b72cb0?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/ceos-are-acting-like-its-the-great-recession-and-thats-crushing-this-stock-92c1f1f0?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -3882,7 +3884,10 @@
     "https://finance.yahoo.com/news/crypto-products-post-first-outflows-103917281.html",
     "https://finance.yahoo.com/news/really-retire-rental-income-just-104603114.html",
     "https://finance.yahoo.com/news/bp-discovers-oil-field-larger-104721710.html",
-    "https://finance.yahoo.com/news/unitedhealth-troubles-mount-cfo-faces-104719778.html"
+    "https://finance.yahoo.com/news/unitedhealth-troubles-mount-cfo-faces-104719778.html",
+    "https://finance.yahoo.com/news/no-not-too-heres-cryptocurrency-104606014.html",
+    "https://finance.yahoo.com/news/schneider-starts-early-peak-season-104700953.html",
+    "https://finance.yahoo.com/news/labor-department-data-upset-may-104730454.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
@@ -4677,6 +4682,12 @@
     "https://www.investing.com/news/stock-market-news/mckesson-uber-airbnb-lead-earnings-reports-wednesday-93CH-4171019",
     "https://www.investing.com/news/stock-market-news/why-wedbush-raised-its-target-on-palantir-to-a-street-high-200-4171016",
     "https://www.investing.com/news/stock-market-news/bhp-and-lundin-will-request-argentina-incentives-but-other-miners-fear-missing-out-4171137",
-    "https://www.investing.com/news/stock-market-news/bank-of-america-ceo-moynihan-discusses-banking-rules-and-economic-outlook-93CH-4171136"
+    "https://www.investing.com/news/stock-market-news/bank-of-america-ceo-moynihan-discusses-banking-rules-and-economic-outlook-93CH-4171136",
+    "https://www.investing.com/news/stock-market-news/two-chinese-nationals-in-california-accused-of-illegally-shipping-nvidia-ai-chips-to-china-4171161",
+    "https://www.investing.com/news/stock-market-news/targets-credit-rating-affirmed-at-a-by-fitch-amid-challenges-93CH-4171160",
+    "https://www.investing.com/news/stock-market-news/chinese-nationals-charged-with-illegal-export-of-nvidia-ai-chips--bloomberg-93CH-4171159",
+    "https://www.investing.com/news/stock-market-news/williams-ceo-sees-lng-doubling-to-25-of-us-gas-market--bloomberg-tv-93CH-4171158",
+    "https://www.investing.com/news/stock-market-news/clay-valued-at-31-billion-in-latest-fundraise-as-ai-continues-to-run-hot-4171155",
+    "https://www.investing.com/news/stock-market-news/sibo-holding-files-for-proposed-ipo-432SI-4171153"
   ]
 }
