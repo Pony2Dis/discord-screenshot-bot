@@ -916,7 +916,8 @@
     "https://www.cnbc.com/2025/08/05/bp-earnings-q2-2025.html",
     "https://www.cnbc.com/2025/08/05/caterpillars-profit-falls-on-weak-equipment-demand-tariff-hit.html",
     "https://www.cnbc.com/2025/08/05/pfizer-pfe-q2-2025-earnings-report.html",
-    "https://www.cnbc.com/2025/08/05/yum-brands-yum-q2-2025-earnings.html"
+    "https://www.cnbc.com/2025/08/05/yum-brands-yum-q2-2025-earnings.html",
+    "https://www.cnbc.com/2025/08/05/palantir-stock-earnings-ai-karp.html"
   ],
   "https://finance.yahoo.com/news/rssindex": [
     "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-meta-amazon-earnings-fed-meeting-trump-tariffs-tesla-robotaxi/?src=A00220&yptr=yahoo",
@@ -3563,7 +3564,11 @@
     "https://finance.yahoo.com/news/arm-stock-investors-missing-forest-124500849.html",
     "https://finance.yahoo.com/news/digital-health-company-emed-taps-130614163.html",
     "https://finance.yahoo.com/news/pepsico-uk-factory-jobs-risk-132415265.html",
-    "https://finance.yahoo.com/news/investment-banker-says-once-youve-131606284.html"
+    "https://finance.yahoo.com/news/investment-banker-says-once-youve-131606284.html",
+    "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-nudge-higher-as-wall-street-eyes-earnings-trade-tensions-230420364.html",
+    "https://www.investors.com/news/technology/inspire-medical-systems-stock-inspire-medical-systems-earnings-q2-2025/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/alcon-expands-vision-correction-portfolio-132741085.html",
+    "https://finance.yahoo.com/news/3-things-know-investing-stablecoins-130500493.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
@@ -4304,6 +4309,10 @@
     "https://www.investing.com/news/stock-market-news/legalzoom-stock-soars-after-announcing-openai-chatgpt-collaboration-93CH-4170370",
     "https://www.investing.com/news/stock-market-news/security-flaw-found-fixed-that-could-have-left-millions-of-dell-laptops-vulnerable-researchers-say-4170356",
     "https://www.investing.com/news/stock-market-news/waymo-may-be-worth-200b-using-tesla-as-benchmarkda-davidson-4170355",
-    "https://www.investing.com/news/stock-market-news/jpm-downgrades-inspire-medical-on-lowered-guidance-4170353"
+    "https://www.investing.com/news/stock-market-news/jpm-downgrades-inspire-medical-on-lowered-guidance-4170353",
+    "https://www.investing.com/news/stock-market-news/niocorp-stock-jumps-after-securing-10-million-dod-funding-93CH-4170405",
+    "https://www.investing.com/news/stock-market-news/180-life-sciences-rises-after-raising-425-million-for-ethereum-strategy-93CH-4170402",
+    "https://www.investing.com/news/stock-market-news/expeditors-posts-upbeat-results-on-higher-freight-volumes-customs-fees-4170399",
+    "https://www.investing.com/news/stock-market-news/fox-beats-quarterly-estimates-boosts-buyback-by-5-billion-4170398"
   ]
 }
