@@ -615,7 +615,9 @@
     "https://www.prnewswire.com/news-releases/envision-energy-achieves-breakthrough-in-two-blade-wind-turbine-technology-with-over-500-days-of-stable-operation-302521940.html",
     "https://www.prnewswire.com/news-releases/sermatec-------430---------302521954.html",
     "https://www.prnewswire.com/news-releases/sermatec-sichert-sich-430-mwh-energiespeicherprojekt-in-bulgarien-und-beschleunigt-damit-die-energiewende-in-osteuropa-302521949.html",
-    "https://www.prnewswire.com/news-releases/sermatec-wygrywa-w-bugarii-przetarg-na-projekt-systemu-magazynowania-energii-o-cznej-pojemnoci-ponad-430-mwh-ktory-przyspieszy-transformacj-energetyczn-w-europie-wschodniej-302521957.html"
+    "https://www.prnewswire.com/news-releases/sermatec-wygrywa-w-bugarii-przetarg-na-projekt-systemu-magazynowania-energii-o-cznej-pojemnoci-ponad-430-mwh-ktory-przyspieszy-transformacj-energetyczn-w-europie-wschodniej-302521957.html",
+    "https://www.prnewswire.com/news-releases/btq-technologies-to-develop-worlds-first-quantum-secure-custody-treasury-for-bitcoin-ethereum-and-other-digital-assets-in-collaboration-with-qbits-302521695.html",
+    "https://www.prnewswire.com/news-releases/pseg-announces-second-quarter-2025-results-302521914.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -823,7 +825,8 @@
     "https://www.marketwatch.com/story/gundlach-says-rate-cuts-are-a-virtual-certainty-but-hes-still-bearish-on-the-long-bond-9a1f2ab5?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/these-five-unseen-drivers-could-propel-the-bull-market-even-higher-according-to-this-wall-street-veteran-e8570ca6?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/my-late-husbands-employer-is-forcing-me-to-take-10-401-k-distributions-help-fe94579c?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/teslas-run-of-rough-european-sales-continues-as-germany-and-u-k-sales-halved-in-july-11585c87?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/teslas-run-of-rough-european-sales-continues-as-germany-and-u-k-sales-halved-in-july-11585c87?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/chelsea-handler-talks-about-her-boozy-lemonade-the-meaning-of-turning-50-and-why-real-estate-is-the-best-investment-0fd521b9?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -3426,7 +3429,16 @@
     "https://finance.yahoo.com/news/jackson-parish-hospital-teams-trubridge-112636320.html",
     "https://finance.yahoo.com/news/ask-advisor-does-10-rule-110000957.html",
     "https://finance.yahoo.com/news/coinbase-premium-just-dropped-huge-111636444.html",
-    "https://finance.yahoo.com/news/asked-chatgpt-many-middle-class-111209621.html"
+    "https://finance.yahoo.com/news/asked-chatgpt-many-middle-class-111209621.html",
+    "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-futures-nudge-higher-as-wall-street-eyes-earnings-trade-tensions-230420217.html",
+    "https://finance.yahoo.com/news/increased-investor-confidence-better-expected-112654023.html",
+    "https://finance.yahoo.com/news/silent-revolution-why-embedded-finance-113804642.html",
+    "https://finance.yahoo.com/news/tapestry-sells-footwear-brand-stuart-113723183.html",
+    "https://finance.yahoo.com/news/us-china-tensions-offer-opportunity-113652604.html",
+    "https://finance.yahoo.com/news/uk-retailers-pivot-markets-76-113557541.html",
+    "https://finance.yahoo.com/news/trump-fed-pick-could-face-100000452.html",
+    "https://finance.yahoo.com/news/cooper-parry-expands-portfolio-fellwood-113052928.html",
+    "https://finance.yahoo.com/news/china-independent-oil-companies-boost-112927637.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
