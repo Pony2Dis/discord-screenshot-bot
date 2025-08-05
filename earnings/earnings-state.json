@@ -6334,5 +6334,29 @@
     "revenueSurprise": -0.029977636215776635,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.09220800602097935
+  },
+  {
+    "epsDate": "2025-08-05T16:39:00",
+    "ticker": "LEU",
+    "name": "Centrus Energy Corp",
+    "summary": "Centrus Energy (LEU) reported earnings of $1.59 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.78 per share on  revenue of $136.84 million. The company beat consensus estimates by 103.85%.<br /><br />Centrus Energy is a trusted supplier of nuclear fuel and services for the nuclear power industry. Centrus provides value to its utility customers through the reliability and diversity of its supply sources – helping them meet the growing need for clean, affordable, carbon-free electricity.",
+    "subject": "Centrus Energy Beat Consensus Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508055059",
+    "eps": 1.59,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.78,
+    "whisper": 999,
+    "highEstimate": 1.02,
+    "lowEstimate": 0.36,
+    "revenue": null,
+    "revenueEstimate": 136.84,
+    "earningsGrowth": -0.15873015873015872,
+    "revenueGrowth": null,
+    "earningsSurprise": 1.0384615384615385,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.6727688787185355
   }
 ]
