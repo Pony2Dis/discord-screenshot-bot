@@ -665,7 +665,8 @@
     "https://www.prnewswire.com/news-releases/quantifind-joins-forces-with-opensanctions-to-deliver-the-gold-standard-in-sanctions-compliance-302521501.html",
     "https://www.prnewswire.com/news-releases/h2-organizer-partners-with-el-salvador-government-to-eliminate-workforce-management-bottlenecks-for-us-employers-302522172.html",
     "https://www.prnewswire.com/news-releases/atlas-ssi-expands-capabilities-with-acquisition-of-wtr-engineering-302522143.html",
-    "https://www.prnewswire.com/news-releases/circuit-check-acquires-solution-sources-programming-ssp-to-become-a-full-service-test-and-programming-provider-with-expanded-presence-in-silicon-valley-302522180.html"
+    "https://www.prnewswire.com/news-releases/circuit-check-acquires-solution-sources-programming-ssp-to-become-a-full-service-test-and-programming-provider-with-expanded-presence-in-silicon-valley-302522180.html",
+    "https://www.prnewswire.com/news-releases/loews-corporation-announces-quarterly-dividend-on-common-stock-302522189.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -940,7 +941,8 @@
     "https://www.cnbc.com/2025/08/05/pfizer-pfe-q2-2025-earnings-report.html",
     "https://www.cnbc.com/2025/08/05/yum-brands-yum-q2-2025-earnings.html",
     "https://www.cnbc.com/2025/08/05/palantir-stock-earnings-ai-karp.html",
-    "https://www.cnbc.com/2025/08/05/fox-one-streaming-service-launch-date-cost.html"
+    "https://www.cnbc.com/2025/08/05/fox-one-streaming-service-launch-date-cost.html",
+    "https://www.cnbc.com/2025/08/05/whats-driving-the-action-in-amazon-plus-our-hopes-for-disney-earnings.html"
   ],
   "https://finance.yahoo.com/news/rssindex": [
     "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-meta-amazon-earnings-fed-meeting-trump-tariffs-tesla-robotaxi/?src=A00220&yptr=yahoo",
@@ -3667,7 +3669,16 @@
     "https://finance.yahoo.com/news/5-homes-could-bad-investment-145820044.html",
     "https://finance.yahoo.com/news/fundstrats-tom-lee-owning-bitcoin-151813881.html",
     "https://finance.yahoo.com/news/why-palantir-technologies-stock-soared-150356706.html",
-    "https://finance.yahoo.com/news/why-opendoor-technologies-jumped-245-150042729.html"
+    "https://finance.yahoo.com/news/why-opendoor-technologies-jumped-245-150042729.html",
+    "https://www.barrons.com/articles/firefly-aerospace-stock-price-ipo-valuation-239a0ae2?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/jim-cramer-drops-jaw-dropping-153300006.html",
+    "https://www.barrons.com/articles/novo-nordisk-stock-price-downgrade-eli-lilly-aea63b3f?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/cathie-wood-dumps-1-3m-151818324.html",
+    "https://www.barrons.com/articles/amd-astera-chip-stocks-nvidia-buy-afb0b8c9?siteid=yhoof2&yptr=yahoo",
+    "https://www.barrons.com/livecoverage/stock-market-news-today-080525/card/wall-street-slams-on-the-brakes-the-major-indexes-lose-their-early-gains--vQCsKCk1YksYWfDJvefy?siteid=yhoof2&yptr=yahoo",
+    "https://www.barrons.com/articles/nvidia-stock-cathie-wood-ark-etf-1d94bab0?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/why-hims-hers-health-stock-150736338.html",
+    "https://www.barrons.com/articles/stock-market-earnings-data-buy-sell-f3743245?siteid=yhoof2&yptr=yahoo"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
@@ -4432,6 +4443,9 @@
     "https://www.investing.com/news/stock-market-news/brazils-brf-shareholders-approve-merger-with-marfrig-4170630",
     "https://www.investing.com/news/stock-market-news/morocco-stocks-higher-at-close-of-trade-moroccan-all-shares-up-015-4170627",
     "https://www.investing.com/news/stock-market-news/norway-stocks-higher-at-close-of-trade-oslo-obx-up-044-4170607",
-    "https://www.investing.com/news/stock-market-news/israel-stocks-lower-at-close-of-trade-ta-35-down-150-4170604"
+    "https://www.investing.com/news/stock-market-news/israel-stocks-lower-at-close-of-trade-ta-35-down-150-4170604",
+    "https://www.investing.com/news/stock-market-news/denmark-stocks-lower-at-close-of-trade-omx-copenhagen-20-down-080-4170659",
+    "https://www.investing.com/news/stock-market-news/us-proposes-new-rules-to-expand-commercial-drone-operations-93CH-4170656",
+    "https://www.investing.com/news/stock-market-news/us-proposes-new-rules-to-speed-drone-deployments-4170654"
   ]
 }
