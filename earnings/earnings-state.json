@@ -6430,5 +6430,29 @@
     "revenueSurprise": -0.0101139896373057,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.3326655559462934
+  },
+  {
+    "epsDate": "2025-08-05T16:05:00",
+    "ticker": "ZETA",
+    "name": "Zeta Global",
+    "summary": "Zeta Global (ZETA) reported earnings of $0.14 per share on revenue of $308.44 million for the  second quarter ended June 2025.  The consensus earnings estimate was $0.13 per share on  revenue of $296.38 million. The Earnings Whisper number was $0.14 per share. The company reported in-line with expectations while revenue grew 35.38% on a year-over-year basis.<br /><br />The company  said it expects  third quarter  revenue of $327.0 million to $329.0 million and 2025 revenue of $1.258 billion to $1.268 billion. The company's previous guidance was  2025 revenue of $1.237 billion to $1.247 billion. The current consensus revenue estimate is $324.04 million for the quarter ending September 30, 2025 and revenue of $1.24 billion for the year ending December 31, 2025.<br /><br />Zeta Global Holdings Corp. is a leading data-driven, cloud-based marketing technology company that empowers enterprises to acquire, grow and retain customers.",
+    "subject": "Zeta Global Reported In-line with Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508058052",
+    "eps": 0.14,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.13,
+    "whisper": 0.14,
+    "highEstimate": 0.19,
+    "lowEstimate": 0.09,
+    "revenue": 308.442,
+    "revenueEstimate": 296.38,
+    "earningsGrowth": 1.875,
+    "revenueGrowth": 0.3537717423268185,
+    "earningsSurprise": 0,
+    "revenueSurprise": 0.04069775288481004,
+    "prevEarningsGrowth": -1.5625,
+    "prevRevenueGrowth": 0.3563635244451056
   }
 ]
