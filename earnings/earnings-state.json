@@ -5806,5 +5806,29 @@
     "revenueSurprise": 0.23275475086039205,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.5281155842741496
+  },
+  {
+    "epsDate": "2025-08-05T07:00:00",
+    "ticker": "DOCN",
+    "name": "DigitalOcean",
+    "summary": "DigitalOcean (DOCN) reported earnings of $0.59 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.47 per share on  revenue of $216.62 million. The Earnings Whisper number was $0.53 per share. The company beat expectations by 11.32%.<br /><br />DigitalOcean simplifies cloud computing so developers and businesses can spend more time building software that changes the world. ",
+    "subject": "DigitalOcean Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508050835",
+    "eps": 0.59,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.47,
+    "whisper": 0.53,
+    "highEstimate": 0.54,
+    "lowEstimate": 0.44,
+    "revenue": null,
+    "revenueEstimate": 216.62,
+    "earningsGrowth": 1.0344827586206897,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.11320754716981132,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": 0.675,
+    "prevRevenueGrowth": 0.14059979429437558
   }
 ]
