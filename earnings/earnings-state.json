@@ -5734,5 +5734,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.07823106391558572
+  },
+  {
+    "epsDate": "2025-08-05T07:00:00",
+    "ticker": "DUK",
+    "name": "Duke Energy Corp.",
+    "summary": "Duke Energy (DUK) reported earnings of $1.25 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $1.19 per share on  revenue of $7.39 billion. The Earnings Whisper number was $1.23 per share. The company beat expectations by 1.63%.<br /><br />Duke Energy Corporation operates as an energy company. The Company operates in three business segments; Regulated Utilities, International Energy and Commercial Power.",
+    "subject": "Duke Energy Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508054294",
+    "eps": 1.25,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 1.19,
+    "whisper": 1.23,
+    "highEstimate": 1.39,
+    "lowEstimate": 1.18,
+    "revenue": null,
+    "revenueEstimate": 7390,
+    "earningsGrowth": 0.059322033898305086,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.016260162601626018,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.07534871594316256
   }
 ]
