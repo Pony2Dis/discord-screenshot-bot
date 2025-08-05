@@ -6406,5 +6406,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": -0.5555555555555556,
     "prevRevenueGrowth": 0.061743136433707886
+  },
+  {
+    "epsDate": "2025-08-05T16:05:00",
+    "ticker": "CLOV",
+    "name": "Clover Health",
+    "summary": "Clover Health (CLOV) reported earnings of $0.05 per share on revenue of $477.62 million for the  second quarter ended June 2025.  The consensus earnings estimate was $0.03 per share on  revenue of $482.50 million. The Earnings Whisper number was $0.04 per share. The company beat expectations by 25.00% while revenue grew 34.07% on a year-over-year basis.<br /><br />Clover Health is a physician enablement company committed to bringing access to great healthcare to everyone on Medicare.",
+    "subject": "Clover Health Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508056640",
+    "eps": 0.05,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.03,
+    "whisper": 0.04,
+    "highEstimate": 0.03,
+    "lowEstimate": 0.03,
+    "revenue": 477.62,
+    "revenueEstimate": 482.5,
+    "earningsGrowth": 4,
+    "revenueGrowth": 0.34065008701510135,
+    "earningsSurprise": 0.25,
+    "revenueSurprise": -0.0101139896373057,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.3326655559462934
   }
 ]
