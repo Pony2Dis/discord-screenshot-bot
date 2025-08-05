@@ -5710,5 +5710,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.06894301870378425
+  },
+  {
+    "epsDate": "2025-08-05T06:45:00",
+    "ticker": "PFE",
+    "name": "Pfizer, Inc.",
+    "summary": "Pfizer (PFE) reported earnings of $0.78 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.58 per share on  revenue of $13.78 billion. The Earnings Whisper number was $0.64 per share. The company beat expectations by 21.88%.<br /><br />Pfizer Inc is a research-based biopharmaceutical company. The Company has five operating segments: Primary Care; Specialty Care and Oncology; Established Products and Emerging Markets; Animal Health; and Consumer Healthcare.",
+    "subject": "Pfizer Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508057025",
+    "eps": 0.78,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.58,
+    "whisper": 0.64,
+    "highEstimate": 0.62,
+    "lowEstimate": 0.56,
+    "revenue": null,
+    "revenueEstimate": 13780,
+    "earningsGrowth": 0.3,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.21875,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.07823106391558572
   }
 ]
