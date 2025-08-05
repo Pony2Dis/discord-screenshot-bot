@@ -5830,5 +5830,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": 0.675,
     "prevRevenueGrowth": 0.14059979429437558
+  },
+  {
+    "epsDate": "2025-08-05T07:00:00",
+    "ticker": "GLXY",
+    "name": "Galaxy Digital Inc. ",
+    "summary": "Galaxy Digital Inc. (GLXY) reported earnings of $0.08 per share on  for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.06 per share on  revenue of $13.11 billion. The Earnings Whisper number was a loss of $0.02 per share. The company beat expectations by 500.00%.<br /><br />Galaxy Digital Inc. is a global leader in digital assets and data center infrastructure, delivering solutions that accelerate progress in finance and artificial intelligence. ",
+    "subject": "Galaxy Digital Inc. Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508054412",
+    "eps": 0.08,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.06,
+    "whisper": -0.02,
+    "highEstimate": 0.09,
+    "lowEstimate": -0.21,
+    "revenue": null,
+    "revenueEstimate": 13110,
+    "earningsGrowth": null,
+    "revenueGrowth": null,
+    "earningsSurprise": 5,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": null
   }
 ]
