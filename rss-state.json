@@ -645,7 +645,9 @@
     "https://www.prnewswire.com/news-releases/oci-announces-merger-with-gms-piling-302521437.html",
     "https://www.prnewswire.com/news-releases/exus-renewables-north-america-launches-exusiq-performance-optimization-suite-with-debut-of-pitch-power-tool-302521712.html",
     "https://www.prnewswire.com/news-releases/2-in-3-gen-z-fear-theyll-never-afford-a-home--1-in-5-say-wwiii-is-more-likely-to-happen-first-302521432.html",
-    "https://www.prnewswire.com/news-releases/ameripro-health-founders-launch-provest-equity-partners-and-acquire-advanced-process-solutions-as-next-platform-investment-302521411.html"
+    "https://www.prnewswire.com/news-releases/ameripro-health-founders-launch-provest-equity-partners-and-acquire-advanced-process-solutions-as-next-platform-investment-302521411.html",
+    "https://www.prnewswire.com/news-releases/emobi-partners-with-electricfish-to-enable-justplug-on-grid-independent-ultra-fast-public-and-fleet-charging-depot-infrastructure-302521927.html",
+    "https://www.prnewswire.com/news-releases/rubadue-expands-litz-wire-offering-with-pet-and-polyimide-tape-wrap-configurations-302521473.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -858,7 +860,8 @@
     "https://www.marketwatch.com/story/molson-coors-cuts-earnings-outlook-because-of-aluminum-tariffs-and-a-slowing-economy-ecda7014?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/pfizer-boosts-2025-profit-estimate-in-a-sign-of-confidence-b53242ae?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/any-of-these-8-tech-stocks-could-become-a-5-trillion-company-before-nvidia-does-1c3d00c3?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/caterpillars-stock-falls-after-profit-misses-expectations-again-to-offset-a-raised-outlook-d92aa1b6?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/caterpillars-stock-falls-after-profit-misses-expectations-again-to-offset-a-raised-outlook-d92aa1b6?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/trump-narrows-fed-chair-list-bessent-is-out-while-these-two-rise-in-rankings-ad023277?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -3538,7 +3541,17 @@
     "https://finance.yahoo.com/news/modular-building-startup-boxabl-public-124004782.html",
     "https://finance.yahoo.com/news/hsbc-raises-p-500-end-122405700.html",
     "https://finance.yahoo.com/news/gold-holds-gain-fed-rate-054931748.html",
-    "https://finance.yahoo.com/news/could-only-buy-hold-single-123000280.html"
+    "https://finance.yahoo.com/news/could-only-buy-hold-single-123000280.html",
+    "https://finance.yahoo.com/news/corporate-america-remains-obsessed-with-stock-buybacks-130608383.html",
+    "https://www.investors.com/news/nuclear-stocks-key-earnings-report-trump-targets-moon-nuclear-reactor/?src=A00220&yptr=yahoo",
+    "https://www.investors.com/news/technology/zoetis-stock-zoetis-earnings-q2-205/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/molson-coors-lowers-sales-profit-130431093.html",
+    "https://finance.yahoo.com/news/does-taiwan-semiconductor-manufacturing-company-130035389.html",
+    "https://finance.yahoo.com/news/tesla-musk-sued-shareholders-over-125951164.html",
+    "https://www.investors.com/news/technology/shift4-stock-shift4-earnings-q22025/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/makes-nu-holdings-ltd-nu-125909185.html",
+    "https://finance.yahoo.com/news/supports-datadog-ddog-annual-share-125713099.html",
+    "https://finance.yahoo.com/news/primeflight-aviation-buys-stratair-cargo-121047683.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
@@ -4267,6 +4280,13 @@
     "https://www.investing.com/news/stock-market-news/solarmax-stock-soars-after-landing-1273m-battery-storage-contract-93CH-4170256",
     "https://www.investing.com/news/stock-market-news/trump-signals-tariff-plans-fed-chair-candidates-china-deal-progress-4170255",
     "https://www.investing.com/news/stock-market-news/animal-healthcare-firm-zoetis-raises-annual-forecast-on-strong-pet-product-demand-4170254",
-    "https://www.investing.com/news/stock-market-news/stellantis-stock-target-cut-at-jefferies-on-delayed-turnaround-4170252"
+    "https://www.investing.com/news/stock-market-news/stellantis-stock-target-cut-at-jefferies-on-delayed-turnaround-4170252",
+    "https://www.investing.com/news/stock-market-news/frontier-group-forecasts-biggerthanexpected-q3-loss-on-soft-domestic-demand-4170348",
+    "https://www.investing.com/news/stock-market-news/insider-activity-recap-top-buys-and-sells-from-monday-august-4-2025-93CH-4170343",
+    "https://www.investing.com/news/stock-market-news/tesla-musk-sued-by-shareholders-over-robotaxi-claims-4170338",
+    "https://www.investing.com/news/stock-market-news/trump-says-hes-unlikely-to-run-for-president-again-93CH-4170326",
+    "https://www.investing.com/news/stock-market-news/bank-of-america-and-jp-morgan-discriminated-against-me-says-trump-93CH-4170312",
+    "https://www.investing.com/news/stock-market-news/us-awards-niocorp-unit-10-million-to-build-scandium-supply-chain-in-nebraska-4170311",
+    "https://www.investing.com/news/stock-market-news/palliser-capital-urges-tripadvisor-to-consider-sale-amid-strategic-concerns--bloomberg-93CH-4170292"
   ]
 }
