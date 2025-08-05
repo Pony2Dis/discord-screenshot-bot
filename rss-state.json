@@ -171,7 +171,8 @@
     "https://www.cnbc.com/2025/08/05/trump-says-pharma-tariffs-could-eventually-reach-up-to-250percent.html",
     "https://www.cnbc.com/2025/08/05/fox-one-streaming-service-launch-date-cost.html",
     "https://www.cnbc.com/2025/08/05/yum-brands-ceo-training-ground-restaurant-industry.html",
-    "https://www.cnbc.com/2025/08/05/roku-ad-free-streaming-service-howdy.html"
+    "https://www.cnbc.com/2025/08/05/roku-ad-free-streaming-service-howdy.html",
+    "https://www.cnbc.com/2025/08/05/ai-labor-market-young-tech-workers-goldman-economist.html"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258": [
     "https://www.cnbc.com/2025/07/25/trump-says-he-believes-powell-is-ready-to-start-lowering-rates.html",
@@ -676,7 +677,8 @@
     "https://www.prnewswire.com/news-releases/ruppert-properties-announces-sale-of-industrial-property-in-frederick-302521905.html",
     "https://www.prnewswire.com/news-releases/gold-eyes-3-500-as-miners-race-to-unlock-high-grade-ounces-before-year-end-302522275.html",
     "https://www.prnewswire.com/news-releases/rayneo-teams-up-with-bluetti-and-yaber-to-power-up-your-summer-nights-302521732.html",
-    "https://www.prnewswire.com/news-releases/regal-rexnord-and-abb-robotics-collaborate-for-seamless-integration-of-cobot-7th-axes-302522292.html"
+    "https://www.prnewswire.com/news-releases/regal-rexnord-and-abb-robotics-collaborate-for-seamless-integration-of-cobot-7th-axes-302522292.html",
+    "https://www.prnewswire.com/news-releases/oci-announces-merger-with-gms-piling-302522337.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -3834,7 +3836,14 @@
     "https://finance.yahoo.com/news/watch-cameco-ccj-investing-171400119.html",
     "https://www.wsj.com/business/basic-materials-roundup-market-talk-f89087f6?siteid=yhoof2&yptr=yahoo",
     "https://finance.yahoo.com/news/axon-soars-past-52-week-175507271.html",
-    "https://finance.yahoo.com/news/3-best-warren-buffett-stocks-173200501.html"
+    "https://finance.yahoo.com/news/3-best-warren-buffett-stocks-173200501.html",
+    "https://www.barrons.com/livecoverage/stock-market-news-today-080425/card/oil-prices-fall-in-volatile-trade-jBbXm0zvzXrnVupOQvSQ?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/foxconn-sells-lordstown-facility-88-084529228.html",
+    "https://finance.yahoo.com/video/mufg-chief-calls-earlier-boj-090541258.html",
+    "https://finance.yahoo.com/news/two-income-etfs-goldman-fastest-100000928.html",
+    "https://finance.yahoo.com/news/sec-now-crypto-next-100500851.html",
+    "https://finance.yahoo.com/news/rich-investors-eschew-financial-advice-101000046.html",
+    "https://finance.yahoo.com/news/rail-merger-bring-dismal-high-101600506.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
