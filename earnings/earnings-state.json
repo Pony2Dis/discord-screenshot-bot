@@ -5854,5 +5854,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": null
+  },
+  {
+    "epsDate": "2025-08-05T06:30:00",
+    "ticker": "CAT",
+    "name": "Caterpillar, Inc.",
+    "summary": "Caterpillar (CAT) reported earnings of $4.72 per share on revenue of $16.57 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $4.88 per share on  revenue of $16.35 billion. The Earnings Whisper number was $5.05 per share. The company missed expectations by 6.53% while revenue fell 0.72% compared to the same quarter a year ago.<br /><br />Caterpillar Inc is a manufacturer of construction and mining\r\nequipment, diesel and natural gas engines, industrial gas turbines and\r\ndiesel-electric locomotives. The Company is also a U.S. exporter.",
+    "subject": "Caterpillar Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508053696",
+    "eps": 4.72,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 4.88,
+    "whisper": 5.05,
+    "highEstimate": 5.12,
+    "lowEstimate": 4.5,
+    "revenue": 16569,
+    "revenueEstimate": 16350,
+    "earningsGrowth": -0.21202003338898165,
+    "revenueGrowth": -0.007190364911019234,
+    "earningsSurprise": -0.06534653465346535,
+    "revenueSurprise": 0.013394495412844036,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.09810747515665548
   }
 ]
