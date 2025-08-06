@@ -6622,5 +6622,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.06964633428429108
+  },
+  {
+    "epsDate": "2025-08-06T06:55:00",
+    "ticker": "UBER",
+    "name": "Uber Technologies, Inc.",
+    "summary": "Uber Technologies (UBER) reported earnings of $0.63 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.62 per share on  revenue of $12.46 billion. The Earnings Whisper number was $0.76 per share. The company missed expectations by 17.11%.<br /><br />Uber's mission is to create opportunity through movement.",
+    "subject": "Uber Technologies Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508069550",
+    "eps": 0.63,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.62,
+    "whisper": 0.76,
+    "highEstimate": 0.72,
+    "lowEstimate": 0.47,
+    "revenue": null,
+    "revenueEstimate": 12460,
+    "earningsGrowth": 0.3404255319148936,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.17105263157894737,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.13838712861514166
   }
 ]
