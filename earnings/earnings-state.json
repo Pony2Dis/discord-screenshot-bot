@@ -6670,5 +6670,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.15560640732265446
+  },
+  {
+    "epsDate": "2025-08-06T07:00:00",
+    "ticker": "MCD",
+    "name": "McDonalds Corp.",
+    "summary": "McDonalds (MCD) reported earnings of $3.19 per share on revenue of $6.84 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $3.15 per share on  revenue of $6.71 billion. The Earnings Whisper number was $3.12 per share. The company beat expectations by 2.24% while revenue grew 5.44% on a year-over-year basis.<br /><br />McDonald' Corp franchises and operates McDonald' restaurants in the food service industry. Its geographic segments include the United States, Europe, and Asia-Pacific, Middle East and Africa.",
+    "subject": "McDonalds Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508064921",
+    "eps": 3.19,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 3.15,
+    "whisper": 3.12,
+    "highEstimate": 3.19,
+    "lowEstimate": 3.09,
+    "revenue": 6843,
+    "revenueEstimate": 6710,
+    "earningsGrowth": 0.07407407407407407,
+    "revenueGrowth": 0.05439137134052388,
+    "earningsSurprise": 0.022435897435897436,
+    "revenueSurprise": 0.019821162444113263,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.03452747609012806
   }
 ]
