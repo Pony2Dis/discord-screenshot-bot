@@ -83,7 +83,9 @@ async function run() {
   } finally {
     console.log("Finished processing all users.");
     if (client) await client.destroy();
+    console.log("Discord client disconnected.");
   }
+  process.exit(0);
 }
 
 run().catch(console.error);
