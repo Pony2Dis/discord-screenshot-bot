@@ -6478,5 +6478,29 @@
     "revenueSurprise": 0.028381449689137663,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.1888394662353417
+  },
+  {
+    "epsDate": "2025-08-05T16:05:00",
+    "ticker": "VSAT",
+    "name": "ViaSat, Inc.",
+    "summary": "ViaSat (VSAT) reported earnings of $0.08 per share on revenue of $1.17 billion for the  fiscal first quarter ended June 2025.  The consensus estimate was a loss of $0.20 per share on  revenue of $1.13 billion. The company beat consensus estimates by 140.00% while revenue grew 3.96% on a year-over-year basis.<br /><br />Viasat Inc is engaged in the provision of high-speed fixed and mobile broadband services. The Company also offers advanced satellite and other wireless networks and secure networking systems, products and services.",
+    "subject": "ViaSat Beat Consensus Estimates",
+    "quarter": " fiscal first quarter ended June 2025",
+    "fileName": "2508055931",
+    "eps": 0.08,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.2,
+    "whisper": 999,
+    "highEstimate": -0.04,
+    "lowEstimate": -0.36,
+    "revenue": 1171.054,
+    "revenueEstimate": 1130,
+    "earningsGrowth": 1.3076923076923077,
+    "revenueGrowth": 0.039587735028318805,
+    "earningsSurprise": 1.4,
+    "revenueSurprise": 0.036330973451327436,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.0025486668411574477
   }
 ]
