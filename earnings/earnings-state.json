@@ -6742,5 +6742,29 @@
     "revenueSurprise": -0.008714164546225615,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.15712643977715138
+  },
+  {
+    "epsDate": "2025-08-06T07:00:00",
+    "ticker": "SHOP",
+    "name": "Shopify Inc.",
+    "summary": "Shopify (SHOP) reported earnings of $0.34 per share on revenue of $2.68 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $0.29 per share on  revenue of $2.54 billion. The Earnings Whisper number was $0.30 per share. The company beat expectations by 13.33% while revenue grew 31.05% on a year-over-year basis.<br /><br />Shopify is a leading provider of essential internet infrastructure for commerce, offering trusted tools to start, grow, market, and manage a retail business of any size.",
+    "subject": "Shopify Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "25080616_1",
+    "eps": 0.34,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.29,
+    "whisper": 0.3,
+    "highEstimate": 0.32,
+    "lowEstimate": 0.24,
+    "revenue": 2680,
+    "revenueEstimate": 2540,
+    "earningsGrowth": 0.8888888888888888,
+    "revenueGrowth": 0.3105134474327628,
+    "earningsSurprise": 0.13333333333333333,
+    "revenueSurprise": 0.05511811023622047,
+    "prevEarningsGrowth": 0.6666666666666666,
+    "prevRevenueGrowth": 0.2681354110693176
   }
 ]
