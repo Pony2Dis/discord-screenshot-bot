@@ -6766,5 +6766,29 @@
     "revenueSurprise": 0.05511811023622047,
     "prevEarningsGrowth": 0.6666666666666666,
     "prevRevenueGrowth": 0.2681354110693176
+  },
+  {
+    "epsDate": "2025-08-06T08:00:00",
+    "ticker": "DAVE",
+    "name": "Dave, Inc.",
+    "summary": "Dave (DAVE) reported earnings of $0.86 per share on revenue of $131.70 million for the  second quarter ended June 2025.  The consensus earnings estimate was $1.47 per share on  revenue of $112.70 million. The Earnings Whisper number was $1.84 per share. The company missed expectations by 53.26% while revenue grew 64.42% on a year-over-year basis.<br /><br />The company  said it expects  2025 revenue of $505.0 million to $515.0 million. The company's previous guidance was revenue of $460.0 million to $475.0 million and the current consensus revenue estimate is $475.83 million for the year ending December 31, 2025.<br /><br />Dave is a banking app on a mission to build products that level the financial playing field. ",
+    "subject": "Dave Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508066974",
+    "eps": 0.86,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 1.47,
+    "whisper": 1.84,
+    "highEstimate": 2.32,
+    "lowEstimate": 1.47,
+    "revenue": 131.7,
+    "revenueEstimate": 112.7,
+    "earningsGrowth": 0.9545454545454546,
+    "revenueGrowth": 0.6441947565543071,
+    "earningsSurprise": -0.532608695652174,
+    "revenueSurprise": 0.16858917480035493,
+    "prevEarningsGrowth": 2.3389830508474576,
+    "prevRevenueGrowth": 0.4673913043478261
   }
 ]
