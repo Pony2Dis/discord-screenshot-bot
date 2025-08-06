@@ -7126,5 +7126,29 @@
     "revenueSurprise": 0.006169468384674461,
     "prevEarningsGrowth": 2.769230769230769,
     "prevRevenueGrowth": 0.03581582036662795
+  },
+  {
+    "epsDate": "2025-08-06T16:15:00",
+    "ticker": "DKNG",
+    "name": "DraftKings Inc.",
+    "summary": "DraftKings (DKNG) reported earnings of $0.30 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.39 per share on  revenue of $1.42 billion. The Earnings Whisper number was $0.44 per share. The company missed expectations by 31.82%.<br /><br />DraftKings Inc. is a digital sports entertainment and gaming company created to fuel the competitive spirit of sports fans with products that range across daily fantasy, regulated gaming and digital media. ",
+    "subject": "DraftKings Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508067487",
+    "eps": 0.3,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.39,
+    "whisper": 0.44,
+    "highEstimate": 0.54,
+    "lowEstimate": 0.3,
+    "revenue": null,
+    "revenueEstimate": 1420,
+    "earningsGrowth": 1.5,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.3181818181818182,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": -1.0769230769230769,
+    "prevRevenueGrowth": 0.19898791144820918
   }
 ]
