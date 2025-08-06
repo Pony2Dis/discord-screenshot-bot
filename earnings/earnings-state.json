@@ -6838,5 +6838,29 @@
     "revenueSurprise": -0.008714164546225615,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.15712643977715138
+  },
+  {
+    "epsDate": "2025-08-06T13:15:00",
+    "ticker": "NVO",
+    "name": "Novo Nordisk A\\/S",
+    "summary": "Novo Nordisk A\\/S (NVO) reported earnings of $0.97 per share on revenue of $11.69 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $0.93 per share on  revenue of $11.79 billion. The Earnings Whisper number was $0.92 per share. The company beat expectations by 5.43% while revenue grew 19.00% on a year-over-year basis.<br /><br />Novo-Nordisk A/S is a healthcare company that is engaged in the discovery, development, manufacturing and marketing of pharmaceutical products. The Company has two business segments: diabetes care and biopharmaceuticals.",
+    "subject": "Novo Nordisk A\\/S Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508063496",
+    "eps": 0.97,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.93,
+    "whisper": 0.92,
+    "highEstimate": 0.95,
+    "lowEstimate": 0.92,
+    "revenue": 11687.26,
+    "revenueEstimate": 11790,
+    "earningsGrowth": 0.49230769230769234,
+    "revenueGrowth": 0.19003694357820985,
+    "earningsSurprise": 0.05434782608695652,
+    "revenueSurprise": -0.008714164546225615,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.15712643977715138
   }
 ]
