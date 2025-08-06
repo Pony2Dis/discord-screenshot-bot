@@ -7174,5 +7174,29 @@
     "revenueSurprise": -0.7,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -1
+  },
+  {
+    "epsDate": "2025-08-06T16:05:00",
+    "ticker": "IONQ",
+    "name": "IonQ Inc",
+    "summary": "IonQ (IONQ) reported a loss of $0.70 per share on revenue of $20.69 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.13 per share on  revenue of $17.02 million. The Earnings Whisper number was a loss of $0.11 per share. The company missed expectations by 536.36% while revenue grew 81.83% on a year-over-year basis.<br /><br />The company  said it expects  third quarter  revenue of $25.0 million to $29.0 million and 2025 revenue of $82.0 million to $100.0 million. The company's previous guidance was 2025 revenue of $75.00 million to $95.00 million. The current consensus revenue estimate is $24.68 million for the quarter ending September 30, 2025 and revenue of $85.00 million for the year ending December 31, 2025.<br /><br />IonQ, Inc. is a leader in quantum computing, with a proven track record of innovation and deployment.",
+    "subject": "IonQ Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508066595",
+    "eps": -0.7,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.13,
+    "whisper": -0.11,
+    "highEstimate": -0.12,
+    "lowEstimate": -0.14,
+    "revenue": 20.694,
+    "revenueEstimate": 17.02,
+    "earningsGrowth": -2.888888888888889,
+    "revenueGrowth": 0.818293647306915,
+    "earningsSurprise": -5.363636363636363,
+    "revenueSurprise": 0.21586368977673326,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.0021102611448166712
   }
 ]
