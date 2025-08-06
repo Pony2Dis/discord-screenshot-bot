@@ -7150,5 +7150,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": -1.0769230769230769,
     "prevRevenueGrowth": 0.19898791144820918
+  },
+  {
+    "epsDate": "2025-08-06T16:05:00",
+    "ticker": "JOBY",
+    "name": "Joby Aviation",
+    "summary": "Joby Aviation (JOBY) reported a loss of $0.24 per share on revenue of $0.02 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.18 per share on  revenue of $0.05 million. The Earnings Whisper number was a loss of $0.19 per share. The company missed expectations by 26.32% while revenue fell 46.43% compared to the same quarter a year ago.<br /><br />Joby Aviation, Inc. is a California-based company developing an all-electric vertical take-off and landing aircraft which it intends to operate as part of a fast, quiet, and convenient air taxi service beginning in 2024. ",
+    "subject": "Joby Aviation Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508062220",
+    "eps": -0.24,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.18,
+    "whisper": -0.19,
+    "highEstimate": -0.18,
+    "lowEstimate": -0.19,
+    "revenue": 0.015,
+    "revenueEstimate": 0.05,
+    "earningsGrowth": -0.3333333333333333,
+    "revenueGrowth": -0.4642857142857143,
+    "earningsSurprise": -0.2631578947368421,
+    "revenueSurprise": -0.7,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -1
   }
 ]
