@@ -7198,5 +7198,29 @@
     "revenueSurprise": 0.21586368977673326,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.0021102611448166712
+  },
+  {
+    "epsDate": "2025-08-06T17:04:00",
+    "ticker": "PAAS",
+    "name": "Pan American Silver Corp.",
+    "summary": "Pan American Silver (PAAS) reported earnings of $0.43 per share on revenue of $811.90 million for the  second quarter ended June 2025.  The consensus earnings estimate was $0.40 per share on  revenue of $766.82 million. The Earnings Whisper number was $0.50 per share. The company missed expectations by 14.00% while revenue grew 18.30% on a year-over-year basis.<br /><br />Pan American Silver Corp operates, develops and explores for silver producing properties and assets. It also produces and sells gold, zinc, lead and copper.",
+    "subject": "Pan American Silver Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508063926",
+    "eps": 0.43,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.4,
+    "whisper": 0.5,
+    "highEstimate": 0.43,
+    "lowEstimate": 0.3,
+    "revenue": 811.9,
+    "revenueEstimate": 766.82,
+    "earningsGrowth": 2.909090909090909,
+    "revenueGrowth": 0.1830103453300306,
+    "earningsSurprise": -0.14,
+    "revenueSurprise": 0.05878824235152969,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.28566677751912206
   }
 ]
