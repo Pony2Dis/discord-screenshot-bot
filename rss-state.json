@@ -729,7 +729,10 @@
     "https://www.prnewswire.com/news-releases/isoenergy-and-purepoint-report-assay-grades-of-up-to-5-4-uo-from-initial-holes-at-the-nova-discovery-on-the-dorado-jv-302522798.html",
     "https://www.prnewswire.com/news-releases/kennametal-reports-fiscal-2025-and-fourth-quarter-results-302522561.html",
     "https://www.prnewswire.com/news-releases/asphalt-additive-market-worth-6-60-billion-by-2030---exclusive-report-by-marketsandmarkets-302522883.html",
-    "https://www.prnewswire.com/news-releases/switchgear-monitoring-system-market-worth-3-22-billion-by-2030--marketsandmarkets-302522887.html"
+    "https://www.prnewswire.com/news-releases/switchgear-monitoring-system-market-worth-3-22-billion-by-2030--marketsandmarkets-302522887.html",
+    "https://www.prnewswire.com/news-releases/valvoline-inc-reports-third-quarter-results-302522805.html",
+    "https://www.prnewswire.com/news-releases/sunoco-lp-reports-second-quarter-2025-financial-and-operating-results-302522694.html",
+    "https://www.prnewswire.com/news-releases/blue-sky-expands-the-principal-target-at-the-corcovo-uranium-project-argentina-302522642.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -963,7 +966,9 @@
     "https://www.marketwatch.com/story/i-feel-shaken-a-man-offered-50-to-powerwash-my-patio-he-would-not-take-no-for-an-answer-9223ce12?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/harvards-endowment-could-shrink-as-much-as-40-from-white-house-policies-analysis-finds-d8e597da?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/banned-coinbase-ad-portrays-a-dystopian-britain-with-only-crypto-as-an-exit-f203ffda?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/all-historical-trends-are-no-longer-working-this-strategist-says-retail-investors-are-completely-baffling-wall-street-03b90199?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/all-historical-trends-are-no-longer-working-this-strategist-says-retail-investors-are-completely-baffling-wall-street-03b90199?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/walt-disney-blows-past-profit-estimates-after-inking-major-deals-with-nfl-and-wwe-93ed721e?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/u-s-data-is-a-bedrock-of-the-american-economy-now-its-under-attack-f0a2f9ae?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -1030,7 +1035,8 @@
     "https://www.cnbc.com/2025/08/05/hinge-heatlh-hnge-stock-q2-2025-earnings.html",
     "https://www.cnbc.com/2025/08/05/amd-earnings-report-2q-2025.html",
     "https://www.cnbc.com/2025/08/06/disney-dis-earnings-q3-2025.html",
-    "https://www.cnbc.com/2025/08/06/mcdonalds-mcd-q2-2025-earnings.html"
+    "https://www.cnbc.com/2025/08/06/mcdonalds-mcd-q2-2025-earnings.html",
+    "https://www.cnbc.com/2025/08/06/uber-stock-q2-2025-earnings.html"
   ],
   "https://finance.yahoo.com/news/rssindex": [
     "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-meta-amazon-earnings-fed-meeting-trump-tariffs-tesla-robotaxi/?src=A00220&yptr=yahoo",
@@ -4224,7 +4230,17 @@
     "https://finance.yahoo.com/news/xrp-down-5-1-week-104506194.html",
     "https://finance.yahoo.com/news/why-car-payments-credit-card-103528616.html",
     "https://finance.yahoo.com/news/youd-invested-1-000-bitcoin-103300313.html",
-    "https://finance.yahoo.com/news/prediction-xrp-hit-4-oct-103000941.html"
+    "https://finance.yahoo.com/news/prediction-xrp-hit-4-oct-103000941.html",
+    "https://finance.yahoo.com/news/mcdonalds-stock-rises-after-company-reverses-us-sales-slump-183233668.html",
+    "https://finance.yahoo.com/news/mcdonalds-global-sales-top-estimates-110322983.html",
+    "https://finance.yahoo.com/news/uber-bets-loyalty-program-drive-105731843.html",
+    "https://finance.yahoo.com/news/ai-gtm-platform-clay-hits-110752333.html",
+    "https://finance.yahoo.com/news/sulaiman-al-habib-board-approves-110554949.html",
+    "https://finance.yahoo.com/news/wix-com-sees-strong-growth-105612203.html",
+    "https://finance.yahoo.com/news/wall-street-bullish-bearish-kroger-101408609.html",
+    "https://finance.yahoo.com/news/p-futures-gain-focus-earnings-101012499.html",
+    "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-08-06-2025/card/stocks-to-watch-wednesday-amd-super-micro-rivian-qRZJZhJovwzEWG2Ldmkl?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/2-leading-artificial-intelligence-ai-103500926.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
@@ -5114,6 +5130,11 @@
     "https://www.investing.com/news/stock-market-news/markets-shifting-focus-to-the-economic-impact-of-trumps-tariffs--barclays-4172603",
     "https://www.investing.com/news/stock-market-news/trumps-trade-war-tariff-deadlines-and-key-upcoming-events-4172579",
     "https://www.investing.com/news/stock-market-news/india-stocks-lower-at-close-of-trade-nifty-50-down-031-4172530",
-    "https://www.investing.com/news/stock-market-news/glencore-rejects-us-listing-in-boost-for-uk-markets-4172505"
+    "https://www.investing.com/news/stock-market-news/glencore-rejects-us-listing-in-boost-for-uk-markets-4172505",
+    "https://www.investing.com/news/stock-market-news/tariffs-in-crucial-sectors-could-last-beyond-trump-era-says-jpmorgans-geopolitics-arm-4172775",
+    "https://www.investing.com/news/stock-market-news/mcdonalds-global-sales-top-estimates-as-affordable-meal-options-boost-demand-4172764",
+    "https://www.investing.com/news/stock-market-news/shopify-forecasts-thirdquarter-revenue-above-estimates-4172763",
+    "https://www.investing.com/news/stock-market-news/uber-bets-on-loyalty-program-to-drive-growth-unveils-20-billion-buyback-plan-4172725",
+    "https://www.investing.com/news/stock-market-news/michael-kors-owner-capri-posts-smallerthanexpected-revenue-drop-4172701"
   ]
 }
