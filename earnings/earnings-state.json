@@ -6598,5 +6598,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.001692335125282331
+  },
+  {
+    "epsDate": "2025-08-06T06:40:00",
+    "ticker": "DIS",
+    "name": "Walt Disney Co",
+    "summary": "Walt Disney (DIS) reported earnings of $1.61 per share on  for the  fiscal third quarter ended June 2025.  The consensus earnings estimate was $1.46 per share on  revenue of $23.70 billion. The Earnings Whisper number was $1.55 per share. The company beat expectations by 3.87%.<br /><br />Walt Disney Co, together with its subsidiaries, is a diversified entertainment company with operations in five business segments: Media Networks, Parks and Resorts, Studio Entertainment, Consumer Products and Interactive.",
+    "subject": "Walt Disney Beat Expectations",
+    "quarter": " fiscal third quarter ended June 2025",
+    "fileName": "2508069224",
+    "eps": 1.61,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 1.46,
+    "whisper": 1.55,
+    "highEstimate": 1.66,
+    "lowEstimate": 1.37,
+    "revenue": null,
+    "revenueEstimate": 23700,
+    "earningsGrowth": 0.15827338129496402,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.03870967741935484,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.06964633428429108
   }
 ]
