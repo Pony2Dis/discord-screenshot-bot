@@ -6646,5 +6646,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.13838712861514166
+  },
+  {
+    "epsDate": "2025-08-06T07:02:00",
+    "ticker": "NRG",
+    "name": "NRG Energy, Inc.",
+    "summary": "NRG Energy (NRG) reported earnings of $1.73 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $1.54 per share on  revenue of $6.31 billion. The Earnings Whisper number was $1.75 per share. The company missed expectations by 1.14%.<br /><br />NRG Energy Inc is engaged in ownership & operation of power generation facilities; the trading of energy, capacity & related products; transacting in & trading of fuel & transportation services & the direct sale of energy, services to retail customers.",
+    "subject": "NRG Energy Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508069400",
+    "eps": 1.73,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 1.54,
+    "whisper": 1.75,
+    "highEstimate": 1.15,
+    "lowEstimate": 0.98,
+    "revenue": null,
+    "revenueEstimate": 6310,
+    "earningsGrowth": 0.16891891891891891,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.011428571428571429,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.15560640732265446
   }
 ]
