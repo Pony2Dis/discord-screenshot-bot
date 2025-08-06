@@ -28,7 +28,12 @@
     "https://www.businessinsider.com/us-economic-outlook-job-market-hiring-data-revisions-tariffs-inflation-2025-6",
     "https://markets.businessinsider.com/news/stocks/elon-musk-donald-trump-tax-bill-dogecoin-price-tesla-doge-2025-6",
     "https://markets.businessinsider.com/news/stocks/palantir-stock-price-pltr-alex-karp-ai-government-retail-traders-2025-6",
-    "https://markets.businessinsider.com/news/stocks/jd-vance-trump-inflation-fed-interest-rates-cpi-powell-tariffs-2025-6"
+    "https://markets.businessinsider.com/news/stocks/jd-vance-trump-inflation-fed-interest-rates-cpi-powell-tariffs-2025-6",
+    "https://markets.businessinsider.com/news/etf/2025-etf-outlook-fund-inflows-record-fixed-income-jpmorgan-2024-2024-12",
+    "https://markets.businessinsider.com/news/etf/passive-investing-stock-market-risk-volatile-investors-apollo-2024-11",
+    "https://markets.businessinsider.com/news/etf/private-credit-etf-state-street-apollo-sec-investor-investing-funds-2024-10",
+    "https://markets.businessinsider.com/news/etf/bitcoin-etfs-economic-data-selloff-risk-assets-august-jobs-report-2024-9",
+    "https://markets.businessinsider.com/news/etf/workers-give-up-billions-in-retirement-gains-by-rolling-over-into-cash-holdings-1033594740"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069": [
     "https://www.cnbc.com/2025/07/27/top-wall-street-analysts-recommend-these-dividend-stocks-for-regular-income.html",
@@ -753,7 +758,11 @@
     "https://www.prnewswire.com/news-releases/equip-expo-offers-opportunities-for-women-in-the-green-industry-to-connect--grow-302522837.html",
     "https://www.prnewswire.com/news-releases/northeast-fuel-pay-delivers-100-000-annual-savings-to-residential-fuel-oil-company-through-specialized-payment-processing-302522385.html",
     "https://www.prnewswire.com/news-releases/century-lithiums-angel-island-added-to-fast-41-transparency-status-302522922.html",
-    "https://www.prnewswire.com/news-releases/malware-complexity-surges-127-in-six-months-opswat-report-reveals-legacy-systems-miss-1-in-14-threats-302522665.html"
+    "https://www.prnewswire.com/news-releases/malware-complexity-surges-127-in-six-months-opswat-report-reveals-legacy-systems-miss-1-in-14-threats-302522665.html",
+    "https://www.prnewswire.com/news-releases/brightnight-apac-wordt-afgesplitst-om-de-regionale-groei-te-versnellen-en-wordt-omgedoopt-tot-yanara-302523185.html",
+    "https://www.prnewswire.com/news-releases/international-battery-metals-ltd-announces-closing-of-its-previously-annouced-non-brokered-private-placement-financing-302522918.html",
+    "https://www.prnewswire.com/news-releases/white-cap-expands-operations-with-the-acquisition-of-the-business-of-beavers-source-llc-302522619.html",
+    "https://www.prnewswire.com/news-releases/huasun-energy-brings-high-efficiency-heterojunction-innovations-to-intersolar-south-america-and-mexico-2025-302521787.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -4376,7 +4385,17 @@
     "https://finance.yahoo.com/news/meme-stock-mania-returns-fantasy-121700235.html",
     "https://finance.yahoo.com/news/intels-making-strategic-shift-thats-121500645.html",
     "https://finance.yahoo.com/news/2-warren-buffett-stocks-buy-123000317.html",
-    "https://finance.yahoo.com/news/saucony-merrell-drive-strong-q2-122702790.html"
+    "https://finance.yahoo.com/news/saucony-merrell-drive-strong-q2-122702790.html",
+    "https://finance.yahoo.com/news/fiserv-fi-slid-due-decelerated-130235268.html",
+    "https://www.investors.com/news/technology/snap-stock-tumbles-q2-2025-results/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/oracle-orcl-climbed-multiple-tailwinds-125435505.html",
+    "https://www.investors.com/news/sp-500-nuclear-giants-earnings-due-as-stock-market-catches-nuke-fever-once-more/?src=A00220&yptr=yahoo",
+    "https://finance.yahoo.com/news/microsoft-msft-surged-accelerated-azure-125246711.html",
+    "https://finance.yahoo.com/news/snap-stock-stares-down-worst-124003896.html",
+    "https://finance.yahoo.com/news/morning-minute-sec-gives-crypto-124129627.html",
+    "https://finance.yahoo.com/news/soybeans-getting-early-wednesday-recovery-123315473.html",
+    "https://finance.yahoo.com/news/corn-losses-continue-wednesday-morning-123315129.html",
+    "https://finance.yahoo.com/news/1-2-million-ira-receive-123000755.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
@@ -5293,6 +5312,8 @@
     "https://www.investing.com/news/stock-market-news/nvidia-reiterates-lack-of-backdoors-kill-switches-in-its-chips-4171840",
     "https://www.investing.com/news/stock-market-news/musk-vs-modi-inside-the-battle-over-indias-internet-censorship-4171852",
     "https://www.investing.com/news/stock-market-news/ramaco-resources-stock-falls-after-pricing-offering-below-market-value-93CH-4173264",
-    "https://www.investing.com/news/stock-market-news/ftse-100-today-index-moves-up-pound-strengthens-tullow-oil-slumps-hiscox-rises-4173261"
+    "https://www.investing.com/news/stock-market-news/ftse-100-today-index-moves-up-pound-strengthens-tullow-oil-slumps-hiscox-rises-4173261",
+    "https://www.investing.com/news/stock-market-news/tuesdays-top-insider-trades-major-moves-in-tech-and-semiconductors-93CH-4173428",
+    "https://www.investing.com/news/stock-market-news/saudi-arabia-stocks-higher-at-close-of-trade-tadawul-all-share-up-023-4173370"
   ]
 }
