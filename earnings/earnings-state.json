@@ -6526,5 +6526,29 @@
     "revenueSurprise": 0.028381449689137663,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.1888394662353417
+  },
+  {
+    "epsDate": "2025-08-06T06:00:00",
+    "ticker": "FUN",
+    "name": "Six Flags Entertainment Corporation",
+    "summary": "Six Flags Entertainment (FUN) reported a loss of $0.99 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.79 per share on  revenue of $1.01 billion. The Earnings Whisper number was $0.79 per share. The company missed expectations by 225.32%.<br /><br />Six Flags Entertainment Corporation is North America’s largest regional amusement-resort operator with 27 amusement parks, 15 water parks and nine resort properties across 17 states in the U.S., Canada and Mexico. ",
+    "subject": "Six Flags Entertainment Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508068767",
+    "eps": -0.99,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.79,
+    "whisper": 0.79,
+    "highEstimate": 1.26,
+    "lowEstimate": 0.51,
+    "revenue": null,
+    "revenueEstimate": 1010,
+    "earningsGrowth": -1.9166666666666667,
+    "revenueGrowth": null,
+    "earningsSurprise": -2.2531645569620253,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.9884564286768686
   }
 ]
