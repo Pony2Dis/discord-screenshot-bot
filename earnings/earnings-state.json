@@ -6694,5 +6694,29 @@
     "revenueSurprise": 0.019821162444113263,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.03452747609012806
+  },
+  {
+    "epsDate": "2025-08-06T07:00:00",
+    "ticker": "U",
+    "name": "Unity",
+    "summary": "Unity (U) reported a loss of $0.26 per share on revenue of $440.94 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.25 per share on  revenue of $425.83 million. The Earnings Whisper number was a loss of $0.21 per share. The company missed expectations by 23.81% while revenue fell 1.85% compared to the same quarter a year ago.<br /><br />Unity is the world’s leading platform for creating and operating interactive, real-time 3D (RT3D) content. ",
+    "subject": "Unity Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508064004",
+    "eps": -0.26,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.25,
+    "whisper": -0.21,
+    "highEstimate": -0.15,
+    "lowEstimate": -0.31,
+    "revenue": 440.944,
+    "revenueEstimate": 425.83,
+    "earningsGrowth": 0.1875,
+    "revenueGrowth": -0.018508254703856794,
+    "earningsSurprise": -0.23809523809523808,
+    "revenueSurprise": 0.03549303712749219,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.05512837221425779
   }
 ]
