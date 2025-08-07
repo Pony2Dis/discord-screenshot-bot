@@ -7246,5 +7246,29 @@
     "revenueSurprise": -0.012697521020585677,
     "prevEarningsGrowth": 0.8181818181818182,
     "prevRevenueGrowth": 1.1066538208512031
+  },
+  {
+    "epsDate": "2025-08-06T16:15:00",
+    "ticker": "OXY",
+    "name": "Occidental Petroleum Corp.",
+    "summary": "Occidental Petroleum (OXY) reported earnings of $0.39 per share on revenue of $6.46 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $0.28 per share on  revenue of $6.48 billion. The Earnings Whisper number was $0.33 per share. The company beat expectations by 18.18% while revenue fell 6.15% compared to the same quarter a year ago.<br /><br />Occidental Petroleum Corp is a multinational organization whose subsidiaries and affiliates operate in the oil and gas, chemical and midstream, marketing & other segments.",
+    "subject": "Occidental Petroleum Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508067438",
+    "eps": 0.39,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.28,
+    "whisper": 0.33,
+    "highEstimate": 0.36,
+    "lowEstimate": 0.16,
+    "revenue": 6456,
+    "revenueEstimate": 6480,
+    "earningsGrowth": -0.6213592233009708,
+    "revenueGrowth": -0.06149149585695595,
+    "earningsSurprise": 0.18181818181818182,
+    "revenueSurprise": -0.003703703703703704,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.13860232945091513
   }
 ]
