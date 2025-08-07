@@ -4,6 +4,13 @@ import axios from "axios";
 
 const { DISCORD_TOKEN, FINNHUB_TOKEN, BOT_CHANNEL_ID } = process.env;
 
+const timeMap = {
+    amc: "After Market Close",
+    bmo: "Before Market Open",
+    dmh: "During Market Hours",
+    "": "Unknown Time",
+};
+
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -39,7 +46,7 @@ client.on("messageCreate", async (message) => {
       }
 
       const formatted = items
-        .map((e) => `• **${e.symbol}** at ${e.time}`)
+        .map((e) => `• **${e.symbol}** at ${timeMap[e.hour] || e.hour}`)
         .join("\n");
       const result_message = `📈 **המדווחות בתאריך - ${today}:**\n${formatted}`;
       console.log(`returning message to user: ${result_message}`);
