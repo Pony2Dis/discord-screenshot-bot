@@ -7582,5 +7582,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": 0.75,
     "prevRevenueGrowth": 0.09163059163059163
+  },
+  {
+    "epsDate": "2025-08-07T16:05:00",
+    "ticker": "CLSK",
+    "name": "CleanSpark, Inc.",
+    "summary": "CleanSpark (CLSK) reported earnings of $0.90 per share on  for the  fiscal third quarter ended June 2025.  The consensus estimate was for breakeven results on  revenue of $195.09 million. The Earnings Whisper number was $0.02 per share. The company beat expectations by 4,400.00%.<br /><br />CleanSpark, Inc., a Nevada corporation, is an energy technology and clean Bitcoin mining Company that is focused on solving modern energy challenges. ",
+    "subject": "CleanSpark Beat Expectations",
+    "quarter": " fiscal third quarter ended June 2025",
+    "fileName": "2508076878",
+    "eps": 0.9,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0,
+    "whisper": 0.02,
+    "highEstimate": 0.07,
+    "lowEstimate": -0.04,
+    "revenue": null,
+    "revenueEstimate": 195.09,
+    "earningsGrowth": 89,
+    "revenueGrowth": null,
+    "earningsSurprise": 44,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.6253454860955823
   }
 ]
