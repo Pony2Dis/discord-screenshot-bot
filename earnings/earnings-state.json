@@ -7822,5 +7822,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": 9.333333333333334,
     "prevRevenueGrowth": 1.5124202173538037
+  },
+  {
+    "epsDate": "2025-08-07T16:15:00",
+    "ticker": "SMR",
+    "name": "NuScale Power Corporation",
+    "summary": "NuScale Power (SMR) reported a loss of $0.13 per share on revenue of $8.05 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.12 per share on  revenue of $9.07 million. The Earnings Whisper number was a loss of $0.10 per share. The company missed expectations by 30.00% while revenue grew 732.89% on a year-over-year basis.<br /><br />NuScale Power Corporation is poised to meet the diverse energy needs of customers across the world.",
+    "subject": "NuScale Power Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508079609",
+    "eps": -0.13,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.12,
+    "whisper": -0.1,
+    "highEstimate": -0.11,
+    "lowEstimate": -0.12,
+    "revenue": 8.054,
+    "revenueEstimate": 9.07,
+    "earningsGrowth": 0.5806451612903226,
+    "revenueGrowth": 7.328852119958635,
+    "earningsSurprise": -0.3,
+    "revenueSurprise": -0.11201764057331863,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 8.699057287889776
   }
 ]
