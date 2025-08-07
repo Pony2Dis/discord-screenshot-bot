@@ -38,6 +38,8 @@ const {
   BOT_CHANNEL_ID,
   ANTICIPATED_CHANNEL_ID,
   NEWS_API_KEY,
+  DISCORD_GUILD_ID,
+  DISCORD_APPLICATION_ID,
 } = process.env;
 
 const timeMap = {
@@ -70,7 +72,7 @@ const commands = [
   
   const rest = new REST({ version: "10" }).setToken(DISCORD_TOKEN);
   (async () => {
-    await rest.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), {
+    await rest.put(Routes.applicationGuildCommands(DISCORD_APPLICATION_ID, DISCORD_GUILD_ID), {
       body: commands,
     });
   })();

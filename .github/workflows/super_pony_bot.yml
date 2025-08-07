@@ -40,6 +40,8 @@ jobs:
         env:
           DISCORD_TOKEN:   ${{ secrets.DISCORD_TOKEN }}
           FINNHUB_TOKEN: ${{ secrets.FINNHUB_TOKEN1 }}
+          DISCORD_APPLICATION_ID: ${{ secrets.DISCORD_APPLICATION_ID }}
+          DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
           BOT_CHANNEL_ID: ${{ vars.BOT_CHANNEL_ID }}
           ANTICIPATED_CHANNEL_ID: ${{ vars.X_EARNINGS_CAL_CHANNEL_ID }}
 
