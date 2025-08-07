@@ -76,7 +76,7 @@ client.on("messageCreate", async (message) => {
         const syms = groups[label];
         if (!syms) continue;
 
-        let chunk = `==============\n**${label}:**\n==============\n`;
+        let chunk = `===================\n**${label}:**\n===================\n`;
         for (const sym of syms) {
           const addition = `${sym}, `;
           if ((chunk + addition).length > maxLen) {
