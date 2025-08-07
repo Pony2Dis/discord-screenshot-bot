@@ -44,14 +44,22 @@ client.on("messageCreate", async (message) => {
         return message.channel.send("לא מצאתי דיווח רווחים להיום.");
       }
 
-      const formatted = items
-        .map((e) => `• **${e.symbol}** at ${timeMap[e.hour] || e.hour}`)
-        .join("\n");
-      const result_message = `📈 **המדווחות בתאריך - ${today}:**\n${formatted}`;
+      // group tickers by report time
+      const groups = items.reduce((acc, e) => {
+        const label = timeMap[e.hour] || e.hour;
+        acc[label] = acc[label] || [];
+        acc[label].push(`**${e.symbol}**`);
+        return acc;
+      }, {});
+      // build message sections
+      const sections = Object.entries(groups).map(
+        ([label, syms]) => `${label}:\n${syms.join(', ')}`
+      );
+      const result_message = sections.join('\n\n');
       console.log(`returning message to user: ${JSON.stringify(result_message).substring(0, 300)}`);
 
       // send in chunks ≤3 900 chars to avoid Discord’s 4 000-char limit
-      const maxLen = 1900;
+      const maxLen = 3900;
       let buffer = "";
       for (const line of result_message.split("\n")) {
         if ((buffer + line + "\n").length > maxLen) {
