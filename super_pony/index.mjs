@@ -1,13 +1,38 @@
 import "dotenv/config";
+import fs from "fs/promises";
+import path from "path";
 import { Client, GatewayIntentBits } from "discord.js";
 import axios from "axios";
 
-const {
-  DISCORD_TOKEN,
-  FINNHUB_TOKEN,
-  BOT_CHANNEL_ID,
-  NEWS_API_KEY
-} = process.env;
+// S&P 500 cache file and loader
+const SP_FILE = path.resolve("./super_pony/sp500.json");
+async function loadSP500() {
+  try {
+    const txt = await fs.readFile(SP_FILE, "utf-8");
+    const { updated, symbols } = JSON.parse(txt);
+    const daysOld = (Date.now() - Date.parse(updated)) / 86400000;
+    if (daysOld < 30) return symbols;
+  } catch {
+    // no cache or invalid, will refresh
+  }
+  const csvUrl =
+    "https://raw.githubusercontent.com/datasets/s-and-p-500-companies/master/data/constituents.csv";
+  const { data: csv } = await axios.get(csvUrl);
+  const symbols = csv
+    .split("\n")
+    .slice(1)
+    .map((line) => line.split(",")[0])
+    .filter(Boolean);
+  await fs.writeFile(
+    SP_FILE,
+    JSON.stringify({ updated: new Date().toISOString(), symbols }, null, 2),
+    "utf-8"
+  );
+  return symbols;
+}
+
+const { DISCORD_TOKEN, FINNHUB_TOKEN, BOT_CHANNEL_ID, NEWS_API_KEY } =
+  process.env;
 
 const timeMap = {
   amc: "After Market Close",
@@ -24,25 +49,21 @@ const client = new Client({
   ],
 });
 
-client.once("ready", () =>
-  console.log(`Logged in as ${client.user.tag}`)
-);
+client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 
 client.on("messageCreate", async (message) => {
-  if (message.channel.id !== BOT_CHANNEL_ID || message.author.bot)
-    return;
+  if (message.channel.id !== BOT_CHANNEL_ID || message.author.bot) return;
 
   if (message.content.toLowerCase().startsWith("/todays earnings")) {
-    await message.channel.send(
-      "🔄 שולף את הטיקרים של המדווחות להיום..."
-    );
+    await message.channel.send("🔄 שולף את הטיקרים של המדווחות להיום...");
     console.log(
       `Fetching today's earnings for channel: ${message.channel.id}`
     );
 
     try {
       const today = new Date().toISOString().split("T")[0];
-      const url = `https://finnhub.io/api/v1/calendar/earnings?from=${today}&to=${today}&token=${FINNHUB_TOKEN}`;
+      const url =
+        `https://finnhub.io/api/v1/calendar/earnings?from=${today}&to=${today}&token=${FINNHUB_TOKEN}`;
       console.log(`Fetching from URL: ${url}`);
       const resp = await axios.get(url);
       if (resp.status !== 200) {
@@ -62,14 +83,12 @@ client.on("messageCreate", async (message) => {
         items = items.slice(0, l);
       }
 
-      // filter by S&P 500 membership if "sp500" flag present
+      // sp500 filter
       if (/sp500/i.test(message.content)) {
         console.log("Filtering for S&P 500 constituents");
-        const { data: cons } = await axios.get(
-          `https://finnhub.io/api/v1/index/constituents?symbol=^GSPC&token=${FINNHUB_TOKEN}`
-        );
-        const spSet = new Set(cons.constituents);
-        items = items.filter((e) => spSet.has(e.symbol));
+        const sp500List = await loadSP500();
+        items = items.filter((e) => sp500List.includes(e.symbol));
+        console.log(`After SP500 filter: ${items.length} items remain`);
       }
 
       // parse optional "cap: N[MB]" parameter
@@ -83,14 +102,13 @@ client.on("messageCreate", async (message) => {
         );
         const filtered = [];
         for (const e of items) {
-          const profUrl = `https://finnhub.io/api/v1/stock/profile2?symbol=${e.symbol}&token=${FINNHUB_TOKEN}`;
+          const profUrl =
+            `https://finnhub.io/api/v1/stock/profile2?symbol=${e.symbol}&token=${FINNHUB_TOKEN}`;
           console.log(`Fetching market cap for ${e.symbol}: ${profUrl}`);
           const profResp = await axios.get(profUrl);
           const mc = profResp.data.marketCapitalization;
           console.log(`Market cap ${e.symbol}: ${mc}M`);
-          if (mc >= thresholdMM) {
-            filtered.push(e);
-          }
+          if (mc >= thresholdMM) filtered.push(e);
         }
         items = filtered;
       }
@@ -122,16 +140,14 @@ client.on("messageCreate", async (message) => {
 
       if (!items.length) {
         console.log("No earnings found for today.");
-        return message.channel.send(
-          "לא מצאתי דיווח רווחים להיום."
-        );
+        return message.channel.send("לא מצאתי דיווח רווחים להיום.");
       }
 
       // group tickers by report time
       const groups = items.reduce((acc, e) => {
         const label = timeMap[e.hour] || e.hour;
         acc[label] = acc[label] || [];
-        acc[label].push(`${e.symbol}`);
+        acc[label].push(e.symbol);
         return acc;
       }, {});
 
@@ -143,26 +159,18 @@ client.on("messageCreate", async (message) => {
         "Unknown Time",
       ];
 
-      // send grouped sections
-      console.log(
-        `returning grouped sections: ${JSON.stringify(groups).substring(
-          0,
-          300
-        )}`
-      );
+      console.log(`returning grouped sections: ${JSON.stringify(groups).substring(0, 300)}`);
       const maxLen = 1900;
       for (const label of order) {
-        const syms = groups[label];
-        if (!syms) continue;
+        const syms = groups[label] || [];
+        if (!syms.length) continue;
 
         let chunk = `===================\n**${label}:**\n===================\n`;
         for (const sym of syms) {
           const addition = `${sym}, `;
           if ((chunk + addition).length > maxLen) {
-            await message.channel.send(
-              chunk.trim().replace(/, $/, "")
-            );
-            chunk = ""; // continuation: only tickers
+            await message.channel.send(chunk.trim().replace(/, $/, ""));
+            chunk = "";
           }
           chunk += addition;
         }
