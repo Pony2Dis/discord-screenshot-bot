@@ -42,9 +42,7 @@ async function loadSP500() {
 const {
   DISCORD_TOKEN,
   FINNHUB_TOKEN,
-  BOT_CHANNEL_ID,
   ANTICIPATED_CHANNEL_ID,
-  NEWS_API_KEY,
   DISCORD_GUILD_ID,
   DISCORD_APPLICATION_ID,
 } = process.env;
@@ -67,9 +65,21 @@ const commands = [
         .setDescription("איזה סוג של טיקרים להציג")
         .setRequired(false)
         .addChoices(
-          { name: "All", value: "all", description: "הצג את כל החברות שמדווחות היום" },
-          { name: "S&P 500", value: "sp500", description: "הצג רק את חברות שהן חלק ממדד ה-S&P 500 שמדווחות היום" },
-          { name: "Anticipated", value: "anticipated", description: "הצג תמונה של החברות שהכי מצפים לדיווח שלהן היום" }
+          {
+            name: "All",
+            value: "all",
+            description: "הצג את כל החברות שמדווחות היום",
+          },
+          {
+            name: "S&P 500",
+            value: "sp500",
+            description: "הצג רק את חברות שהן חלק ממדד ה-S&P 500 שמדווחות היום",
+          },
+          {
+            name: "Anticipated",
+            value: "anticipated",
+            description: "הצג תמונה של החברות שהכי מצפים לדיווח שלהן היום",
+          }
         )
     )
     .addIntegerOption((opt) =>
@@ -91,6 +101,7 @@ const rest = new REST({ version: "10" }).setToken(DISCORD_TOKEN);
   );
 })();
 
+// Create a new Discord client with necessary intents (connect to discord and login)
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -99,167 +110,130 @@ const client = new Client({
   ],
 });
 
-client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+client.once("ready", () => console.log(`✅ Logged in as ${client.user.tag}`));
 
 // 7️⃣ Handle slash-command + autocomplete
 client.on("interactionCreate", async (interaction) => {
-    if (
-      interaction.isChatInputCommand() &&
-      interaction.commandName === "todays_earnings"
-    ) {
-        await interaction.deferReply();
+  if (
+    interaction.isChatInputCommand() &&
+    interaction.commandName === "todays_earnings"
+  ) {
+    await interaction.deferReply();
 
-        const limit = interaction.options.getInteger("limit") || 0; // 0 means no limit
-        const filter = interaction.options.getString("type") || "all";
-        
-        if (filter === "anticipated") {
-          // —— If “anticipated”:
-          try {
-            const ch = await client.channels.fetch(ANTICIPATED_CHANNEL_ID);
-            const fetched = await ch.messages.fetch({ limit: 10 });
-            const imgMsg = fetched.find(
-              (m) =>
-                m.attachments.size > 0 ||
-                m.embeds.some((e) => e.image || e.thumbnail)
-            );
-            if (!imgMsg) {
-              return interaction.followUp("❌ לא נמצאה תמונה שהתפרסמה.");
-            }
-  
-            const url =
-              imgMsg.attachments.size > 0
-                ? imgMsg.attachments.first().url
-                : imgMsg.embeds.find((e) => e.image || e.thumbnail).image?.url ||
-                  imgMsg.embeds.find((e) => e.image || e.thumbnail).thumbnail?.url;
-  
-            const resp = await axios.get(url, { responseType: "arraybuffer" });
-            const imgBuf = Buffer.from(resp.data);
-  
-            // Define the cropping presets based on the day of the week
-            const presets = {
-              1: { left: 5, top: 80, width: 265, height: 587 },
-              2: { left: 267, top: 80, width: 265, height: 587 },
-              3: { left: 532, top: 80, width: 265, height: 587 },
-              4: { left: 795, top: 80, width: 265, height: 587 },
-              5: { left: 1059, top: 80, width: 140, height: 587 },
-            };
-  
-            // Get today's day of the week (1-7 for Mon-Sun)
-            const day = new Date().getDay();
-            const region = presets[day] || presets[1];
-  
-            // Crop the image using sharp
-            const cropped = await sharp(imgBuf).extract(region).toBuffer();
-  
-            // Create an attachment and send it
-            const file = new AttachmentBuilder(cropped, { name: "today.png" });
-            return interaction.followUp({ files: [file] });
-          } catch (err) {
-            console.error(err);
-            return interaction.followUp("❌ שגיאה בחיתוך התמונה.");
-          }
-        } else {
-            // —— If “sp500” or “all”:
-            try {
-                const sp500 = await loadSP500();
-                const today = new Date().toISOString().split("T")[0];
-                const { data } = await axios.get(
-                `https://finnhub.io/api/v1/calendar/earnings?from=${today}&to=${today}&token=${FINNHUB_TOKEN}`
-                );
-                let items = data.earningsCalendar || data;
+    const limit = interaction.options.getInteger("limit") || 0; // 0 means no limit
+    const filter = interaction.options.getString("type") || "all";
 
-                // Apply S&P 500 filter if specified
-                if (filter === "sp500") {
-                    items = items.filter((e) => sp500.includes(e.symbol));
-                }
-
-                // Apply limit if specified
-                if (limit) items = items.slice(0, limit);
-    
-                if (!items.length) {
-                return interaction.followUp("לא מצאתי דיווח רווחים להיום.");
-                }
-    
-                // Group and chunk the results
-                const groups = items.reduce((acc, e) => {
-                const label = timeMap[e.hour] || e.hour;
-                (acc[label] = acc[label] || []).push(e.symbol);
-                return acc;
-                }, {});
-    
-                const order = [
-                "Before Market Open",
-                "During Market Hours",
-                "After Market Close",
-                "Unknown Time",
-                ];
-    
-                const maxLen = 1900;
-                let response = "";
-    
-                for (const label of order) {
-                const syms = groups[label] || [];
-                if (!syms.length) continue;
-    
-                let chunk = `—————————————————————————\n**${label}:**\n—————————————————————————\n`;
-                for (const sym of syms) {
-                    const part = `${sym}, `;
-                    if ((chunk + part).length > maxLen) {
-                    response += chunk.replace(/, $/, "") + "\n";
-                    chunk = "";
-                    }
-                    chunk += part;
-                }
-                response += chunk.replace(/, $/, "") + "\n";
-                }
-    
-                return interaction.followUp(response.trim());
-            } catch (e) {
-                console.error(e);
-                return interaction.followUp(
-                "❌ מתנצל, קרתה שגיאה בשליפת דיווחי הרווחים."
-                );
-            }
+    if (filter === "anticipated") {
+      // —— If “anticipated”:
+      try {
+        const ch = await client.channels.fetch(ANTICIPATED_CHANNEL_ID);
+        const fetched = await ch.messages.fetch({ limit: 10 });
+        const imgMsg = fetched.find(
+          (m) =>
+            m.attachments.size > 0 ||
+            m.embeds.some((e) => e.image || e.thumbnail)
+        );
+        if (!imgMsg) {
+          return interaction.followUp("❌ לא נמצאה תמונה שהתפרסמה.");
         }
+
+        const url =
+          imgMsg.attachments.size > 0
+            ? imgMsg.attachments.first().url
+            : imgMsg.embeds.find((e) => e.image || e.thumbnail).image?.url ||
+              imgMsg.embeds.find((e) => e.image || e.thumbnail).thumbnail?.url;
+
+        const resp = await axios.get(url, { responseType: "arraybuffer" });
+        const imgBuf = Buffer.from(resp.data);
+
+        // Define the cropping presets based on the day of the week
+        const presets = {
+          1: { left: 5, top: 80, width: 265, height: 587 },
+          2: { left: 267, top: 80, width: 265, height: 587 },
+          3: { left: 532, top: 80, width: 265, height: 587 },
+          4: { left: 795, top: 80, width: 265, height: 587 },
+          5: { left: 1059, top: 80, width: 140, height: 587 },
+        };
+
+        // Get today's day of the week (1-7 for Mon-Sun)
+        const day = new Date().getDay();
+        const region = presets[day] || presets[1];
+
+        // Crop the image using sharp
+        const cropped = await sharp(imgBuf).extract(region).toBuffer();
+
+        // 🟢 Create an attachment and send it as a reply
+        const file = new AttachmentBuilder(cropped, { name: "today.png" });
+        return interaction.followUp({ files: [file] });
+      } catch (err) {
+        console.error(err);
+        return interaction.followUp("❌ שגיאה בחיתוך התמונה.");
+      }
+    } else {
+      // —— If “sp500” or “all”:
+      try {
+        const sp500 = await loadSP500();
+        const today = new Date().toISOString().split("T")[0];
+        const { data } = await axios.get(
+          `https://finnhub.io/api/v1/calendar/earnings?from=${today}&to=${today}&token=${FINNHUB_TOKEN}`
+        );
+        let items = data.earningsCalendar || data;
+
+        // Apply S&P 500 filter if specified
+        if (filter === "sp500") {
+          items = items.filter((e) => sp500.includes(e.symbol));
+        }
+
+        // Apply limit if specified
+        if (limit) items = items.slice(0, limit);
+
+        if (!items.length) {
+          return interaction.followUp("לא מצאתי דיווח רווחים להיום.");
+        }
+
+        // Group and chunk the results
+        const groups = items.reduce((acc, e) => {
+          const label = timeMap[e.hour] || e.hour;
+          (acc[label] = acc[label] || []).push(e.symbol);
+          return acc;
+        }, {});
+
+        const order = [
+          "Before Market Open",
+          "During Market Hours",
+          "After Market Close",
+          "Unknown Time",
+        ];
+
+        const maxLen = 1900;
+        for (const label of order) {
+          const syms = groups[label] || [];
+          if (!syms.length) continue;
+
+          let chunk = `—————————————————————————\n**${label}:**\n—————————————————————————\n`;
+          for (const sym of syms) {
+            const part = `${sym}, `;
+            if ((chunk + part).length > maxLen) {
+              await message.channel.send(chunk.replace(/, $/, ""));
+              chunk = "";
+            }
+            chunk += part;
+          }
+          await message.channel.send(chunk.replace(/, $/, ""));
+        }
+
+        return interaction.followUp(
+          `נמצאו ${items.length} דיווחי רווחים להיום.`
+        );
+      } catch (e) {
+        console.error(e);
+        return interaction.followUp(
+          "❌ מתנצל, קרתה שגיאה בשליפת דיווחי הרווחים."
+        );
+      }
     }
-  });
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
+});
 
 // client.on("messageCreate", async (message) => {
 //   if (message.channel.id !== BOT_CHANNEL_ID || message.author.bot) return;
