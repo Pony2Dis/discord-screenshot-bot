@@ -51,7 +51,7 @@ client.on("messageCreate", async (message) => {
       console.log(`returning message to user: ${JSON.stringify(result_message).substring(0, 300)}`);
 
       // send in chunks ≤3 900 chars to avoid Discord’s 4 000-char limit
-      const maxLen = 3900;
+      const maxLen = 1900;
       let buffer = "";
       for (const line of result_message.split("\n")) {
         if ((buffer + line + "\n").length > maxLen) {
