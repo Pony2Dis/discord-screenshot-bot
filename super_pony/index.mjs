@@ -46,6 +46,34 @@ const timeMap = {
   "": "Unknown Time",
 };
 
+// Register slash command with options
+const commands = [
+    new SlashCommandBuilder()
+      .setName("todays_earnings")
+      .setDescription("Fetch today's earnings or most anticipated image")
+      .addBooleanOption((opt) =>
+        opt
+          .setName("most_anticipated")
+          .setDescription("Show most anticipated image instead of list")
+      )
+      .addIntegerOption((opt) =>
+        opt
+          .setName("limit")
+          .setDescription("Max number of tickers to return")
+          .setMinValue(1)
+          .setMaxValue(100)
+          .setRequired(false)
+          .setAutocomplete(true)
+      ),
+  ].map((c) => c.toJSON());
+  
+  const rest = new REST({ version: "10" }).setToken(DISCORD_TOKEN);
+  (async () => {
+    await rest.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), {
+      body: commands,
+    });
+  })();
+  
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
