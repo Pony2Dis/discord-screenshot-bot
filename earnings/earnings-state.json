@@ -7222,5 +7222,29 @@
     "revenueSurprise": 0.05878824235152969,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.28566677751912206
+  },
+  {
+    "epsDate": "2025-08-06T21:42:00",
+    "ticker": "HIMS",
+    "name": "Hims & Hers Health, Inc.",
+    "summary": "Hims & Hers Health (HIMS) reported earnings of $0.17 per share on revenue of $544.83 million for the  second quarter ended June 2025.  The consensus earnings estimate was $0.18 per share on  revenue of $551.84 million. The Earnings Whisper number was $0.24 per share. The company missed expectations by 29.17% while revenue grew 72.61% on a year-over-year basis.<br /><br />The company  said it expects  third quarter  revenue of $570.0 million to $590.0 million and continues to expect 2025 revenue of $2.30 billion to $2.40 billion. The current consensus revenue estimate is $583.31 million for the quarter ending September 30, 2025 and revenue of $2.35 billion for the year ending December 31, 2025.<br /><br />Hims & Hers is a multi-specialty telehealth platform that connects consumers to licensed healthcare professionals, enabling them to access high-quality medical care for numerous conditions related to primary care, mental health, sexual health, dermatology, and more. ",
+    "subject": "Hims & Hers Health Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508067805",
+    "eps": 0.17,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.18,
+    "whisper": 0.24,
+    "highEstimate": 0.26,
+    "lowEstimate": 0.14,
+    "revenue": 544.833,
+    "revenueEstimate": 551.84,
+    "earningsGrowth": 1.8333333333333333,
+    "revenueGrowth": 0.7260777828467153,
+    "earningsSurprise": -0.2916666666666667,
+    "revenueSurprise": -0.012697521020585677,
+    "prevEarningsGrowth": 0.8181818181818182,
+    "prevRevenueGrowth": 1.1066538208512031
   }
 ]
