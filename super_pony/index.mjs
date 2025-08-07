@@ -57,7 +57,7 @@ client.on("messageCreate", async (message) => {
       const groups = items.reduce((acc, e) => {
         const label = timeMap[e.hour] || e.hour;
         acc[label] = acc[label] || [];
-        acc[label].push(`**${e.symbol}**`);
+        acc[label].push(`${e.symbol}`);
         return acc;
       }, {});
 
@@ -76,7 +76,7 @@ client.on("messageCreate", async (message) => {
         const syms = groups[label];
         if (!syms) continue;
 
-        let chunk = `**${label}:**\n`;
+        let chunk = `==============\n**${label}:**\n==============\n`;
         for (const sym of syms) {
           const addition = `${sym}, `;
           if ((chunk + addition).length > maxLen) {
