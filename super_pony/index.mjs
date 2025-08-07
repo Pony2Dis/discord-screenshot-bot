@@ -126,8 +126,8 @@ client.on("interactionCreate", async (interaction) => {
     if (filter === "anticipated") {
       // —— If “anticipated”:
       try {
-        const ch = await client.channels.fetch(ANTICIPATED_CHANNEL_ID);
-        const fetched = await ch.messages.fetch({ limit: 10 });
+        const channel = await client.channels.fetch(ANTICIPATED_CHANNEL_ID);
+        const fetched = await channel.messages.fetch({ limit: 10 });
         const imgMsg = fetched.find(
           (m) =>
             m.attachments.size > 0 ||
@@ -214,12 +214,12 @@ client.on("interactionCreate", async (interaction) => {
           for (const sym of syms) {
             const part = `${sym}, `;
             if ((chunk + part).length > maxLen) {
-              await message.channel.send(chunk.replace(/, $/, ""));
+              await channel.channel.send(chunk.replace(/, $/, ""));
               chunk = "";
             }
             chunk += part;
           }
-          await message.channel.send(chunk.replace(/, $/, ""));
+          await channel.channel.send(chunk.replace(/, $/, ""));
         }
 
         return interaction.followUp(
