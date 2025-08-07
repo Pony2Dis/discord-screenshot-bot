@@ -1,7 +1,8 @@
 import "dotenv/config";
 import fs from "fs/promises";
 import path from "path";
-import { Client, GatewayIntentBits, AttachmentBuilder } from "discord.js";
+import {Client, GatewayIntentBits, AttachmentBuilder, REST, Routes, SlashCommandBuilder, } from "discord.js";
+  
 import axios from "axios";
 import sharp from "sharp";
 
