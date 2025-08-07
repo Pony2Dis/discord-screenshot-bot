@@ -7294,5 +7294,29 @@
     "revenueSurprise": 0.04874449156065519,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.37713439926471026
+  },
+  {
+    "epsDate": "2025-08-07T06:00:00",
+    "ticker": "CELH",
+    "name": "Celsius Holdings, Inc.",
+    "summary": "Celsius (CELH) reported earnings of $0.47 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.23 per share on  revenue of $636.34 million. The Earnings Whisper number was $0.26 per share. The company beat expectations by 80.77%.<br /><br />Celsius Holdings, Inc.  is a global consumer packaged goods company with a proprietary, clinically proven formula for its master brand CELSIUS®. ",
+    "subject": "Celsius Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508072849",
+    "eps": 0.47,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.23,
+    "whisper": 0.26,
+    "highEstimate": 0.31,
+    "lowEstimate": 0.17,
+    "revenue": null,
+    "revenueEstimate": 636.34,
+    "earningsGrowth": 0.6785714285714286,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.8076923076923077,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.07430814038481001
   }
 ]
