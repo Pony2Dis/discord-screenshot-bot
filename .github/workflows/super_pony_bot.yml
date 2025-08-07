@@ -1,0 +1,59 @@
+
+name: 👑 Super Pony Bot
+
+on:
+  repository_dispatch:
+    types: [super_pony_bot] # Triggered by a repository dispatch event
+  workflow_dispatch:
+
+permissions:
+  contents: write    # allow GITHUB_TOKEN to push
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false # if action is already running, do not cancel it, wait for it to finish
+  
+jobs:
+  handle-users-commands:
+    runs-on: ubuntu-latest
+    steps:
+
+      # 1) Checkout with full history and persist the token
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0           # full history so git push will work
+          ref: main                # explicitly checkout `main`
+          persist-credentials: true
+
+      # 2) Setup & run your bot
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Super Pony bot
+        env:
+          DISCORD_TOKEN:   ${{ secrets.DISCORD_TOKEN }}
+          FINNHUB_TOKEN: ${{ secrets.FINNHUB_TOKEN }}
+          BOT_CHANNEL_ID: ${{ vars.BOT_CHANNEL_ID }}
+        run: node super_pony/index.mjs
+      
+      # 3) Commit & push only if there are changes
+      - name: Commit updated state
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      
+          # stash local changes before pulling
+          git stash --include-untracked || true
+          git pull --rebase origin main
+          git stash pop || true
+      
+          git add super_pony/*.json
+          git diff --cached --quiet || git commit -m "ci: update super_pony json files"
+          git push
