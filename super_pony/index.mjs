@@ -61,21 +61,27 @@ client.on("messageCreate", async (message) => {
         return acc;
       }, {});
 
-      const sections = Object.entries(groups).map(
-        ([label, syms]) => `${label}:\n${syms.join(', ')}`
-      );
-      const result_message = sections.join('\n\n');
-      console.log(`returning message to user: ${JSON.stringify(result_message).substring(0, 300)}`);
+      // order sections
+      const order = [
+        "Before Market Open",
+        "During Market Hours",
+        "After Market Close",
+        "Unknown Time"
+      ];
 
-      // send each group in ≤1 900 chars to respect Discord’s 2 000-char limit
+      // send grouped sections
+      console.log(`returning grouped sections: ${JSON.stringify(groups).substring(0, 300)}`);
       const maxLen = 1900;
-      for (const [label, syms] of Object.entries(groups)) {
-        let chunk = `${label}:\n`;
+      for (const label of order) {
+        const syms = groups[label];
+        if (!syms) continue;
+
+        let chunk = `**${label}:**\n`;
         for (const sym of syms) {
           const addition = `${sym}, `;
           if ((chunk + addition).length > maxLen) {
             await message.channel.send(chunk.trim().replace(/, $/, ""));
-            chunk = `${label} (cont.):\n`;
+            chunk = ""; // continuation: only tickers
           }
           chunk += addition;
         }
