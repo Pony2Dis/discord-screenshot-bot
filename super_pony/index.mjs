@@ -100,16 +100,17 @@ client.on("messageCreate", async (message) => {
       const day = new Date().getDay(); // 0=Sun,1=Mon...5=Fri
       // predefined regions: adjust these x,width as needed for your image resolution
       const presets = {
-        1: { left: 0, width: 360 },   // Monday column coordinates
-        2: { left: 360, width: 360 }, // Tuesday
-        3: { left: 720, width: 360 }, // Wednesday
-        4: { left: 1080, width: 360 },// Thursday
-        5: { left: 1440, width: 360 },// Friday
+        1: { left: 5, top: 80, width: 265, height: 587 },   // Monday column coordinates
+        2: { left: 267, top: 80, width: 265, height: 587 }, // Tuesday
+        3: { left: 532, top: 80, width: 265, height: 587 }, // Wednesday
+        4: { left: 795, top: 80, width: 265, height: 587 },// Thursday
+        5: { left: 1059, top: 80, width: 140, height: 587 },// Friday
       };
-      const { left, width } = presets[day] || presets[1];
-      const meta = await sharp(imgBuf).metadata();
+      const { left, top, width, height } = presets[day] || presets[1];
+
       // crop full height
-      const region = { left, top: 0, width, height: meta.height };
+      const region = { left, top, width, height };
+      console.log(`Cropping region: ${JSON.stringify(region)}`);
       
       const cropped = await sharp(imgBuf)
         .extract(region)
