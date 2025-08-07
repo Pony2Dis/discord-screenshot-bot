@@ -7342,5 +7342,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.4516993613138686
+  },
+  {
+    "epsDate": "2025-08-07T07:00:00",
+    "ticker": "DDOG",
+    "name": "Datadog, Inc.",
+    "summary": "Datadog (DDOG) reported earnings of $0.46 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.41 per share on  revenue of $790.78 million. The Earnings Whisper number was $0.43 per share. The company beat expectations by 6.98%.<br /><br />The company  said it expects third-quarter non-GAAP earnings of $0.44 to $0.46 per share on revenue of $847.0 million to $851.0 million. The current consensus earnings estimate is $0.40 per share on revenue of $817.52 million for the quarter ending September 30, 2025. The company also said it expects  2025 non-GAAP earnings of $1.80 to $1.83 per share on revenue of $3.312 billion to $3.322 billion. The company's previous guidance was  earnings of $1.67 to $1.71 per share on revenue of $3.215 billion to $3.235 billion, and the current consensus earnings estimate is $1.68 per share on revenue of $3.23 billion for the year ending December 31, 2025.<br /><br />Datadog is the monitoring and security platform for cloud applications. Our SaaS platform integrates and automates infrastructure monitoring, application performance monitoring and log management to provide unified, real-time observability of customers' entire technology stack",
+    "subject": "Datadog Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508077719",
+    "eps": 0.46,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.41,
+    "whisper": 0.43,
+    "highEstimate": 0.42,
+    "lowEstimate": 0.4,
+    "revenue": null,
+    "revenueEstimate": 790.78,
+    "earningsGrowth": 2.5384615384615383,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.06976744186046512,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": -0.6756756756756757,
+    "prevRevenueGrowth": 0.2458883637380921
   }
 ]
