@@ -39,6 +39,7 @@ client.on("messageCreate", async (message) => {
 
       console.log(`Response data: ${JSON.stringify(resp.data).substring(0, 300)}`);
       let items = resp.data.earningsCalendar || resp.data;
+
       // parse optional "limit: N" parameter
       const limitMatch = message.content.match(/limit:\s*(\d+)/i);
       if (limitMatch) {
@@ -46,6 +47,7 @@ client.on("messageCreate", async (message) => {
         console.log(`Applying limit: ${l}`);
         items = items.slice(0, l);
       }
+
       if (!items.length) {
         console.log("No earnings found for today.");
         return message.channel.send("לא מצאתי דיווח רווחים להיום.");
@@ -58,25 +60,26 @@ client.on("messageCreate", async (message) => {
         acc[label].push(`**${e.symbol}**`);
         return acc;
       }, {});
-      // build message sections
+
       const sections = Object.entries(groups).map(
         ([label, syms]) => `${label}:\n${syms.join(', ')}`
       );
       const result_message = sections.join('\n\n');
       console.log(`returning message to user: ${JSON.stringify(result_message).substring(0, 300)}`);
 
-      // send in chunks ≤1 900 chars to avoid Discord’s 2 000-char limit
+      // send each group in ≤1 900 chars to respect Discord’s 2 000-char limit
       const maxLen = 1900;
-      let buffer = "";
-      for (const line of result_message.split("\n")) {
-        if ((buffer + line + "\n").length > maxLen) {
-          await message.channel.send(buffer);
-          buffer = "";
+      for (const [label, syms] of Object.entries(groups)) {
+        let chunk = `${label}:\n`;
+        for (const sym of syms) {
+          const addition = `${sym}, `;
+          if ((chunk + addition).length > maxLen) {
+            await message.channel.send(chunk.trim().replace(/, $/, ""));
+            chunk = `${label} (cont.):\n`;
+          }
+          chunk += addition;
         }
-        buffer += line + "\n";
-      }
-      if (buffer) {
-        await message.channel.send(buffer);
+        await message.channel.send(chunk.trim().replace(/, $/, ""));
       }
     } catch (err) {
       console.error(err);
