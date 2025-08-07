@@ -29,8 +29,10 @@ client.on("messageCreate", async (message) => {
         if (resp.status !== 200) {
             throw new Error(`Unexpected status code: ${resp.status}`);
         }
-        console.log("Response data:", resp.data);
-      const items = resp.data.earnings || resp.data;
+
+      // log the first 300 characters of the response data
+        console.log(`Response data: ${JSON.stringify(resp.data).substring(0, 300)}`);
+      const items = resp.data.earningsCalendar || resp.data;
       if (!items.length) {
         console.log("No earnings found for today.");
         return message.channel.send("לא מצאתי דיווח רווחים להיום.");
