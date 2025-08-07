@@ -7534,5 +7534,29 @@
     "revenueSurprise": -0.008714164546225615,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.15712643977715138
+  },
+  {
+    "epsDate": "2025-08-07T16:01:00",
+    "ticker": "TTD",
+    "name": "Trade Desk, Inc.",
+    "summary": "Trade Desk (TTD) reported earnings of $0.41 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.42 per share on  revenue of $684.33 million. The Earnings Whisper number was $0.44 per share. The company missed expectations by 6.82%.<br /><br />The company  said it expects  third quarter  revenue of at least $717.0 million. The current consensus revenue estimate is $714.26 million for the quarter ending September 30, 2025.<br /><br />The Trade Desk is a technology company that empowers buyers of advertising. ",
+    "subject": "Trade Desk Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508078955",
+    "eps": 0.41,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.42,
+    "whisper": 0.44,
+    "highEstimate": 0.48,
+    "lowEstimate": 0.38,
+    "revenue": null,
+    "revenueEstimate": 684.33,
+    "earningsGrowth": 1.411764705882353,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.06818181818181818,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": -0.5,
+    "prevRevenueGrowth": 0.25397911056013905
   }
 ]
