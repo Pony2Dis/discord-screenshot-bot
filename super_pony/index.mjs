@@ -156,8 +156,10 @@ client.on("interactionCreate", async (interaction) => {
         };
 
         // Use Israel-local date to pick the correct crop
-        const israelDate = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Jerusalem" }));
-        const day = israelDate.getDay();           // 0=Sun … 6=Sat
+        const israelDate = new Date(
+          new Date().toLocaleString("en-US", { timeZone: "Asia/Jerusalem" })
+        );
+        const day = israelDate.getDay(); // 0=Sun … 6=Sat
         console.log(`Today is day ${day} of the week (0=Sun, 6=Sat)`);
 
         // Get the cropping region based on the day of the week
@@ -178,10 +180,14 @@ client.on("interactionCreate", async (interaction) => {
       try {
         const sp500 = await loadSP500();
         // const today = new Date().toISOString().split("T")[0];
-        const today = new Date().toLocaleDateString("en-US", { timeZone: "Asia/Jerusalem" });
+        const today = new Date().toLocaleDateString("en-US", {
+          timeZone: "Asia/Jerusalem",
+        });
         console.log(`Fetching earnings for today: ${today}`);
 
-        const { data } = await axios.get(`https://finnhub.io/api/v1/calendar/earnings?from=${today}&to=${today}&token=${FINNHUB_TOKEN}`);
+        const { data } = await axios.get(
+          `https://finnhub.io/api/v1/calendar/earnings?from=${today}&to=${today}&token=${FINNHUB_TOKEN}`
+        );
         let items = data.earningsCalendar || data;
 
         // Apply S&P 500 filter if specified
@@ -371,3 +377,17 @@ client.on("interactionCreate", async (interaction) => {
 // });
 
 client.login(DISCORD_TOKEN);
+
+client.on("error", (err) => {
+  console.error("Discord client error:", err);
+});
+
+// finally close the connection when the process is terminated
+process.on("SIGINT", () => {
+  console.log("Closing Discord client...");
+  // if the client still connected, destroy it to reset the connection
+  if (client && client.destroy) {
+    client.destroy();
+  }
+  process.exit(0);
+});
