@@ -7318,5 +7318,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.07430814038481001
+  },
+  {
+    "epsDate": "2025-08-07T06:45:00",
+    "ticker": "LLY",
+    "name": "Eli Lilly & Co.",
+    "summary": "Eli Lilly (LLY) reported earnings of $6.31 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $5.61 per share on  revenue of $14.66 billion. The Earnings Whisper number was $5.54 per share. The company beat expectations by 13.90%.<br /><br />Eli Lilly and Co is a drug manufacturing company. It discovers, develops, manufactures, and sells human pharmaceutical products and animal health products.",
+    "subject": "Eli Lilly Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508075966",
+    "eps": 6.31,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 5.61,
+    "whisper": 5.54,
+    "highEstimate": 5.92,
+    "lowEstimate": 5.24,
+    "revenue": null,
+    "revenueEstimate": 14660,
+    "earningsGrowth": 0.6096938775510204,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.13898916967509026,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.4516993613138686
   }
 ]
