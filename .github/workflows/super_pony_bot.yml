@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false # if action is already running, do not cancel it, wait for it to finish
+  cancel-in-progress: true # if action is already running, do not cancel it, wait for it to finish
   
 jobs:
   handle-users-commands:
