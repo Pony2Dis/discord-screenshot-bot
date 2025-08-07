@@ -55,6 +55,8 @@ async function run() {
         const monday = new Date(thisMonday);
         monday.setDate(thisMonday.getDate() + offset * 7);
         let formatted = `${monthNames[monday.getMonth()]} ${monday.getDate()}, ${monday.getFullYear()}`;
+        // set the date to the first day of the week in the formar: DD.MM.YYYY in the var cal_date
+        const cal_date = `${monday.getDate().toString().padStart(2, '0')}.${(monday.getMonth() + 1).toString().padStart(2, '0')}.${monday.getFullYear()}`;
         formatted = `#earnings for the week of ${formatted}`;
         const tag = offset < 0 ? "previous" : offset > 0 ? "next" : "current";
 
@@ -63,7 +65,7 @@ async function run() {
           if (!postUrl || sent.includes(postUrl)) continue;
 
           console.log(`Fetched ${tag}-week link for ${username}:`, imageUrl, "at post:", postUrl);
-          await channel.send(imageUrl);
+          await channel.send(`מדווחות בשבוע ${cal_date}:\n${imageUrl}`);
           await sleep(1000);
           sent.push(postUrl);
         } catch (err) {
