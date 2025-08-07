@@ -96,14 +96,24 @@ client.on("messageCreate", async (message) => {
       const resp = await axios.get(url, { responseType: 'arraybuffer' });
       const imgBuf = Buffer.from(resp.data);
 
-      // determine crop region based on weekday
-      const day = new Date().getDay();
-      const colIndex = Math.min(Math.max(day - 1, 0), 4); // Mon=1->0 .. Fri=5->4
+                  // determine exact crop region per weekday (preset values)
+      const day = new Date().getDay(); // 0=Sun,1=Mon...5=Fri
+      // predefined regions: adjust these x,width as needed for your image resolution
+      const presets = {
+        1: { left: 0, width: 360 },   // Monday column coordinates
+        2: { left: 360, width: 360 }, // Tuesday
+        3: { left: 720, width: 360 }, // Wednesday
+        4: { left: 1080, width: 360 },// Thursday
+        5: { left: 1440, width: 360 },// Friday
+      };
+      const { left, width } = presets[day] || presets[1];
       const meta = await sharp(imgBuf).metadata();
-      const colWidth = Math.floor(meta.width / 5);
-      const region = { left: colIndex * colWidth, top: 0, width: colWidth, height: meta.height };
-
-      const cropped = await sharp(imgBuf).extract(region).toBuffer();
+      // crop full height
+      const region = { left, top: 0, width, height: meta.height };
+      
+      const cropped = await sharp(imgBuf)
+        .extract(region)
+        .toBuffer();
 
       // send cropped image
       const file = new AttachmentBuilder(cropped, { name: 'today.png' });
