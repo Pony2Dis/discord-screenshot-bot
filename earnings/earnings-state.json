@@ -7846,5 +7846,29 @@
     "revenueSurprise": -0.11201764057331863,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 8.699057287889776
+  },
+  {
+    "epsDate": "2025-08-07T19:30:00",
+    "ticker": "SNAP",
+    "name": "Snap Inc.",
+    "summary": "Snap (SNAP) reported a loss of $0.16 per share on revenue of $1.34 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $0.01 per share on  revenue of $1.34 billion. The Earnings Whisper number was $0.02 per share. The company missed expectations by 900.00% while revenue grew 8.75% on a year-over-year basis.<br /><br />Snap Inc. is a technology company. ",
+    "subject": "Snap Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508070268",
+    "eps": -0.16,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.01,
+    "whisper": 0.02,
+    "highEstimate": 0.03,
+    "lowEstimate": -0.02,
+    "revenue": 1344.93,
+    "revenueEstimate": 1340,
+    "earningsGrowth": -0.23076923076923078,
+    "revenueGrowth": 0.08745536753861678,
+    "earningsSurprise": -9,
+    "revenueSurprise": 0.0036791044776119403,
+    "prevEarningsGrowth": -1.6111111111111112,
+    "prevRevenueGrowth": 0.14098410325643448
   }
 ]
