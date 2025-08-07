@@ -926,7 +926,9 @@
     "https://www.prnewswire.com/news-releases/oneok-releases-annual-corporate-sustainability-report-302524645.html",
     "https://www.prnewswire.com/news-releases/eog-resources-reports-second-quarter-2025-results-and-updates-2025-guidance-302524793.html",
     "https://www.prnewswire.com/news-releases/metallus-announces-second-quarter-2025-results-302524655.html",
-    "https://www.prnewswire.com/news-releases/southwest-gas-holdings-announces-launch-of-secondary-public-offering-of-centuri-holdings-inc-common-stock-302524806.html"
+    "https://www.prnewswire.com/news-releases/southwest-gas-holdings-announces-launch-of-secondary-public-offering-of-centuri-holdings-inc-common-stock-302524806.html",
+    "https://www.prnewswire.com/news-releases/xplr-infrastructure-lp-second-quarter-2025-financial-results-available-on-the-companys-website-302524816.html",
+    "https://www.prnewswire.com/news-releases/chesapeake-utilities-corporation-reports-second-quarter-2025-results-302524809.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -1224,7 +1226,9 @@
     "https://www.marketwatch.com/story/miran-tapped-by-trump-for-fed-governor-post-but-its-just-temporary-heres-why-39d87e56?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/is-now-a-good-time-to-refinance-your-car-loan-heres-how-to-tell-53490333?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/crocs-stock-has-its-worst-day-in-14-years-people-want-discounts-or-they-wont-buy-cf153c51?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/soundhound-earnings-show-a-growing-embrace-of-voice-ai-and-the-stock-is-surging-6fe6b515?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/soundhound-earnings-show-a-growing-embrace-of-voice-ai-and-the-stock-is-surging-6fe6b515?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/blocks-stock-pops-after-earnings-as-its-two-financial-engines-reignite-2b71e1f3?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/live-nations-second-quarter-was-mixed-its-still-hoping-to-ride-massive-shows-more-upsells-to-a-record-year-f206f4d8?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -1311,7 +1315,8 @@
     "https://www.cnbc.com/2025/08/07/duolingo-duol-q2-earnings-2025.html",
     "https://www.cnbc.com/2025/08/07/were-downgrading-lilly-and-asking-ourselves-tough-questions-after-its-obesity-pill-letdown.html",
     "https://www.cnbc.com/2025/08/07/applovin-stock-earnings-apple-epic.html",
-    "https://www.cnbc.com/2025/08/07/instacart-cart-earnings-q2-2025.html"
+    "https://www.cnbc.com/2025/08/07/instacart-cart-earnings-q2-2025.html",
+    "https://www.cnbc.com/2025/08/07/flutter-flut-q2-2025-earnings-report.html"
   ],
   "https://finance.yahoo.com/news/rssindex": [
     "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-meta-amazon-earnings-fed-meeting-trump-tariffs-tesla-robotaxi/?src=A00220&yptr=yahoo",
@@ -5528,7 +5533,10 @@
     "https://finance.yahoo.com/video/federateds-auth-remains-optimistic-due-120544444.html",
     "https://www.barrons.com/articles/dividend-stocks-yields-buy-f627148b?siteid=yhoof2&yptr=yahoo",
     "https://finance.yahoo.com/news/caterpillar-warns-1-5b-tariff-121600677.html",
-    "https://finance.yahoo.com/news/google-says-hackers-stole-customers-120525867.html"
+    "https://finance.yahoo.com/news/google-says-hackers-stole-customers-120525867.html",
+    "https://finance.yahoo.com/news/petsmart-hires-former-walmart-exec-122300434.html",
+    "https://finance.yahoo.com/news/novo-pushes-back-against-obesity-122100020.html",
+    "https://finance.yahoo.com/news/target-launches-wild-collective-brand-122400612.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
@@ -6727,6 +6735,15 @@
     "https://www.investing.com/news/stock-market-news/ford-delays-electric-pickup-van-to-2028-automotive-news-reports-4178161",
     "https://www.investing.com/news/stock-market-news/trump-to-nominate-stephen-miran-for-federal-reserve-governor-role--bloomberg-4178124",
     "https://www.investing.com/news/stock-market-news/live-nation-beats-revenue-estimates-on-redhot-concert-demand-4178256",
-    "https://www.investing.com/news/stock-market-news/block-raises-annual-profit-forecast-on-resilient-consumer-spending-4178209"
+    "https://www.investing.com/news/stock-market-news/block-raises-annual-profit-forecast-on-resilient-consumer-spending-4178209",
+    "https://www.investing.com/news/stock-market-news/mp-materials-posts-smallerthanexpected-quarterly-loss-4178355",
+    "https://www.investing.com/news/stock-market-news/us-stocks-mixed-at-close-of-trade-dow-jones-industrial-average-down-051-4178339",
+    "https://www.investing.com/news/stock-market-news/gilead-posts-flat-quarterly-profit-raises-fullyear-outlook-4178333",
+    "https://www.investing.com/news/stock-market-news/canada-stocks-lower-at-close-of-trade-sptsx-composite-down-057-4178331",
+    "https://www.investing.com/news/stock-market-news/pinterest-beats-revenue-estimates-as-ai-tools-drive-ad-spend-4178330",
+    "https://www.investing.com/news/stock-market-news/brazil-stocks-higher-at-close-of-trade-bovespa-up-148-4178328",
+    "https://www.investing.com/news/stock-market-news/fanduel-owner-raises-profit-forecast-as-gamblers-winning-streak-ends-4178304",
+    "https://www.investing.com/news/stock-market-news/us-oil-producer-eog-beats-secondquarter-profit-estimates-4178303",
+    "https://www.investing.com/news/stock-market-news/stock-market-today-sp-500-in-slight-loss-as-traders-weigh-fed-shakeup-earnings-4174935"
   ]
 }
