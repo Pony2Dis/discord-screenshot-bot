@@ -62,21 +62,28 @@ client.on("messageCreate", async (message) => {
 
   const content = message.content.toLowerCase();
 
-  // 1) Existing earnings logic
+  // Existing earnings logic
   if (content.startsWith("/todays earnings") && !content.includes("most anticipated")) {
     // ... existing code unchanged ...
     return;
   }
 
-  // 2) Most anticipated image crop
+  // Most anticipated image crop
   if (content === "/todays earnings most anticipated") {
     await message.channel.send("🔄 שולף את התמונה ומגזם לטיקרים של היום...");
     try {
-      // fetch last image from the designated channel
+      // fetch the last image message from the designated channel
       const ch = await client.channels.fetch(ANTICIPATED_CHANNEL_ID);
-      const msgs = await ch.messages.fetch({ limit: 1 });
-      const imgMsg = msgs.first();
-      const url = imgMsg.attachments.first().url;
+      const fetched = await ch.messages.fetch({ limit: 10 });
+      const imgMsg = fetched.find(msg => msg.attachments.size > 0);
+      if (!imgMsg) {
+        return message.channel.send("❌ לא נמצאה תמונה שהתפרסמה.");
+      }
+      const attachment = imgMsg.attachments.first();
+      if (!attachment || !attachment.url) {
+        return message.channel.send("❌ התמונה אינה נגישה.");
+      }
+      const url = attachment.url;
 
       // download image
       const resp = await axios.get(url, { responseType: 'arraybuffer' });
@@ -89,7 +96,6 @@ client.on("messageCreate", async (message) => {
 
       const meta = await sharp(imgBuf).metadata();
       const colWidth = Math.floor(meta.width / 5);
-      // crop full height, entire column
       const region = {
         left: colIndex * colWidth,
         top: 0,
@@ -102,8 +108,8 @@ client.on("messageCreate", async (message) => {
         .toBuffer();
 
       // send cropped image
-      const attachment = new AttachmentBuilder(cropped, { name: 'today.png' });
-      await message.channel.send({ files: [attachment] });
+      const file = new AttachmentBuilder(cropped, { name: 'today.png' });
+      await message.channel.send({ files: [file] });
     } catch (err) {
       console.error(err);
       await message.channel.send("❌ שגיאה בחיתוך התמונה.");
