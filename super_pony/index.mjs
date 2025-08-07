@@ -38,7 +38,14 @@ client.on("messageCreate", async (message) => {
       }
 
       console.log(`Response data: ${JSON.stringify(resp.data).substring(0, 300)}`);
-      const items = resp.data.earningsCalendar || resp.data;
+      let items = resp.data.earningsCalendar || resp.data;
+      // parse optional "limit: N" parameter
+      const limitMatch = message.content.match(/limit:\s*(\d+)/i);
+      if (limitMatch) {
+        const l = parseInt(limitMatch[1], 10);
+        console.log(`Applying limit: ${l}`);
+        items = items.slice(0, l);
+      }
       if (!items.length) {
         console.log("No earnings found for today.");
         return message.channel.send("לא מצאתי דיווח רווחים להיום.");
@@ -58,8 +65,8 @@ client.on("messageCreate", async (message) => {
       const result_message = sections.join('\n\n');
       console.log(`returning message to user: ${JSON.stringify(result_message).substring(0, 300)}`);
 
-      // send in chunks ≤3 900 chars to avoid Discord’s 4 000-char limit
-      const maxLen = 3900;
+      // send in chunks ≤1 900 chars to avoid Discord’s 2 000-char limit
+      const maxLen = 1900;
       let buffer = "";
       for (const line of result_message.split("\n")) {
         if ((buffer + line + "\n").length > maxLen) {
