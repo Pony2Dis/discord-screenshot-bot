@@ -7558,5 +7558,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": -0.5,
     "prevRevenueGrowth": 0.25397911056013905
+  },
+  {
+    "epsDate": "2025-08-07T16:00:00",
+    "ticker": "KTOS",
+    "name": "Kratos Defense & Security Solutions, Inc.",
+    "summary": "Kratos Defense & Security Solutions (KTOS) reported earnings of $0.11 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.09 per share on  revenue of $306.76 million. The Earnings Whisper number was $0.12 per share. The company missed expectations by 8.33%.<br /><br />Kratos Defense & Security Solutions, Inc. is a technology, products, system and software company addressing the defense, national security, and commercial markets. ",
+    "subject": "Kratos Defense & Security Solutions Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508078518",
+    "eps": 0.11,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.09,
+    "whisper": 0.12,
+    "highEstimate": 0.11,
+    "lowEstimate": 0.05,
+    "revenue": null,
+    "revenueEstimate": 306.76,
+    "earningsGrowth": 0,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.08333333333333333,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": 0.75,
+    "prevRevenueGrowth": 0.09163059163059163
   }
 ]
