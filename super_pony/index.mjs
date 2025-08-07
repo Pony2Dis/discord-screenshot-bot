@@ -75,7 +75,7 @@ client.on("messageCreate", async (message) => {
       );
       let items = resp.data.earningsCalendar || resp.data;
 
-      // parse optional "limit: N" parameter
+      // limit:N
       const limitMatch = message.content.match(/limit:\s*(\d+)/i);
       if (limitMatch) {
         const l = parseInt(limitMatch[1], 10);
@@ -83,7 +83,7 @@ client.on("messageCreate", async (message) => {
         items = items.slice(0, l);
       }
 
-      // sp500 filter
+      // sp500
       if (/sp500/i.test(message.content)) {
         console.log("Filtering for S&P 500 constituents");
         const sp500List = await loadSP500();
@@ -91,29 +91,7 @@ client.on("messageCreate", async (message) => {
         console.log(`After SP500 filter: ${items.length} items remain`);
       }
 
-      // parse optional "cap: N[MB]" parameter
-      const capMatch = message.content.match(/cap:\s*(\d+)([MB])/i);
-      if (capMatch) {
-        const capValue = parseInt(capMatch[1], 10);
-        const capUnit = capMatch[2].toUpperCase();
-        const thresholdMM = capValue * (capUnit === "B" ? 1000 : 1);
-        console.log(
-          `Applying market cap filter: ≥ ${capValue}${capUnit} (${thresholdMM}M)`
-        );
-        const filtered = [];
-        for (const e of items) {
-          const profUrl =
-            `https://finnhub.io/api/v1/stock/profile2?symbol=${e.symbol}&token=${FINNHUB_TOKEN}`;
-          console.log(`Fetching market cap for ${e.symbol}: ${profUrl}`);
-          const profResp = await axios.get(profUrl);
-          const mc = profResp.data.marketCapitalization;
-          console.log(`Market cap ${e.symbol}: ${mc}M`);
-          if (mc >= thresholdMM) filtered.push(e);
-        }
-        items = filtered;
-      }
-
-      // parse optional "topNews: N" parameter
+      // topNews:N
       const newsMatch = message.content.match(/topnews:\s*(\d+)/i);
       if (newsMatch && NEWS_API_KEY) {
         const topN = parseInt(newsMatch[1], 10);
@@ -143,15 +121,13 @@ client.on("messageCreate", async (message) => {
         return message.channel.send("לא מצאתי דיווח רווחים להיום.");
       }
 
-      // group tickers by report time
+      // group & send
       const groups = items.reduce((acc, e) => {
         const label = timeMap[e.hour] || e.hour;
         acc[label] = acc[label] || [];
         acc[label].push(e.symbol);
         return acc;
       }, {});
-
-      // order sections
       const order = [
         "Before Market Open",
         "During Market Hours",
@@ -159,7 +135,10 @@ client.on("messageCreate", async (message) => {
         "Unknown Time",
       ];
 
-      console.log(`returning grouped sections: ${JSON.stringify(groups).substring(0, 300)}`);
+      console.log(
+        `returning grouped sections: ${JSON.stringify(groups).substring(0, 300)}`
+      );
+
       const maxLen = 1900;
       for (const label of order) {
         const syms = groups[label] || [];
