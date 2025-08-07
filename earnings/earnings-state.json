@@ -7486,5 +7486,29 @@
     "revenueSurprise": 0.0036791044776119403,
     "prevEarningsGrowth": -1.6111111111111112,
     "prevRevenueGrowth": 0.14098410325643448
+  },
+  {
+    "epsDate": "2025-08-07T10:45:00",
+    "ticker": "OPEN",
+    "name": "Opendoor Technologies Inc.",
+    "summary": "Opendoor Technologies (OPEN) reported a loss of $0.04 per share on revenue of $1.57 billion for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.02 per share on  revenue of $1.49 billion. The Earnings Whisper number was a loss of $0.01 per share. The company missed expectations by 300.00% while revenue grew 3.71% on a year-over-year basis.<br /><br />The company  said it expects  third quarter  revenue of $800.0 million to $875.0 million. The current consensus revenue estimate is $1.25 billion for the quarter ending September 30, 2025.<br /><br />Opendoor’s mission is to empower everyone with the freedom to move. Since 2014, Opendoor has provided people across the U.S. with a radically simple way to buy, sell or trade-in a home. Opendoor operates in a growing number of markets across the U.S. and is headquartered in San Francisco.",
+    "subject": "Opendoor Technologies Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508076643",
+    "eps": -0.04,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.02,
+    "whisper": -0.01,
+    "highEstimate": -0.01,
+    "lowEstimate": -0.02,
+    "revenue": 1567,
+    "revenueEstimate": 1490,
+    "earningsGrowth": 0.5555555555555556,
+    "revenueGrowth": 0.037061548643282594,
+    "earningsSurprise": -3,
+    "revenueSurprise": 0.05167785234899329,
+    "prevEarningsGrowth": -4.5,
+    "prevRevenueGrowth": -0.023708721422523286
   }
 ]
