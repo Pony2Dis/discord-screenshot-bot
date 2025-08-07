@@ -72,18 +72,25 @@ client.on("messageCreate", async (message) => {
   if (content === "/todays earnings most anticipated") {
     await message.channel.send("🔄 שולף את התמונה ומגזם לטיקרים של היום...");
     try {
-      // fetch the last image message from the designated channel
+      // fetch recent messages from anticipated channel
       const ch = await client.channels.fetch(ANTICIPATED_CHANNEL_ID);
       const fetched = await ch.messages.fetch({ limit: 10 });
-      const imgMsg = fetched.find(msg => msg.attachments.size > 0);
+      // find message with either attachment or embed image
+      const imgMsg = fetched.find(msg => msg.attachments.size > 0 || msg.embeds.some(e => e.image || e.thumbnail));
       if (!imgMsg) {
         return message.channel.send("❌ לא נמצאה תמונה שהתפרסמה.");
       }
-      const attachment = imgMsg.attachments.first();
-      if (!attachment || !attachment.url) {
+      // get URL from attachment or embed
+      let url;
+      if (imgMsg.attachments.size > 0) {
+        url = imgMsg.attachments.first().url;
+      } else {
+        const embed = imgMsg.embeds.find(e => e.image || e.thumbnail);
+        url = embed.image?.url || embed.thumbnail?.url;
+      }
+      if (!url) {
         return message.channel.send("❌ התמונה אינה נגישה.");
       }
-      const url = attachment.url;
 
       // download image
       const resp = await axios.get(url, { responseType: 'arraybuffer' });
@@ -91,21 +98,12 @@ client.on("messageCreate", async (message) => {
 
       // determine crop region based on weekday
       const day = new Date().getDay();
-      // Monday=1,...Friday=5; map to index 0-4
-      const colIndex = Math.min(Math.max(day - 1, 0), 4);
-
+      const colIndex = Math.min(Math.max(day - 1, 0), 4); // Mon=1->0 .. Fri=5->4
       const meta = await sharp(imgBuf).metadata();
       const colWidth = Math.floor(meta.width / 5);
-      const region = {
-        left: colIndex * colWidth,
-        top: 0,
-        width: colWidth,
-        height: meta.height,
-      };
+      const region = { left: colIndex * colWidth, top: 0, width: colWidth, height: meta.height };
 
-      const cropped = await sharp(imgBuf)
-        .extract(region)
-        .toBuffer();
+      const cropped = await sharp(imgBuf).extract(region).toBuffer();
 
       // send cropped image
       const file = new AttachmentBuilder(cropped, { name: 'today.png' });
