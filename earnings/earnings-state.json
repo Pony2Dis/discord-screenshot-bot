@@ -7270,5 +7270,29 @@
     "revenueSurprise": -0.003703703703703704,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.13860232945091513
+  },
+  {
+    "epsDate": "2025-08-06T16:01:00",
+    "ticker": "DUOL",
+    "name": "Duolingo, Inc.",
+    "summary": "Duolingo (DUOL) reported earnings of $0.91 per share on revenue of $252.27 million for the  second quarter ended June 2025.  The consensus earnings estimate was $0.55 per share on  revenue of $240.54 million. The Earnings Whisper number was $0.61 per share. The company beat expectations by 49.18% while revenue grew 41.46% on a year-over-year basis.<br /><br />The company  said it expects  third quarter  revenue of $257.0 million to $261.0 million and 2025 revenue of $1.011 billion to $1.019 billion. The company's  previous guidance was  2025 revenue of $987.0 million to $996.0 million. The current consensus revenue estimate is $253.21 million for the quarter ending September 30, 2025 and revenue of $995.83 million for the year ending December 31, 2025.<br /><br />Duolingo is the leading mobile learning platform globally, offering courses in 40 languages to approximately 40 million monthly active users. ",
+    "subject": "Duolingo Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508067327",
+    "eps": 0.91,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.55,
+    "whisper": 0.61,
+    "highEstimate": 0.57,
+    "lowEstimate": 0.52,
+    "revenue": 252.265,
+    "revenueEstimate": 240.54,
+    "earningsGrowth": 0.7843137254901961,
+    "revenueGrowth": 0.4146203323108671,
+    "earningsSurprise": 0.4918032786885246,
+    "revenueSurprise": 0.04874449156065519,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.37713439926471026
   }
 ]
