@@ -205,6 +205,9 @@ client.on("interactionCreate", async (interaction) => {
           "Unknown Time",
         ];
 
+        // connect to the channel in order to send messages
+        const channel = await client.channels.fetch(interaction.channelId);
+
         const maxLen = 1900;
         for (const label of order) {
           const syms = groups[label] || [];
@@ -214,12 +217,12 @@ client.on("interactionCreate", async (interaction) => {
           for (const sym of syms) {
             const part = `${sym}, `;
             if ((chunk + part).length > maxLen) {
-              await channel.channel.send(chunk.replace(/, $/, ""));
+              await channel.send(chunk.replace(/, $/, ""));
               chunk = "";
             }
             chunk += part;
           }
-          await channel.channel.send(chunk.replace(/, $/, ""));
+          await channel.send(chunk.replace(/, $/, ""));
         }
 
         return interaction.followUp(
