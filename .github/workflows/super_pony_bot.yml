@@ -39,7 +39,7 @@ jobs:
       - name: Run Super Pony bot
         env:
           DISCORD_TOKEN:   ${{ secrets.DISCORD_TOKEN }}
-          FINNHUB_TOKEN: ${{ secrets.FINNHUB_TOKEN }}
+          FINNHUB_TOKEN: ${{ secrets.FINNHUB_TOKEN1 }}
           BOT_CHANNEL_ID: ${{ vars.BOT_CHANNEL_ID }}
         run: node super_pony/index.mjs
       
