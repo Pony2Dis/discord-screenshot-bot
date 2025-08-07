@@ -7438,5 +7438,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.13055594259439876
+  },
+  {
+    "epsDate": "2025-08-07T07:00:00",
+    "ticker": "CROX",
+    "name": "Crocs Inc.",
+    "summary": "Crocs (CROX) reported earnings of $4.23 per share on revenue of $1.15 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $4.01 per share on  revenue of $1.14 billion. The Earnings Whisper number was $4.12 per share. The company beat expectations by 2.67% while revenue grew 3.41% on a year-over-year basis.<br /><br />Crocs, Inc. is a world leader in innovative casual footwear for women, men, and children, combining comfort and style with a value that consumers know and love. ",
+    "subject": "Crocs Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508075990",
+    "eps": 4.23,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 4.01,
+    "whisper": 4.12,
+    "highEstimate": 4.26,
+    "lowEstimate": 3.82,
+    "revenue": 1149.373,
+    "revenueEstimate": 1140,
+    "earningsGrowth": 0.05486284289276808,
+    "revenueGrowth": 0.03407191350083041,
+    "earningsSurprise": 0.02669902912621359,
+    "revenueSurprise": 0.008221929824561403,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.0013849928566329972
   }
 ]
