@@ -49,7 +49,7 @@ client.on("messageCreate", async (message) => {
         .map((e) => `• **${e.symbol}** at ${timeMap[e.hour] || e.hour}`)
         .join("\n");
       const result_message = `📈 **המדווחות בתאריך - ${today}:**\n${formatted}`;
-      console.log(`returning message to user: ${result_message}`);
+      console.log(`returning message to user: ${JSON.stringify(result_message).substring(0, 300)}`);
       await message.channel.send(result_message);
     } catch (err) {
       console.error(err);
