@@ -7798,5 +7798,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": -0.009708737864077669,
     "prevRevenueGrowth": -0.03111096488106349
+  },
+  {
+    "epsDate": "2025-08-07T16:06:00",
+    "ticker": "SOUN",
+    "name": "SoundHound AI, Inc.",
+    "summary": "SoundHound AI (SOUN) reported a loss of $0.19 per share on  for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.05 per share on  revenue of $33.03 million. The Earnings Whisper number was a loss of $0.03 per share. The company missed expectations by 533.33%.<br /><br />SoundHound, a leading innovator of conversational intelligence, offers an independent voice AI platform that enables businesses across industries to deliver best-in-class conversational experiences to their customers. ",
+    "subject": "SoundHound AI Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508078080",
+    "eps": -0.19,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.05,
+    "whisper": -0.03,
+    "highEstimate": -0.05,
+    "lowEstimate": -0.06,
+    "revenue": null,
+    "revenueEstimate": 33.03,
+    "earningsGrowth": -0.7272727272727273,
+    "revenueGrowth": null,
+    "earningsSurprise": -5.333333333333333,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": 9.333333333333334,
+    "prevRevenueGrowth": 1.5124202173538037
   }
 ]
