@@ -1,3 +1,4 @@
+// index.mjs
 import "dotenv/config";
 import {
   Client,
@@ -12,12 +13,14 @@ import { handleAnticipatedImage } from "./cmd_handlers/anticipatedImage.mjs";
 import { sendHelp } from "./cmd_handlers/help.mjs";
 import { listAllTickers } from "./cmd_handlers/listAllTickers.mjs";
 import { listMyTickers } from "./cmd_handlers/listMyTickers.mjs";
+import { handleGraphChannelMessage } from "./cmd_handlers/graphChannelHandler.mjs";
 
 const {
   DISCORD_TOKEN,
   FINNHUB_TOKEN,
   ANTICIPATED_CHANNEL_ID,
   BOT_CHANNEL_ID,
+  GRAPHS_CHANNEL_ID,
   DISCORD_GUILD_ID,
   DISCORD_APPLICATION_ID,
 } = process.env;
@@ -50,10 +53,15 @@ const commands = [
 // Register guild commands
 const rest = new REST({ version: "10" }).setToken(DISCORD_TOKEN);
 (async () => {
-  await rest.put(
-    Routes.applicationGuildCommands(DISCORD_APPLICATION_ID, DISCORD_GUILD_ID),
-    { body: commands }
-  );
+  try {
+    await rest.put(
+      Routes.applicationGuildCommands(DISCORD_APPLICATION_ID, DISCORD_GUILD_ID),
+      { body: commands }
+    );
+    console.log("✅ Slash commands registered");
+  } catch (e) {
+    console.error("Failed to register slash commands:", e);
+  }
 })();
 
 // Discord client
@@ -85,20 +93,47 @@ client.on("interactionCreate", async (interaction) => {
   }
 });
 
-// Message router (BOT_CHANNEL_ID only, must @mention or say @SuperPony)
+// Single message listener (routes by channel)
 client.on("messageCreate", async (message) => {
-  if (message.author.bot) return;
-  if (message.channel.id !== BOT_CHANNEL_ID) return;
-
-  const isMentioned = message.mentions.users.has(client.user.id) || message.content.includes("@SuperPony");
-  if (!isMentioned) return;
-
-  const content = message.content.toLowerCase();
-
   try {
-    if (content.includes("pony say hello")) {
+    if (message.author.bot) return;
+
+    const inBotRoom = message.channel.id === BOT_CHANNEL_ID;
+    const inGraphsRoom = message.channel.id === GRAPHS_CHANNEL_ID;
+
+    // ——— GRAPHS channel: passive ticker logging (no @SuperPony mentions)
+    if (inGraphsRoom) {
+      const mentionsBot =
+        (client.user?.id && message.mentions.users.has(client.user.id)) ||
+        message.content?.includes("@SuperPony");
+      if (!mentionsBot && message.content?.trim()) {
+        await handleGraphChannelMessage({
+          message,
+          allTickersFile: "./scanner/all_tickers.txt",
+          dbPath: "./scanner/db.json",
+        });
+      }
+      return; // do not fall through to command handling
+    }
+
+    // ——— Not the bot commands room? ignore.
+    if (!inBotRoom) return;
+
+    // Command-style text handling in the bot room
+    const content = message.content?.toLowerCase() || "";
+
+    if (content.startsWith("pony say hello")) {
       await message.channel.send("Hello! I'm Super Pony, your friendly bot!");
-    } else if (content.includes("טיקרים שלי") || content.includes("שלי")) {
+      return;
+    }
+
+    const mentionsBot =
+      (client.user?.id && message.mentions.users.has(client.user.id)) ||
+      message.content?.includes("@SuperPony");
+
+    if (!mentionsBot) return;
+
+    if (content.includes("טיקרים שלי") || content.includes("שלי")) {
       await listMyTickers({ message });
     } else if (content.includes("טיקרים")) {
       await listAllTickers({ message });
@@ -134,11 +169,13 @@ client.on("messageCreate", async (message) => {
     ) {
       await sendHelp({ channel: message.channel });
     } else {
-      await sendHelp({ channel: message.channel }); // default to help
+      await sendHelp({ channel: message.channel });
     }
   } catch (err) {
-    console.error(err);
-    await message.channel.send("❌ קרתה שגיאה בעיבוד הבקשה.");
+    console.error("messageCreate handler error:", err);
+    if (message?.channel?.send) {
+      await message.channel.send("❌ קרתה שגיאה בעיבוד הבקשה.");
+    }
   }
 });
 

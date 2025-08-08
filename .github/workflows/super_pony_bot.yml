@@ -43,6 +43,7 @@ jobs:
           DISCORD_APPLICATION_ID: ${{ secrets.DISCORD_APPLICATION_ID }}
           DISCORD_GUILD_ID: ${{ vars.DISCORD_GUILD_ID }}
           BOT_CHANNEL_ID: ${{ vars.BOT_CHANNEL_ID }}
+          GRAPHS_CHANNEL_ID: ${{ vars.GRAPHS_CHANNEL_ID }}
           ANTICIPATED_CHANNEL_ID: ${{ vars.X_EARNINGS_CAL_CHANNEL_ID }}
 
         run: node super_pony/index.mjs
