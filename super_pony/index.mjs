@@ -48,6 +48,13 @@ const {
   DISCORD_APPLICATION_ID,
 } = process.env;
 
+const helpString = "הנה רשימת הפקודות שאני יודע לבצע:\n" + 
+"1. להראות את כל הטיקרים שבמעקב בחוכמת הסורק, פשוט תרשמו לי 'טיקרים'\n" +
+"2. להציג את כל הטיקרים שאבמעקב שאתה ציינת ראשון, פשוט תרשמו לי 'טירקים שלי'\n" +
+"3. להציג את כל הטיקרים של חברות שמדווחות היום\n" +
+"4. להציג תמונה של החברות שהכי מצפים לדיווח שלהן היום\n" +
+"5. להציג את כל הטיקרים של חברות שהן חלק ממדד ה-S&P 500 שמדווחות היום\n"
+
 const timeMap = {
   amc: "After Market Close",
   bmo: "Before Market Open",
@@ -253,11 +260,36 @@ client.on("interactionCreate", async (interaction) => {
 // 6️⃣ Handle message commands
 client.on("messageCreate", async (message) => {
   if (message.channel.id !== BOT_CHANNEL_ID || message.author.bot) return;
-    const content = message.content.toLowerCase();
-    if (!content.startsWith("pony say hello")) return;
 
+  // get the message content in lowercase for easier matching
+  const content = message.content.toLowerCase();
+
+  // check if this is the test message
+  if (content.startsWith("pony say hello")) {
     // Respond to the message with a simple greeting
     await message.channel.send("Hello! I'm Super Pony, your friendly bot!");
+  }
+
+  // check if the bot is mentioned, searching for @SuperPony
+  if (content.includes(`<@${client.user.id}>`) || content.includes("@SuperPony")) {
+    // check what the user is asking for
+    if (content.includes("טיקרים שלי")) {
+      // If the user asks for today's earnings, send a message with instructions
+      await message.channel.send(
+        "אלו כל הטיקרים שלך שאני עוקב אחריהם:\n"
+      );
+    } else if (content.includes("טיקרים")) {
+      await message.channel.send(
+        "אלו כל הטיקרים שאני עוקב אחריהם:\n"
+      );
+    } else if (content.includes("עזרה") || content.includes("מה אתה יודע לעשות") || content.includes("רשימת פקודות") || content.includes("help") || content.includes("תעזור") || content.includes("commands")) {
+      // If the user asks for help, send a message with available commands
+      await message.channel.send(helpString);
+    } else {
+      // If the user asks something else, send a generic response
+      await message.channel.send("לא הצלחתי להבין את הבקשה, " + helpString);
+    }
+  }
 });
 
 client.login(DISCORD_TOKEN);
@@ -266,6 +298,5 @@ client.on("error", (err) => {
   console.error("Discord client error:", err);
 });
 
-process.on("SIGINT",  () => client.destroy().then(() => process.exit(0)));
+process.on("SIGINT", () => client.destroy().then(() => process.exit(0)));
 process.on("SIGTERM", () => client.destroy().then(() => process.exit(0)));
-
