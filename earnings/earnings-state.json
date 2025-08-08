@@ -7918,5 +7918,29 @@
     "revenueSurprise": -0.09642803315749812,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 67.98461538461538
+  },
+  {
+    "epsDate": "2025-08-08T06:00:00",
+    "ticker": "TEM",
+    "name": "Tempus AI, Inc. ",
+    "summary": "Tempus AI, Inc. (TEM) reported a loss of $0.22 per share on  for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.25 per share on  revenue of $299.32 million. The Earnings Whisper number was a loss of $0.22 per share. The company reported in-line with expectations.<br /><br />Tempus is a technology company advancing precision medicine through the practical application of artificial intelligence in healthcare. ",
+    "subject": "Tempus AI, Inc. Reported In-line with Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508088593",
+    "eps": -0.22,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.25,
+    "whisper": -0.22,
+    "highEstimate": -0.17,
+    "lowEstimate": -0.29,
+    "revenue": null,
+    "revenueEstimate": 299.32,
+    "earningsGrowth": 0.9675036927621861,
+    "revenueGrowth": null,
+    "earningsSurprise": 0,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": null
   }
 ]
