@@ -7942,5 +7942,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": null
+  },
+  {
+    "epsDate": "2025-08-07T07:00:00",
+    "ticker": "VST",
+    "name": "Vistra Energy",
+    "summary": "Vistra Energy (VST) reported earnings of $1.01 per share on revenue of $4.25 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $0.98 per share on  revenue of $5.26 billion. The Earnings Whisper number was $1.49 per share. The company missed expectations by 32.21% while revenue grew 10.53% on a year-over-year basis.<br /><br />The company  said it continues to expect Adjusted EBITDA of $5.50 billion to $6.10 billion for the year ending December 31, 2025.<br /><br />Vistra (NYSE: VST) is a leading retail electricity and power generation company based in Irving, Texas, providing essential resources for customers, commerce, and communities. ",
+    "subject": "Vistra Energy Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508076201",
+    "eps": 1.01,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.98,
+    "whisper": 1.49,
+    "highEstimate": 1.56,
+    "lowEstimate": 1.07,
+    "revenue": 4250,
+    "revenueEstimate": 5260,
+    "earningsGrowth": 0.12222222222222222,
+    "revenueGrowth": 0.10533159947984395,
+    "earningsSurprise": -0.3221476510067114,
+    "revenueSurprise": -0.1920152091254753,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.28781925343811393
   }
 ]
