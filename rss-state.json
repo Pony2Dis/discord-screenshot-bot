@@ -998,7 +998,8 @@
     "https://www.prnewswire.com/news-releases/sigma-lithium-streamlines-leadership-combining-key-roles-under-veteran-vps-announces-shareholder-meeting-results-to-release-2q-financials-on-aug-14-2025-302525347.html",
     "https://www.prnewswire.com/news-releases/intellinum-leads-ebs-migration-to-oracle-cloud-wms-with-big-bang-go-live-across-38-sunrun-locations-302525356.html",
     "https://www.prnewswire.com/news-releases/global-flame-retardant-chemicals-market-accelerates-in-response-to-rising-fire-safety-standards--bcc-research-llc-302525367.html",
-    "https://www.prnewswire.com/news-releases/twenty-years-strong-growth-energy-celebrates-rfs-birthday-302524777.html"
+    "https://www.prnewswire.com/news-releases/twenty-years-strong-growth-energy-celebrates-rfs-birthday-302524777.html",
+    "https://www.prnewswire.com/news-releases/amigo-lng-awards-marine-facilities-epc-contract-to-comsa-marine-302525383.html"
   ],
   "https://feeds.marketwatch.com/marketwatch/topstories/": [
     "https://www.marketwatch.com/story/the-selling-agent-is-long-dead-my-250-000-term-life-insurance-policy-costs-2-000-a-month-im-80-is-it-time-to-ditch-it-681e4df6?mod=mw_rss_topstories",
@@ -1314,7 +1315,8 @@
     "https://www.marketwatch.com/story/u-s-open-prize-money-this-year-is-the-most-ever-given-out-at-a-tennis-tournament-90-million-3dd9cfee?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/trade-desks-stock-may-see-its-worst-drop-ever-and-analysts-wonder-if-amazon-is-to-blame-e0f52f38?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/millions-of-student-loan-borrowers-have-no-idea-how-much-theyre-supposed-to-pay-6650f93e?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/the-viral-way-to-teach-kids-to-build-a-nest-egg-and-invest-it-wisely-f5df9d5d?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/the-viral-way-to-teach-kids-to-build-a-nest-egg-and-invest-it-wisely-f5df9d5d?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/sweetgreens-customers-are-cutting-back-on-pricey-salads-will-extra-chicken-help-ccd79c31?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -5929,7 +5931,14 @@
     "https://www.wsj.com/finance/regulation/trump-aiming-to-ipo-fannie-mae-and-freddie-mac-later-this-year-13b138cf?siteid=yhoof2&yptr=yahoo",
     "https://finance.yahoo.com/news/gold-trading-record-high-levels-153433595.html",
     "https://finance.yahoo.com/news/millennials-bypassing-gen-x-succeed-153000660.html",
-    "https://finance.yahoo.com/news/4-trump-tax-cuts-short-152846397.html"
+    "https://finance.yahoo.com/news/4-trump-tax-cuts-short-152846397.html",
+    "https://finance.yahoo.com/news/trimble-stock-outlook-wall-street-154205324.html",
+    "https://finance.yahoo.com/news/crude-prices-pressured-possible-end-153328563.html",
+    "https://finance.yahoo.com/news/airbnb-stock-just-went-sale-152827985.html",
+    "https://finance.yahoo.com/news/gold-reach-another-high-q3-152733231.html",
+    "https://finance.yahoo.com/news/stocks-rally-positive-earnings-hopes-152102522.html",
+    "https://finance.yahoo.com/news/carvana-stock-revs-higher-buy-150352511.html",
+    "https://finance.yahoo.com/news/d-wave-quantum-misses-earnings-144319326.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
@@ -7259,6 +7268,11 @@
     "https://www.investing.com/news/stock-market-news/switzerland-says-tariff-talks-with-us-continue-gold-industry-concerned-about-bullion-trade-4181234",
     "https://www.investing.com/news/stock-market-news/denmark-stocks-higher-at-close-of-trade-omx-copenhagen-20-up-163-4181233",
     "https://www.investing.com/news/stock-market-news/sun-life-shares-fall-as-medicaid-uncertainty-prompts-us-dental-forecast-revision-4181226",
-    "https://www.investing.com/news/stock-market-news/morocco-stocks-higher-at-close-of-trade-moroccan-all-shares-up-020-4181219"
+    "https://www.investing.com/news/stock-market-news/morocco-stocks-higher-at-close-of-trade-moroccan-all-shares-up-020-4181219",
+    "https://www.investing.com/news/stock-market-news/trump-aiming-for-ipos-of-fannie-mae-freddie-mac-this-year-wsj-reports-4181267",
+    "https://www.investing.com/news/stock-market-news/swiss-plane-maker-pilatus-halts-business-jet-deliveries-to-us-over-tariffs-4181265",
+    "https://www.investing.com/news/stock-market-news/sec-ends-lawsuit-against-ripple-company-to-pay-125-million-fine-4181264",
+    "https://www.investing.com/news/stock-market-news/trump-administration-plans-30-billion-stock-sale-of-fannie-mae-freddie-mac--wsj-4181257",
+    "https://www.investing.com/news/stock-market-news/poland-stocks-higher-at-close-of-trade-wig30-up-088-4181254"
   ]
 }
