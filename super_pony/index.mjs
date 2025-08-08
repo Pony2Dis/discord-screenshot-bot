@@ -13,7 +13,7 @@ import { handleAnticipatedImage } from "./cmd_handlers/anticipatedImage.mjs";
 import { sendHelp } from "./cmd_handlers/help.mjs";
 import { listAllTickers } from "./cmd_handlers/listAllTickers.mjs";
 import { listMyTickers } from "./cmd_handlers/listMyTickers.mjs";
-import { handleGraphChannelMessage } from "./cmd_handlers/graphChannelHandler.mjs";
+import { handleGraphChannelMessage, runBackfillOnce } from "./cmd_handlers/graphChannelHandler.mjs";
 
 const {
   DISCORD_TOKEN,
@@ -24,6 +24,8 @@ const {
   DISCORD_GUILD_ID,
   DISCORD_APPLICATION_ID,
 } = process.env;
+
+let LIVE_LISTENING_ENABLED = false;
 
 // ---- Slash command: /todays_earnings
 const commands = [
@@ -69,7 +71,23 @@ const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
 });
 
-client.once("ready", () => console.log(`✅ Logged in as ${client.user.tag}`));
+client.once("ready", async () => {
+  console.log(`✅ Logged in as ${client.user.tag}`);
+  try {
+    await runBackfillOnce({
+      client,
+      channelId: GRAPHS_CHANNEL_ID,
+      allTickersFile: "./scanner/all_tickers.txt",
+      dbPath: "./scanner/db.json",
+      lookbackDays: 14, // if no checkpoint, read last 2 weeks
+    });
+    LIVE_LISTENING_ENABLED = true;
+    console.log("✅ Backfill done; now listening for new messages.");
+  } catch (e) {
+    console.error("Backfill failed:", e);
+    LIVE_LISTENING_ENABLED = true; // enable anyway
+  }
+});
 
 // Slash command router
 client.on("interactionCreate", async (interaction) => {
@@ -103,6 +121,7 @@ client.on("messageCreate", async (message) => {
 
     // ——— GRAPHS channel: passive ticker logging (no @SuperPony mentions)
     if (inGraphsRoom) {
+      if (!LIVE_LISTENING_ENABLED) return; // wait until backfill finished
       const mentionsBot =
         (client.user?.id && message.mentions.users.has(client.user.id)) ||
         message.content?.includes("@SuperPony");
@@ -111,6 +130,8 @@ client.on("messageCreate", async (message) => {
           message,
           allTickersFile: "./scanner/all_tickers.txt",
           dbPath: "./scanner/db.json",
+          silent: false,
+          updateCheckpoint: true, // store checkpoint per processed message
         });
       }
       return; // do not fall through to command handling
