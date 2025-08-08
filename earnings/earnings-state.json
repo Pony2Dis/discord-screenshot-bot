@@ -7966,5 +7966,29 @@
     "revenueSurprise": -0.1920152091254753,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.28781925343811393
+  },
+  {
+    "epsDate": "2025-08-08T07:30:00",
+    "ticker": "FUBO",
+    "name": "fuboTV Inc.",
+    "summary": "fuboTV (FUBO) reported a loss of $0.02 per share on  for the  second quarter ended June 2025.  The consensus estimate was for breakeven results on  revenue of $354.45 million. The Earnings Whisper number was $0.03 per share. The company missed expectations by 166.67%.<br /><br />With a mission to provide the world’s most thrilling sports-first live TV experience through the greatest breadth of premium content, interactivity and integrated wagering, fuboTV Inc. is focused on bringing to life its vision of a streaming platform that transcends the industry’s current virtual MVPD model. fuboTV Inc. operates in the U.S., Canada and Spain.",
+    "subject": "fuboTV Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508086887",
+    "eps": -0.02,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0,
+    "whisper": 0.03,
+    "highEstimate": 0.02,
+    "lowEstimate": -0.03,
+    "revenue": null,
+    "revenueEstimate": 354.45,
+    "earningsGrowth": 0.7142857142857143,
+    "revenueGrowth": null,
+    "earningsSurprise": -1.6666666666666667,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.03464422500975526
   }
 ]
