@@ -12,6 +12,7 @@ const EARNINGS_CHANNEL_ID = process.env.EARNINGS_CHANNEL_ID;
 const STATE_FILE = path.resolve("./earnings/earnings-state.json");
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 const SLEEP_BETWEEN_SENDS = 3000;
+const discordClient = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 async function loadState() {
   try {
@@ -32,7 +33,6 @@ async function main() {
   const state = await loadState();
   const jar = new CookieJar();
   const client = wrapper(axios.create({ jar, withCredentials: true }));
-  const discordClient = new Client({ intents: [GatewayIntentBits.Guilds] });
 
   try {
 
@@ -157,6 +157,9 @@ main().catch((err) => {
   process.exit(1);
 });
 
+
+process.on("SIGINT",  () => discordClient.destroy().then(() => process.exit(0)));
+process.on("SIGTERM", () => discordClient.destroy().then(() => process.exit(0)));
 
 
 /**

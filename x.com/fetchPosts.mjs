@@ -1,7 +1,6 @@
 // Full updated x.com/fetchPosts.mjs
 
 import { firefox } from "playwright";
-import fs from "fs/promises";
 
 export async function fetchLatestPosts(username, limit = 10, days = 7) {
   let results = [];

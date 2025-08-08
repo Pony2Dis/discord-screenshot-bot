@@ -66,3 +66,6 @@ async function main() {
 }
 
 main();
+
+process.on("SIGINT",  () => bot.destroy().then(() => process.exit(0)));
+process.on("SIGTERM", () => bot.destroy().then(() => process.exit(0)));

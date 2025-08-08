@@ -382,12 +382,6 @@ client.on("error", (err) => {
   console.error("Discord client error:", err);
 });
 
-// finally close the connection when the process is terminated
-process.on("SIGINT", () => {
-  console.log("Closing Discord client...");
-  // if the client still connected, destroy it to reset the connection
-  if (client && client.destroy) {
-    client.destroy();
-  }
-  process.exit(0);
-});
+process.on("SIGINT",  () => client.destroy().then(() => process.exit(0)));
+process.on("SIGTERM", () => client.destroy().then(() => process.exit(0)));
+

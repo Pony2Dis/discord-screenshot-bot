@@ -13,6 +13,7 @@ const FINNHUB_TOKEN = process.env.FINNHUB_TOKEN;
 const STATE_FILE = path.resolve("./earnings/earnings-finnhub-state.json");
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 const SLEEP_BETWEEN_SENDS = 3000;
+const discordClient = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 async function loadState() {
   try {
@@ -39,8 +40,6 @@ async function main() {
   const { data } = await axios.get(url);
   const unsorted_earnings = data.earningsCalendar || [];
   const earnings = unsorted_earnings.sort((a, b) => new Date(a.date) - new Date(b.date));
-
-  const discordClient = new Client({ intents: [GatewayIntentBits.Guilds] });
 
   try {
     await discordClient.login(DISCORD_TOKEN);
@@ -95,3 +94,6 @@ main().catch(err => {
   console.error(err);
   process.exit(1);
 });
+
+process.on("SIGINT",  () => discordClient.destroy().then(() => process.exit(0)));
+process.on("SIGTERM", () => discordClient.destroy().then(() => process.exit(0)));

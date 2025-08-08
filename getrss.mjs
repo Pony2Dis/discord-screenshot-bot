@@ -13,6 +13,7 @@ const EMBED_HOSTS = (process.env.EMBED_HOSTS || "")
 const STATE_FILE = path.resolve("./rss-state.json");
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 const SLEEP_BETWEEN_SENDS = 3000;
+  const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 async function loadState() {
   try {
@@ -32,7 +33,6 @@ async function saveState(state) {
 async function main() {
   const parser = new Parser({ requestOptions: { timeout: 10000 } });
   const state = await loadState();
-  const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
   try {
     await client.login(DISCORD_TOKEN);
@@ -126,3 +126,6 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
+
+process.on("SIGINT",  () => client.destroy().then(() => process.exit(0)));
+process.on("SIGTERM", () => client.destroy().then(() => process.exit(0)));

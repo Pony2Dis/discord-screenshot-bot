@@ -90,3 +90,6 @@ async function run() {
 }
 
 run().catch(console.error);
+
+process.on("SIGINT",  () => client.destroy().then(() => process.exit(0)));
+process.on("SIGTERM", () => client.destroy().then(() => process.exit(0)));
