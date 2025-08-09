@@ -47,3 +47,23 @@ jobs:
           ANTICIPATED_CHANNEL_ID: ${{ vars.X_EARNINGS_CAL_CHANNEL_ID }}
 
         run: node job_runner.mjs --job ./super_pony/index.mjs --timeout-min 239.9 --label super-pony
+
+  Check-commit-push:
+    runs-on: ubuntu-latest
+    needs: handle-users-commands
+    if: ${{ always() }}  # Runs regardless of build job outcome
+    steps:
+      # 3) Commit & push only if there are changes
+      - name: Commit updated state
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      
+          # stash local changes before pulling
+          git stash --include-untracked || true
+          git pull --rebase origin main
+          git stash pop || true
+      
+          git add super_pony/scanner/*.json
+          git diff --cached --quiet || git commit -m "ci: update super_pony json files"
+          git push
