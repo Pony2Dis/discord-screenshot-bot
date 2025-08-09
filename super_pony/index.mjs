@@ -264,5 +264,7 @@ async function shutdown(signal) {
 
 process.on("SIGTERM", () => shutdown("SIGTERM"));
 process.on("SIGINT",  () => shutdown("SIGINT"));
+process.on("SIGHUP",  () => shutdown("SIGHUP"));
+process.on("SIGQUIT", () => shutdown("SIGQUIT"));
 
 client.login(DISCORD_TOKEN);
