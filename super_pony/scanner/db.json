@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:42:14.262Z",
+  "updated": "2025-08-09T14:42:14.737Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -182,12 +182,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399474663326875702",
       "timestamp": "2025-07-28T19:32:40.719Z",
       "content": "QS AL HAPANIM  DOWNB 30% 3 DAYS"
+    },
+    {
+      "ticker": "WBD",
+      "user": {
+        "id": "935743401540857866",
+        "name": "Cubby"
+      },
+      "messageId": "1399475689098313818",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399475689098313818",
+      "timestamp": "2025-07-28T19:36:45.282Z",
+      "content": "כל הווליום אצל וורנר ברודרס (WBD)\nמה אנשים רואים שם ?"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1399453350587797554",
-      "lastProcessedAt": "2025-07-28T18:07:59.366Z"
+      "lastProcessedId": "1399474663326875702",
+      "lastProcessedAt": "2025-07-28T19:32:40.719Z"
     }
   }
 }
