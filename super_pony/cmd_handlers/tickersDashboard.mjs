@@ -1,3 +1,4 @@
+// cmd_handlers/tickersDashboard.mjs
 import fs from "fs/promises";
 import axios from "axios";
 import {
@@ -87,14 +88,21 @@ function buildMonthAgg(entries) {
   return { byTicker, firstByUserCounts };
 }
 
-/* ======================== Yahoo Finance fetch (deterministic) ======================== */
-// NOTE: We never use live price; always daily candles.
-//       We also let caller pick startField ('open'|'close'|'adjclose') and endField ('close'|'adjclose').
+/* ======================== Yahoo Finance fetch ======================== */
+/** simple chart cache (symbol|range) → parsed result */
+const chartCache = new Map();
 
+/**
+ * Fetch daily chart from Yahoo (range auto-picked to cover fromTs → now).
+ * Returns { timestamps:number[], opens:number[], closes:number[], lastPrice:number, tz:string }
+ */
 async function getYahooChart(symbol, fromTsMs) {
   const days = Math.max(1, Math.floor((Date.now() - fromTsMs) / 86400000));
   const range =
     days <= 30 ? "1mo" : days <= 62 ? "3mo" : days <= 370 ? "1y" : "5y";
+
+  const key = `${symbol}|${range}`;
+  if (chartCache.has(key)) return chartCache.get(key);
 
   const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(
     symbol
@@ -103,35 +111,58 @@ async function getYahooChart(symbol, fromTsMs) {
   const r = data?.chart?.result?.[0];
   if (!r) throw new Error(`yahoo chart NA for ${symbol}`);
 
-  const timestamps = (r.timestamp || []).map((s) => s * 1000);
+  const ts = (r.timestamp || []).map((s) => s * 1000);
   const q = r.indicators?.quote?.[0] || {};
   const opens = q?.open || [];
-  const closes = q?.close || [];
-  const adjcloses = r.indicators?.adjclose?.[0]?.adjclose || [];
-  const lastClose =
-    [...closes].reverse().find((v) => v != null && isFinite(v)) ??
-    [...adjcloses].reverse().find((v) => v != null && isFinite(v));
+  let closes = q?.close || [];
+  if ((!closes || closes.length === 0) && r.indicators?.adjclose?.[0]?.adjclose) {
+    closes = r.indicators.adjclose[0].adjclose;
+  }
+
+  const lastPrice =
+    r.meta?.regularMarketPrice ??
+    [...closes].reverse().find((v) => v != null && isFinite(v));
+
   const tz = r.meta?.exchangeTimezoneName || "America/New_York";
 
-  if (!timestamps.length || (!closes.length && !adjcloses.length) || !lastClose)
+  if (!Array.isArray(ts) || !Array.isArray(opens) || !Array.isArray(closes) || !lastPrice) {
     throw new Error(`yahoo parse fail for ${symbol}`);
+  }
 
-  return { timestamps, opens, closes, adjcloses, lastClose, tz };
+  const parsed = { timestamps: ts, opens, closes, lastPrice, tz };
+  chartCache.set(key, parsed);
+  return parsed;
 }
 
+// helper: YYYY-MM-DD in a given time zone (no extra deps)
 function localYMD(ts, tz) {
-  return new Intl.DateTimeFormat("en-CA", {
+  const fmt = new Intl.DateTimeFormat("en-CA", {
     timeZone: tz,
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
-  }).format(new Date(ts)); // e.g. "2025-08-04"
+  });
+  return fmt.format(new Date(ts)); // e.g. "2025-08-01"
 }
-function pickCandleIndexByLocalDate(timestamps, tz, targetTs) {
-  const targetYMD = localYMD(targetTs, tz);
+
+/**
+ * Get start price and latest price.
+ * - startKind: "open" | "close" (price picked from the first candle at/after fromTs, by local exchange date)
+ * - endKind:   "last" | "close" (regularMarketPrice vs latest daily close)
+ */
+async function fetchStartAndLatest(
+  symbol,
+  fromTsMs,
+  { startKind = "close", endKind = "last" } = {}
+) {
+  const ch = await getYahooChart(symbol, fromTsMs);
+  const tz = ch.tz || "America/New_York";
+  const targetYMD = localYMD(fromTsMs, tz);
+
+  // find candle with same local ymd; if none, first ymd > target
   let idx = -1;
-  for (let i = 0; i < timestamps.length; i++) {
-    const ymd = localYMD(timestamps[i], tz);
+  for (let i = 0; i < ch.timestamps.length; i++) {
+    const ymd = localYMD(ch.timestamps[i], tz);
     if (ymd === targetYMD) {
       idx = i;
       break;
@@ -141,29 +172,25 @@ function pickCandleIndexByLocalDate(timestamps, tz, targetTs) {
       break;
     }
   }
-  return idx === -1 ? 0 : idx;
-}
-function seriesArray(chart, field) {
-  if (field === "open") return chart.opens;
-  if (field === "adjclose") return chart.adjcloses;
-  return chart.closes; // "close"
-}
+  if (idx === -1) idx = 0;
 
-async function fetchStartPrice(symbol, fromTsMs, startField /* 'open'|'close'|'adjclose' */) {
-  const ch = await getYahooChart(symbol, fromTsMs);
-  const arr = seriesArray(ch, startField);
-  const i = pickCandleIndexByLocalDate(ch.timestamps, ch.tz, fromTsMs);
-  let v = arr[i];
-  for (let j = i; (v == null || !isFinite(v)) && j < arr.length; j++) v = arr[j];
-  if (!(v > 0)) throw new Error("bad start price");
-  return v;
-}
-async function fetchEndClose(symbol, fromTsMs, endField /* 'close'|'adjclose' */) {
-  const ch = await getYahooChart(symbol, fromTsMs);
-  const arr = seriesArray(ch, endField);
-  const v = [...arr].reverse().find((x) => x != null && isFinite(x));
-  if (!(v > 0)) throw new Error("bad end close");
-  return v;
+  // choose the start price series and skip nulls forward
+  const series = startKind === "open" ? ch.opens : ch.closes;
+  let start = series[idx];
+  for (let j = idx; (start == null || !isFinite(start)) && j < series.length; j++) {
+    if (series[j] != null && isFinite(series[j])) {
+      start = series[j];
+      break;
+    }
+  }
+
+  let latest =
+    endKind === "close"
+      ? [...ch.closes].reverse().find((v) => v != null && isFinite(v))
+      : ch.lastPrice;
+
+  if (!(start > 0) || !(latest > 0)) throw new Error("bad prices for " + symbol);
+  return { start, latest };
 }
 
 /* concurrency map */
@@ -190,19 +217,20 @@ async function mapLimit(items, limit, worker) {
   });
 }
 
-/** rank by gain with configurable baseline/series
- *  basis: "mention" | "month"
- *  startField: "open" | "close" | "adjclose"
- *  endField: "close" | "adjclose"
+/** rank by gain
+ * options:
+ *  - basis: "month" | "mention"
+ *  - startKind overrides default (month→open, mention→close) if provided
+ *  - endKind   overrides default ("last")
  */
-async function computeGainersMTD(
+async function computeGainers(
   symbolInfos,
   {
     limitTickers = 50,
     concurrency = 3,
     basis = "mention",
-    startField = "open",
-    endField = "close",
+    startKind,
+    endKind = "last",
   } = {}
 ) {
   const subset = symbolInfos.slice(0, limitTickers);
@@ -211,10 +239,14 @@ async function computeGainersMTD(
   const out = await mapLimit(subset, concurrency, async (info) => {
     try {
       const startTs = basis === "month" ? monthStartTs : info.firstTs;
-      const startPx = await fetchStartPrice(info.symbol, startTs, startField);
-      const endPx = await fetchEndClose(info.symbol, startTs, endField);
-      const pct = ((endPx - startPx) / startPx) * 100;
-      return { ...info, startPx, endPx, pct };
+      const chosenStartKind =
+        startKind ?? (basis === "month" ? "open" : "close");
+      const { start, latest } = await fetchStartAndLatest(info.symbol, startTs, {
+        startKind: chosenStartKind,
+        endKind,
+      });
+      const pct = ((latest - start) / start) * 100;
+      return { ...info, startPrice: start, latest, pct };
     } catch {
       return null;
     }
@@ -224,18 +256,17 @@ async function computeGainersMTD(
 
 /* ======================== UI builders ======================== */
 
-// per-user mode (in-memory)
-const userMode = new Map();
-// defaults
-const MODE_MONTH = { basis: "month", startField: "open", endField: "close" };
-const MODE_MENTION = { basis: "mention", startField: "open", endField: "close" };
+const METRIC_CHOICES = [
+  { label: "Open→Close (Month)", value: "month_oc" },
+  { label: "Open→Last (Since Mention)", value: "mention_oc" },
+];
 
-function buildDashboardComponents(userOptions, currentUserId, currentModeKey = "mtd_oc") {
+function buildDashboardComponents(userOptions, currentUserId, currentMetric = "month_oc") {
   const row1 = new ActionRowBuilder().addComponents(
     new ButtonBuilder().setCustomId("dash:hot5").setStyle(ButtonStyle.Primary).setLabel("Hot5"),
     new ButtonBuilder().setCustomId("dash:hot10").setStyle(ButtonStyle.Primary).setLabel("Hot10"),
     new ButtonBuilder().setCustomId(`dash:mine:${currentUserId}`).setStyle(ButtonStyle.Secondary).setLabel("Mine"),
-    new ButtonBuilder().setCustomId("dash:all").setStyle(ButtonStyle.Secondary).setLabel("All")
+    new ButtonBuilder().setCustomId("dash:all").setStyle(ButtonStyle.Secondary).setLabel("All"),
   );
 
   const usersMenu = new StringSelectMenuBuilder()
@@ -244,26 +275,39 @@ function buildDashboardComponents(userOptions, currentUserId, currentModeKey = "
     .addOptions(userOptions.slice(0, 25));
   const row2 = new ActionRowBuilder().addComponents(usersMenu);
 
-  const modeMenu = new StringSelectMenuBuilder()
-    .setCustomId("dash:mode")
-    .setPlaceholder("Mode")
-    .addOptions(
-      {
-        label: "Open→Close (Month)",
-        value: "mtd_oc",
-        description: "Baseline = month open",
-        default: currentModeKey === "mtd_oc",
-      },
-      {
-        label: "Open→Close (Since Mention)",
-        value: "mention_oc",
-        description: "Baseline = first mention",
-        default: currentModeKey === "mention_oc",
-      }
-    );
-  const row3 = new ActionRowBuilder().addComponents(modeMenu);
+  const metricOptions = METRIC_CHOICES.map((c) => ({
+    label: c.label,
+    value: c.value,
+    default: c.value === currentMetric,
+  }));
+  const metricMenu = new StringSelectMenuBuilder()
+    .setCustomId("dash:metric")
+    .setPlaceholder("Open→Close (Month)")
+    .addOptions(metricOptions);
+  const row3 = new ActionRowBuilder().addComponents(metricMenu);
 
   return [row1, row2, row3];
+}
+
+function getSelectedMetricFromMessage(msg) {
+  const rows = msg?.components || [];
+  for (const row of rows) {
+    const comp = row.components?.[0];
+    if (comp?.customId === "dash:metric") {
+      // in interactions, default flag is preserved on the options
+      const def = comp.options?.find?.((o) => o.default) || comp.options?.[0];
+      return def?.value || "month_oc";
+    }
+  }
+  return "month_oc";
+}
+
+function metricToComputeOpts(metric) {
+  if (metric === "mention_oc") {
+    return { basis: "mention", startKind: "open" };
+  }
+  // default
+  return { basis: "month", startKind: "open" };
 }
 
 /* ======================== Public: dashboard ======================== */
@@ -289,7 +333,7 @@ export async function showTickersDashboard({ message, dbPath }) {
     .slice(0, 3)
     .map((x) => x.name);
 
-  // quick preview line (Month baseline)
+  // quick (best-effort) top gainers on up to 25 syms using Month Open→Last
   const quickInfos = mtdItems.map(([sym, v]) => ({
     symbol: sym,
     firstTs: v.firstTs,
@@ -298,12 +342,11 @@ export async function showTickersDashboard({ message, dbPath }) {
   }));
   let topGainersSyms = [];
   try {
-    const gainers = await computeGainersMTD(quickInfos, {
+    const gainers = await computeGainers(quickInfos, {
       limitTickers: 25,
       concurrency: 3,
       basis: "month",
-      startField: "open",
-      endField: "close",
+      startKind: "open",
     });
     topGainersSyms = gainers.slice(0, 3).map((g) => g.symbol);
   } catch {
@@ -321,10 +364,6 @@ export async function showTickersDashboard({ message, dbPath }) {
       label: `${v.name || "Unknown"} (${v.count})`,
       value: id,
     }));
-
-  // ensure default mode
-  const uid = message.author.id;
-  if (!userMode.has(uid)) userMode.set(uid, { key: "mtd_oc", cfg: MODE_MONTH });
 
   const lines = [];
   lines.push(`Total Tracked: **${allUnique}** Tickers`);
@@ -344,8 +383,8 @@ export async function showTickersDashboard({ message, dbPath }) {
 
   const components = buildDashboardComponents(
     userOptions,
-    uid,
-    userMode.get(uid).key
+    message.author.id,
+    "month_oc"
   );
   await message.channel.send({ embeds: [embed], components });
 }
@@ -366,11 +405,11 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
     firstTs: v.firstTs,
     firstLink: v.firstLink,
     firstUserName: v.firstUserName,
+    firstUserId: v.firstUserId,
+    lastLink: v.lastLink,
+    lastTs: v.lastTs,
+    countMTD: v.countMTD,
   }));
-
-  const uid = interaction.user.id;
-  if (!userMode.has(uid)) userMode.set(uid, { key: "mtd_oc", cfg: MODE_MONTH });
-  const { cfg } = userMode.get(uid);
 
   const sendPaged = async (title, lines) => {
     if (!lines.length) {
@@ -396,32 +435,39 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
     }
   };
 
-  // Mode selector
-  if (cid === "dash:mode" && interaction.isStringSelectMenu()) {
-    const val = interaction.values?.[0];
-    if (val === "mtd_oc") userMode.set(uid, { key: "mtd_oc", cfg: MODE_MONTH });
-    else if (val === "mention_oc")
-      userMode.set(uid, { key: "mention_oc", cfg: MODE_MENTION });
-    await interaction.reply({
-      content:
-        val === "mtd_oc"
-          ? "Mode set to **Open→Close (Month)**."
-          : "Mode set to **Open→Close (Since Mention)**.",
-      ephemeral: true,
-    });
+  // metric dropdown change → update the message component defaults
+  if (cid === "dash:metric" && interaction.isStringSelectMenu()) {
+    const selected = interaction.values?.[0] || "month_oc";
+    // clone existing components and mark selected as default
+    const rows = interaction.message.components.map((r) => ({
+      type: r.type,
+      components: r.components.map((c) => ({ ...c })),
+    }));
+    const metricRow = rows.find((r) => r.components?.[0]?.custom_id === "dash:metric");
+    if (metricRow) {
+      const menu = metricRow.components[0];
+      menu.options = METRIC_CHOICES.map((m) => ({
+        label: m.label,
+        value: m.value,
+        default: m.value === selected,
+      }));
+    }
+    await interaction.update({ components: rows });
     return true;
   }
+
+  // resolve current metric for button/menu actions from message
+  const currentMetric = getSelectedMetricFromMessage(interaction.message);
+  const computeOpts = metricToComputeOpts(currentMetric);
 
   // Hot5 / Hot10
   if (cid === "dash:hot5" || cid === "dash:hot10") {
     const topN = cid === "dash:hot5" ? 5 : 10;
     try {
-      const ranked = await computeGainersMTD(infos, {
+      const ranked = await computeGainers(infos, {
         limitTickers: 200,
         concurrency: 4,
-        basis: cfg.basis,
-        startField: cfg.startField,
-        endField: cfg.endField,
+        ...computeOpts,
       });
       const picked = ranked.slice(0, topN);
       const lines = picked.map((r, i) => {
@@ -432,7 +478,7 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
         })`;
       });
       await sendPaged(topN === 5 ? "🔥 Hot 5" : "🔥 Hot 10", lines);
-    } catch {
+    } catch (e) {
       await interaction.reply({
         content: "לא הצלחתי לחשב תשואות כרגע.",
         ephemeral: true,
@@ -443,8 +489,8 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
 
   // Mine
   if (cid.startsWith("dash:mine:")) {
-    const mineUserId = cid.split(":")[2] || uid;
-    const mine = mtd.filter(([, v]) => v.firstUserId === mineUserId);
+    const uid = cid.split(":")[2] || interaction.user.id;
+    const mine = infos.filter((v) => v.firstUserId === uid);
     if (!mine.length) {
       await interaction.reply({
         content: "אין טיקרים שהוזכרו ראשונים על ידך החודש.",
@@ -452,19 +498,11 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
       });
       return true;
     }
-    const mineInfos = mine.map(([sym, v]) => ({
-      symbol: sym,
-      firstTs: v.firstTs,
-      firstLink: v.firstLink,
-      firstUserName: v.firstUserName,
-    }));
     try {
-      const ranked = await computeGainersMTD(mineInfos, {
+      const ranked = await computeGainers(mine, {
         limitTickers: 200,
         concurrency: 4,
-        basis: cfg.basis,
-        startField: cfg.startField,
-        endField: cfg.endField,
+        ...computeOpts,
       });
       const lines = ranked.map((r, i) => {
         const pct = r.pct.toFixed(1);
@@ -473,7 +511,7 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
           r.firstLink || "#"
         })`;
       });
-      await sendPaged("🎯 Mine (first mentions)", lines);
+      await sendPaged("🎯 Mine (first mentions this month)", lines);
     } catch {
       await interaction.reply({
         content: "תקלה בחישוב תשואות.",
@@ -483,27 +521,27 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
     return true;
   }
 
-  // All (not affected by mode)
+  // All (doesn't use metric)
   if (cid === "dash:all") {
-    const lines = mtd.map(([sym, v]) => {
+    const lines = infos.map((v) => {
       const firstUrl = v.firstLink || "#";
       const lastUrl = v.lastLink || "#";
       const lastStr = shortDate(v.lastTs);
       const who = v.firstUserName ? ` (${v.firstUserName})` : "";
-      return `• [\`${sym}\`](${firstUrl}) — **${v.countMTD}**${who} — [${lastStr}](${lastUrl})`;
+      return `• [\`${v.symbol}\`](${firstUrl}) — **${v.countMTD}**${who} — [${lastStr}](${lastUrl})`;
     });
     await sendPaged("📋 All (this month)", lines);
     return true;
   }
 
-  // Users dropdown (respects mode)
+  // Users dropdown
   if (cid === "dash:user" && interaction.isStringSelectMenu()) {
     const targetId = interaction.values?.[0];
     if (!targetId) {
       await interaction.reply({ content: "לא נבחר משתמש.", ephemeral: true });
       return true;
     }
-    const userFirst = mtd.filter(([, v]) => v.firstUserId === targetId);
+    const userFirst = infos.filter((v) => v.firstUserId === targetId);
     if (!userFirst.length) {
       await interaction.reply({
         content: "אין טיקרים למשתמש זה החודש.",
@@ -511,19 +549,11 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
       });
       return true;
     }
-    const infos2 = userFirst.map(([sym, v]) => ({
-      symbol: sym,
-      firstTs: v.firstTs,
-      firstLink: v.firstLink,
-      firstUserName: v.firstUserName,
-    }));
     try {
-      const ranked = await computeGainersMTD(infos2, {
+      const ranked = await computeGainers(userFirst, {
         limitTickers: 200,
         concurrency: 4,
-        basis: cfg.basis,
-        startField: cfg.startField,
-        endField: cfg.endField,
+        ...computeOpts,
       });
       const lines = ranked.map((r, i) => {
         const pct = r.pct.toFixed(1);
@@ -532,7 +562,7 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
           r.firstLink || "#"
         })`;
       });
-      await sendPaged("👤 User's first mentions", lines);
+      await sendPaged("👤 User's first mentions (MTD)", lines);
     } catch {
       await interaction.reply({
         content: "תקלה בחישוב תשואות.",
