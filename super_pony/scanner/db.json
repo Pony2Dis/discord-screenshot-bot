@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:43:12.935Z",
+  "updated": "2025-08-09T14:43:13.474Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -1820,12 +1820,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1403044021131284614",
       "timestamp": "2025-08-07T15:56:01.935Z",
       "content": "https://tenor.com/view/doge-own-the-doge-thursday-happy-thursday-thursday-morning-gif-13217971743145729153"
+    },
+    {
+      "ticker": "FROG",
+      "user": {
+        "id": "1033751148378726422",
+        "name": "קמחי"
+      },
+      "messageId": "1403120048750727288",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1403120048750727288",
+      "timestamp": "2025-08-07T20:58:08.332Z",
+      "content": "FROG"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1403044011060625520",
-      "lastProcessedAt": "2025-08-07T15:55:59.534Z"
+      "lastProcessedId": "1403117554985209987",
+      "lastProcessedAt": "2025-08-07T20:48:13.772Z"
     }
   }
 }
