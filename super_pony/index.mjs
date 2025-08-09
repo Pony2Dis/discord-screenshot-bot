@@ -167,17 +167,17 @@ client.on("messageCreate", async (message) => {
     if (content.includes("טיקרים שלי") || content.includes("שלי")) {
       await listMyTickers({ message, dbPath: DB_PATH });
     }
-    
-    // List all tickers with counts and first user mentions them
-    else if (content.includes("טיקרים")) {
-      await listAllTickers({ message, dbPath: DB_PATH, includeCounts: true, minMentions: 1 });
-    }
 
     // Other user tickers
     else if (otherMentions.size > 0 && (content.includes("טיקרים") || content.includes("הטיקרים") || content.includes("של"))) {
       const targetUser = otherMentions.first();
       await listFirstByUser({ message, dbPath: DB_PATH, targetUser });
       return;
+    }
+    
+    // List all tickers with counts and first user mentions them
+    else if (content.includes("טיקרים")) {
+      await listAllTickers({ message, dbPath: DB_PATH, includeCounts: true, minMentions: 1 });
     }
     
     // get the tickers reporting today that are part of S&P 500
