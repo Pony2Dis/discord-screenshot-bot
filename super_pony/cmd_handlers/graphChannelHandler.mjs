@@ -126,7 +126,7 @@ async function appendEntries(dbPath, entries) {
   return writeQueue;
 }
 
-/** Git commit helper (safe to call even when nothing changed) */
+/** Git commit helper (safe to call when nothing changed) */
 export async function commitDbIfChanged(dbPath) {
   try {
     await exec('git config user.name "github-actions[bot]"');
@@ -140,7 +140,15 @@ export async function commitDbIfChanged(dbPath) {
       // staged changes exist
     }
     await exec('git commit -m "chore(scanner): update db.json [skip ci]"');
-    await exec("git push");
+    try {
+      await exec("git push");
+    } catch {
+      // one-attempt pull --rebase to reduce collisions
+      try {
+        await exec("git pull --rebase --autostash");
+        await exec("git push");
+      } catch {}
+    }
     console.log("✅ Pushed db.json changes.");
     return true;
   } catch (e) {
@@ -151,12 +159,7 @@ export async function commitDbIfChanged(dbPath) {
 
 /**
  * Handle a single message in GRAPHS_CHANNEL_ID:
- * - Skip if content missing
- * - Extract tickers, validate via all_tickers.txt (supports '.' or '-' class)
- * - Save rows into scanner/db.json (single write per message)
- * - Echo "logged ticker: ${ticker} from user: ${from_user}" unless silent
- * - Optionally update checkpoint per processed message
- * - Commit/push if any entries were saved (we call commit unconditionally; it’s a no-op if no diff)
+ * - Extract tickers, save entries, optionally commit+push
  */
 export async function handleGraphChannelMessage({
   message,
@@ -164,6 +167,7 @@ export async function handleGraphChannelMessage({
   dbPath = "../scanner/db.json",
   silent = false,
   updateCheckpoint: doCheckpoint = true,
+  commitAfterWrite = true, // live messages: true; backfill: false
 }) {
   const content = message.content?.trim();
   if (!content) {
@@ -181,7 +185,6 @@ export async function handleGraphChannelMessage({
   const tickerSet = await loadTickerSet(allTickersFile);
   const tickers = extractTickers(content, tickerSet);
 
-  // Persist entries (if any)
   if (tickers.length > 0) {
     const displayName =
       message.member?.nickname ||
@@ -201,8 +204,10 @@ export async function handleGraphChannelMessage({
     }));
 
     await appendEntries(dbPath, entries);
-    // commit after a live message write
-    await commitDbIfChanged(dbPath);
+
+    if (commitAfterWrite) {
+      await commitDbIfChanged(dbPath);
+    }
 
     if (!silent) {
       for (const ticker of tickers) {
@@ -211,7 +216,6 @@ export async function handleGraphChannelMessage({
     }
   }
 
-  // Always checkpoint the processed message (even if no tickers)
   if (doCheckpoint) {
     await updateCheckpoint(
       dbPath,
@@ -224,12 +228,7 @@ export async function handleGraphChannelMessage({
 
 /**
  * One-time backfill on startup:
- * - If checkpoint exists: fetch messages AFTER that snowflake (forward).
- * - If no checkpoint: generate snowflake for (now - lookbackDays) and fetch AFTER.
- * - Applies same filters as live: ignore bots and @SuperPony mentions.
- * - Runs silently (no "logged ticker" echoes).
- * - Updates checkpoint as it advances.
- * - Commits/pushes once at the end (after queued writes flush).
+ * - No per-message commits; we commit once at the end.
  */
 export async function runBackfillOnce({
   client,
@@ -257,7 +256,6 @@ export async function runBackfillOnce({
     const batch = await channel.messages.fetch({ limit: 100, after: afterId });
     if (batch.size === 0) break;
 
-    // Process oldest → newest to keep checkpoint monotonic
     const msgs = Array.from(batch.values()).sort(
       (a, b) => a.createdTimestamp - b.createdTimestamp
     );
@@ -265,7 +263,6 @@ export async function runBackfillOnce({
     for (const message of msgs) {
       if (message.author?.bot) continue;
 
-      // skip messages that involve the bot explicitly
       const mentionsBot =
         (client.user?.id && message.mentions.users.has(client.user.id)) ||
         message.content?.includes("@SuperPony");
@@ -276,7 +273,8 @@ export async function runBackfillOnce({
         allTickersFile,
         dbPath,
         silent: true,
-        updateCheckpoint: false, // we will checkpoint once per message below
+        updateCheckpoint: false,
+        commitAfterWrite: false, // <= no per-message commits during backfill
       });
 
       await updateCheckpoint(
@@ -286,12 +284,12 @@ export async function runBackfillOnce({
         new Date(message.createdTimestamp).toISOString()
       );
 
-      afterId = message.id; // advance window
+      afterId = message.id;
       scanned++;
     }
   }
 
-  // ensure all pending writes hit disk, then commit once for the whole backfill
+  // Flush queued writes and commit ONCE for the whole backfill
   await writeQueue;
   await commitDbIfChanged(dbPath);
 

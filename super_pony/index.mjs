@@ -142,7 +142,8 @@ client.on("messageCreate", async (message) => {
           allTickersFile: ALL_TICKERS_PATH,
           dbPath: DB_PATH,
           silent: false,
-          updateCheckpoint: true,
+          updateCheckpoint: true,   // track progress
+          // commitAfterWrite default = true (live messages push immediately)
         });
       }
       return;
