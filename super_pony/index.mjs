@@ -24,8 +24,8 @@ const exec = promisify(execCb);
 
 // find the current directory of this module
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-// resolve the data directory relative to this module (./super_pony/scanner)
-const DATA_DIR = path.resolve(__dirname, "super_pony", "scanner");
+// resolve the data directory relative to this module (/super_pony/scanner)
+const DATA_DIR = path.resolve(__dirname, "scanner");
 // prepare paths for the database and all tickers file
 const DB_PATH = path.join(DATA_DIR, "db.json");
 const ALL_TICKERS_PATH = path.join(DATA_DIR, "all_tickers.txt");
@@ -172,7 +172,7 @@ client.on("messageCreate", async (message) => {
     if (!mentionsBot) return;
 
     if (content.includes("טיקרים שלי") || content.includes("שלי")) {
-      await listMyTickers({ message });
+      await listMyTickers({ message, dbPath: DB_PATH });
     } else if (content.includes("טיקרים")) {
       await listAllTickers({ message, dbPath: DB_PATH, includeCounts: true, minMentions: 1 });
     } else if (content.includes("דיווחים 500")) {
