@@ -40,23 +40,24 @@ function shortDate(isoOrMs) {
 /* ======================== MTD aggregation ======================== */
 function buildMonthAgg(entries) {
   const monthStart = startOfMonthUTC();
-  const mtd = entries.filter((e) => isInMonth(Date.parse(e.timestamp), monthStart));
+  const mtd = entries.filter((e) =>
+    isInMonth(Date.parse(e.timestamp), monthStart)
+  );
 
   const byTicker = new Map();
   for (const e of mtd) {
     const sym = e.ticker?.toUpperCase();
     if (!sym) continue;
     const ts = Date.parse(e.timestamp);
-    const cur =
-      byTicker.get(sym) || {
-        countMTD: 0,
-        firstTs: Infinity,
-        firstLink: "",
-        firstUserId: "",
-        firstUserName: "",
-        lastTs: -1,
-        lastLink: "",
-      };
+    const cur = byTicker.get(sym) || {
+      countMTD: 0,
+      firstTs: Infinity,
+      firstLink: "",
+      firstUserId: "",
+      firstUserName: "",
+      lastTs: -1,
+      lastLink: "",
+    };
     cur.countMTD++;
     if (ts < cur.firstTs) {
       cur.firstTs = ts;
@@ -74,7 +75,10 @@ function buildMonthAgg(entries) {
   const firstByUserCounts = new Map();
   for (const [, v] of byTicker) {
     if (!v.firstUserId) continue;
-    const e = firstByUserCounts.get(v.firstUserId) || { name: v.firstUserName || "", count: 0 };
+    const e = firstByUserCounts.get(v.firstUserId) || {
+      name: v.firstUserName || "",
+      count: 0,
+    };
     e.count++;
     if (!e.name && v.firstUserName) e.name = v.firstUserName;
     firstByUserCounts.set(v.firstUserId, e);
@@ -86,19 +90,15 @@ function buildMonthAgg(entries) {
 /* ======================== Yahoo Finance fetch ======================== */
 /** simple in-memory chart cache so each symbol is fetched once */
 const chartCache = new Map();
+
 /**
  * Fetch daily chart from Yahoo (range auto-picked to cover fromTs → now).
  * Returns { timestamps:number[], closes:number[], lastPrice:number }
  */
 async function getYahooChart(symbol, fromTsMs) {
-  const key = symbol;
-  if (chartCache.has(key)) return chartCache.get(key);
-
   const days = Math.max(1, Math.floor((Date.now() - fromTsMs) / 86400000));
   const range =
-    days <= 30 ? "1mo" :
-    days <= 62 ? "3mo" :
-    days <= 370 ? "1y" : "5y";
+    days <= 30 ? "1mo" : days <= 62 ? "3mo" : days <= 370 ? "1y" : "5y";
 
   const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(
     symbol
@@ -110,39 +110,74 @@ async function getYahooChart(symbol, fromTsMs) {
   const ts = (r.timestamp || []).map((s) => s * 1000);
   const q = r.indicators?.quote?.[0] || {};
   let closes = q?.close || [];
-  if ((!closes || closes.length === 0) && r.indicators?.adjclose?.[0]?.adjclose) {
+  if (
+    (!closes || closes.length === 0) &&
+    r.indicators?.adjclose?.[0]?.adjclose
+  ) {
     closes = r.indicators.adjclose[0].adjclose;
   }
   const lastPrice =
     r.meta?.regularMarketPrice ??
     [...closes].reverse().find((v) => v != null && isFinite(v));
 
+  const tz = r.meta?.exchangeTimezoneName || "America/New_York";
+
   if (!Array.isArray(ts) || !Array.isArray(closes) || !lastPrice) {
     throw new Error(`yahoo parse fail for ${symbol}`);
   }
-  const out = { timestamps: ts, closes, lastPrice };
-  chartCache.set(key, out);
-  return out;
+  return { timestamps: ts, closes, lastPrice, tz };
 }
 
-/** Get first close at/after fromTsMs and latest price */
+// helper: YYYY-MM-DD in a given time zone (no extra deps)
+function localYMD(ts, tz) {
+  const fmt = new Intl.DateTimeFormat("en-CA", {
+    timeZone: tz,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+  return fmt.format(new Date(ts)); // e.g. "2025-08-01"
+}
+
+/** Get first close at/after fromTsMs and latest price
+ *  choose the candle by LOCAL DATE (same day as mention if trading day,
+ *  otherwise first trading day after)
+ */
 async function fetchStartAndLatest(symbol, fromTsMs) {
   const ch = await getYahooChart(symbol, fromTsMs);
-  let startClose = null;
+  const tz = ch.tz || "America/New_York";
+  const targetYMD = localYMD(fromTsMs, tz);
+
+  // find candle with same local ymd; if none, first ymd > target
+  let idx = -1;
   for (let i = 0; i < ch.timestamps.length; i++) {
-    if (ch.timestamps[i] >= fromTsMs) {
-      const c = ch.closes[i];
-      if (c != null && isFinite(c)) {
-        startClose = c;
-        break;
-      }
+    const ymd = localYMD(ch.timestamps[i], tz);
+    if (ymd === targetYMD) {
+      idx = i;
+      break;
+    }
+    if (ymd > targetYMD && idx === -1) {
+      idx = i;
+      break;
     }
   }
-  if (startClose == null) {
-    startClose = ch.closes.find((v) => v != null && isFinite(v));
+  if (idx === -1) idx = 0;
+
+  // ensure we land on a valid close
+  let startClose = ch.closes[idx];
+  for (
+    let j = idx;
+    (startClose == null || !isFinite(startClose)) && j < ch.closes.length;
+    j++
+  ) {
+    if (ch.closes[j] != null && isFinite(ch.closes[j])) {
+      startClose = ch.closes[j];
+      break;
+    }
   }
+
   const latest = ch.lastPrice;
-  if (!startClose || !latest) throw new Error("bad prices");
+  if (!(startClose > 0) || !(latest > 0)) throw new Error("bad prices");
   return { startClose, latest };
 }
 
@@ -170,12 +205,23 @@ async function mapLimit(items, limit, worker) {
   });
 }
 
-/** rank by MTD gain (first-mention close → latest) */
-async function computeGainersMTD(symbolInfos, { limitTickers = 50, concurrency = 3 } = {}) {
+/** rank by MTD gain (first-mention close → latest)
+ *  allow basis: "mention" (default) or "month" (month-open)
+ */
+async function computeGainersMTD(
+  symbolInfos,
+  { limitTickers = 50, concurrency = 3, basis = "mention" } = {}
+) {
   const subset = symbolInfos.slice(0, limitTickers);
+  const monthStartTs = startOfMonthUTC();
+
   const out = await mapLimit(subset, concurrency, async (info) => {
     try {
-      const { startClose, latest } = await fetchStartAndLatest(info.symbol, info.firstTs);
+      const startTs = basis === "month" ? monthStartTs : info.firstTs;
+      const { startClose, latest } = await fetchStartAndLatest(
+        info.symbol,
+        startTs
+      );
       const pct = ((latest - startClose) / startClose) * 100;
       return { ...info, startClose, latest, pct };
     } catch {
@@ -188,10 +234,22 @@ async function computeGainersMTD(symbolInfos, { limitTickers = 50, concurrency =
 /* ======================== UI builders ======================== */
 function buildDashboardComponents(userOptions, currentUserId) {
   const row1 = new ActionRowBuilder().addComponents(
-    new ButtonBuilder().setCustomId("dash:hot5").setStyle(ButtonStyle.Primary).setLabel("Hot5"),
-    new ButtonBuilder().setCustomId("dash:hot10").setStyle(ButtonStyle.Primary).setLabel("Hot10"),
-    new ButtonBuilder().setCustomId(`dash:mine:${currentUserId}`).setStyle(ButtonStyle.Secondary).setLabel("Mine"),
-    new ButtonBuilder().setCustomId("dash:all").setStyle(ButtonStyle.Secondary).setLabel("All")
+    new ButtonBuilder()
+      .setCustomId("dash:hot5")
+      .setStyle(ButtonStyle.Primary)
+      .setLabel("Hot5"),
+    new ButtonBuilder()
+      .setCustomId("dash:hot10")
+      .setStyle(ButtonStyle.Primary)
+      .setLabel("Hot10"),
+    new ButtonBuilder()
+      .setCustomId(`dash:mine:${currentUserId}`)
+      .setStyle(ButtonStyle.Secondary)
+      .setLabel("Mine"),
+    new ButtonBuilder()
+      .setCustomId("dash:all")
+      .setStyle(ButtonStyle.Secondary)
+      .setLabel("All")
   );
 
   const menu = new StringSelectMenuBuilder()
@@ -235,23 +293,38 @@ export async function showTickersDashboard({ message, dbPath }) {
   }));
   let topGainersSyms = [];
   try {
-    const gainers = await computeGainersMTD(quickInfos, { limitTickers: 25, concurrency: 3 });
+    const gainers = await computeGainersMTD(quickInfos, {
+      limitTickers: 25,
+      concurrency: 3,
+      basis: "month",
+    });
     topGainersSyms = gainers.slice(0, 3).map((g) => g.symbol);
   } catch {
     topGainersSyms = [];
   }
 
   const userOptions = [...firstByUserCounts.entries()]
-    .sort((a, b) => b[1].count - a[1].count || (a[1].name || "").localeCompare(b[1].name || ""))
+    .sort(
+      (a, b) =>
+        b[1].count - a[1].count ||
+        (a[1].name || "").localeCompare(b[1].name || "")
+    )
     .slice(0, 25)
-    .map(([id, v]) => ({ label: `${v.name || "Unknown"} (${v.count})`, value: id }));
+    .map(([id, v]) => ({
+      label: `${v.name || "Unknown"} (${v.count})`,
+      value: id,
+    }));
 
   const lines = [];
   lines.push(`Total Tracked: **${allUnique}** Tickers`);
   lines.push(`This month: **${mtdUnique}** Tickers`);
-  if (top10.length) lines.push(`Top 10 Tickers: ${top10.map((s) => `\`${s}\``).join(", ")}`);
+  if (top10.length)
+    lines.push(`Top 10 Tickers: ${top10.map((s) => `\`${s}\``).join(", ")}`);
   if (posters.length) lines.push(`Top 3 Posters: ${posters.join(", ")}`);
-  if (topGainersSyms.length) lines.push(`Top Gainers: ${topGainersSyms.map((s) => `\`${s}\``).join(", ")}`);
+  if (topGainersSyms.length)
+    lines.push(
+      `Top Gainers: ${topGainersSyms.map((s) => `\`${s}\``).join(", ")}`
+    );
 
   const embed = new EmbedBuilder()
     .setColor(0x00b7ff)
@@ -295,7 +368,10 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
       cur += ln + "\n";
     }
     if (cur) chunks.push(cur);
-    await interaction.reply({ content: `**${title}**\n${chunks[0]}`, ephemeral: true });
+    await interaction.reply({
+      content: `**${title}**\n${chunks[0]}`,
+      ephemeral: true,
+    });
     for (let i = 1; i < chunks.length; i++) {
       await interaction.followUp({ content: chunks[i], ephemeral: true });
     }
@@ -305,16 +381,25 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
   if (cid === "dash:hot5" || cid === "dash:hot10") {
     const topN = cid === "dash:hot5" ? 5 : 10;
     try {
-      const ranked = await computeGainersMTD(infos, { limitTickers: 200, concurrency: 4 });
+      const ranked = await computeGainersMTD(infos, {
+        limitTickers: 200,
+        concurrency: 4,
+        basis: "month",
+      });
       const picked = ranked.slice(0, topN);
       const lines = picked.map((r, i) => {
         const who = r.firstUserName ? r.firstUserName : "user";
         const pct = r.pct.toFixed(1);
-        return `${i + 1}. \`${r.symbol}\`: **${pct}%** (MTD), [${who}](${r.firstLink || "#"})`;
+        return `${i + 1}. \`${r.symbol}\`: **${pct}%** (MTD), [${who}](${
+          r.firstLink || "#"
+        })`;
       });
       await sendPaged(topN === 5 ? "🔥 Hot 5" : "🔥 Hot 10", lines);
     } catch {
-      await interaction.reply({ content: "לא הצלחתי לחשב תשואות כרגע.", ephemeral: true });
+      await interaction.reply({
+        content: "לא הצלחתי לחשב תשואות כרגע.",
+        ephemeral: true,
+      });
     }
     return true;
   }
@@ -324,7 +409,10 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
     const uid = cid.split(":")[2] || interaction.user.id;
     const mine = mtd.filter(([, v]) => v.firstUserId === uid);
     if (!mine.length) {
-      await interaction.reply({ content: "אין טיקרים שהוזכרו ראשונים על ידך החודש.", ephemeral: true });
+      await interaction.reply({
+        content: "אין טיקרים שהוזכרו ראשונים על ידך החודש.",
+        ephemeral: true,
+      });
       return true;
     }
     const mineInfos = mine.map(([sym, v]) => ({
@@ -334,15 +422,23 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
       firstUserName: v.firstUserName,
     }));
     try {
-      const ranked = await computeGainersMTD(mineInfos, { limitTickers: 200, concurrency: 4 });
+      const ranked = await computeGainersMTD(mineInfos, {
+        limitTickers: 200,
+        concurrency: 4,
+      });
       const lines = ranked.map((r, i) => {
         const pct = r.pct.toFixed(1);
         const who = r.firstUserName || "you";
-        return `${i + 1}. \`${r.symbol}\`: **${pct}%** (MTD), [${who}](${r.firstLink || "#"})`;
+        return `${i + 1}. \`${r.symbol}\`: **${pct}%** (MTD), [${who}](${
+          r.firstLink || "#"
+        })`;
       });
       await sendPaged("🎯 Mine (first mentions this month)", lines);
     } catch {
-      await interaction.reply({ content: "תקלה בחישוב תשואות.", ephemeral: true });
+      await interaction.reply({
+        content: "תקלה בחישוב תשואות.",
+        ephemeral: true,
+      });
     }
     return true;
   }
@@ -369,7 +465,10 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
     }
     const userFirst = mtd.filter(([, v]) => v.firstUserId === targetId);
     if (!userFirst.length) {
-      await interaction.reply({ content: "אין טיקרים למשתמש זה החודש.", ephemeral: true });
+      await interaction.reply({
+        content: "אין טיקרים למשתמש זה החודש.",
+        ephemeral: true,
+      });
       return true;
     }
     const infos2 = userFirst.map(([sym, v]) => ({
@@ -379,15 +478,23 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
       firstUserName: v.firstUserName,
     }));
     try {
-      const ranked = await computeGainersMTD(infos2, { limitTickers: 200, concurrency: 4 });
+      const ranked = await computeGainersMTD(infos2, {
+        limitTickers: 200,
+        concurrency: 4,
+      });
       const lines = ranked.map((r, i) => {
         const pct = r.pct.toFixed(1);
         const who = r.firstUserName || "user";
-        return `${i + 1}. \`${r.symbol}\`: **${pct}%** (MTD), [${who}](${r.firstLink || "#"})`;
+        return `${i + 1}. \`${r.symbol}\`: **${pct}%** (MTD), [${who}](${
+          r.firstLink || "#"
+        })`;
       });
       await sendPaged("👤 User's first mentions (MTD)", lines);
     } catch {
-      await interaction.reply({ content: "תקלה בחישוב תשואות.", ephemeral: true });
+      await interaction.reply({
+        content: "תקלה בחישוב תשואות.",
+        ephemeral: true,
+      });
     }
     return true;
   }
