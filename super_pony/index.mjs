@@ -194,11 +194,6 @@ export async function runJob(ctx) {
         // Command-style text handling in the bot room
         const content = message.content?.toLowerCase() || "";
 
-        if (content.startsWith("pony say hello")) {
-          await message.channel.send("Hello! I'm Super Pony, your friendly bot!");
-          return;
-        }
-
         const mentionsBot =
           (client.user?.id && message.mentions.users.has(client.user.id)) ||
           message.content?.includes("@SuperPony");
@@ -207,9 +202,13 @@ export async function runJob(ctx) {
 
         if (content.includes("טיקרים שלי") || content.includes("שלי")) {
           await listMyTickers({ message, dbPath: DB_PATH });
-        } else if (content.includes("טיקרים")) {
+        }
+        
+        else if (content.includes("טיקרים")) {
           await listAllTickers({ message, dbPath: DB_PATH, includeCounts: true, minMentions: 1 });
-        } else if (content.includes("דיווחים 500")) {
+        }
+        
+        else if (content.includes("דיווחים 500")) {
           await handleTodaysEarnings({
             client,
             interaction: { channel: message.channel, followUp: (t) => message.channel.send(t) },
@@ -217,7 +216,9 @@ export async function runJob(ctx) {
             limit: 0,
             FINNHUB_TOKEN,
           });
-        } else if (content.includes("דיווחים") || content.includes("מדווחות")) {
+        }
+        
+        else if (content.includes("דיווחים") || content.includes("מדווחות")) {
           await handleTodaysEarnings({
             client,
             interaction: { channel: message.channel, followUp: (t) => message.channel.send(t) },
@@ -225,13 +226,29 @@ export async function runJob(ctx) {
             limit: 0,
             FINNHUB_TOKEN,
           });
-        } else if (content.includes("תמונת דיווחים") || content.includes("תמונה")) {
+        }
+        
+        else if (content.includes("תמונת דיווחים") || content.includes("תמונה")) {
           await handleAnticipatedImage({
             client,
             interaction: { followUp: (t) => message.channel.send(t) },
             ANTICIPATED_CHANNEL_ID,
           });
-        } else if (
+        }
+
+        // ############  SOFT CANCEL
+        else if (content.includes("shutdown")) {
+          const isAdmin = message.member?.permissions?.has?.("Administrator");
+          if (isAdmin) {
+            await message.channel.send("🛑 Shutting down SuperPony bot gracefully…");
+            await ctx.requestShutdown?.("ADMIN_SHUTDOWN");
+          } else {
+            await message.channel.send("🚫 Only admins can request shutdown.");
+          }
+          return;
+        }
+        
+        else if (
           content.includes("עזרה") ||
           content.includes("מה אתה יודע לעשות") ||
           content.includes("רשימת פקודות") ||

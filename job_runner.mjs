@@ -75,14 +75,18 @@ async function main() {
 
   // run the job
   try {
-    await jobModule.runJob({
-      signal,                 // AbortSignal: job can stop loops/intervals
-      deadline,               // ms epoch when runner will time out
-      label: LABEL,
-      env: process.env,
-      log: console,           // { log, error, warn, ... }
-      args,                   // raw argv if you want extra flags
-    });
+    console.log(`runner: running job "${LABEL}" with args:`, args);
+    const ctx = {
+        signal,                 // AbortSignal: job can stop loops/intervals
+        deadline,               // ms epoch when runner will time out
+        label: LABEL,
+        env: process.env,
+        log: console,           // { log, error, warn, ... }
+        args,                   // raw argv if you want extra flags
+        requestShutdown: (reason = "JOB_REQUEST") => safeShutdown(reason, null, 0),
+    };
+    await jobModule.runJob(ctx);
+
     // normal completion → still call shutdown for consistent cleanup
     await safeShutdown("NORMAL_EXIT", null, 0);   // ✅ guarded
     clearTimeout(timeout);
