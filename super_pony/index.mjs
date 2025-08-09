@@ -104,11 +104,7 @@ client.once("ready", async () => {
 client.on("interactionCreate", async (interaction) => {
   try {
     // dashboard buttons/selects
-    const handled = await handleDashboardInteraction({
-      interaction,
-      dbPath: DB_PATH,
-      FINNHUB_TOKEN,
-    });
+    const handled = await handleDashboardInteraction({ interaction, dbPath: DB_PATH });
     if (handled) return;
 
     if (!interaction.isChatInputCommand()) return;
@@ -192,7 +188,7 @@ client.on("messageCreate", async (message) => {
 
     // List all tickers with counts and first user mentions them
     else if (/(^|\s)טיקרים(\s|$)/.test(content) && !content.includes("שלי")) {
-      await showTickersDashboard({ message, dbPath: DB_PATH, FINNHUB_TOKEN });
+      await showTickersDashboard({ message, dbPath: DB_PATH });
       return;
     }
 
