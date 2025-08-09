@@ -18,7 +18,6 @@ import { listFirstByUser } from "./cmd_handlers/listFirstByUser.mjs";
 import { handleGraphChannelMessage, runBackfillOnce } from "./cmd_handlers/graphChannelHandler.mjs";
 import { showTickersDashboard, handleDashboardInteraction } from "./cmd_handlers/tickersDashboard.mjs";
 
-
 // paths
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.resolve(__dirname, "scanner");
@@ -100,20 +99,22 @@ client.once("ready", async () => {
   }
 });
 
-// Slash command router
+// Interaction router (components first!)
 client.on("interactionCreate", async (interaction) => {
   try {
-    // dashboard buttons/selects
-    const handled = await handleDashboardInteraction({ interaction, dbPath: DB_PATH });
-    if (handled) return;
+    // Buttons/menus from the dashboard
+    if (interaction.isButton() || interaction.isStringSelectMenu()) {
+      const handled = await handleDashboardInteraction({ interaction, dbPath: DB_PATH });
+      if (handled) return;
+    }
 
+    // Slash commands
     if (!interaction.isChatInputCommand()) return;
     if (interaction.commandName !== "todays_earnings") return;
 
     await interaction.deferReply();
-
     const filter = interaction.options.getString("type") || "all";
-    const limit = interaction.options.getInteger("limit") || 0;
+    const limit  = interaction.options.getInteger("limit") || 0;
 
     if (filter === "anticipated") {
       await handleAnticipatedImage({ client, interaction, ANTICIPATED_CHANNEL_ID });
@@ -123,9 +124,9 @@ client.on("interactionCreate", async (interaction) => {
   } catch (err) {
     console.error(err);
     if (interaction.deferred || interaction.replied) {
-      await interaction.followUp("❌ שגיאה בעיבוד הבקשה.");
+      await interaction.followUp({ content: "❌ שגיאה בעיבוד הבקשה.", ephemeral: true }).catch(() => {});
     } else {
-      await interaction.reply("❌ שגיאה בעיבוד הבקשה.");
+      await interaction.reply({ content: "❌ שגיאה בעיבוד הבקשה.", ephemeral: true }).catch(() => {});
     }
   }
 });
@@ -135,7 +136,7 @@ client.on("messageCreate", async (message) => {
   try {
     if (message.author.bot) return;
 
-    const inBotRoom = message.channel.id === BOT_CHANNEL_ID;
+    const inBotRoom    = message.channel.id === BOT_CHANNEL_ID;
     const inGraphsRoom = message.channel.id === GRAPHS_CHANNEL_ID;
 
     if (inGraphsRoom) {
@@ -150,50 +151,42 @@ client.on("messageCreate", async (message) => {
           dbPath: DB_PATH,
           silent: false,
           updateCheckpoint: true,   // track progress
-          // commitAfterWrite default = true (live messages push immediately)
         });
       }
       return;
     }
 
-    // if not in bot room, ignore all other messages
     if (!inBotRoom) return;
 
-    // if in bot room, check if message mentions the bot
     const content = message.content?.toLowerCase() || "";
     const mentionsBot =
       (client.user?.id && message.mentions.users.has(client.user.id)) ||
       message.content?.includes("@SuperPony");
     if (!mentionsBot) return;
 
-    // if user mentions someone else (besides the bot), show tickers that user mentioned first
     const otherMentions = message.mentions.users.filter(u => u.id !== client.user.id);
 
-    // list my tickers
-    if (content.includes("טיקרים שלי") || content.includes("שלי")) {
-      await listMyTickers({ message, dbPath: DB_PATH });
-    }
-
-    // Other user tickers
-    else if (otherMentions.size > 0 && (content.includes("טיקרים") || content.includes("הטיקרים") || content.includes("של"))) {
-      const targetUser = otherMentions.first();
-      await listFirstByUser({ message, dbPath: DB_PATH, targetUser });
-      return;
-    }
-    
-    // List all tickers with counts and first user mentions them
-    else if (content.includes("כל הטיקרים")) {
-      await listAllTickers({ message, dbPath: DB_PATH, includeCounts: true, minMentions: 1 });
-    }
-
-    // List all tickers with counts and first user mentions them
-    else if (/(^|\s)טיקרים(\s|$)/.test(content) && !content.includes("שלי")) {
+    // Dashboard
+    if (content.includes("טיקרים")) {
       await showTickersDashboard({ message, dbPath: DB_PATH });
       return;
     }
 
-    // get the tickers reporting today that are part of S&P 500
-    else if (content.includes("דיווחים 500") || content.includes("מדווחות 500")) {
+    // Mine
+    if (content.includes("טיקרים שלי") || content.includes("שלי")) {
+      await listMyTickers({ message, dbPath: DB_PATH });
+      return;
+    }
+
+    // Other user tickers (first mentions)
+    if (otherMentions.size > 0 && (content.includes("טיקרים") || content.includes("הטיקרים") || content.includes("של"))) {
+      const targetUser = otherMentions.first();
+      await listFirstByUser({ message, dbPath: DB_PATH, targetUser });
+      return;
+    }
+
+    // Earnings
+    if (content.includes("דיווחים 500")) {
       await handleTodaysEarnings({
         client,
         interaction: { channel: message.channel, followUp: (t) => message.channel.send(t) },
@@ -201,10 +194,10 @@ client.on("messageCreate", async (message) => {
         limit: 0,
         FINNHUB_TOKEN,
       });
+      return;
     }
-    
-    // get all tickers reporting today
-    else if (content.includes("דיווחים") || content.includes("מדווחות")) {
+
+    if (content.includes("דיווחים") || content.includes("מדווחות")) {
       await handleTodaysEarnings({
         client,
         interaction: { channel: message.channel, followUp: (t) => message.channel.send(t) },
@@ -212,21 +205,19 @@ client.on("messageCreate", async (message) => {
         limit: 0,
         FINNHUB_TOKEN,
       });
+      return;
     }
-    
-    // get most anticipated tickers reporting today image
-    else if (content.includes("תמונת דיווחים") || content.includes("תמונה")) {
+
+    if (content.includes("תמונת דיווחים") || content.includes("תמונה")) {
       await handleAnticipatedImage({
         client,
         interaction: { followUp: (t) => message.channel.send(t) },
         ANTICIPATED_CHANNEL_ID,
       });
+      return;
     }
-    
-    // return the help message with all commands
-    else {
-      await sendHelp({ channel: message.channel });
-    }
+
+    await sendHelp({ channel: message.channel });
   } catch (err) {
     console.error("messageCreate handler error:", err);
     if (message?.channel?.send) {
