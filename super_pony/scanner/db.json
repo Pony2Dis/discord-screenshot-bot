@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:42:26.053Z",
+  "updated": "2025-08-09T14:42:26.532Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -520,12 +520,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1400088609163579424",
       "timestamp": "2025-07-30T12:12:16.813Z",
       "content": "https://tenor.com/view/fomo-theoffice-andy-gif-4476373"
+    },
+    {
+      "ticker": "REPL",
+      "user": {
+        "id": "1033751148378726422",
+        "name": "קמחי"
+      },
+      "messageId": "1400088763840860332",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1400088763840860332",
+      "timestamp": "2025-07-30T12:12:53.691Z",
+      "content": "@everyone אם יש מטומטם כמוני שנכנס ל-$repl למכור עכשיו"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1400088558353780757",
-      "lastProcessedAt": "2025-07-30T12:12:04.699Z"
+      "lastProcessedId": "1400088671524356146",
+      "lastProcessedAt": "2025-07-30T12:12:31.681Z"
     }
   }
 }
