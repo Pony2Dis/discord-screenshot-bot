@@ -20,9 +20,10 @@ let writeQueue = Promise.resolve();
  * - right boundary: end or whitespace/quote/bracket/punct (not '/')
  * Supports: TSLA / $TSLA / BRK.B / BRK-B
  * Avoids: ".com/..." and other URL/domain hits.
+ * Boundaries are LATIN-only, so Hebrew next to a ticker is still a boundary.
  */
-const TICKER_RE =
-  /(?:^|[\s"'`([{<])\$?([A-Za-z]{1,5}(?:[.\-][A-Za-z]{1,2})?)(?=$|[\s"'`)\]}>.,:;!?])/g;
+const TICKER_RE = /(?:^|[\s"'`([{<]|[^\x00-\x7F])\$?([A-Za-z]{1,5}(?:[.\-][A-Za-z]{1,2})?)(?=$|[\s"'`)\]}>.,:;!?]|[^\x00-\x7F])/gu;
+const TICKER_RE_FALLBACK = /(?:^|[^A-Za-z0-9])\$?([A-Za-z]{1,5}(?:[.-][A-Za-z]{1,2})?)(?=$|[^A-Za-z0-9])/g;
 
 const exec = promisify(execCb);
 
@@ -66,13 +67,22 @@ async function loadTickerSet(allTickersFile) {
 function extractTickers(text, tickerSet) {
   if (!text) return [];
   const found = new Set();
-  const blacklist = getBlacklistSet();
+
+  // try main regex
   TICKER_RE.lastIndex = 0;
   let m;
   while ((m = TICKER_RE.exec(text)) !== null) {
-    const cand = m[1].toUpperCase();
-    const norm = cand.replace(/-/g, "."); // BRK-B -> BRK.B
-    if (tickerSet.has(norm) && !blacklist.has(norm)) found.add(norm);
+    const cand = m[1].toUpperCase().replace(/-/g, ".");
+    if (tickerSet.has(cand)) found.add(cand);
+  }
+
+  // optional fallback if nothing matched (older runtimes)
+  if (found.size === 0) {
+    TICKER_RE_FALLBACK.lastIndex = 0;
+    while ((m = TICKER_RE_FALLBACK.exec(text)) !== null) {
+      const cand = m[1].toUpperCase().replace(/-/g, ".");
+      if (tickerSet.has(cand)) found.add(cand);
+    }
   }
   return [...found];
 }
