@@ -112,7 +112,7 @@ client.on("interactionCreate", async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
     if (interaction.commandName !== "todays_earnings") return;
 
-    await interaction.deferReply();
+    await interaction.deferReply(); // standard (non-ephemeral) is fine here
     const filter = interaction.options.getString("type") || "all";
     const limit  = interaction.options.getInteger("limit") || 0;
 
@@ -124,9 +124,9 @@ client.on("interactionCreate", async (interaction) => {
   } catch (err) {
     console.error(err);
     if (interaction.deferred || interaction.replied) {
-      await interaction.followUp({ content: "❌ שגיאה בעיבוד הבקשה.", ephemeral: true }).catch(() => {});
+      await interaction.followUp({ content: "❌ שגיאה בעיבוד הבקשה.", flags: 64 }).catch(() => {});
     } else {
-      await interaction.reply({ content: "❌ שגיאה בעיבוד הבקשה.", ephemeral: true }).catch(() => {});
+      await interaction.reply({ content: "❌ שגיאה בעיבוד הבקשה.", flags: 64 }).catch(() => {});
     }
   }
 });
@@ -150,7 +150,7 @@ client.on("messageCreate", async (message) => {
           allTickersFile: ALL_TICKERS_PATH,
           dbPath: DB_PATH,
           silent: false,
-          updateCheckpoint: true,   // track progress
+          updateCheckpoint: true,
         });
       }
       return;
@@ -166,7 +166,7 @@ client.on("messageCreate", async (message) => {
 
     const otherMentions = message.mentions.users.filter(u => u.id !== client.user.id);
 
-    // Dashboard
+    // Dashboard (primary entrypoint)
     if (content.includes("טיקרים")) {
       await showTickersDashboard({ message, dbPath: DB_PATH });
       return;
@@ -178,7 +178,7 @@ client.on("messageCreate", async (message) => {
       return;
     }
 
-    // Other user tickers (first mentions)
+    // Other user tickers
     if (otherMentions.size > 0 && (content.includes("טיקרים") || content.includes("הטיקרים") || content.includes("של"))) {
       const targetUser = otherMentions.first();
       await listFirstByUser({ message, dbPath: DB_PATH, targetUser });
@@ -196,7 +196,6 @@ client.on("messageCreate", async (message) => {
       });
       return;
     }
-
     if (content.includes("דיווחים") || content.includes("מדווחות")) {
       await handleTodaysEarnings({
         client,
@@ -207,7 +206,6 @@ client.on("messageCreate", async (message) => {
       });
       return;
     }
-
     if (content.includes("תמונת דיווחים") || content.includes("תמונה")) {
       await handleAnticipatedImage({
         client,

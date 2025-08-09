@@ -9,6 +9,9 @@ import {
   ButtonStyle,
 } from "discord.js";
 
+/* ---------- memory for per-message metric selection ---------- */
+const metricState = new Map(); // messageId -> "month_oc" | "month_cc" | "mention_oc" | "mention_cc"
+
 /* ======================== DB + time helpers ======================== */
 async function loadDb(dbPath) {
   try {
@@ -21,7 +24,6 @@ async function loadDb(dbPath) {
 }
 
 function startOfMonthUTC(d = new Date()) {
-  // 00:00:00.000 UTC of current month
   return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1, 0, 0, 0, 0);
 }
 function isInMonth(tsMs, monthStartMs) {
@@ -83,13 +85,8 @@ function buildMonthAgg(entries) {
 }
 
 /* ======================== Yahoo Finance fetch ======================== */
-/** simple in-memory chart cache so each symbol is fetched once (per range) */
 const chartCache = new Map();
 
-/**
- * Fetch daily chart from Yahoo (range auto-picked to cover fromTs → now).
- * Returns { timestamps:number[], opens:number[], closes:number[], lastClose:number, lastPrice:number, tz:string }
- */
 async function getYahooChart(symbol, fromTsMs) {
   const days = Math.max(1, Math.floor((Date.now() - (fromTsMs || Date.now())) / 86400000));
   const range = days <= 30 ? "1mo" : days <= 62 ? "3mo" : days <= 370 ? "1y" : "5y";
@@ -112,9 +109,7 @@ async function getYahooChart(symbol, fromTsMs) {
     closes = r.indicators.adjclose[0].adjclose;
   }
   const lastClose = [...closes].reverse().find((v) => v != null && isFinite(v));
-  const lastPrice =
-    r.meta?.regularMarketPrice ??
-    [...closes].reverse().find((v) => v != null && isFinite(v));
+  const lastPrice = r.meta?.regularMarketPrice ?? lastClose;
   const tz = r.meta?.exchangeTimezoneName || "America/New_York";
 
   if (!Array.isArray(ts) || !Array.isArray(closes) || !Array.isArray(opens)) {
@@ -126,7 +121,6 @@ async function getYahooChart(symbol, fromTsMs) {
   return out;
 }
 
-// helper: YYYY-MM-DD in a given time zone (no extra deps)
 function localYMD(ts, tz) {
   const fmt = new Intl.DateTimeFormat("en-CA", {
     timeZone: tz,
@@ -134,10 +128,8 @@ function localYMD(ts, tz) {
     month: "2-digit",
     day: "2-digit",
   });
-  return fmt.format(new Date(ts)); // e.g. "2025-08-01"
+  return fmt.format(new Date(ts)); // "YYYY-MM-DD"
 }
-
-// "YYYY-MM-01" for *current* month in given tz (not derived from UTC instant)
 function monthFirstYMD(tz) {
   const parts = new Intl.DateTimeFormat("en-CA", {
     timeZone: tz,
@@ -148,37 +140,24 @@ function monthFirstYMD(tz) {
   const month = parts.find((p) => p.type === "month")?.value || "01";
   return `${year}-${month}-01`;
 }
-
-/**
- * Pick the starting candle index for:
- * - anchor "mention": first candle with ymd >= mention's local ymd
- * - anchor "month"  : first candle with ymd >= YYYY-MM-01 (in exchange tz)
- */
 function pickStartIndex(ch, anchor, mentionTs) {
   const tz = ch.tz || "America/New_York";
   const targetYMD = anchor === "month" ? monthFirstYMD(tz) : localYMD(mentionTs, tz);
-
   let idx = -1;
   for (let i = 0; i < ch.timestamps.length; i++) {
     const ymd = localYMD(ch.timestamps[i], tz);
-    if (ymd >= targetYMD) {
-      idx = i;
-      break;
-    }
+    if (ymd >= targetYMD) { idx = i; break; }
   }
   if (idx === -1) idx = 0;
   return idx;
 }
 
-/** Get basis prices
- *  opts: { anchor: "mention" | "month", mode: "oc" | "cc" }
- */
+/** opts: { anchor:"mention"|"month", mode:"oc"|"cc" } */
 async function fetchBasisAndLatest(symbol, mentionTs, opts) {
   const { anchor = "mention", mode = "oc" } = opts || {};
   const ch = await getYahooChart(symbol, anchor === "month" ? startOfMonthUTC() : mentionTs);
   const idx = pickStartIndex(ch, anchor, mentionTs);
 
-  // ensure valid start values scanning forward if needed
   let startOpen = ch.opens[idx];
   let startClose = ch.closes[idx];
   for (let j = idx; (startOpen == null || !isFinite(startOpen)) && j < ch.opens.length; j++) {
@@ -195,7 +174,6 @@ async function fetchBasisAndLatest(symbol, mentionTs, opts) {
   if (!(lastPrice > 0) && !(lastClose > 0)) throw new Error("bad latest price");
 
   const basis = mode === "cc" ? (startClose ?? startOpen) : (startOpen ?? startClose);
-  // for cc we prefer settled close; for oc we allow live lastPrice
   const latest = mode === "cc" ? (lastClose ?? lastPrice) : (lastPrice ?? lastClose);
 
   return { basis, latest };
@@ -224,10 +202,7 @@ async function mapLimit(items, limit, worker) {
   });
 }
 
-/** rank by gain
- * items: [{ symbol, firstTs, firstLink, firstUserName, ... }]
- * opts: { limitTickers, concurrency, anchor: "mention"|"month", mode: "oc"|"cc" }
- */
+/** rank by gain */
 async function computeGainers(items, { limitTickers = 50, concurrency = 3, anchor = "month", mode = "oc" } = {}) {
   const subset = items.slice(0, limitTickers);
   const out = await mapLimit(subset, concurrency, async (info) => {
@@ -243,7 +218,6 @@ async function computeGainers(items, { limitTickers = 50, concurrency = 3, ancho
 }
 
 /* ======================== UI builders ======================== */
-
 const METRIC_CHOICES = [
   { label: "Open→Close (Month)",           value: "month_oc"   },
   { label: "Close→Close (Month)",          value: "month_cc"   },
@@ -267,7 +241,7 @@ function buildDashboardComponents(userOptions, currentUserId, currentMetric = "m
 
   const menuMetric = new StringSelectMenuBuilder()
     .setCustomId("dash:metric")
-    .setPlaceholder("Open→Close (Month)")
+    .setPlaceholder("Metric")
     .addOptions(
       METRIC_CHOICES.map((m) => ({
         label: m.label,
@@ -280,18 +254,14 @@ function buildDashboardComponents(userOptions, currentUserId, currentMetric = "m
   return [row1, row2, row3];
 }
 
-function getSelectedMetricFromMessage(message) {
-  // find row with custom_id === "dash:metric"
-  for (const row of message.components || []) {
-    for (const c of row.components || []) {
-      if (c.customId === "dash:metric" || c.custom_id === "dash:metric") {
-        const opt = (c.options || []).find((o) => o.default);
-        return opt?.value || "month_oc";
-      }
-    }
-  }
-  return "month_oc";
+/* metric resolution:
+   1) prefer in-memory selection for this message
+   2) else fallback to default "month_oc"
+*/
+function getSelectedMetricForMessage(message) {
+  return metricState.get(message.id) || "month_oc";
 }
+
 function metricToComputeOpts(metric) {
   switch (metric) {
     case "month_cc":   return { anchor: "month",   mode: "cc" };
@@ -306,9 +276,7 @@ function metricToComputeOpts(metric) {
 export async function showTickersDashboard({ message, dbPath }) {
   const { entries } = await loadDb(dbPath);
 
-  const allUnique = new Set(
-    entries.map((e) => (e.ticker || "").toUpperCase()).filter(Boolean)
-  ).size;
+  const allUnique = new Set(entries.map((e) => (e.ticker || "").toUpperCase()).filter(Boolean)).size;
 
   const { byTicker, firstByUserCounts } = buildMonthAgg(entries);
   const mtdItems = [...byTicker.entries()];
@@ -346,23 +314,17 @@ export async function showTickersDashboard({ message, dbPath }) {
   }
 
   const userOptions = [...firstByUserCounts.entries()]
-    .sort(
-      (a, b) =>
-        b[1].count - a[1].count ||
-        (a[1].name || "").localeCompare(b[1].name || "")
-    )
+    .sort((a, b) => b[1].count - a[1].count || (a[1].name || "").localeCompare(b[1].name || ""))
     .slice(0, 25)
-    .map(([id, v]) => ({
-      label: `${v.name || "Unknown"} (${v.count})`,
-      value: id,
-    }));
+    .map(([id, v]) => ({ label: `${v.name || "Unknown"} (${v.count})`, value: id }));
 
   const lines = [];
   lines.push(`Total Tracked: **${allUnique}** Tickers`);
   lines.push(`This month: **${mtdUnique}** Tickers`);
-  if (top10.length)     lines.push(`Top 10 Tickers: ${top10.map((s) => `\`${s}\``).join(", ")}`);
-  if (posters.length)   lines.push(`Top 3 Posters: ${posters.join(", ")}`);
-  if (topGainersSyms.length) lines.push(`Top Gainers: ${topGainersSyms.map((s) => `\`${s}\``).join(", ")}`);
+  if (top10.length)       lines.push(`Top 10 Tickers: ${top10.map((s) => `\`${s}\``).join(", ")}`);
+  if (posters.length)     lines.push(`Top 3 Posters: ${posters.join(", ")}`);
+  if (topGainersSyms.length)
+    lines.push(`Top Gainers: ${topGainersSyms.map((s) => `\`${s}\``).join(", ")}`);
 
   const embed = new EmbedBuilder()
     .setColor(0x00b7ff)
@@ -370,7 +332,10 @@ export async function showTickersDashboard({ message, dbPath }) {
     .setDescription(lines.join("\n"));
 
   const components = buildDashboardComponents(userOptions, message.author.id, "month_oc");
-  await message.channel.send({ embeds: [embed], components });
+  const sent = await message.channel.send({ embeds: [embed], components });
+
+  // initialize metric for this message (so buttons know what to use)
+  metricState.set(sent.id, "month_oc");
 }
 
 /* ======================== Public: interactions ======================== */
@@ -395,10 +360,10 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
     countMTD: v.countMTD,
   }));
 
-  // helper: page + send using defer->edit->followUp (ephemeral)
+  // helper: page + send using defer->edit->followUp (ephemeral via flags)
   const sendPaged = async (title, lines) => {
     if (!interaction.deferred && !interaction.replied) {
-      await interaction.deferReply({ ephemeral: true });
+      await interaction.deferReply({ flags: 64 }); // ephemeral
     }
     if (!lines.length) {
       await interaction.editReply("—");
@@ -413,47 +378,28 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
 
     await interaction.editReply(`**${title}**\n${chunks[0]}`);
     for (let i = 1; i < chunks.length; i++) {
-      await interaction.followUp({ content: chunks[i], ephemeral: true });
+      await interaction.followUp({ content: chunks[i], flags: 64 });
     }
   };
 
-  // Metric dropdown update (fast UI update only)
+  // Metric dropdown: store selection and ack quickly; no component mutation
   if (cid === "dash:metric" && interaction.isStringSelectMenu()) {
     const selected = interaction.values?.[0] || "month_oc";
-    const rows = interaction.message.components.map((r) => ({
-      type: r.type,
-      components: r.components.map((c) => ({ ...c })),
-    }));
-    const metricRow = rows.find((r) =>
-      r.components?.some((c) => c.custom_id === "dash:metric" || c.customId === "dash:metric")
-    );
-    if (metricRow) {
-      const menu = metricRow.components.find((c) => c.custom_id === "dash:metric" || c.customId === "dash:metric");
-      if (menu) {
-        menu.options = METRIC_CHOICES.map((m) => ({
-          label: m.label,
-          value: m.value,
-          default: m.value === selected,
-        }));
-      }
-    }
-    await interaction.update({ components: rows });
+    metricState.set(interaction.message.id, selected);
+    await interaction.deferUpdate(); // acknowledge without changing message
     return true;
   }
 
-  const currentMetric = getSelectedMetricFromMessage(interaction.message);
-  const computeOpts = metricToComputeOpts(currentMetric);
+  // derive currently selected metric for THIS message
+  const metric = getSelectedMetricForMessage(interaction.message);
+  const computeOpts = metricToComputeOpts(metric);
 
   // Hot5 / Hot10
   if (cid === "dash:hot5" || cid === "dash:hot10") {
     const topN = cid === "dash:hot5" ? 5 : 10;
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ flags: 64 });
     try {
-      const ranked = await computeGainers(infos, {
-        limitTickers: 200,
-        concurrency: 4,
-        ...computeOpts,
-      });
+      const ranked = await computeGainers(infos, { limitTickers: 200, concurrency: 4, ...computeOpts });
       const picked = ranked.slice(0, topN);
       const lines = picked.map((r, i) => {
         const who = r.firstUserName || "user";
@@ -470,7 +416,7 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
   // Mine
   if (cid.startsWith("dash:mine:")) {
     const uid = cid.split(":")[2] || interaction.user.id;
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ flags: 64 });
     const mine = infos.filter((v) => v.firstUserId === uid);
     if (!mine.length) {
       await interaction.editReply("אין טיקרים שהוזכרו ראשונים על ידך החודש.");
@@ -492,7 +438,7 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
 
   // All
   if (cid === "dash:all") {
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ flags: 64 });
     const lines = infos.map((v) => {
       const firstUrl = v.firstLink || "#";
       const lastUrl = v.lastLink || "#";
@@ -501,33 +447,6 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
       return `• [\`${v.symbol}\`](${firstUrl}) — **${v.countMTD}**${who} — [${lastStr}](${lastUrl})`;
     });
     await sendPaged("📋 All (this month)", lines);
-    return true;
-  }
-
-  // Users dropdown
-  if (cid === "dash:user" && interaction.isStringSelectMenu()) {
-    await interaction.deferReply({ ephemeral: true });
-    const targetId = interaction.values?.[0];
-    if (!targetId) {
-      await interaction.editReply("לא נבחר משתמש.");
-      return true;
-    }
-    const userFirst = infos.filter((v) => v.firstUserId === targetId);
-    if (!userFirst.length) {
-      await interaction.editReply("אין טיקרים למשתמש זה החודש.");
-      return true;
-    }
-    try {
-      const ranked = await computeGainers(userFirst, { limitTickers: 200, concurrency: 4, ...computeOpts });
-      const lines = ranked.map((r, i) => {
-        const pct = r.pct.toFixed(1);
-        const who = r.firstUserName || "user";
-        return `${i + 1}. \`${r.symbol}\`: **${pct}%**, [${who}](${r.firstLink || "#"})`;
-      });
-      await sendPaged("👤 User's first mentions (MTD)", lines);
-    } catch {
-      await interaction.editReply("תקלה בחישוב תשואות.");
-    }
     return true;
   }
 
