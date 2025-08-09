@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:42:33.248Z",
+  "updated": "2025-08-09T14:42:33.762Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -715,12 +715,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1400120378675953684",
       "timestamp": "2025-07-30T14:18:31.255Z",
       "content": "https://tenor.com/view/the-office-party-get-the-party-started-whoop-whoop-woot-woot-gif-13553754737456738195"
+    },
+    {
+      "ticker": "BE",
+      "user": {
+        "id": "1033751148378726422",
+        "name": "קמחי"
+      },
+      "messageId": "1400124155197784186",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1400124155197784186",
+      "timestamp": "2025-07-30T14:33:31.648Z",
+      "content": "BE ממשיכה לעבוד חזק מאוד"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1400119825157722132",
-      "lastProcessedAt": "2025-07-30T14:16:19.286Z"
+      "lastProcessedId": "1400121568285429873",
+      "lastProcessedAt": "2025-07-30T14:23:14.880Z"
     }
   }
 }
