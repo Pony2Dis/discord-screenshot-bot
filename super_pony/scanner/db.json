@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:43:11.900Z",
+  "updated": "2025-08-09T14:43:12.438Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -1794,12 +1794,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1403004732590784522",
       "timestamp": "2025-08-07T13:19:54.817Z",
       "content": "BABA"
+    },
+    {
+      "ticker": "PEGA",
+      "user": {
+        "id": "929051584804028467",
+        "name": "peleg"
+      },
+      "messageId": "1403028694355939541",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1403028694355939541",
+      "timestamp": "2025-08-07T14:55:07.747Z",
+      "content": "PEGA\nמעניינת מאוד, מאוד"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1402946945449721886",
-      "lastProcessedAt": "2025-08-07T09:30:17.289Z"
+      "lastProcessedId": "1403012646755631186",
+      "lastProcessedAt": "2025-08-07T13:51:21.701Z"
     }
   }
 }
