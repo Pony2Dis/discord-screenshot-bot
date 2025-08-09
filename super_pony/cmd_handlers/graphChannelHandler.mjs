@@ -26,6 +26,20 @@ const TICKER_RE =
 
 const exec = promisify(execCb);
 
+/** -------- blacklist -------- */
+const DEFAULT_BLACKLIST = ["RSI", "ATR", "ATH", "MACD", "SEE"];
+let _blacklistSet = null;
+function getBlacklistSet() {
+  if (_blacklistSet) return _blacklistSet;
+  const raw = (process.env.TICKER_BLACKLIST || DEFAULT_BLACKLIST.join(","));
+  const list = raw
+    .split(/[,\s]+/)
+    .map(s => s.trim().toUpperCase())
+    .filter(Boolean);
+  _blacklistSet = new Set(list);
+  return _blacklistSet;
+}
+
 /** Ensure directory exists for a file path */
 async function ensureDirFor(filePath) {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
@@ -48,16 +62,17 @@ async function loadTickerSet(allTickersFile) {
   return _tickerSet;
 }
 
-/** Extract possible tickers and validate against the Set */
+/** Extract possible tickers and validate against the Set + blacklist */
 function extractTickers(text, tickerSet) {
   if (!text) return [];
   const found = new Set();
+  const blacklist = getBlacklistSet();
   TICKER_RE.lastIndex = 0;
   let m;
   while ((m = TICKER_RE.exec(text)) !== null) {
     const cand = m[1].toUpperCase();
     const norm = cand.replace(/-/g, "."); // BRK-B -> BRK.B
-    if (tickerSet.has(norm)) found.add(norm);
+    if (tickerSet.has(norm) && !blacklist.has(norm)) found.add(norm);
   }
   return [...found];
 }
