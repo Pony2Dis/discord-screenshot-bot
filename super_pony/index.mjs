@@ -1,4 +1,3 @@
-// index.mjs
 import "dotenv/config";
 import {
   Client,
@@ -14,6 +13,15 @@ import { sendHelp } from "./cmd_handlers/help.mjs";
 import { listAllTickers } from "./cmd_handlers/listAllTickers.mjs";
 import { listMyTickers } from "./cmd_handlers/listMyTickers.mjs";
 import { handleGraphChannelMessage, runBackfillOnce } from "./cmd_handlers/graphChannelHandler.mjs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// find the current directory of this module
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// resolve the data directory relative to this module (./super_pony/scanner)
+const DATA_DIR = path.resolve(__dirname, "super_pony", "scanner");
+
+let shuttingDown = false;
 
 const {
   DISCORD_TOKEN,
@@ -77,8 +85,8 @@ client.once("ready", async () => {
     await runBackfillOnce({
       client,
       channelId: GRAPHS_CHANNEL_ID,
-      allTickersFile: "./scanner/all_tickers.txt",
-      dbPath: "./scanner/db.json",
+      allTickersFile: path.join(DATA_DIR, "all_tickers.txt"),
+      dbPath: path.join(DATA_DIR, "db.json"),
       lookbackDays: 14, // if no checkpoint, read last 2 weeks
     });
     LIVE_LISTENING_ENABLED = true;
@@ -128,8 +136,8 @@ client.on("messageCreate", async (message) => {
       if (!mentionsBot && message.content?.trim()) {
         await handleGraphChannelMessage({
           message,
-          allTickersFile: "./scanner/all_tickers.txt",
-          dbPath: "./scanner/db.json",
+          allTickersFile: path.join(DATA_DIR, "all_tickers.txt"),
+          dbPath: path.join(DATA_DIR, "db.json"),
           silent: false,
           updateCheckpoint: true, // store checkpoint per processed message
         });
@@ -202,7 +210,50 @@ client.on("messageCreate", async (message) => {
 
 client.on("error", (err) => console.error("Discord client error:", err));
 
-process.on("SIGINT", () => client.destroy().then(() => process.exit(0)));
-process.on("SIGTERM", () => client.destroy().then(() => process.exit(0)));
+async function pushDbOnCancel() {
+  try {
+    // ensure all pending writes finished
+    await flushTickerDbWrites();
+
+    // configure git identity (safe to run every time)
+    await exec('git config user.name "github-actions[bot]"');
+    await exec('git config user.email "github-actions[bot]@users.noreply.github.com"');
+
+    await exec('git stash --include-untracked || true');
+    await exec('git pull --rebase origin main');
+    await exec('git stash pop || true');
+
+
+    // stage just the db file
+    await exec(`git add "${DB_PATH}"`);
+
+    // if no staged changes, this exits 0; if changes exist, it throws—so we commit in catch
+    let hasChanges = false;
+    try {
+      await exec("git diff --cached --quiet");
+    } catch {
+      hasChanges = true;
+    }
+    if (!hasChanges) return;
+
+    await exec('git commit -m "chore(scanner): update db.json [skip ci]"');
+    await exec("git push");
+  } catch (e) {
+    console.error("pushDbOnCancel failed:", e);
+  }
+}
+
+async function shutdown(signal) {
+  if (shuttingDown) return;
+  shuttingDown = true;
+  console.log(`⚠️  Received ${signal}. Flushing DB and pushing…`);
+  try { await pushDbOnCancel(); } finally {
+    try { await client.destroy(); } catch {}
+    process.exit(0);
+  }
+}
+
+process.on("SIGTERM", () => shutdown("SIGTERM"));
+process.on("SIGINT",  () => shutdown("SIGINT"));
 
 client.login(DISCORD_TOKEN);

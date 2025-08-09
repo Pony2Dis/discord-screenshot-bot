@@ -132,8 +132,8 @@ async function appendEntries(dbPath, entries) {
  */
 export async function handleGraphChannelMessage({
   message,
-  allTickersFile = "./scanner/all_tickers.txt",
-  dbPath = "./scanner/db.json",
+  allTickersFile = "../scanner/all_tickers.txt",
+  dbPath = "../scanner/db.json",
   silent = false,
   updateCheckpoint: doCheckpoint = true,
 }) {
@@ -264,3 +264,9 @@ export async function runBackfillOnce({
 
   console.log(`Backfill complete for channel ${channelId}. Scanned ${scanned} messages.`);
 }
+
+export function flushTickerDbWrites() {
+    // writeQueue is your module-level Promise chain
+    return writeQueue;
+  }
+  
