@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:42:16.334Z",
+  "updated": "2025-08-09T14:42:16.819Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -234,12 +234,38 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399739607582511262",
       "timestamp": "2025-07-29T13:05:28.352Z",
       "content": "MU אחרי דו\"ח נהדר ועצירה בפיבו 50. <@935743401540857866> רצית לתפוס מניה כבר בשלב בניית הידית? לדעתי היא מועמדת טובה אחרי נר ירוק משמעותי"
+    },
+    {
+      "ticker": "COM",
+      "user": {
+        "id": "1033751148378726422",
+        "name": "קמחי"
+      },
+      "messageId": "1399763918435385364",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399763918435385364",
+      "timestamp": "2025-07-29T14:42:04.511Z",
+      "content": "https://tenor.com/view/hugh-laurie-house-i-dont-know-gif-24677137"
+    },
+    {
+      "ticker": "KNOW",
+      "user": {
+        "id": "1033751148378726422",
+        "name": "קמחי"
+      },
+      "messageId": "1399763918435385364",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399763918435385364",
+      "timestamp": "2025-07-29T14:42:04.511Z",
+      "content": "https://tenor.com/view/hugh-laurie-house-i-dont-know-gif-24677137"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1399738035699978250",
-      "lastProcessedAt": "2025-07-29T12:59:13.586Z"
+      "lastProcessedId": "1399763722402267167",
+      "lastProcessedAt": "2025-07-29T14:41:17.773Z"
     }
   }
 }
