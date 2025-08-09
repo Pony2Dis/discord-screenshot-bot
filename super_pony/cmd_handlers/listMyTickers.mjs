@@ -1,94 +1,87 @@
-// super_pony/cmd_handlers/listMyTickers.mjs
 import fs from "fs/promises";
 import { EmbedBuilder } from "discord.js";
 
-function unixFromIso(iso) {
-  if (!iso) return null;
-  const t = Math.floor(new Date(iso).getTime() / 1000);
-  return Number.isFinite(t) ? t : null;
+const MAX_DESC = 3500;
+
+function formatShort(iso) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  const dd = String(d.getUTCDate()).padStart(2, "0");
+  const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
+  const yy = String(d.getUTCFullYear()).slice(-2);
+  return `${dd}/${mm}/${yy}`;
 }
 
-function makePages(rows, { title, totals }) {
-  const maxDesc = 3500;
+function paginate(lines, { title, footer }) {
   const pages = [];
-  let buf = [];
-  let size = 0;
-  for (const line of rows) {
-    if (size + line.length + 1 > maxDesc) {
-      pages.push(buf.join("\n"));
-      buf = [];
-      size = 0;
-    }
-    buf.push(line);
-    size += line.length + 1;
+  let buf = [], size = 0;
+  for (const ln of lines) {
+    const add = ln.length + 1;
+    if (size + add > MAX_DESC) { pages.push(buf.join("\n")); buf = []; size = 0; }
+    buf.push(ln); size += add;
   }
   if (buf.length) pages.push(buf.join("\n"));
 
   return pages.map((desc, i) =>
     new EmbedBuilder()
-      .setColor(0x5865f2) // blurple
+      .setColor(0x5865f2)
       .setTitle(title)
       .setDescription(desc)
-      .setFooter({ text: `עמוד ${i + 1}/${pages.length} — ${totals.unique} ייחודיים, ${totals.total} אזכורים` })
+      .setFooter({ text: `עמוד ${i + 1}/${pages.length} — ${footer}` })
   );
 }
 
 /**
- * listMyTickers:
- * - supports optional "fromDate" (inclusive) in format YYYY-MM-DD (already parsed before call if you like)
- *   You can pass `fromDateIso` or leave undefined.
+ * Shows user's own tickers.
+ * - Ticker text links to the FIRST time this user mentioned it.
+ * - Date links to the LAST time this user mentioned it.
  */
 export async function listMyTickers({ message, dbPath, fromDateIso }) {
   const raw = await fs.readFile(dbPath, "utf-8").catch(() => "{}");
   const db = JSON.parse(raw || "{}");
   const entries = Array.isArray(db) ? db : db.entries || [];
 
-  const userId = message.author.id;
-  const fromTs = fromDateIso ? new Date(fromDateIso).getTime() : null;
+  const me = message.author.id;
+  const fromTs = fromDateIso ? Date.parse(fromDateIso) : null;
 
-  // filter to user (and date if provided)
-  const mine = entries.filter((e) => {
-    if (!e?.user?.id || e.user.id !== userId) return false;
-    if (fromTs && new Date(e.timestamp).getTime() < fromTs) return false;
-    return true;
-  });
+  // Aggregate by ticker
+  const agg = new Map(); // sym -> { count, firstTs, firstLink, lastTs, lastLink }
+  for (const e of entries) {
+    if (e?.user?.id !== me) continue;
+    if (fromTs && Date.parse(e.timestamp) < fromTs) continue;
+    const sym = e.ticker?.toUpperCase();
+    if (!sym) continue;
 
-  // aggregate per ticker
-  const map = new Map();
-  for (const e of mine) {
-    const key = e.ticker?.toUpperCase();
-    if (!key) continue;
-    const m = map.get(key) || { count: 0, last: null };
-    m.count++;
-    if (!m.last || new Date(e.timestamp) > new Date(m.last)) m.last = e.timestamp;
-    map.set(key, m);
+    const ts = Date.parse(e.timestamp);
+    const cur = agg.get(sym) || { count: 0, firstTs: Infinity, firstLink: "", lastTs: -1, lastLink: "" };
+    cur.count += 1;
+    if (ts < cur.firstTs) { cur.firstTs = ts; cur.firstLink = e.link || ""; }
+    if (ts > cur.lastTs)  { cur.lastTs  = ts; cur.lastLink  = e.link || ""; }
+    agg.set(sym, cur);
   }
 
-  const items = [...map.entries()]
+  const items = [...agg.entries()]
     .sort((a, b) => b[1].count - a[1].count || a[0].localeCompare(b[0]));
 
-  const total = mine.length;
-  const unique = items.length;
+  if (items.length === 0) {
+    await message.channel.send("לא נמצאו טיקרים שלך.");
+    return;
+  }
 
-  // rows
-  const rows = items.map(([sym, { count, last }]) => {
-    const ts = unixFromIso(last);
-    const lastStr = ts ? `<t:${ts}:d>` : "—";
-    return `• \`${sym}\` — **${count}** (last: ${lastStr})`;
+  const lines = items.map(([sym, v]) => {
+    const firstUrl = v.firstLink || "#";
+    const lastUrl  = v.lastLink  || "#";
+    const lastStr  = formatShort(v.lastTs);
+    // ticker -> first mention link, date -> last mention link
+    return `• [\`${sym}\`](${firstUrl}) — **${v.count}** (last: [${lastStr}](${lastUrl}))`;
   });
 
   const title = fromDateIso
     ? `🎯 הטיקרים שלך (מ־${fromDateIso} ועד היום)`
     : "🎯 הטיקרים שלך";
 
-  const embeds = makePages(rows, {
-    title,
-    totals: { unique, total },
-  });
+  const total = items.reduce((s, [, v]) => s + v.count, 0);
+  const embeds = paginate(lines, { title, footer: `${items.length} ייחודיים, ${total} אזכורים` });
 
-  if (embeds.length === 0) {
-    await message.channel.send("לא נמצאו טיקרים שלך.");
-    return;
-  }
   for (const emb of embeds) await message.channel.send({ embeds: [emb] });
 }
