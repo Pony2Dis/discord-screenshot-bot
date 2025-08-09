@@ -1,6 +1,8 @@
 import fs from "fs/promises";
 import fssync from "fs";
 import path from "path";
+import { promisify } from "util";
+import { exec as execCb } from "child_process";
 
 /** ---- config ---- */
 const DISCORD_EPOCH = 1420070400000n; // 2015-01-01
@@ -15,6 +17,8 @@ let writeQueue = Promise.resolve();
 /** Pre-compiled regex: TSLA / $TSLA / BRK.B / BRK-B */
 const TICKER_RE =
   /(?:^|[^A-Za-z0-9])\$?([A-Za-z]{1,5}(?:[.\-][A-Za-z]{1,2})?)(?=$|[^A-Za-z0-9])/g;
+
+const exec = promisify(execCb);
 
 /** Ensure directory exists for a file path */
 async function ensureDirFor(filePath) {
@@ -122,6 +126,29 @@ async function appendEntries(dbPath, entries) {
   return writeQueue;
 }
 
+/** Git commit helper (safe to call even when nothing changed) */
+export async function commitDbIfChanged(dbPath) {
+  try {
+    await exec('git config user.name "github-actions[bot]"');
+    await exec('git config user.email "41898282+github-actions[bot]@users.noreply.github.com"');
+
+    await exec(`git add "${dbPath}"`);
+    try {
+      await exec("git diff --cached --quiet");
+      return false; // nothing to commit
+    } catch {
+      // staged changes exist
+    }
+    await exec('git commit -m "chore(scanner): update db.json [skip ci]"');
+    await exec("git push");
+    console.log("✅ Pushed db.json changes.");
+    return true;
+  } catch (e) {
+    console.error("git commit/push failed:", e?.message || e);
+    return false;
+  }
+}
+
 /**
  * Handle a single message in GRAPHS_CHANNEL_ID:
  * - Skip if content missing
@@ -129,6 +156,7 @@ async function appendEntries(dbPath, entries) {
  * - Save rows into scanner/db.json (single write per message)
  * - Echo "logged ticker: ${ticker} from user: ${from_user}" unless silent
  * - Optionally update checkpoint per processed message
+ * - Commit/push if any entries were saved (we call commit unconditionally; it’s a no-op if no diff)
  */
 export async function handleGraphChannelMessage({
   message,
@@ -173,6 +201,8 @@ export async function handleGraphChannelMessage({
     }));
 
     await appendEntries(dbPath, entries);
+    // commit after a live message write
+    await commitDbIfChanged(dbPath);
 
     if (!silent) {
       for (const ticker of tickers) {
@@ -199,6 +229,7 @@ export async function handleGraphChannelMessage({
  * - Applies same filters as live: ignore bots and @SuperPony mentions.
  * - Runs silently (no "logged ticker" echoes).
  * - Updates checkpoint as it advances.
+ * - Commits/pushes once at the end (after queued writes flush).
  */
 export async function runBackfillOnce({
   client,
@@ -258,15 +289,15 @@ export async function runBackfillOnce({
       afterId = message.id; // advance window
       scanned++;
     }
-
-    // Keep looping until no newer messages are left
   }
+
+  // ensure all pending writes hit disk, then commit once for the whole backfill
+  await writeQueue;
+  await commitDbIfChanged(dbPath);
 
   console.log(`Backfill complete for channel ${channelId}. Scanned ${scanned} messages.`);
 }
 
 export function flushTickerDbWrites() {
-    // writeQueue is your module-level Promise chain
-    return writeQueue;
-  }
-  
+  return writeQueue;
+}
