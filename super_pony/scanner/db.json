@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:42:21.242Z",
+  "updated": "2025-08-09T14:42:21.756Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -403,12 +403,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399822662498517146",
       "timestamp": "2025-07-29T18:35:30.187Z",
       "content": "איך אומרים באנגלית \nI will see it through"
+    },
+    {
+      "ticker": "RBRK",
+      "user": {
+        "id": "1309511619138682943",
+        "name": "Omer"
+      },
+      "messageId": "1399823365572788338",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399823365572788338",
+      "timestamp": "2025-07-29T18:38:17.813Z",
+      "content": "חן מה אומר על הנר של rbrk היום?"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1399822650489966864",
-      "lastProcessedAt": "2025-07-29T18:35:27.324Z"
+      "lastProcessedId": "1399822986537603094",
+      "lastProcessedAt": "2025-07-29T18:36:47.444Z"
     }
   }
 }
