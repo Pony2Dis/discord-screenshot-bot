@@ -191,13 +191,13 @@ client.on("messageCreate", async (message) => {
     }
 
     // List all tickers with counts and first user mentions them
-    if (/(^|\s)טיקרים(\s|$)/.test(content) && !content.includes("שלי")) {
+    else if (/(^|\s)טיקרים(\s|$)/.test(content) && !content.includes("שלי")) {
       await showTickersDashboard({ message, dbPath: DB_PATH, FINNHUB_TOKEN });
       return;
     }
 
     // get the tickers reporting today that are part of S&P 500
-    else if (content.includes("דיווחים 500")) {
+    else if (content.includes("דיווחים 500") || content.includes("מדווחות 500")) {
       await handleTodaysEarnings({
         client,
         interaction: { channel: message.channel, followUp: (t) => message.channel.send(t) },
