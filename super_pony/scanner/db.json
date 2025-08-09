@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:42:13.735Z",
+  "updated": "2025-08-09T14:42:14.262Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -156,12 +156,38 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399393582049394861",
       "timestamp": "2025-07-28T14:10:29.436Z",
       "content": "Smci רצה היום"
+    },
+    {
+      "ticker": "QS",
+      "user": {
+        "id": "1147127141524328579",
+        "name": "David Bakal"
+      },
+      "messageId": "1399474663326875702",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399474663326875702",
+      "timestamp": "2025-07-28T19:32:40.719Z",
+      "content": "QS AL HAPANIM  DOWNB 30% 3 DAYS"
+    },
+    {
+      "ticker": "AL",
+      "user": {
+        "id": "1147127141524328579",
+        "name": "David Bakal"
+      },
+      "messageId": "1399474663326875702",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399474663326875702",
+      "timestamp": "2025-07-28T19:32:40.719Z",
+      "content": "QS AL HAPANIM  DOWNB 30% 3 DAYS"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1399393561903894578",
-      "lastProcessedAt": "2025-07-28T14:10:24.633Z"
+      "lastProcessedId": "1399453350587797554",
+      "lastProcessedAt": "2025-07-28T18:07:59.366Z"
     }
   }
 }
