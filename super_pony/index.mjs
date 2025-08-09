@@ -14,6 +14,7 @@ import { handleAnticipatedImage } from "./cmd_handlers/anticipatedImage.mjs";
 import { sendHelp } from "./cmd_handlers/help.mjs";
 import { listAllTickers } from "./cmd_handlers/listAllTickers.mjs";
 import { listMyTickers } from "./cmd_handlers/listMyTickers.mjs";
+import { listFirstByUser } from "./cmd_handlers/listFirstByUser.mjs";
 import { handleGraphChannelMessage, runBackfillOnce } from "./cmd_handlers/graphChannelHandler.mjs";
 
 // paths
@@ -149,19 +150,38 @@ client.on("messageCreate", async (message) => {
       return;
     }
 
+    // if not in bot room, ignore all other messages
     if (!inBotRoom) return;
 
+    // if in bot room, check if message mentions the bot
     const content = message.content?.toLowerCase() || "";
     const mentionsBot =
       (client.user?.id && message.mentions.users.has(client.user.id)) ||
       message.content?.includes("@SuperPony");
     if (!mentionsBot) return;
 
+    // if user mentions someone else (besides the bot), show tickers that user mentioned first
+    const otherMentions = message.mentions.users.filter(u => u.id !== client.user.id);
+
+    // list my tickers
     if (content.includes("טיקרים שלי") || content.includes("שלי")) {
       await listMyTickers({ message, dbPath: DB_PATH });
-    } else if (content.includes("טיקרים")) {
+    }
+    
+    // List all tickers with counts and first user mentions them
+    else if (content.includes("טיקרים")) {
       await listAllTickers({ message, dbPath: DB_PATH, includeCounts: true, minMentions: 1 });
-    } else if (content.includes("דיווחים 500")) {
+    }
+
+    // Other user tickers
+    else if (otherMentions.size > 0 && (content.includes("טיקרים") || content.includes("הטיקרים") || content.includes("של"))) {
+      const targetUser = otherMentions.first();
+      await listFirstByUser({ message, dbPath: DB_PATH, targetUser });
+      return;
+    }
+    
+    // get the tickers reporting today that are part of S&P 500
+    else if (content.includes("דיווחים 500")) {
       await handleTodaysEarnings({
         client,
         interaction: { channel: message.channel, followUp: (t) => message.channel.send(t) },
@@ -169,7 +189,10 @@ client.on("messageCreate", async (message) => {
         limit: 0,
         FINNHUB_TOKEN,
       });
-    } else if (content.includes("דיווחים") || content.includes("מדווחות")) {
+    }
+    
+    // get all tickers reporting today
+    else if (content.includes("דיווחים") || content.includes("מדווחות")) {
       await handleTodaysEarnings({
         client,
         interaction: { channel: message.channel, followUp: (t) => message.channel.send(t) },
@@ -177,13 +200,19 @@ client.on("messageCreate", async (message) => {
         limit: 0,
         FINNHUB_TOKEN,
       });
-    } else if (content.includes("תמונת דיווחים") || content.includes("תמונה")) {
+    }
+    
+    // get most anticipated tickers reporting today image
+    else if (content.includes("תמונת דיווחים") || content.includes("תמונה")) {
       await handleAnticipatedImage({
         client,
         interaction: { followUp: (t) => message.channel.send(t) },
         ANTICIPATED_CHANNEL_ID,
       });
-    } else {
+    }
+    
+    // return the help message with all commands
+    else {
       await sendHelp({ channel: message.channel });
     }
   } catch (err) {
