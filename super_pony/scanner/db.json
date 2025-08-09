@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:42:20.726Z",
+  "updated": "2025-08-09T14:42:21.242Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -377,12 +377,38 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399822300945317989",
       "timestamp": "2025-07-29T18:34:03.986Z",
       "content": "ה-atr השבועי הוא 14.5%"
+    },
+    {
+      "ticker": "SEE",
+      "user": {
+        "id": "935743401540857866",
+        "name": "Cubby"
+      },
+      "messageId": "1399822662498517146",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399822662498517146",
+      "timestamp": "2025-07-29T18:35:30.187Z",
+      "content": "איך אומרים באנגלית \nI will see it through"
+    },
+    {
+      "ticker": "IT",
+      "user": {
+        "id": "935743401540857866",
+        "name": "Cubby"
+      },
+      "messageId": "1399822662498517146",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399822662498517146",
+      "timestamp": "2025-07-29T18:35:30.187Z",
+      "content": "איך אומרים באנגלית \nI will see it through"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1399822228039794839",
-      "lastProcessedAt": "2025-07-29T18:33:46.604Z"
+      "lastProcessedId": "1399822650489966864",
+      "lastProcessedAt": "2025-07-29T18:35:27.324Z"
     }
   }
 }
