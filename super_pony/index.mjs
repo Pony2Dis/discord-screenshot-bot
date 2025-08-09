@@ -16,10 +16,19 @@ import { handleGraphChannelMessage, runBackfillOnce } from "./cmd_handlers/graph
 import path from "path";
 import { fileURLToPath } from "url";
 
+import { promisify } from "util";
+import { exec as execCb } from "child_process";
+import { flushTickerDbWrites } from "./cmd_handlers/graphChannelHandler.mjs";
+
+const exec = promisify(execCb);
+
 // find the current directory of this module
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // resolve the data directory relative to this module (./super_pony/scanner)
 const DATA_DIR = path.resolve(__dirname, "super_pony", "scanner");
+// prepare paths for the database and all tickers file
+const DB_PATH = path.join(DATA_DIR, "db.json");
+const ALL_TICKERS_PATH = path.join(DATA_DIR, "all_tickers.txt");
 
 let shuttingDown = false;
 
@@ -85,8 +94,8 @@ client.once("ready", async () => {
     await runBackfillOnce({
       client,
       channelId: GRAPHS_CHANNEL_ID,
-      allTickersFile: path.join(DATA_DIR, "all_tickers.txt"),
-      dbPath: path.join(DATA_DIR, "db.json"),
+      allTickersFile: ALL_TICKERS_PATH,
+      dbPath: DB_PATH,
       lookbackDays: 14, // if no checkpoint, read last 2 weeks
     });
     LIVE_LISTENING_ENABLED = true;
@@ -136,8 +145,8 @@ client.on("messageCreate", async (message) => {
       if (!mentionsBot && message.content?.trim()) {
         await handleGraphChannelMessage({
           message,
-          allTickersFile: path.join(DATA_DIR, "all_tickers.txt"),
-          dbPath: path.join(DATA_DIR, "db.json"),
+          allTickersFile: ALL_TICKERS_PATH,
+          dbPath: DB_PATH,
           silent: false,
           updateCheckpoint: true, // store checkpoint per processed message
         });
@@ -165,7 +174,7 @@ client.on("messageCreate", async (message) => {
     if (content.includes("טיקרים שלי") || content.includes("שלי")) {
       await listMyTickers({ message });
     } else if (content.includes("טיקרים")) {
-      await listAllTickers({ message });
+      await listAllTickers({ message, dbPath: DB_PATH, includeCounts: true, minMentions: 1 });
     } else if (content.includes("דיווחים 500")) {
       await handleTodaysEarnings({
         client,
