@@ -75,7 +75,7 @@ export async function listAllTickers({ message, dbPath, includeCounts = true, mi
     const lastStr  = formatShort(v.lastTs);
     const who      = v.firstUser ? ` (${v.firstUser})` : "";
     // ticker -> first mention link, date -> last mention link, include first user
-    return `• [\`${sym}\`](${firstUrl}) — **${v.count}**${who} — [${lastStr}](${lastUrl})`;
+    return `• \`${sym}\` — **${v.count}** [${who}](${firstUrl}) — [${lastStr}](${lastUrl})`;
   });
 
   const embeds = paginate(lines, {

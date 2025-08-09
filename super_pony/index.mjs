@@ -16,6 +16,8 @@ import { listAllTickers } from "./cmd_handlers/listAllTickers.mjs";
 import { listMyTickers } from "./cmd_handlers/listMyTickers.mjs";
 import { listFirstByUser } from "./cmd_handlers/listFirstByUser.mjs";
 import { handleGraphChannelMessage, runBackfillOnce } from "./cmd_handlers/graphChannelHandler.mjs";
+import { showTickersDashboard, handleDashboardInteraction } from "./cmd_handlers/tickersDashboard.mjs";
+
 
 // paths
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -101,6 +103,14 @@ client.once("ready", async () => {
 // Slash command router
 client.on("interactionCreate", async (interaction) => {
   try {
+    // dashboard buttons/selects
+    const handled = await handleDashboardInteraction({
+      interaction,
+      dbPath: DB_PATH,
+      FINNHUB_TOKEN,
+    });
+    if (handled) return;
+
     if (!interaction.isChatInputCommand()) return;
     if (interaction.commandName !== "todays_earnings") return;
 
@@ -176,10 +186,16 @@ client.on("messageCreate", async (message) => {
     }
     
     // List all tickers with counts and first user mentions them
-    else if (content.includes("טיקרים")) {
+    else if (content.includes("כל הטיקרים")) {
       await listAllTickers({ message, dbPath: DB_PATH, includeCounts: true, minMentions: 1 });
     }
-    
+
+    // List all tickers with counts and first user mentions them
+    if (/(^|\s)טיקרים(\s|$)/.test(content) && !content.includes("שלי")) {
+      await showTickersDashboard({ message, dbPath: DB_PATH, FINNHUB_TOKEN });
+      return;
+    }
+
     // get the tickers reporting today that are part of S&P 500
     else if (content.includes("דיווחים 500")) {
       await handleTodaysEarnings({
