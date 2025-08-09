@@ -14,9 +14,15 @@ let _tickerFilePath = null;
 /** Simple write queue to serialize db.json writes */
 let writeQueue = Promise.resolve();
 
-/** Pre-compiled regex: TSLA / $TSLA / BRK.B / BRK-B */
+/** Pre-compiled regex
+ * Standalone words only:
+ * - left boundary: start or whitespace/quote/bracket
+ * - right boundary: end or whitespace/quote/bracket/punct (not '/')
+ * Supports: TSLA / $TSLA / BRK.B / BRK-B
+ * Avoids: ".com/..." and other URL/domain hits.
+ */
 const TICKER_RE =
-  /(?:^|[^A-Za-z0-9])\$?([A-Za-z]{1,5}(?:[.\-][A-Za-z]{1,2})?)(?=$|[^A-Za-z0-9])/g;
+  /(?:^|[\s"'`([{<])\$?([A-Za-z]{1,5}(?:[.\-][A-Za-z]{1,2})?)(?=$|[\s"'`)\]}>.,:;!?])/g;
 
 const exec = promisify(execCb);
 
@@ -136,14 +142,11 @@ export async function commitDbIfChanged(dbPath) {
     try {
       await exec("git diff --cached --quiet");
       return false; // nothing to commit
-    } catch {
-      // staged changes exist
-    }
+    } catch {}
     await exec('git commit -m "chore(scanner): update db.json [skip ci]"');
     try {
       await exec("git push");
     } catch {
-      // one-attempt pull --rebase to reduce collisions
       try {
         await exec("git pull --rebase --autostash");
         await exec("git push");
