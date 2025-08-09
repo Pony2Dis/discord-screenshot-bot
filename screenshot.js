@@ -52,7 +52,7 @@ async function main() {
     const buffer = await page.screenshot({ clip: CLIP });
     await browser.close();
 
-    const channel = await bot.channels.fetch(process.env.CHANNEL_ID);
+    const channel = await client.channels.fetch(process.env.CHANNEL_ID);
     await channel.send({
       files: [ new AttachmentBuilder(buffer, { name: 'fear-and-greed.png' }) ]
     });
