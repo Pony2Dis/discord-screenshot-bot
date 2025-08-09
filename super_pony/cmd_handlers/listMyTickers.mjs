@@ -1,130 +1,94 @@
+// super_pony/cmd_handlers/listMyTickers.mjs
 import fs from "fs/promises";
+import { EmbedBuilder } from "discord.js";
 
-// format date (Asia/Jerusalem) -> YYYY-MM-DD
-function formatIL(iso) {
-  try {
-    const d = new Date(iso);
-    return new Intl.DateTimeFormat("en-CA", {
-      timeZone: "Asia/Jerusalem",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    }).format(d); // e.g., 2025-08-09
-  } catch {
-    return iso?.slice(0, 10) || "";
-  }
+function unixFromIso(iso) {
+  if (!iso) return null;
+  const t = Math.floor(new Date(iso).getTime() / 1000);
+  return Number.isFinite(t) ? t : null;
 }
 
-async function loadDb(dbPath) {
-  try {
-    const txt = await fs.readFile(dbPath, "utf-8");
-    const json = JSON.parse(txt);
-    if (Array.isArray(json)) return { entries: json };
-    if (!json.entries) json.entries = [];
-    return json;
-  } catch {
-    return { entries: [] };
-  }
-}
-
-// Parse optional "since" date from the user's message text (YYYY-MM-DD anywhere)
-function parseSinceFromMessage(message) {
-  const m = message.content.match(/\b(\d{4}-\d{2}-\d{2})\b/);
-  if (!m) return null;
-  const ts = Date.parse(m[1]); // treated as UTC midnight
-  return Number.isFinite(ts) ? ts : null;
-}
-
-// send long text safely in chunks under Discord limit
-async function sendChunked(channel, header, lines, maxLen = 1900) {
-  let chunk = header ? header + "\n" : "";
-  for (const line of lines) {
-    if ((chunk + line + "\n").length > maxLen) {
-      await channel.send(chunk.trimEnd());
-      chunk = "";
+function makePages(rows, { title, totals }) {
+  const maxDesc = 3500;
+  const pages = [];
+  let buf = [];
+  let size = 0;
+  for (const line of rows) {
+    if (size + line.length + 1 > maxDesc) {
+      pages.push(buf.join("\n"));
+      buf = [];
+      size = 0;
     }
-    chunk += line + "\n";
+    buf.push(line);
+    size += line.length + 1;
   }
-  if (chunk.trim()) await channel.send(chunk.trimEnd());
+  if (buf.length) pages.push(buf.join("\n"));
+
+  return pages.map((desc, i) =>
+    new EmbedBuilder()
+      .setColor(0x5865f2) // blurple
+      .setTitle(title)
+      .setDescription(desc)
+      .setFooter({ text: `עמוד ${i + 1}/${pages.length} — ${totals.unique} ייחודיים, ${totals.total} אזכורים` })
+  );
 }
 
 /**
  * listMyTickers:
- * - Aggregates tickers mentioned by the requesting user
- * - Optional "since" date: detects YYYY-MM-DD in the message and filters from that date to today
- * - Sorted by count desc, then last mention desc
- * - Shows up to `limit` (default 50)
+ * - supports optional "fromDate" (inclusive) in format YYYY-MM-DD (already parsed before call if you like)
+ *   You can pass `fromDateIso` or leave undefined.
  */
-export async function listMyTickers({
-  message,
-  dbPath,
-  limit = 50,
-} = {}) {
+export async function listMyTickers({ message, dbPath, fromDateIso }) {
+  const raw = await fs.readFile(dbPath, "utf-8").catch(() => "{}");
+  const db = JSON.parse(raw || "{}");
+  const entries = Array.isArray(db) ? db : db.entries || [];
+
   const userId = message.author.id;
-  const sinceTs = parseSinceFromMessage(message); // null or ms
+  const fromTs = fromDateIso ? new Date(fromDateIso).getTime() : null;
 
-  const db = await loadDb(dbPath);
-  const all = db.entries || [];
-
-  // filter by user and (optional) date range
-  const mine = all.filter((e) => {
-    if (!e?.user?.id || !e?.timestamp) return false;
-    if (e.user.id !== userId) return false;
-    if (sinceTs != null) {
-      const t = Date.parse(e.timestamp);
-      if (!Number.isFinite(t) || t < sinceTs) return false;
-    }
+  // filter to user (and date if provided)
+  const mine = entries.filter((e) => {
+    if (!e?.user?.id || e.user.id !== userId) return false;
+    if (fromTs && new Date(e.timestamp).getTime() < fromTs) return false;
     return true;
   });
 
-  if (mine.length === 0) {
-    if (sinceTs != null) {
-      const sinceStr = new Date(sinceTs).toISOString().slice(0, 10);
-      await message.channel.send(`לא מצאתי טיקרים שלך מאז ${sinceStr}.`);
-    } else {
-      await message.channel.send("לא מצאתי טיקרים שלך בנתונים שנאספו.");
-    }
-    return;
-  }
-
-  // Aggregate per ticker
-  const agg = new Map();
+  // aggregate per ticker
+  const map = new Map();
   for (const e of mine) {
-    const key = e.ticker;
-    const prev = agg.get(key) || { ticker: key, count: 0, lastTs: 0, lastIso: "", lastLink: "" };
-    const ts = Date.parse(e.timestamp || 0) || 0;
-    prev.count += 1;
-    if (ts >= prev.lastTs) {
-      prev.lastTs = ts;
-      prev.lastIso = e.timestamp;
-      prev.lastLink = e.link || prev.lastLink;
-    }
-    agg.set(key, prev);
+    const key = e.ticker?.toUpperCase();
+    if (!key) continue;
+    const m = map.get(key) || { count: 0, last: null };
+    m.count++;
+    if (!m.last || new Date(e.timestamp) > new Date(m.last)) m.last = e.timestamp;
+    map.set(key, m);
   }
 
-  const rows = Array.from(agg.values()).sort((a, b) => {
-    if (b.count !== a.count) return b.count - a.count;
-    return b.lastTs - a.lastTs;
+  const items = [...map.entries()]
+    .sort((a, b) => b[1].count - a[1].count || a[0].localeCompare(b[0]));
+
+  const total = mine.length;
+  const unique = items.length;
+
+  // rows
+  const rows = items.map(([sym, { count, last }]) => {
+    const ts = unixFromIso(last);
+    const lastStr = ts ? `<t:${ts}:d>` : "—";
+    return `• \`${sym}\` — **${count}** (last: ${lastStr})`;
   });
 
-  const totalUnique = rows.length;
-  const shown = rows.slice(0, limit);
+  const title = fromDateIso
+    ? `🎯 הטיקרים שלך (מ־${fromDateIso} ועד היום)`
+    : "🎯 הטיקרים שלך";
 
-  const header =
-    `**הטיקרים שלך**` +
-    (sinceTs != null ? ` מאז ${new Date(sinceTs).toISOString().slice(0, 10)}` : "") +
-    ` — ${totalUnique} ייחודיים (מוצגים ${shown.length}${shown.length < totalUnique ? ` מתוך ${totalUnique}` : ""})`;
+  const embeds = makePages(rows, {
+    title,
+    totals: { unique, total },
+  });
 
-  // Lines like: AAPL — 7 mentions (last: 2025-08-09)
-  const lines = shown.map(
-    (r) => `${r.ticker} — ${r.count} mentions (last: ${formatIL(r.lastIso)})`
-  );
-
-  await sendChunked(message.channel, header, lines);
-
-  if (totalUnique > shown.length) {
-    await message.channel.send("טיפ: אפשר להוסיף תאריך בפורמט YYYY-MM-DD או לבקש limit גבוה יותר.");
+  if (embeds.length === 0) {
+    await message.channel.send("לא נמצאו טיקרים שלך.");
+    return;
   }
+  for (const emb of embeds) await message.channel.send({ embeds: [emb] });
 }
-
-export default { listMyTickers };
