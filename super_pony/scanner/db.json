@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:42:13.248Z",
+  "updated": "2025-08-09T14:42:13.735Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -143,12 +143,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399383359221665802",
       "timestamp": "2025-07-28T13:29:52.124Z",
       "content": "Avav"
+    },
+    {
+      "ticker": "SMCI",
+      "user": {
+        "id": "643815611658403861",
+        "name": "manana"
+      },
+      "messageId": "1399393582049394861",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399393582049394861",
+      "timestamp": "2025-07-28T14:10:29.436Z",
+      "content": "Smci רצה היום"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1399383281849470997",
-      "lastProcessedAt": "2025-07-28T13:29:33.677Z"
+      "lastProcessedId": "1399393561903894578",
+      "lastProcessedAt": "2025-07-28T14:10:24.633Z"
     }
   }
 }
