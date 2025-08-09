@@ -158,7 +158,11 @@
     "https://www.cnbc.com/2025/08/08/how-to-play-the-pullback-in-tech-software-names-this-week-using-options.html",
     "https://www.cnbc.com/2025/08/08/august-will-be-a-down-month-for-the-market-as-growth-slows-warns-ubs.html",
     "https://www.cnbc.com/2025/08/08/alternative-assets-head-for-your-401k-what-investors-need-to-know.html",
-    "https://www.cnbc.com/2025/08/08/cement-stocks-poised-for-a-breakout-to-new-highs-says-carter-worth.html"
+    "https://www.cnbc.com/2025/08/08/cement-stocks-poised-for-a-breakout-to-new-highs-says-carter-worth.html",
+    "https://www.cnbc.com/2025/08/09/these-are-the-most-overbought-stocks-in-the-market-including-apple-and-alphabet.html",
+    "https://www.cnbc.com/2025/08/09/goldman-names-five-stocks-with-more-upside-after-their-latest-earnings.html",
+    "https://www.cnbc.com/2025/08/09/crypto-may-be-coming-to-401ks-but-itll-be-a-while-before-savers-can-jump-in.html",
+    "https://www.cnbc.com/2025/08/09/activist-carronade-spots-a-hidden-gem-in-viasats-business-how-the-firm-may-unlock-value.html"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147": [
     "https://www.cnbc.com/2025/07/27/boeing-ceo-ortberg-airplane-deliveries-defense.html",
@@ -238,7 +242,9 @@
     "https://www.cnbc.com/2025/08/08/crocs-reducing-order-volume-second-half-cautious-consumer.html",
     "https://www.cnbc.com/2025/08/08/sweetgreen-cuts-outlook-stock-drops.html",
     "https://www.cnbc.com/2025/08/08/dodge-durango-jailbrea-charger-sixpack.html",
-    "https://www.cnbc.com/2025/08/08/bed-bath-beyond-store-nashville.html"
+    "https://www.cnbc.com/2025/08/08/bed-bath-beyond-store-nashville.html",
+    "https://www.cnbc.com/2025/08/09/restaurants-starbucks-smoothie-king-first-watch-protein.html",
+    "https://www.cnbc.com/2025/08/09/real-estate-startup-runwise-cre-heating-cooling.html"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258": [
     "https://www.cnbc.com/2025/07/25/trump-says-he-believes-powell-is-ready-to-start-lowering-rates.html",
@@ -1348,7 +1354,9 @@
     "https://www.marketwatch.com/story/jpmorgan-says-it-now-sees-four-fed-rate-cuts-on-the-horizon-as-trump-nominates-miran-to-fed-9c4fa8a8?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/the-truth-about-no-tax-on-tips-is-not-every-service-worker-will-get-it-heres-what-we-know-about-who-could-make-the-list-a8f905a3?mod=mw_rss_topstories",
     "https://www.marketwatch.com/story/trump-nominee-miran-could-have-a-surprising-effect-on-the-fed-giving-officials-more-freedom-to-dissent-eccbb5fe?mod=mw_rss_topstories",
-    "https://www.marketwatch.com/story/gold-and-bitcoin-are-both-vying-to-be-safe-havens-for-investors-why-gold-is-winning-so-far-this-year-42e5fc9e?mod=mw_rss_topstories"
+    "https://www.marketwatch.com/story/gold-and-bitcoin-are-both-vying-to-be-safe-havens-for-investors-why-gold-is-winning-so-far-this-year-42e5fc9e?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/things-are-getting-tougher-im-struggling-with-145-000-in-debt-should-i-refinance-my-3-5-mortgage-6a7962c9?mod=mw_rss_topstories",
+    "https://www.marketwatch.com/story/a-voice-breaking-from-the-fed-ranks-just-heightened-her-push-for-cutting-interest-rates-fast-4bd935a9?mod=mw_rss_topstories"
   ],
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135": [
     "https://www.cnbc.com/2025/07/27/earnings-playbook-season-ramps-up-with-more-mag-7-results-this-week.html",
@@ -6430,7 +6438,46 @@
     "https://www.barrons.com/articles/3-market-risks-apollo-slok-economist-91e44cde?siteid=yhoof2&yptr=yahoo",
     "https://www.investors.com/news/technology/expedia-stock-expe-q2-2025-news/?src=A00220&yptr=yahoo",
     "https://www.wsj.com/business/earnings/block-raises-2025-outlook-as-gross-profit-improves-e7a52032?siteid=yhoof2&yptr=yahoo",
-    "https://finance.yahoo.com/news/p-500-gains-losses-today-212309360.html"
+    "https://finance.yahoo.com/news/p-500-gains-losses-today-212309360.html",
+    "https://finance.yahoo.com/news/baird-sees-strong-ai-potential-201119072.html",
+    "https://finance.yahoo.com/news/twilio-twlo-pt-lifted-144-200511064.html",
+    "https://finance.yahoo.com/news/barclays-bullish-arista-networks-anet-200321224.html",
+    "https://finance.yahoo.com/news/palo-alto-networks-panw-price-195812439.html",
+    "https://finance.yahoo.com/news/president-trump-just-gave-stock-080200362.html",
+    "https://finance.yahoo.com/news/datadog-ddog-pt-lifted-170-195311189.html",
+    "https://finance.yahoo.com/news/ubs-reiterates-buy-applovin-app-195118357.html",
+    "https://finance.yahoo.com/news/bofa-maintains-neutral-tesla-tsla-194732591.html",
+    "https://finance.yahoo.com/news/wells-fargo-stays-bullish-apple-194439036.html",
+    "https://finance.yahoo.com/news/tesla-stumbles-elon-musk-gets-201400658.html",
+    "https://finance.yahoo.com/news/couple-making-180k-theyre-one-191500200.html",
+    "https://finance.yahoo.com/news/building-growth-lanes-market-173000678.html",
+    "https://finance.yahoo.com/news/im-50-just-60k-retirement-171500863.html",
+    "https://finance.yahoo.com/news/live/earnings-live-soundhound-ai-stock-soars-the-trade-desk-tanks-as-q2-earnings-season-starts-winding-down-210131401.html",
+    "https://finance.yahoo.com/news/flying-cars-arent-just-science-200500113.html",
+    "https://www.wsj.com/economy/central-banking/feds-bowman-backs-a-september-rate-cut-203ea32d?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/unfair-highball-property-taxes-forcing-160100054.html",
+    "https://finance.yahoo.com/news/qualcomm-best-semiconductor-stock-buy-160002076.html",
+    "https://finance.yahoo.com/news/0-interest-deals-wreck-finances-200111859.html",
+    "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-interest-rates-today-saturday-august-9-2025-100015605.html",
+    "https://finance.yahoo.com/news/10-billion-reason-buy-palantir-150002322.html",
+    "https://finance.yahoo.com/news/ups-extends-buyout-offer-deadline-144450112.html",
+    "https://finance.yahoo.com/news/marjorie-taylor-greenes-palantir-bet-194647386.html",
+    "https://finance.yahoo.com/news/bigbear-ai-bbai-snaps-losses-143239313.html",
+    "https://finance.yahoo.com/news/kratos-ktos-jumps-high-higher-142911411.html",
+    "https://finance.yahoo.com/news/gilead-sciences-gild-touches-record-142602243.html",
+    "https://finance.yahoo.com/news/peloton-interactive-pton-rallies-high-142136445.html",
+    "https://finance.yahoo.com/news/surprising-ai-chip-stock-90-191300411.html",
+    "https://finance.yahoo.com/news/tripadvisor-trip-jumps-high-earnings-141832337.html",
+    "https://finance.yahoo.com/news/doximity-docs-soars-14-strong-141547159.html",
+    "https://finance.yahoo.com/news/saturday-spread-using-neglected-methodology-141501281.html",
+    "https://finance.yahoo.com/news/bitmine-bmnr-soars-24-easy-141410075.html",
+    "https://finance.yahoo.com/news/8-key-signs-switch-financial-180440592.html",
+    "https://finance.yahoo.com/news/soundhound-ai-soun-surges-26-140942324.html",
+    "https://finance.yahoo.com/news/creator-of-the-4-rule-for-retirement-withdrawals-has-fresh-advice-for-todays-retirees-140035669.html",
+    "https://www.wsj.com/personal-finance/credit/child-authorized-credit-card-user-expectations-36b0fb17?siteid=yhoof2&yptr=yahoo",
+    "https://finance.yahoo.com/news/legalzoom-lz-climbs-high-firm-135612433.html",
+    "https://finance.yahoo.com/news/why-clean-energy-fuels-stock-175739055.html",
+    "https://finance.yahoo.com/news/heartflow-htfl-soars-66-ipo-135341761.html"
   ],
   "https://www.sec.gov/news/pressreleases.rss": [
     "https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps",
@@ -7816,6 +7863,14 @@
     "https://www.investing.com/news/stock-market-news/trump-says-his-meeting-with-putin-to-take-place-in-alaska-on-august-15-4181582",
     "https://www.investing.com/news/stock-market-news/exclusive-opendoor-ceo-wheeler-breaks-silence-eric-jackson-calls-for-plan-4181589",
     "https://www.investing.com/news/stock-market-news/us-proposes-settlement-with-greystar-to-end-alleged-rental-price-collusion-4181588",
-    "https://www.investing.com/news/stock-market-news/nasa-crew10-astronauts-depart-space-station-after-fivemonth-mission-4181590"
+    "https://www.investing.com/news/stock-market-news/nasa-crew10-astronauts-depart-space-station-after-fivemonth-mission-4181590",
+    "https://www.investing.com/news/stock-market-news/vinay-prasad-returns-to-role-as-top-vaccine-regulator-at-fda-days-after-leaving-us-agency-4181651",
+    "https://www.investing.com/news/stock-market-news/why-coinbase-wants-to-be-the-everything-exchange-4170932",
+    "https://www.investing.com/news/stock-market-news/us-retailer-best-buy-weighs-boosting-india-headcount-subramanian-says-aug-8-4181622",
+    "https://www.investing.com/news/stock-market-news/why-the-divide-between-developed-and-emerging-markets-no-longer-holds-4171221",
+    "https://www.investing.com/news/stock-market-news/how-is-ai-impacting-retail-employment-4173493",
+    "https://www.investing.com/news/stock-market-news/what-is-the-best-way-to-gain-exposure-to-antiinvolution-campaign-in-china-4168482",
+    "https://www.investing.com/news/stock-market-news/investingcoms-stocks-of-the-week-4181374",
+    "https://www.investing.com/news/stock-market-news/deutsche-bank-lists-six-ways-gpt5-matters-4180696"
   ]
 }
