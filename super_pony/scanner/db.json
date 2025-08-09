@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:42:10.634Z",
+  "updated": "2025-08-09T14:42:11.164Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -78,12 +78,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399334081438683279",
       "timestamp": "2025-07-28T10:14:03.385Z",
       "content": "גם Smci"
+    },
+    {
+      "ticker": "PONY",
+      "user": {
+        "id": "1036214332993847347",
+        "name": "Omer k"
+      },
+      "messageId": "1399358262893215836",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1399358262893215836",
+      "timestamp": "2025-07-28T11:50:08.693Z",
+      "content": "PONY"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1399334009200185354",
-      "lastProcessedAt": "2025-07-28T10:13:46.162Z"
+      "lastProcessedId": "1399334081438683279",
+      "lastProcessedAt": "2025-07-28T10:14:03.385Z"
     }
   }
 }
