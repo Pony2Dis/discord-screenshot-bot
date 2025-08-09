@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:42:32.703Z",
+  "updated": "2025-08-09T14:42:33.248Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -702,12 +702,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1400118782554538035",
       "timestamp": "2025-07-30T14:12:10.710Z",
       "content": "FTAI מתקרבת לפריצה"
+    },
+    {
+      "ticker": "COM",
+      "user": {
+        "id": "1033751148378726422",
+        "name": "קמחי"
+      },
+      "messageId": "1400120378675953684",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1400120378675953684",
+      "timestamp": "2025-07-30T14:18:31.255Z",
+      "content": "https://tenor.com/view/the-office-party-get-the-party-started-whoop-whoop-woot-woot-gif-13553754737456738195"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1400118177504956478",
-      "lastProcessedAt": "2025-07-30T14:09:46.455Z"
+      "lastProcessedId": "1400119825157722132",
+      "lastProcessedAt": "2025-07-30T14:16:19.286Z"
     }
   }
 }
