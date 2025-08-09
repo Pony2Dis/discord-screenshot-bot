@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:42:43.442Z",
+  "updated": "2025-08-09T14:42:43.931Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -975,12 +975,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1400855808388108440",
       "timestamp": "2025-08-01T15:00:51.362Z",
       "content": "ddog"
+    },
+    {
+      "ticker": "IBM",
+      "user": {
+        "id": "1306341288420966504",
+        "name": "CHEN HOFIT"
+      },
+      "messageId": "1400860554939072754",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1400860554939072754",
+      "timestamp": "2025-08-01T15:19:43.028Z",
+      "content": "IBM"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1400855434398662808",
-      "lastProcessedAt": "2025-08-01T14:59:22.196Z"
+      "lastProcessedId": "1400858003732959364",
+      "lastProcessedAt": "2025-08-01T15:09:34.773Z"
     }
   }
 }
