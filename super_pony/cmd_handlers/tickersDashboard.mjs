@@ -228,6 +228,7 @@ function buildDashboardComponents(userOptions, currentUserId, currentMetric = "m
   const row1 = new ActionRowBuilder().addComponents(
     new ButtonBuilder().setCustomId("dash:hot5").setStyle(ButtonStyle.Primary).setLabel("Hot5"),
     new ButtonBuilder().setCustomId("dash:hot10").setStyle(ButtonStyle.Primary).setLabel("Hot10"),
+    new ButtonBuilder().setCustomId("dash:hot20").setStyle(ButtonStyle.Primary).setLabel("Hot20"), // NEW
     new ButtonBuilder().setCustomId(`dash:mine:${currentUserId}`).setStyle(ButtonStyle.Secondary).setLabel("Mine"),
     new ButtonBuilder().setCustomId("dash:all").setStyle(ButtonStyle.Secondary).setLabel("All"),
   );
@@ -328,7 +329,6 @@ export async function showTickersDashboard({ message, dbPath }) {
   const components = buildDashboardComponents(userOptions, message.author.id, "month_oc");
   const sent = await message.channel.send({ embeds: [embed], components });
 
-  // remember metric for this message
   metricState.set(sent.id, "month_oc");
 }
 
@@ -356,7 +356,7 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
 
   const sendPaged = async (title, lines) => {
     if (!interaction.deferred && !interaction.replied) {
-      await interaction.deferReply({ flags: 64 }); // ephemeral
+      await interaction.deferReply({ flags: 64 });
     }
     if (!lines.length) {
       await interaction.editReply("—");
@@ -382,23 +382,22 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
     return true;
   }
 
-  // Current metric for this message
   const metric = getSelectedMetricForMessage(interaction.message);
   const computeOpts = metricToComputeOpts(metric);
 
-  // Hot5 / Hot10
-  if (cid === "dash:hot5" || cid === "dash:hot10") {
-    const topN = cid === "dash:hot5" ? 5 : 10;
+  // Hot5 / Hot10 / Hot20  <<< UPDATED
+  if (cid === "dash:hot5" || cid === "dash:hot10" || cid === "dash:hot20") {
+    const topN = cid === "dash:hot5" ? 5 : cid === "dash:hot10" ? 10 : 20;
     await interaction.deferReply({ flags: 64 });
     try {
-      const ranked = await computeGainers(infos, { limitTickers: 200, concurrency: 4, ...computeOpts });
+      const ranked = await computeGainers(infos, { limitTickers: 300, concurrency: 4, ...computeOpts });
       const picked = ranked.slice(0, topN);
       const lines = picked.map((r, i) => {
         const who = r.firstUserName || "user";
         const pct = r.pct.toFixed(1);
         return `${i + 1}. \`${r.symbol}\`: **${pct}%**, [${who}](${r.firstLink || "#"})`;
       });
-      await sendPaged(topN === 5 ? "🔥 Hot 5" : "🔥 Hot 10", lines);
+      await sendPaged(topN === 5 ? "🔥 Hot 5" : topN === 10 ? "🔥 Hot 10" : "🔥 Hot 20", lines);
     } catch (e) {
       console.error("dash:hot error:", e);
       await interaction.editReply("לא הצלחתי לחשב תשואות כרגע.");
@@ -444,7 +443,7 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
     return true;
   }
 
-  // Users dropdown (FIXED: defer and reuse sendPaged)
+  // Users dropdown
   if (cid === "dash:user" && interaction.isStringSelectMenu()) {
     try {
       const targetId = interaction.values?.[0];
