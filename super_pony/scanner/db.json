@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:42:24.997Z",
+  "updated": "2025-08-09T14:42:26.053Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -507,12 +507,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1400084627678298265",
       "timestamp": "2025-07-30T11:56:27.553Z",
       "content": "BULL \"האהובה\" עליי מאוד נעצרת באורך פלא על קו שיאים יורדים"
+    },
+    {
+      "ticker": "COM",
+      "user": {
+        "id": "1017366188361273345",
+        "name": "shay.(s.h)"
+      },
+      "messageId": "1400088609163579424",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1400088609163579424",
+      "timestamp": "2025-07-30T12:12:16.813Z",
+      "content": "https://tenor.com/view/fomo-theoffice-andy-gif-4476373"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1400082464512147497",
-      "lastProcessedAt": "2025-07-30T11:47:51.814Z"
+      "lastProcessedId": "1400088558353780757",
+      "lastProcessedAt": "2025-07-30T12:12:04.699Z"
     }
   }
 }
