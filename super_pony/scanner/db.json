@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:43:05.621Z",
+  "updated": "2025-08-09T14:43:06.542Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -1625,12 +1625,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1402325095334019167",
       "timestamp": "2025-08-05T16:19:16.668Z",
       "content": "YOU"
+    },
+    {
+      "ticker": "UNH",
+      "user": {
+        "id": "1147127141524328579",
+        "name": "David Bakal"
+      },
+      "messageId": "1402364694773239980",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1402364694773239980",
+      "timestamp": "2025-08-05T18:56:37.910Z",
+      "content": "Unh קדימה לחזור למקום"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1402320010722017300",
-      "lastProcessedAt": "2025-08-05T15:59:04.402Z"
+      "lastProcessedId": "1402362355211571343",
+      "lastProcessedAt": "2025-08-05T18:47:20.115Z"
     }
   }
 }
