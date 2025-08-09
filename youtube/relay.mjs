@@ -57,6 +57,3 @@ client.once('ready', async () => {
     if (client) await client.destroy();
   }
 });
-
-process.on("SIGINT",  () => client.destroy().then(() => process.exit(0)));
-process.on("SIGTERM", () => client.destroy().then(() => process.exit(0)));

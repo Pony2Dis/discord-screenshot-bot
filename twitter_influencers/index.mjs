@@ -22,7 +22,7 @@ async function saveSent(file, sent) {
   await fs.writeFile(file, JSON.stringify(sent, null, 2), "utf-8");
 }
 
-async function run() {
+async function main() {
   try {
     await client.login(DISCORD_TOKEN);
     const channel = await client.channels.fetch(DISCORD_CHANNEL_ID);
@@ -80,15 +80,14 @@ async function run() {
     }
   } catch (error) {
     console.error("Error in main execution:", error);
-  } finally {
-    console.log("Finished processing all users.");
-    if (client) await client.destroy();
-    console.log("Discord client disconnected.");
   }
-  process.exit(0);
+  finally {
+    console.log("Finished processing all users.");
+    if(client) await client.destroy();
+  }
 }
 
-run().catch(console.error);
-
-process.on("SIGINT",  () => client.destroy().then(() => process.exit(0)));
-process.on("SIGTERM", () => client.destroy().then(() => process.exit(0)));
+main().catch((err) => {
+  console.error(err);
+  client?.destroy().then(() => process.exit(1));
+});

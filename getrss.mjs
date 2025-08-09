@@ -13,7 +13,7 @@ const EMBED_HOSTS = (process.env.EMBED_HOSTS || "")
 const STATE_FILE = path.resolve("./rss-state.json");
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 const SLEEP_BETWEEN_SENDS = 3000;
-  const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 async function loadState() {
   try {
@@ -114,18 +114,15 @@ async function main() {
   } catch (error) {
     console.error("❌ Error in main execution:", error);
     return;
-  } finally {
+  }
+  finally {
     await saveState(state);
-    console.log(`\n✅ All done! destroying client…`);
-    client.destroy();
-    console.log(`✅ Client destroyed, exiting…`);
+    console.log("Finished processing all users.");
+    if(client) await client.destroy();
   }
 }
 
 main().catch((err) => {
   console.error(err);
-  process.exit(1);
+  client?.destroy().then(() => process.exit(1));
 });
-
-process.on("SIGINT",  () => client.destroy().then(() => process.exit(0)));
-process.on("SIGTERM", () => client.destroy().then(() => process.exit(0)));

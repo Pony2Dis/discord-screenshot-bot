@@ -9,13 +9,13 @@ console.log('channel id :', process.env.CHANNEL_ID);
 const URL      = 'https://edition.cnn.com/markets/fear-and-greed';
 const VIEWPORT = { width: 1200, height: 2800 };
 const CLIP     = { x: 0, y: 650, width: 850, height: 500 };
-const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 async function main() {
   console.log('🚀 Starting screenshot job');
   try {
     // 1. Discord login
-    await bot.login(process.env.DISCORD_TOKEN);
+    await client.login(process.env.DISCORD_TOKEN);
     console.log('✅ Logged in');
 
     // 2. Launch browser in “US mode”
@@ -59,13 +59,14 @@ async function main() {
     console.log('📸 Screenshot sent');
   } catch (err) {
     console.error(err);
-  } finally {
-    if (bot) await bot.destroy();
-    console.log('🛑 Process finished');
+  }
+  finally {
+    console.log("Finished processing all users.");
+    if(client) await client.destroy();
   }
 }
 
-main();
-
-process.on("SIGINT",  () => bot.destroy().then(() => process.exit(0)));
-process.on("SIGTERM", () => bot.destroy().then(() => process.exit(0)));
+main().catch((err) => {
+  console.error(err);
+  client?.destroy().then(() => process.exit(1));
+});

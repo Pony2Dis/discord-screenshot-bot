@@ -154,12 +154,8 @@ async function main() {
 
 main().catch((err) => {
   console.error(err);
-  process.exit(1);
+  discordClient?.destroy().then(() => process.exit(1));
 });
-
-
-process.on("SIGINT",  () => discordClient.destroy().then(() => process.exit(0)));
-process.on("SIGTERM", () => discordClient.destroy().then(() => process.exit(0)));
 
 
 /**
