@@ -1,4 +1,3 @@
-// super_pony/cmd_handlers/tickersDashboard.mjs
 import fs from "fs/promises";
 import axios from "axios";
 import {
@@ -9,7 +8,7 @@ import {
   ButtonStyle,
 } from "discord.js";
 
-/* ---------- memory for per-message metric selection ---------- */
+/* ---------- per-message metric selection ---------- */
 const metricState = new Map(); // messageId -> "month_oc" | "month_cc" | "mention_oc" | "mention_cc"
 
 /* ======================== DB + time helpers ======================== */
@@ -173,7 +172,7 @@ async function fetchBasisAndLatest(symbol, mentionTs, opts) {
   if (!(startOpen > 0) && !(startClose > 0)) throw new Error("bad start prices");
   if (!(lastPrice > 0) && !(lastClose > 0)) throw new Error("bad latest price");
 
-  const basis = mode === "cc" ? (startClose ?? startOpen) : (startOpen ?? startClose);
+  const basis  = mode === "cc" ? (startClose ?? startOpen) : (startOpen ?? startClose);
   const latest = mode === "cc" ? (lastClose ?? lastPrice) : (lastPrice ?? lastClose);
 
   return { basis, latest };
@@ -254,14 +253,9 @@ function buildDashboardComponents(userOptions, currentUserId, currentMetric = "m
   return [row1, row2, row3];
 }
 
-/* metric resolution:
-   1) prefer in-memory selection for this message
-   2) else fallback to default "month_oc"
-*/
 function getSelectedMetricForMessage(message) {
   return metricState.get(message.id) || "month_oc";
 }
-
 function metricToComputeOpts(metric) {
   switch (metric) {
     case "month_cc":   return { anchor: "month",   mode: "cc" };
@@ -293,7 +287,7 @@ export async function showTickersDashboard({ message, dbPath }) {
     .slice(0, 3)
     .map((x) => x.name);
 
-  // quick (best-effort) top gainers sample on up to 25 syms (month_oc)
+  // quick preview of top gainers (month_oc)
   const quickInfos = mtdItems.map(([sym, v]) => ({
     symbol: sym,
     firstTs: v.firstTs,
@@ -334,7 +328,7 @@ export async function showTickersDashboard({ message, dbPath }) {
   const components = buildDashboardComponents(userOptions, message.author.id, "month_oc");
   const sent = await message.channel.send({ embeds: [embed], components });
 
-  // initialize metric for this message (so buttons know what to use)
+  // remember metric for this message
   metricState.set(sent.id, "month_oc");
 }
 
@@ -360,7 +354,6 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
     countMTD: v.countMTD,
   }));
 
-  // helper: page + send using defer->edit->followUp (ephemeral via flags)
   const sendPaged = async (title, lines) => {
     if (!interaction.deferred && !interaction.replied) {
       await interaction.deferReply({ flags: 64 }); // ephemeral
@@ -375,22 +368,21 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
       cur += ln + "\n";
     }
     if (cur) chunks.push(cur);
-
     await interaction.editReply(`**${title}**\n${chunks[0]}`);
     for (let i = 1; i < chunks.length; i++) {
       await interaction.followUp({ content: chunks[i], flags: 64 });
     }
   };
 
-  // Metric dropdown: store selection and ack quickly; no component mutation
+  // Metric selection
   if (cid === "dash:metric" && interaction.isStringSelectMenu()) {
     const selected = interaction.values?.[0] || "month_oc";
     metricState.set(interaction.message.id, selected);
-    await interaction.deferUpdate(); // acknowledge without changing message
+    await interaction.deferUpdate();
     return true;
   }
 
-  // derive currently selected metric for THIS message
+  // Current metric for this message
   const metric = getSelectedMetricForMessage(interaction.message);
   const computeOpts = metricToComputeOpts(metric);
 
@@ -407,7 +399,8 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
         return `${i + 1}. \`${r.symbol}\`: **${pct}%**, [${who}](${r.firstLink || "#"})`;
       });
       await sendPaged(topN === 5 ? "🔥 Hot 5" : "🔥 Hot 10", lines);
-    } catch {
+    } catch (e) {
+      console.error("dash:hot error:", e);
       await interaction.editReply("לא הצלחתי לחשב תשואות כרגע.");
     }
     return true;
@@ -430,7 +423,8 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
         return `${i + 1}. \`${r.symbol}\`: **${pct}%**, [${who}](${r.firstLink || "#"})`;
       });
       await sendPaged("🎯 Mine (first mentions this month)", lines);
-    } catch {
+    } catch (e) {
+      console.error("dash:mine error:", e);
       await interaction.editReply("תקלה בחישוב תשואות.");
     }
     return true;
@@ -447,6 +441,38 @@ export async function handleDashboardInteraction({ interaction, dbPath }) {
       return `• [\`${v.symbol}\`](${firstUrl}) — **${v.countMTD}**${who} — [${lastStr}](${lastUrl})`;
     });
     await sendPaged("📋 All (this month)", lines);
+    return true;
+  }
+
+  // Users dropdown (FIXED: defer and reuse sendPaged)
+  if (cid === "dash:user" && interaction.isStringSelectMenu()) {
+    try {
+      const targetId = interaction.values?.[0];
+      if (!targetId) {
+        await interaction.deferReply({ flags: 64 });
+        await interaction.editReply("לא נבחר משתמש.");
+        return true;
+      }
+      const userFirst = infos.filter((v) => v.firstUserId === targetId);
+      if (!userFirst.length) {
+        await interaction.deferReply({ flags: 64 });
+        await interaction.editReply("אין טיקרים למשתמש זה החודש.");
+        return true;
+      }
+      const ranked = await computeGainers(userFirst, { limitTickers: 200, concurrency: 4, ...computeOpts });
+      const lines = ranked.map((r, i) => {
+        const pct = r.pct.toFixed(1);
+        const who = r.firstUserName || "user";
+        return `${i + 1}. \`${r.symbol}\`: **${pct}%**, [${who}](${r.firstLink || "#"})`;
+      });
+      await sendPaged("👤 User's first mentions (MTD)", lines);
+    } catch (e) {
+      console.error("dash:user error:", e);
+      if (!interaction.deferred && !interaction.replied) {
+        await interaction.deferReply({ flags: 64 }).catch(() => {});
+      }
+      await interaction.editReply("תקלה בעיבוד הבחירה.");
+    }
     return true;
   }
 
