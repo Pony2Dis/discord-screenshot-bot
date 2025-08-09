@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-09T14:42:27.523Z",
+  "updated": "2025-08-09T14:42:28.012Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -559,12 +559,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1400089413580488744",
       "timestamp": "2025-07-30T12:15:28.601Z",
       "content": "מה עם crwv <@1033751148378726422> ?\nתיתן לנו גם 75% ביום?"
+    },
+    {
+      "ticker": "COM",
+      "user": {
+        "id": "1036214332993847347",
+        "name": "Omer k"
+      },
+      "messageId": "1400090417516511374",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1400090417516511374",
+      "timestamp": "2025-07-30T12:19:27.958Z",
+      "content": "https://tenor.com/view/angry-en-col%C3%A8re-fight-gif-6375762417891802905"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1400089405703721041",
-      "lastProcessedAt": "2025-07-30T12:15:26.723Z"
+      "lastProcessedId": "1400090354170204330",
+      "lastProcessedAt": "2025-07-30T12:19:12.855Z"
     }
   }
 }
