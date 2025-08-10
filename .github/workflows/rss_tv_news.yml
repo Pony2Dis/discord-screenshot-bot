@@ -38,7 +38,7 @@ jobs:
       - name: Get the RSS TV News
         env:
           DISCORD_TOKEN:   ${{ secrets.DISCORD_TOKEN }}
-          NEWS_CHANNEL_ID: ${{ secrets.TV_NEWS_CHANNEL_ID }}
+          NEWS_CHANNEL_ID: ${{ vars.TV_NEWS_CHANNEL_ID }}
           RSS_FEEDS:       ${{ vars.TV_RSS_FEEDS }}
           EMBED_HOSTS:     ${{ vars.EMBED_HOSTS }}
           JSON_FILE:    rss-tv-state.json
