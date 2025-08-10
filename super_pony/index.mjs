@@ -202,6 +202,17 @@ client.on("messageCreate", async (message) => {
       return;
     }
 
+    // List all tickers as an image
+    if (content.includes("תמונת דיווחים") || content.includes("תמונה")) {
+      console.log(`🖼️ User ${message.author.tag} requested anticipated earnings image`);
+      await handleAnticipatedImage({
+        client,
+        interaction: { followUp: (t) => message.channel.send(t) },
+        ANTICIPATED_CHANNEL_ID,
+      });
+      return;
+    }
+
     // All earnings
     if (content.includes("דיווחים") || content.includes("מדווחות")) {
       console.log(`📈 User ${message.author.tag} requested all earnings`);
@@ -211,17 +222,6 @@ client.on("messageCreate", async (message) => {
         filter: "all",
         limit: 0,
         FINNHUB_TOKEN,
-      });
-      return;
-    }
-
-    // List all tickers as an image
-    if (content.includes("תמונת דיווחים") || content.includes("תמונה")) {
-      console.log(`🖼️ User ${message.author.tag} requested anticipated earnings image`);
-      await handleAnticipatedImage({
-        client,
-        interaction: { followUp: (t) => message.channel.send(t) },
-        ANTICIPATED_CHANNEL_ID,
       });
       return;
     }
