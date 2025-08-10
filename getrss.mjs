@@ -85,6 +85,7 @@ async function main() {
       if (EMBED_HOSTS.some(domain => hostname.includes(domain))) {
         const embed = new EmbedBuilder()
           .setURL(item.link)
+          .setAuthor(hostname)
           .setTimestamp(new Date(item.pubDate || Date.now()));
 
         if (item.title) {
