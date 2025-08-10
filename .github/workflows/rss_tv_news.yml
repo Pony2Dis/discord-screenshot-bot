@@ -1,8 +1,8 @@
-name: 📻 Get the RSS News
+name: 📻 Get the RSS TV News
 
 on:
   repository_dispatch:
-    types: [run-rss]
+    types: [rss-tv-news]
   workflow_dispatch:
     
 permissions:
@@ -35,13 +35,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run rss bot
+      - name: Get the RSS TV News
         env:
           DISCORD_TOKEN:   ${{ secrets.DISCORD_TOKEN }}
-          NEWS_CHANNEL_ID: ${{ secrets.NEWS_CHANNEL_ID }}
-          RSS_FEEDS:       ${{ vars.RSS_FEEDS }}
+          NEWS_CHANNEL_ID: ${{ secrets.TV_NEWS_CHANNEL_ID }}
+          RSS_FEEDS:       ${{ vars.TV_RSS_FEEDS }}
           EMBED_HOSTS:     ${{ vars.EMBED_HOSTS }}
-          JSON_FILE:    rss-state.json
+          JSON_FILE:    rss-tv-state.json
         run: node getrss.mjs
 
       # 3) Commit & push only if there are changes
@@ -55,7 +55,7 @@ jobs:
           git pull --rebase origin main
           git stash pop || true
       
-          git add rss-state.json
+          git add rss-tv-state.json
           # if there's something to commit, do it
-          git diff --cached --quiet || git commit -m "ci: update rss-state.json"
+          git diff --cached --quiet || git commit -m "ci: update rss-tv-state.json"
           git push

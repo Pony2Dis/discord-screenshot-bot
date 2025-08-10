@@ -6,11 +6,12 @@ import { Client, GatewayIntentBits, EmbedBuilder } from "discord.js";
 
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 const NEWS_CHANNEL_ID = process.env.NEWS_CHANNEL_ID;
+const JSON_FILE = process.env.JSON_FILE;
 const EMBED_HOSTS = (process.env.EMBED_HOSTS || "")
   .split(/\r?\n/)
   .map(h => h.trim())
   .filter(Boolean);
-const STATE_FILE = path.resolve("./rss-state.json");
+const STATE_FILE = path.resolve(`./${JSON_FILE}`);
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 const SLEEP_BETWEEN_SENDS = 3000;
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
