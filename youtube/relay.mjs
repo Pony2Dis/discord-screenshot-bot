@@ -21,10 +21,11 @@ const client = new Client({
   ]
 });
 
+client.login(DISCORD_TOKEN);
+console.log('Logging in to Discord...');
+
 client.once('ready', async () => {
   try {
-    client.login(DISCORD_TOKEN);
-    
     const sourceChan = await client.channels.fetch(YT_SOURCE_CHANNEL_ID);
     const targetChan = await client.channels.fetch(YT_TARGET_CHANNEL_ID);
     if (!sourceChan || !targetChan) return client.destroy();
