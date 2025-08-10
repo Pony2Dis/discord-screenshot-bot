@@ -86,7 +86,12 @@ async function main() {
       if (EMBED_HOSTS.some(domain => hostname.includes(domain))) {
         const embed = new EmbedBuilder()
           .setURL(item.link)
-          .setAuthor(hostname)
+          // set author as the hostname
+          .setAuthor({
+            name: hostname,
+            url: item.link,
+            iconURL: `https://${hostname}/favicon.ico`,
+          })
           .setTimestamp(new Date(item.pubDate || Date.now()));
 
         if (item.title) {
