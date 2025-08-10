@@ -1,18 +1,46 @@
-import fs from 'fs';
-import { Client, GatewayIntentBits } from 'discord.js';
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { Client, GatewayIntentBits } from "discord.js";
 
-const {
-  DISCORD_TOKEN,
-  YT_SOURCE_CHANNEL_ID,
-  YT_TARGET_CHANNEL_ID
-} = process.env;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const STATE_FILE = './youtube/lastMessageId.json';
-let lastId = null;
-if (fs.existsSync(STATE_FILE)) {
-  lastId = JSON.parse(fs.readFileSync(STATE_FILE, 'utf-8')).lastId;
+const { DISCORD_TOKEN, RELAY_ROUTS } = process.env;
+
+const STATE_FILE = path.join(__dirname, "lastMessageIds.json");
+
+// --- utils ---
+function loadJson(file, fallback) {
+  try {
+    if (fs.existsSync(file)) {
+      return JSON.parse(fs.readFileSync(file, "utf-8"));
+    }
+  } catch {}
+  return fallback;
+}
+function saveJson(file, obj) {
+  fs.writeFileSync(file, JSON.stringify(obj, null, 2));
+}
+const sleep = (ms) => new Promise(res => setTimeout(res, ms));
+
+// --- load config/state ---
+let routes;
+try {
+  routes = JSON.parse(RELAY_ROUTS || "[]");
+} catch (err) {
+  console.error("❌ Failed to parse RELAY_ROUTS JSON:", err.message);
+  process.exit(1);
 }
 
+if (!Array.isArray(routes) || routes.length === 0) {
+  console.error("❌ No valid routes in RELAY_ROUTS variable");
+  process.exit(1);
+}
+
+const lastMap = loadJson(STATE_FILE, {}); // { [sourceId]: lastId }
+
+// --- discord client ---
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -21,49 +49,68 @@ const client = new Client({
   ]
 });
 
-client.login(DISCORD_TOKEN);
-console.log('Logging in to Discord...');
+client.on("error", (e) => console.error("Discord client error:", e));
+client.on("shardError", (e) => console.error("Shard error:", e));
 
-client.once('ready', async () => {
+(async () => {
+  console.log("Logging in to Discord...");
+  await client.login(DISCORD_TOKEN);
+
   try {
-    const sourceChan = await client.channels.fetch(YT_SOURCE_CHANNEL_ID);
-    const targetChan = await client.channels.fetch(YT_TARGET_CHANNEL_ID);
-    if (!sourceChan || !targetChan) return client.destroy();
+    for (const { source, target } of routes) {
+      if (!source || !target) continue;
 
-    const options = lastId ? { after: lastId, limit: 100 } : { limit: 100 };
-    console.log(`Fetching messages from channel ${sourceChan.id} with options:`, options);
+      console.log(`\n=== Route: ${source} -> ${target} ===`);
+      const sourceChan = await client.channels.fetch(source).catch(() => null);
+      const targetChan = await client.channels.fetch(target).catch(() => null);
 
-    const messages = await sourceChan.messages.fetch(options);
-    const sorted = Array.from(messages.values()).sort((a, b) => a.createdTimestamp - b.createdTimestamp);
-    console.log(`Fetched ${sorted.length} messages from channel ${sourceChan.id}`);
+      if (!sourceChan) {
+        console.warn(`⚠️ Source channel not found: ${source}`);
+        continue;
+      }
+      if (!targetChan) {
+        console.warn(`⚠️ Target channel not found: ${target}`);
+        continue;
+      }
 
-    for (const msg of sorted) {
-      console.log(`Processing message ID: ${msg.id} | Content: ${msg.content.slice(0, 500)}`);
-      if (!msg.content?.trim() && !msg.embeds.length && !msg.attachments.size) continue;
+      const lastId = lastMap[source] || null;
+      const options = lastId ? { after: lastId, limit: 100 } : { limit: 100 };
+      console.log(`Fetching messages with options:`, options);
 
-      console.log(`constructing payload for message ID: ${msg.id}`);
-      const payload = {
-        ...(msg.content && { content: msg.content }),
-        ...(msg.embeds.length && { embeds: msg.embeds.map(e => e.toJSON()) }),
-        ...(msg.attachments.size && {
-          files: msg.attachments.map(a => ({ attachment: a.url, name: a.name }))
-        })
-      };
+      const fetched = await sourceChan.messages.fetch(options);
+      const sorted = Array.from(fetched.values())
+        .sort((a, b) => a.createdTimestamp - b.createdTimestamp);
 
-      console.log(`Relaying message ID: ${msg.id} to channel ${targetChan.id}`);
-      await targetChan.send(payload);
+      console.log(`Fetched ${sorted.length} new messages`);
 
-      lastId = msg.id;
+      for (const msg of sorted) {
+        if (!msg?.id) continue;
+        if (!msg.content?.trim() && !msg.embeds?.length && !msg.attachments?.size) {
+          lastMap[source] = msg.id;
+          continue;
+        }
+
+        const payload = {
+          ...(msg.content && { content: msg.content }),
+          ...(msg.embeds?.length && { embeds: msg.embeds.map(e => e.toJSON()) }),
+          ...(msg.attachments?.size && {
+            files: msg.attachments.map(a => ({ attachment: a.url, name: a.name }))
+          })
+        };
+
+        console.log(`Relaying message ${msg.id} -> ${target}`);
+        await targetChan.send(payload);
+        lastMap[source] = msg.id;
+        await sleep(200);
+      }
     }
 
-    console.log(`Saving last processed message ID: ${lastId}`);
-    fs.writeFileSync(STATE_FILE, JSON.stringify({ lastId }, null, 2));
-
-    console.log('Disconnecting client...');
-    client.destroy();
-  } catch (error) {
-    console.error('Failed to login:', error);
+    console.log("\nSaving state...");
+    saveJson(STATE_FILE, lastMap);
+  } catch (err) {
+    console.error("Relay error:", err);
   } finally {
-    if (client) await client.destroy();
+    console.log("Disconnecting client...");
+    await client.destroy().catch(() => {});
   }
-});
+})();

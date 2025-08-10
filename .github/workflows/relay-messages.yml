@@ -3,23 +3,22 @@ name: 🔁 Relay Discord Messages
 
 on:
   repository_dispatch:
-    types: [relay-youtube-videos] # Triggered by a repository dispatch event
+    types: [relay-youtube-videos]
   workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false # if action is already running, do not cancel it, wait for it to finish
+  cancel-in-progress: false
 
 jobs:
   relay:
     runs-on: ubuntu-latest
     steps:
-      # 1) Checkout with full history and persist the token
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0           # full history so git push will work
-          ref: main                # explicitly checkout `main`
+          fetch-depth: 0
+          ref: main
           persist-credentials: true
 
       - name: Use Node.js 20
@@ -32,22 +31,20 @@ jobs:
 
       - name: Relay messages
         env:
-          DISCORD_TOKEN:    ${{ secrets.DISCORD_TOKEN }}
-          YT_SOURCE_CHANNEL_ID: ${{ vars.YT_SOURCE_CHANNEL_ID }}
-          YT_TARGET_CHANNEL_ID: ${{ vars.YT_TARGET_CHANNEL_ID }}
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          RELAY_ROUTS:   ${{ vars.RELAY_ROUTS }}
+          
         run: node youtube/relay.mjs
-      
-      # 5) Commit & push only if there are changes
+
       - name: Commit updated state
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-      
-          # stash local changes before pulling
+
           git stash --include-untracked || true
           git pull --rebase origin main
           git stash pop || true
-      
-          git add youtube/lastMessageId.json
-          git diff --cached --quiet || git commit -m "ci: update earnings-finnhub-state.json"
+
+          git add youtube/lastMessageIds.json
+          git diff --cached --quiet || git commit -m "ci: update youtube/lastMessageIds.json"
           git push
