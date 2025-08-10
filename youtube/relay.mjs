@@ -30,13 +30,17 @@ client.once('ready', async () => {
     if (!sourceChan || !targetChan) return client.destroy();
 
     const options = lastId ? { after: lastId, limit: 100 } : { limit: 100 };
+    console.log(`Fetching messages from channel ${sourceChan.id} with options:`, options);
+
     const messages = await sourceChan.messages.fetch(options);
-    const sorted = Array.from(messages.values())
-                        .sort((a, b) => a.createdTimestamp - b.createdTimestamp);
+    const sorted = Array.from(messages.values()).sort((a, b) => a.createdTimestamp - b.createdTimestamp);
+    console.log(`Fetched ${sorted.length} messages from channel ${sourceChan.id}`);
 
     for (const msg of sorted) {
+      console.log(`Processing message ID: ${msg.id} | Content: ${msg.content.slice(0, 500)}`);
       if (!msg.content?.trim() && !msg.embeds.length && !msg.attachments.size) continue;
 
+      console.log(`constructing payload for message ID: ${msg.id}`);
       const payload = {
         ...(msg.content && { content: msg.content }),
         ...(msg.embeds.length && { embeds: msg.embeds.map(e => e.toJSON()) }),
@@ -45,11 +49,16 @@ client.once('ready', async () => {
         })
       };
 
+      console.log(`Relaying message ID: ${msg.id} to channel ${targetChan.id}`);
       await targetChan.send(payload);
+
       lastId = msg.id;
     }
 
+    console.log(`Saving last processed message ID: ${lastId}`);
     fs.writeFileSync(STATE_FILE, JSON.stringify({ lastId }, null, 2));
+
+    console.log('Disconnecting client...');
     client.destroy();
   } catch (error) {
     console.error('Failed to login:', error);
