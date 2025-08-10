@@ -189,6 +189,13 @@ client.on("messageCreate", async (message) => {
       return;
     }
 
+    // List all tickers
+    if (content.includes("כל הטיקרים") || content.includes("כל טיקרים")) {
+      console.log(`📜 User ${message.author.tag} requested the full ticker list`);
+      await listAllTickers({ message, dbPath: DB_PATH});
+      return;
+    }
+
     // Earnings
     if (content.includes("דיווחים 500")) {
       console.log(`📈 User ${message.author.tag} requested S&P 500 earnings`);
