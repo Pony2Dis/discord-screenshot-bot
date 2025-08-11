@@ -40,5 +40,7 @@ jobs:
           GRAPHS_CHANNEL_ID:      ${{ vars.GRAPHS_CHANNEL_ID }}
           ANTICIPATED_CHANNEL_ID: ${{ vars.X_EARNINGS_CAL_CHANNEL_ID }}
           TICKER_BLACKLIST:       ${{ vars.TICKER_BLACKLIST }}
+          DISCORD_SHUTDOWN_WEBHOOK: ${{ vars.DISCORD_SHUTDOWN_WEBHOOK }}
+          SHUTDOWN_SECRET: ${{ secrets.SHUTDOWN_SECRET }}
                   
         run: node super_pony/index.mjs

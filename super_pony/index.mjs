@@ -33,10 +33,23 @@ const {
   GRAPHS_CHANNEL_ID,
   DISCORD_GUILD_ID,
   DISCORD_APPLICATION_ID,
+  SHUTDOWN_SECRET,
 } = process.env;
 
 // shared state
 let LIVE_LISTENING_ENABLED = false;
+
+// graceful shutdown (NEW)
+async function shutdown(reason = "discord-webhook") {
+  try {
+    console.log(`🛑 Shutting down (${reason})...`);
+    if (client) await client.destroy();
+  } catch (e) {
+    console.error("Error during shutdown:", e);
+  } finally {
+    process.exit(0);
+  }
+}
 
 // slash command def
 const commands = [
@@ -102,17 +115,14 @@ client.once("ready", async () => {
 // Interaction router (components first!)
 client.on("interactionCreate", async (interaction) => {
   try {
-    // Buttons/menus from the dashboard
     if (interaction.isButton() || interaction.isStringSelectMenu()) {
       const handled = await handleDashboardInteraction({ interaction, dbPath: DB_PATH });
       if (handled) return;
     }
-
-    // Slash commands
     if (!interaction.isChatInputCommand()) return;
     if (interaction.commandName !== "todays_earnings") return;
 
-    await interaction.deferReply(); // standard (non-ephemeral) is fine here
+    await interaction.deferReply();
     const filter = interaction.options.getString("type") || "all";
     const limit  = interaction.options.getInteger("limit") || 0;
 
@@ -134,6 +144,18 @@ client.on("interactionCreate", async (interaction) => {
 // Message router
 client.on("messageCreate", async (message) => {
   try {
+    // --- NEW: special path for Discord webhook messages ---
+    if (message.webhookId) {
+      if (message.channel.id === BOT_CHANNEL_ID) {
+        const text = (message.content || "").trim();
+        if (text === `shutdown ${SHUTDOWN_SECRET}`) {
+          await message.channel.send("🛑 Shutting down by webhook…");
+          return shutdown();
+        }
+      }
+      return; // ignore other webhook messages
+    }
+
     if (message.author.bot) return;
 
     const inBotRoom    = message.channel.id === BOT_CHANNEL_ID;
@@ -157,48 +179,30 @@ client.on("messageCreate", async (message) => {
     }
 
     if (!inBotRoom) return;
-    console.log(`🔔 New message in bot room: ${message.content}`);
-
     const content = message.content?.toLowerCase() || "";
     const mentionsBot = (client.user?.id && message.mentions.users.has(client.user.id)) || message.content?.includes("@SuperPony");
-    console.log(`🔍 Mentions bot: ${mentionsBot}`);
     if (!mentionsBot) return;
 
     const otherMentions = message.mentions.users.filter(u => u.id !== client.user.id);
-    console.log(`🔍 Other mentions: ${otherMentions.size}`);
 
-    // Dashboard (primary entrypoint)
     if (content.includes("טיקרים")) {
-      console.log(`📊 User ${message.author.tag} requested the dashboard`);
       await showTickersDashboard({ message, dbPath: DB_PATH });
       return;
     }
-
-    // Mine
     if (content.includes("טיקרים שלי") || content.includes("שלי")) {
-      console.log(`📈 User ${message.author.tag} requested their tickers`);
       await listMyTickers({ message, dbPath: DB_PATH });
       return;
     }
-
-    // Other user tickers
     if (otherMentions.size > 0 && (content.includes("טיקרים") || content.includes("הטיקרים") || content.includes("של"))) {
-      console.log(`🔍 User ${message.author.tag} requested tickers for: ${otherMentions.map(u => u.tag).join(", ")}`);
       const targetUser = otherMentions.first();
       await listFirstByUser({ message, dbPath: DB_PATH, targetUser });
       return;
     }
-
-    // List all tickers
     if (content.includes("כל הטיקרים") || content.includes("כל טיקרים")) {
-      console.log(`📜 User ${message.author.tag} requested the full ticker list`);
       await listAllTickers({ message, dbPath: DB_PATH});
       return;
     }
-
-    // Earnings
     if (content.includes("דיווחים 500")) {
-      console.log(`📈 User ${message.author.tag} requested S&P 500 earnings`);
       await handleTodaysEarnings({
         client,
         interaction: { channel: message.channel, followUp: (t) => message.channel.send(t) },
@@ -208,10 +212,7 @@ client.on("messageCreate", async (message) => {
       });
       return;
     }
-
-    // List all tickers as an image
     if (content.includes("תמונת דיווחים") || content.includes("תמונה")) {
-      console.log(`🖼️ User ${message.author.tag} requested anticipated earnings image`);
       await handleAnticipatedImage({
         client,
         interaction: { followUp: (t) => message.channel.send(t) },
@@ -219,10 +220,7 @@ client.on("messageCreate", async (message) => {
       });
       return;
     }
-
-    // All earnings
     if (content.includes("דיווחים") || content.includes("מדווחות")) {
-      console.log(`📈 User ${message.author.tag} requested all earnings`);
       await handleTodaysEarnings({
         client,
         interaction: { channel: message.channel, followUp: (t) => message.channel.send(t) },
@@ -232,8 +230,6 @@ client.on("messageCreate", async (message) => {
       });
       return;
     }
-
-    // did not match any command - return help
     await sendHelp({ channel: message.channel });
   } catch (err) {
     console.error("messageCreate handler error:", err);
