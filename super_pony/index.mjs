@@ -106,6 +106,7 @@ client.once("ready", async () => {
     });
     LIVE_LISTENING_ENABLED = true;
     console.log("✅ Backfill done; now listening for new messages.");
+    await message.channel.send("🟢 חזרתי לפעילות, אני זמין");
   } catch (e) {
     console.error("Backfill failed:", e);
     LIVE_LISTENING_ENABLED = true;
@@ -149,7 +150,7 @@ client.on("messageCreate", async (message) => {
       if (message.channel.id === BOT_CHANNEL_ID) {
         const text = (message.content || "").trim();
         if (text === `shutdown ${SHUTDOWN_SECRET}`) {
-          await message.channel.send("🛑 Shutting down by webhook…");
+          await message.channel.send("🔴 אני יורד לדקה של תחזוקה...");
           return shutdown();
         }
       }
