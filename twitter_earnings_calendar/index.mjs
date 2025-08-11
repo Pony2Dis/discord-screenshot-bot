@@ -78,20 +78,31 @@ async function main() {
       await saveSent(stateFile, sent);
     }
 
-    // ---- NEW: fetch latest green "Implied Move" board from somoscdi search
+    // ---- Latest green "Implied Move" board from somoscdi search
     const impliedStateFile = "./twitter_earnings_calendar/last_link_implied_move.json";
     const impliedSent = await loadSent(impliedStateFile);
     const searchUrl =
       "https://twitter.com/search?q=%28from%3Asomoscdi%29%20%22Implied%20Move%22%20%28Lunes%20OR%20Martes%20OR%20Mi%C3%A9rcoles%20OR%20Jueves%20OR%20Viernes%29%20filter%3Aimages&f=live";
 
     try {
-      const { imageUrl, postUrl } = await fetchLatestImpliedMoveCard(searchUrl);
+      // Prefer fetchLatestImpliedMoveCard to return: { imageUrl, postUrl, postedAt }
+      const { imageUrl, postUrl, postedAt } = await fetchLatestImpliedMoveCard(searchUrl);
       if (postUrl && !impliedSent.includes(postUrl)) {
-        // based on current date, calculate for what week this post is relevant (if published on  sunday or monday, it’s for the current week, else for the next week)
-        const postDate = new Date(postUrl.match(/status\/(\d+)/)[1] * 1000);
-        const monday = new Date(postDate);
-        monday.setDate(postDate.getDate() - postDate.getDay() + 1); // set to Monday of that week
-        let formatted = `${monthNames[monday.getMonth()]} ${monday.getDate()}, ${monday.getFullYear()}`;
+        // Determine week label:
+        // Rule: if published on Sun/Mon -> current week; else -> next week.
+        const baseDate = postedAt ? new Date(postedAt) : new Date(); // DO NOT parse from tweet ID
+        const d = new Date(baseDate);
+        d.setHours(0, 0, 0, 0);
+        const dow = d.getDay(); // 0=Sun..6=Sat
+        const monday = new Date(d);
+        if (dow === 0) {
+          monday.setDate(d.getDate() - 6);           // Sunday -> current Monday
+        } else if (dow === 1) {
+          /* Monday -> current Monday (no change) */
+        } else {
+          monday.setDate(d.getDate() + (8 - dow));   // Tue–Sat -> next Monday
+        }
+        const formatted = `${monthNames[monday.getMonth()]} ${monday.getDate()}, ${monday.getFullYear()}`;
 
         await channel.send(`"Implied Move" לשבוע: ${formatted}\n${imageUrl}\n`);
         impliedSent.push(postUrl);
