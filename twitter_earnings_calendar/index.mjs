@@ -1,10 +1,9 @@
-// twitter_earnings_calendar/index.mjs
-
 import "dotenv/config";
 import fs from "fs/promises";
 import { Client, GatewayIntentBits } from "discord.js";
 import {
   fetchFirstEarningsImage,
+  fetchLatestImpliedMoveCard,
   closeBrowser
 } from "../x.com/fetchImage.mjs";
 
@@ -35,7 +34,7 @@ async function main() {
     await client.login(DISCORD_TOKEN);
     const channel = await client.channels.fetch(DISCORD_CHANNEL_ID);
 
-    const users = X_USERNAMES
+    const users = (X_USERNAMES || "")
       .split(/\r?\n/)
       .map(u => u.trim())
       .filter(Boolean);
@@ -55,7 +54,6 @@ async function main() {
         const monday = new Date(thisMonday);
         monday.setDate(thisMonday.getDate() + offset * 7);
         let formatted = `${monthNames[monday.getMonth()]} ${monday.getDate()}, ${monday.getFullYear()}`;
-        // set the date to the first day of the week in the formar: DD.MM.YYYY in the var cal_date
         const cal_date = `${monday.getDate().toString().padStart(2, '0')}.${(monday.getMonth() + 1).toString().padStart(2, '0')}.${monday.getFullYear()}`;
         formatted = `#earnings for the week of ${formatted}`;
         const tag = offset < 0 ? "previous" : offset > 0 ? "next" : "current";
@@ -79,14 +77,38 @@ async function main() {
 
       await saveSent(stateFile, sent);
     }
+
+    // ---- NEW: fetch latest green "Implied Move" board from somoscdi search
+    const impliedStateFile = "./twitter_earnings_calendar/last_link_implied_move.json";
+    const impliedSent = await loadSent(impliedStateFile);
+    const searchUrl =
+      "https://twitter.com/search?q=%28from%3Asomoscdi%29%20%22Implied%20Move%22%20%28Lunes%20OR%20Martes%20OR%20Mi%C3%A9rcoles%20OR%20Jueves%20OR%20Viernes%29%20filter%3Aimages&f=live";
+
+    try {
+      const { imageUrl, postUrl } = await fetchLatestImpliedMoveCard(searchUrl);
+      if (postUrl && !impliedSent.includes(postUrl)) {
+        // based on current date, calculate for what week this post is relevant (if published on  sunday or monday, it’s for the current week, else for the next week)
+        const postDate = new Date(postUrl.match(/status\/(\d+)/)[1] * 1000);
+        const monday = new Date(postDate);
+        monday.setDate(postDate.getDate() - postDate.getDay() + 1); // set to Monday of that week
+        let formatted = `${monthNames[monday.getMonth()]} ${monday.getDate()}, ${monday.getFullYear()}`;
+
+        await channel.send(`"Implied Move" לשבוע: ${formatted}\n${imageUrl}\n`);
+        impliedSent.push(postUrl);
+        await saveSent(impliedStateFile, impliedSent);
+      } else {
+        console.log("No new implied-move post to send.");
+      }
+    } catch (e) {
+      console.warn("Skipping implied-move fetch:", e?.message || e);
+    }
+
   } catch (err) {
     console.error("Error in main execution:", err);
-  }
-  finally {
+  } finally {
     console.log("Finished processing all users.");
-    // close the shared browser so the Action can exit cleanly
     await closeBrowser();
-    if(client) await client.destroy();
+    if (client) await client.destroy();
   }
 }
 

@@ -1,4 +1,3 @@
-// fetchImage.mjs
 import { firefox } from "playwright";
 
 let browser, context, page;
@@ -30,76 +29,75 @@ async function initBrowser() {
 
 export async function fetchFirstEarningsImage(fromUser, formatted) {
   let result = null;
-
   try {
     await initBrowser();
 
     console.log("searching for:", formatted, "from:", fromUser);
     const searchTerm = `from:${fromUser} "${formatted}"`;
 
-    console.log("Waiting for the search box to appear...");
     await page.waitForSelector('input[data-testid="SearchBox_Search_Input"]', { timeout: 60000 });
     await page.click('input[data-testid="SearchBox_Search_Input"]');
     await page.fill('input[data-testid="SearchBox_Search_Input"]', searchTerm);
     await page.keyboard.press("Enter");
 
-    console.log("Waiting for search results to load...");
     await page.waitForSelector("article", { timeout: 60000 });
 
-    console.log("Fetching posts from search results...");
     const items = await page.$$eval("article", articles =>
       articles.map(a => {
         const link = a.querySelector('a[href*="/status/"]')?.href;
         const date = a.querySelector("time")?.getAttribute("datetime");
-        const text = a.querySelector("div[lang]")?.textContent?.trim();
+        const text = a.querySelector("div[lang]")?.textContent?.trim() || "";
         return link && date ? { url: link, date, text } : null;
       }).filter(Boolean)
     );
-
-    if (!items.length) {
-      console.error("❌ No posts found in search results");
-      throw new Error("No posts found");
-    }
+    if (!items.length) throw new Error("No posts found");
 
     const firstItem = items.find(item => item.text.includes(formatted));
-    if (!firstItem) {
-      console.error("❌ No matching post found for the search term");
-      console.log("post text:", items.map(i => i.text).join("\n"));
-      throw new Error("No matching post");
-    }
-    console.log("First matching post found:", firstItem.url);
+    if (!firstItem) throw new Error("No matching post");
 
-    console.log("Navigating to the first post URL:", firstItem.url);
     await page.goto(firstItem.url, { timeout: 60000 });
 
-    console.log("Waiting for the image to load in the post...");
-    await page.waitForSelector(
-      'xpath=/html/body/div[1]/div/div/div[2]/main/div/div/div/div[1]/div/section/div/div/div[1]/div/div/article/div/div/div[3]/div[2]/div/div/div/div/div[1]/div/div/a/div/div[2]/div/img',
-      { timeout: 60000 }
-    );
-
-    console.log("Image found, extracting URL...");
-    const imgHandle = await page.$(
-      'xpath=/html/body/div[1]/div/div/div[2]/main/div/div/div/div[1]/div/section/div/div/div[1]/div/div/article/div/div/div[3]/div[2]/div/div/div/div/div[1]/div/div/a/div/div[2]/div/img'
-    );
-    if (!imgHandle) {
-      console.error("❌ No image found in first result");
-      throw new Error("No image");
-    }
-
-    let imgUrl = await imgHandle.getAttribute("src");
-    if (imgUrl.includes("&name=small")) {
-      imgUrl = imgUrl.replace(/&name=small/g, "");
-    }
-    console.log("Image URL found:", imgUrl);
+    await page.waitForSelector('img[src*="twimg.com/media"]', { timeout: 60000 });
+    const imgUrl = await page.$eval('img[src*="twimg.com/media"]', img => {
+      let src = img.getAttribute("src") || "";
+      return src.replace(/&name=small/g, "");
+    });
 
     result = { postUrl: firstItem.url, imageUrl: imgUrl };
   } catch (err) {
     console.error("❌ Error fetching image:", err);
     throw err;
   }
-
   return result;
+}
+
+// NEW: from prepared search URL (Latest tab). Returns first result with media.
+export async function fetchLatestImpliedMoveCard(searchUrl) {
+  await initBrowser();
+
+  console.log("Navigating to prepared search URL…");
+  await page.goto(searchUrl, { timeout: 60000 });
+
+  // Ensure results loaded
+  await page.waitForSelector("article", { timeout: 60000 });
+
+  // Pick the first article that contains a media image
+  const item = await page.$$eval("article", arts => {
+    for (const a of arts) {
+      const link = a.querySelector('a[href*="/status/"]')?.href;
+      const img  = a.querySelector('img[src*="twimg.com/media"]');
+      if (link && img) {
+        let src = img.getAttribute("src") || "";
+        src = src.replace(/&name=small/g, "");
+        return { postUrl: link, imageUrl: src };
+      }
+    }
+    return null;
+  });
+
+  if (!item) throw new Error("No image result found in search");
+  console.log("Found implied-move:", item.postUrl);
+  return item;
 }
 
 export async function closeBrowser() {
