@@ -5,28 +5,54 @@ import { AttachmentBuilder } from "discord.js";
 export async function handleAnticipatedImage({ client, interaction, ANTICIPATED_CHANNEL_ID }) {
   try {
     const channel = await client.channels.fetch(ANTICIPATED_CHANNEL_ID);
-    const fetched = await channel.messages.fetch({ limit: 10 });
-    const imgMsg = fetched.find(
-      (m) => m.attachments.size > 0 || m.embeds.some((e) => e.image || e.thumbnail)
-    );
-    if (!imgMsg) {
-      return interaction.followUp("❌ לא נמצאה תמונה שהתפרסמה.");
+
+    // --- find the correct image by the Hebrew phrase + date ---
+    const fetched = await channel.messages.fetch({ limit: 50 });
+    const DATE_RE = /מדווחות בשבוע\s*(\d{2}\.\d{2}\.\d{4})/;
+
+    function parseDDMMYYYY(s) {
+      const [dd, mm, yyyy] = s.split(".").map(Number);
+      return new Date(yyyy, mm - 1, dd);
     }
 
-    const url =
-      imgMsg.attachments.size > 0
-        ? imgMsg.attachments.first().url
-        : (imgMsg.embeds.find((e) => e.image)?.image?.url ||
-           imgMsg.embeds.find((e) => e.thumbnail)?.thumbnail?.url);
-
-    if (!url) {
-      return interaction.followUp("❌ לא נמצאה תמונה בהודעה האחרונה.");
+    function imageUrlFromMessage(m) {
+      if (m.attachments.size > 0) return m.attachments.first().url;
+      const img = m.embeds.find(e => e?.image?.url)?.image?.url
+               || m.embeds.find(e => e?.thumbnail?.url)?.thumbnail?.url;
+      return img || null;
     }
 
+    const candidates = [];
+    for (const m of fetched.values()) {
+      const embedText = m.embeds
+        .map(e => [e.title, e.description].filter(Boolean).join(" "))
+        .join(" ");
+      const text = `${m.content || ""} ${embedText}`.trim();
+      const match = DATE_RE.exec(text);
+      if (!match) continue;
+
+      const dt = parseDDMMYYYY(match[1]);
+      const imgUrl = imageUrlFromMessage(m);
+      if (!imgUrl || Number.isNaN(dt.getTime())) continue;
+
+      candidates.push({ dt, imgUrl, msg: m });
+    }
+
+    candidates.sort((a, b) => {
+      const d = b.dt - a.dt;
+      return d !== 0 ? d : b.msg.createdTimestamp - a.msg.createdTimestamp;
+    });
+
+    if (candidates.length === 0) {
+      return interaction.followUp("❌ לא נמצאה תמונה עם תבנית 'מדווחות בשבוע dd.mm.yyyy'.");
+    }
+
+    const url = candidates[0].imgUrl;
+
+    // --- crop as before ---
     const resp = await axios.get(url, { responseType: "arraybuffer" });
     const imgBuf = Buffer.from(resp.data);
 
-    // Day-based cropping presets (Mon–Fri = 1..5)
     const presets = {
       1: { left: 5, top: 80, width: 265, height: 587 },
       2: { left: 267, top: 80, width: 265, height: 587 },
