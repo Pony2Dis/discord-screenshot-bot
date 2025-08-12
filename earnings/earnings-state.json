@@ -9862,5 +9862,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.28115178798946744
+  },
+  {
+    "epsDate": "2025-08-12T16:07:00",
+    "ticker": "CRWV",
+    "name": "CoreWeave, Inc.",
+    "summary": "CoreWeave (CRWV) reported a loss of $0.25 per share on revenue of $1.21 billion for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.20 per share on  revenue of $1.08 billion. The Earnings Whisper number was a loss of $0.17 per share. The company missed expectations by 47.06%.",
+    "subject": "CoreWeave Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508129284",
+    "eps": -0.25,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.2,
+    "whisper": -0.17,
+    "highEstimate": -0.16,
+    "lowEstimate": -0.4,
+    "revenue": 1212.788,
+    "revenueEstimate": 1080,
+    "earningsGrowth": null,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.47058823529411764,
+    "revenueSurprise": 0.12295185185185185,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": null
   }
 ]
