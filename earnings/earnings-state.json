@@ -9982,5 +9982,29 @@
     "revenueSurprise": -0.00008090614886731392,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.05931683370832481
+  },
+  {
+    "epsDate": "2025-08-12T16:02:00",
+    "ticker": "GRAL",
+    "name": "GRAIL, Inc. ",
+    "summary": "GRAIL, Inc. (GRAL) reported a loss of $3.18 per share on revenue of $35.54 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $3.14 per share on  revenue of $35.74 million. The company missed consensus estimates by 1.27% while revenue grew 11.18% on a year-over-year basis.<br /><br />GRAIL is a healthcare company whose mission is to detect cancer early, when it can be cured.",
+    "subject": "GRAIL, Inc. Missed Consensus Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508129649",
+    "eps": -3.18,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -3.14,
+    "whisper": 999,
+    "highEstimate": -3.14,
+    "lowEstimate": -3.14,
+    "revenue": 35.544,
+    "revenueEstimate": 35.74,
+    "earningsGrowth": 0.4,
+    "revenueGrowth": 0.11179230528620582,
+    "earningsSurprise": -0.012738853503184714,
+    "revenueSurprise": -0.005484051482932289,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": null
   }
 ]
