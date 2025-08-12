@@ -1,15 +1,20 @@
 import "dotenv/config";
 import fs from "fs/promises";
-import { Client, GatewayIntentBits } from "discord.js";
+import { WebhookClient } from "discord.js";
 import {
   fetchFirstEarningsImage,
   fetchLatestImpliedMoveCard,
   closeBrowser
 } from "../x.com/fetchImage.mjs";
 
-const { DISCORD_TOKEN, DISCORD_CHANNEL_ID, X_USERNAMES } = process.env;
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-const sleep = ms => new Promise(res => setTimeout(res, ms));
+const { DISCORD_TWITTER_EARNINGS_CAL_WEBHOOK, X_USERNAMES } = process.env;
+if (!DISCORD_TWITTER_EARNINGS_CAL_WEBHOOK) {
+  console.error("Missing env DISCORD_TWITTER_EARNINGS_CAL_WEBHOOK");
+  process.exit(1);
+}
+
+const webhook = new WebhookClient({ url: DISCORD_TWITTER_EARNINGS_CAL_WEBHOOK });
+const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
 
 const monthNames = [
   "January","February","March","April","May","June",
@@ -31,9 +36,6 @@ async function saveSent(file, sent) {
 
 async function main() {
   try {
-    await client.login(DISCORD_TOKEN);
-    const channel = await client.channels.fetch(DISCORD_CHANNEL_ID);
-
     const users = (X_USERNAMES || "")
       .split(/\r?\n/)
       .map(u => u.trim())
@@ -63,7 +65,10 @@ async function main() {
           if (!postUrl || sent.includes(postUrl)) continue;
 
           console.log(`Fetched ${tag}-week link for ${username}:`, imageUrl, "at post:", postUrl);
-          await channel.send(`מדווחות בשבוע ${cal_date}:\n${imageUrl}`);
+          await webhook.send({
+            content: `מדווחות בשבוע ${cal_date}:\n${imageUrl}`,
+            allowed_mentions: { parse: [] }
+          });
           await sleep(1000);
           sent.push(postUrl);
         } catch (err) {
@@ -85,26 +90,23 @@ async function main() {
       "https://twitter.com/search?q=%28from%3Asomoscdi%29%20%22Implied%20Move%22%20%28Lunes%20OR%20Martes%20OR%20Mi%C3%A9rcoles%20OR%20Jueves%20OR%20Viernes%29%20filter%3Aimages&f=live";
 
     try {
-      // Prefer fetchLatestImpliedMoveCard to return: { imageUrl, postUrl, postedAt }
       const { imageUrl, postUrl, postedAt } = await fetchLatestImpliedMoveCard(searchUrl);
       if (postUrl && !impliedSent.includes(postUrl)) {
         // Determine week label:
-        // Rule: if published on Sun/Mon -> current week; else -> next week.
-        const baseDate = postedAt ? new Date(postedAt) : new Date(); // DO NOT parse from tweet ID
+        // Sun/Mon -> current week; Tue–Sat -> next week.
+        const baseDate = postedAt ? new Date(postedAt) : new Date();
         const d = new Date(baseDate);
         d.setHours(0, 0, 0, 0);
-        const dow = d.getDay(); // 0=Sun..6=Sat
+        const dow = d.getDay(); // 0..6
         const monday = new Date(d);
-        if (dow === 0) {
-          monday.setDate(d.getDate() - 6);           // Sunday -> current Monday
-        } else if (dow === 1) {
-          /* Monday -> current Monday (no change) */
-        } else {
-          monday.setDate(d.getDate() + (8 - dow));   // Tue–Sat -> next Monday
-        }
+        if (dow === 0) monday.setDate(d.getDate() - 6);
+        else if (dow >= 2) monday.setDate(d.getDate() + (8 - dow));
         const formatted = `${monthNames[monday.getMonth()]} ${monday.getDate()}, ${monday.getFullYear()}`;
 
-        await channel.send(`"Implied Move" לשבוע: ${formatted}\n${imageUrl}\n`);
+        await webhook.send({
+          content: `"Implied Move" לשבוע: ${formatted}\n${imageUrl}\n`,
+          allowed_mentions: { parse: [] }
+        });
         impliedSent.push(postUrl);
         await saveSent(impliedStateFile, impliedSent);
       } else {
@@ -119,11 +121,13 @@ async function main() {
   } finally {
     console.log("Finished processing all users.");
     await closeBrowser();
-    if (client) await client.destroy();
+    await webhook.destroy?.();
   }
 }
 
-main().catch((err) => {
+main().catch(async (err) => {
   console.error(err);
-  client?.destroy().then(() => process.exit(1));
+  await closeBrowser();
+  await webhook.destroy?.();
+  process.exit(1);
 });

@@ -37,7 +37,7 @@ jobs:
       - name: Run bot
         env:
           DISCORD_TOKEN:      ${{ secrets.DISCORD_TOKEN }}
-          DISCORD_CHANNEL_ID: ${{ vars.X_EARNINGS_CAL_CHANNEL_ID }}
+          DISCORD_TWITTER_EARNINGS_CAL_WEBHOOK: ${{ vars.DISCORD_TWITTER_EARNINGS_CAL_WEBHOOK }}
           X_USERNAMES:        ${{ vars.X_EARNINGS__CAL_USERNAMES }}
           X_COOKIE_HEADER:    ${{ vars.X_COOKIE_HEADER }}
         run: node twitter_earnings_calendar/index.mjs

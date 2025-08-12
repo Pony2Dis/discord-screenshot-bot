@@ -1,11 +1,17 @@
 import "dotenv/config";
 import fs from "fs/promises";
-import { Client, GatewayIntentBits } from "discord.js";
+import { WebhookClient } from "discord.js";
 import { fetchLatestPosts } from "../x.com/fetchPosts.mjs";
 
-const { DISCORD_TOKEN, DISCORD_CHANNEL_ID, X_USERNAMES } = process.env;
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-const sleep = ms => new Promise(res => setTimeout(res, ms));
+const { DISCORD_TWITTER_EARNINGS_WEBHOOK, X_USERNAMES } = process.env;
+
+if (!DISCORD_TWITTER_EARNINGS_WEBHOOK) {
+  console.error("Missing env DISCORD_TWITTER_EARNINGS_WEBHOOK");
+  process.exit(1);
+}
+
+const webhook = new WebhookClient({ url: DISCORD_TWITTER_EARNINGS_WEBHOOK });
+const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
 
 async function loadSent(file) {
   try {
@@ -22,44 +28,44 @@ async function saveSent(file, sent) {
 
 async function main() {
   try {
-    await client.login(DISCORD_TOKEN);
-    const channel = await client.channels.fetch(DISCORD_CHANNEL_ID);
-
-    const users = X_USERNAMES.split(/\r?\n/).map(u => u.trim()).filter(Boolean);
+    const users = X_USERNAMES.split(/\r?\n/)
+      .map((u) => u.trim())
+      .filter(Boolean);
 
     for (const username of users) {
-      const stateFile = `./twitter_earnings/last_link_${username}.json`;
-      const sent = await loadSent(stateFile);
-      const links = await fetchLatestPosts(username, 50);
-      console.log(`Fetched links for ${username}:`, links);
+      try {
+        const stateFile = `./twitter_earnings/last_link_${username}.json`;
+        const sent = await loadSent(stateFile);
 
-      let newLinks = links.filter(l => !sent.includes(l));
-      if (!newLinks.length) continue;
+        const links = await fetchLatestPosts(username, 50);
+        console.log(`Fetched links for ${username}:`, links);
 
-      // ewmove duplicates from newLinks
-      newLinks = new Set(newLinks);
-      newLinks = Array.from(newLinks);
+        // filter already-sent and dedupe
+        let newLinks = links.filter((l) => !sent.includes(l));
+        if (!newLinks.length) continue;
+        newLinks = Array.from(new Set(newLinks));
 
-      for (let link of newLinks.reverse()) {
-        await channel.send(link);
+        // send oldest first
+        for (const link of newLinks.reverse()) {
+          await webhook.send({ content: link, allowed_mentions: { parse: [] } });
+          await sleep(1000); // gentle rate-limit cushion
+        }
 
-        // sleep a bit to avoid being rate-limited
-        await sleep(1000);
+        await saveSent(stateFile, sent.concat(newLinks));
+      } catch (err) {
+        console.error(`Error processing user ${username}:`, err);
       }
-      // save the growing array of all sent links
-      await saveSent(stateFile, sent.concat(newLinks));
     }
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Error in main execution:", error);
-  }
-  finally {
+  } finally {
     console.log("Finished processing all users.");
-    if(client) await client.destroy();
+    await webhook.destroy?.();
   }
 }
 
-main().catch((err) => {
+main().catch(async (err) => {
   console.error(err);
-  client?.destroy().then(() => process.exit(1));
+  await webhook.destroy?.();
+  process.exit(1);
 });

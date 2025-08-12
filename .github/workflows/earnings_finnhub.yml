@@ -39,7 +39,7 @@ jobs:
         env:
           DISCORD_TOKEN:   ${{ secrets.DISCORD_TOKEN }}
           FINNHUB_TOKEN: ${{ secrets.FINNHUB_TOKEN }}
-          EARNINGS_CHANNEL_ID: ${{ vars.EARNINGS_CHANNEL_ID }}
+          DISCORD_EARNINGS_WEBHOOK: ${{ vars.DISCORD_EARNINGS_WEBHOOK }}
         run: node earnings/fetchEarningsFromFinnhub.mjs
       
       # 3) Commit & push only if there are changes

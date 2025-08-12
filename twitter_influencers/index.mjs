@@ -1,13 +1,18 @@
-// Full updated index.mjs
+// index.mjs (webhook-based)
 
 import "dotenv/config";
 import fs from "fs/promises";
-import { Client, GatewayIntentBits } from "discord.js";
+import { WebhookClient } from "discord.js";
 import { fetchLatestPosts } from "../x.com/fetchPosts.mjs";
 
-const { DISCORD_TOKEN, DISCORD_CHANNEL_ID, X_USERNAMES } = process.env;
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-const sleep = ms => new Promise(res => setTimeout(res, ms));
+const { DISCORD_TWITTER_INFLUENCERS_WEBHOOK, X_USERNAMES } = process.env;
+if (!DISCORD_TWITTER_INFLUENCERS_WEBHOOK) {
+  console.error("Missing env DISCORD_TWITTER_INFLUENCERS_WEBHOOK");
+  process.exit(1);
+}
+
+const webhook = new WebhookClient({ url: DISCORD_TWITTER_INFLUENCERS_WEBHOOK });
+const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
 
 async function loadSent(file) {
   try {
@@ -24,12 +29,9 @@ async function saveSent(file, sent) {
 
 async function main() {
   try {
-    await client.login(DISCORD_TOKEN);
-    const channel = await client.channels.fetch(DISCORD_CHANNEL_ID);
-
     const users = X_USERNAMES
       .split(/\r?\n/)
-      .map(u => u.trim())
+      .map((u) => u.trim())
       .filter(Boolean);
 
     for (const username of users) {
@@ -40,38 +42,39 @@ async function main() {
         console.log(`Fetched links for ${username}:`, links);
 
         // --- URL normalization to avoid duplicates ---
-        const normalizeUrl = url => {
+        const normalizeUrl = (url) => {
           try {
             const u = new URL(url);
-            return `${u.origin}${u.pathname.replace(/\/$/, '')}`;
+            return `${u.origin}${u.pathname.replace(/\/$/, "")}`;
           } catch {
-            return url.replace(/\?.*$/, '').replace(/\/$/, '');
+            return url.replace(/\?.*$/, "").replace(/\/$/, "");
           }
         };
+
         const normalizedSent = sent.map(normalizeUrl);
-        let newLinks = links.filter(link => {
-          if(!normalizedSent.includes(normalizeUrl(link))) {
-            console.log(`New link found for ${username}:`, normalizeUrl(link), "sent:", normalizedSent);
-            return true;
+
+        let newLinks = links.filter((link) => {
+          const n = normalizeUrl(link);
+          const isNew = !normalizedSent.includes(n);
+          if (isNew) {
+            console.log(`New link found for ${username}:`, n, "sent:", normalizedSent);
           }
+          return isNew;
         });
+
         if (!newLinks.length) continue;
 
-        // ewmove duplicates from newLinks
-        newLinks = new Set(newLinks);
-        newLinks = Array.from(newLinks);
+        // de-dup and send oldest first
+        newLinks = Array.from(new Set(newLinks)).reverse();
 
-        for (let link of newLinks.reverse()) {
-          await channel.send(link);
+        for (const link of newLinks) {
+          await webhook.send({ content: link, allowed_mentions: { parse: [] } });
           await sleep(1000);
         }
 
-        // Save only the clean URLs
+        // Save only normalized URLs
         const updatedSent = Array.from(
-          new Set([
-            ...normalizedSent,
-            ...newLinks.map(normalizeUrl)
-          ])
+          new Set([...normalizedSent, ...newLinks.map(normalizeUrl)])
         );
         await saveSent(stateFile, updatedSent);
       } catch (error) {
@@ -80,14 +83,14 @@ async function main() {
     }
   } catch (error) {
     console.error("Error in main execution:", error);
-  }
-  finally {
+  } finally {
     console.log("Finished processing all users.");
-    if(client) await client.destroy();
+    await webhook.destroy?.();
   }
 }
 
-main().catch((err) => {
+main().catch(async (err) => {
   console.error(err);
-  client?.destroy().then(() => process.exit(1));
+  await webhook.destroy?.();
+  process.exit(1);
 });

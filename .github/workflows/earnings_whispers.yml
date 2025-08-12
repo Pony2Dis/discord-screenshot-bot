@@ -38,7 +38,7 @@ jobs:
       - name: Run Fetch earnings bot
         env:
           DISCORD_TOKEN:   ${{ secrets.DISCORD_TOKEN }}
-          EARNINGS_CHANNEL_ID: ${{ vars.EARNINGS_CHANNEL_ID }}
+          DISCORD_EARNINGS_WEBHOOK: ${{ vars.DISCORD_EARNINGS_WEBHOOK }}
         run: node earnings/fetchEarnings.mjs
       
       # 3) Commit & push only if there are changes

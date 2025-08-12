@@ -1,13 +1,19 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { Client, GatewayIntentBits } from "discord.js";
+import { REST, Routes, WebhookClient } from "discord.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const { DISCORD_TOKEN, RELAY_ROUTS } = process.env;
 
+if (!DISCORD_TOKEN) {
+  console.error("❌ Missing DISCORD_TOKEN");
+  process.exit(1);
+}
+
+const rest = new REST({ version: "10" }).setToken(DISCORD_TOKEN);
 const STATE_FILE = path.join(__dirname, "lastMessageIds.json");
 
 // --- utils ---
@@ -22,12 +28,12 @@ function loadJson(file, fallback) {
 function saveJson(file, obj) {
   fs.writeFileSync(file, JSON.stringify(obj, null, 2));
 }
-const sleep = (ms) => new Promise(res => setTimeout(res, ms));
+const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
 
 // --- load config/state ---
 let routes;
 try {
-  routes = JSON.parse(RELAY_ROUTS || "[]");
+  routes = JSON.parse(RELAY_ROUTS || "[]"); // [{ source: "123", target: "456" | "https://discord.com/api/webhooks/..." }]
 } catch (err) {
   console.error("❌ Failed to parse RELAY_ROUTS JSON:", err.message);
   process.exit(1);
@@ -40,67 +46,73 @@ if (!Array.isArray(routes) || routes.length === 0) {
 
 const lastMap = loadJson(STATE_FILE, {}); // { [sourceId]: lastId }
 
-// --- discord client ---
-const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent
-  ]
-});
-
-client.on("error", (e) => console.error("Discord client error:", e));
-client.on("shardError", (e) => console.error("Shard error:", e));
-
 (async () => {
-  console.log("Logging in to Discord...");
-  await client.login(DISCORD_TOKEN);
-
   try {
     for (const { source, target } of routes) {
       if (!source || !target) continue;
 
       console.log(`\n=== Route: ${source} -> ${target} ===`);
-      const sourceChan = await client.channels.fetch(source).catch(() => null);
-      const targetChan = await client.channels.fetch(target).catch(() => null);
-
-      if (!sourceChan) {
-        console.warn(`⚠️ Source channel not found: ${source}`);
-        continue;
-      }
-      if (!targetChan) {
-        console.warn(`⚠️ Target channel not found: ${target}`);
-        continue;
-      }
-
       const lastId = lastMap[source] || null;
       const options = lastId ? { after: lastId, limit: 100 } : { limit: 100 };
       console.log(`Fetching messages with options:`, options);
 
-      const fetched = await sourceChan.messages.fetch(options);
-      const sorted = Array.from(fetched.values())
-        .sort((a, b) => a.createdTimestamp - b.createdTimestamp);
+      // GET messages via REST (no Gateway)
+      const fetched = await rest.get(Routes.channelMessages(source), { query: options });
+      const sorted = [...fetched].sort(
+        (a, b) => a.timestamp - b.timestamp // API returns ISO strings; but discord.js wraps as createdTimestamp. Here we use raw REST.
+      );
 
       console.log(`Fetched ${sorted.length} new messages`);
 
+      // Helper to send to target (webhook or channel ID)
+      async function sendToTarget(payload) {
+        if (typeof target === "string" && target.startsWith("https://discord.com/api/webhooks/")) {
+          const webhook = new WebhookClient({ url: target });
+          await webhook.send({ ...payload, allowed_mentions: { parse: [] } });
+          await webhook.destroy?.();
+        } else {
+          await rest.post(Routes.channelMessages(String(target)), {
+            body: { ...payload, allowed_mentions: { parse: [] } },
+          });
+        }
+      }
+
       for (const msg of sorted) {
-        if (!msg?.id) continue;
-        if (!msg.content?.trim() && !msg.embeds?.length && !msg.attachments?.size) {
-          lastMap[source] = msg.id;
+        const id = msg.id;
+        if (!id) continue;
+
+        const content = (msg.content || "").trim();
+        const embeds = Array.isArray(msg.embeds) ? msg.embeds : [];
+        const attachments = Array.isArray(msg.attachments) ? msg.attachments : [];
+
+        if (!content && embeds.length === 0 && attachments.length === 0) {
+          lastMap[source] = id;
           continue;
         }
 
+        // Build payload:
+        // - Keep content as-is
+        // - Forward embeds (up to 10)
+        // - Attachments: re-uploading would require fetching binaries; instead, append URLs to content
+        let finalContent = content;
+        if (attachments.length) {
+          const urls = attachments
+            .map((a) => a?.url)
+            .filter(Boolean);
+          if (urls.length) {
+            finalContent = [finalContent, ...urls].filter(Boolean).join("\n");
+          }
+        }
+
         const payload = {
-          ...(msg.content && { content: msg.content }),
-          ...(msg.embeds?.length && { embeds: msg.embeds.map(e => e.toJSON()) }),
-          ...(msg.attachments?.size && {
-            files: msg.attachments.map(a => ({ attachment: a.url, name: a.name }))
-          })
+          ...(finalContent && { content: finalContent }),
+          ...(embeds.length && { embeds: embeds.slice(0, 10) }),
         };
 
-        console.log(`Relaying message ${msg.id} -> ${target}`);
-        await targetChan.send(payload);
-        lastMap[source] = msg.id;
+        console.log(`Relaying message ${id} -> ${target}`);
+        await sendToTarget(payload);
+
+        lastMap[source] = id;
         await sleep(200);
       }
     }
@@ -110,7 +122,6 @@ client.on("shardError", (e) => console.error("Shard error:", e));
   } catch (err) {
     console.error("Relay error:", err);
   } finally {
-    console.log("Disconnecting client...");
-    await client.destroy().catch(() => {});
+    console.log("Done (no Gateway connection used).");
   }
 })();
