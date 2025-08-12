@@ -30,6 +30,7 @@ const {
   FINNHUB_TOKEN,
   ANTICIPATED_CHANNEL_ID,
   BOT_CHANNEL_ID,
+  LOG_CHANNEL_ID,
   GRAPHS_CHANNEL_ID,
   DISCORD_GUILD_ID,
   DISCORD_APPLICATION_ID,
@@ -106,7 +107,12 @@ client.once("ready", async () => {
     });
     LIVE_LISTENING_ENABLED = true;
     console.log("✅ Backfill done; now listening for new messages.");
-    await message.channel.send("🟢 חזרתי לפעילות, אני זמין");
+    const botChannel = client.channels.cache.get(BOT_CHANNEL_ID);
+    if (botChannel) {
+      await botChannel.send("🔵 חזרתי לפעילות, אני זמין, שלחו לי הודעה!");
+    } else {
+      console.warn("Bot channel not found, skipping ready message.");
+    }
   } catch (e) {
     console.error("Backfill failed:", e);
     LIVE_LISTENING_ENABLED = true;
@@ -147,10 +153,17 @@ client.on("messageCreate", async (message) => {
   try {
     // --- NEW: special path for Discord webhook messages ---
     if (message.webhookId) {
-      if (message.channel.id === BOT_CHANNEL_ID) {
+      if (message.channel.id === LOG_CHANNEL_ID) {
         const text = (message.content || "").trim();
         if (text === `shutdown ${SHUTDOWN_SECRET}`) {
-          await message.channel.send("🔴 אני יורד לדקה של תחזוקה...");
+          // send a message to the bot channel before shutdown
+          console.log("🔴 Shutdown command received via webhook, shutting down...");
+          const botChannel = client.channels.cache.get(BOT_CHANNEL_ID);
+          if (botChannel) {
+            await botChannel.send("🔴 אני יורד לדקה של תחזוקה...");
+          } else {
+            console.warn("Bot channel not found, skipping shutdown message.");
+          }
           return shutdown();
         }
       }
