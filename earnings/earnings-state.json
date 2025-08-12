@@ -9910,5 +9910,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": null
+  },
+  {
+    "epsDate": "2025-08-12T16:05:00",
+    "ticker": "ZVRA",
+    "name": "Zevra Therapeutics, Inc.",
+    "summary": "Zevra Therapeutics (ZVRA) reported a loss of $0.06 per share on revenue of $25.88 million for the  second quarter ended June 2025.  The consensus earnings estimate was $1.43 per share on  revenue of $22.63 million. The Earnings Whisper number was $1.45 per share. The company missed expectations by 104.14% while revenue grew 481.73% on a year-over-year basis.<br /><br />Zevra Therapeutics is a rare disease company melding science, data, and patient need to create transformational therapies for diseases with limited or no treatment options. ",
+    "subject": "Zevra Therapeutics Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508121210",
+    "eps": -0.06,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 1.43,
+    "whisper": 1.45,
+    "highEstimate": 2.26,
+    "lowEstimate": -0.09,
+    "revenue": 25.881,
+    "revenueEstimate": 22.63,
+    "earningsGrowth": 0.875,
+    "revenueGrowth": 4.81726230613621,
+    "earningsSurprise": -1.0413793103448277,
+    "revenueSurprise": 0.14365885992045957,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 4.956496350364963
   }
 ]
