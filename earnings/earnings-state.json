@@ -9838,5 +9838,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": -4.645161290322581,
     "prevRevenueGrowth": -0.0992941625333842
+  },
+  {
+    "epsDate": "2025-08-12T16:10:00",
+    "ticker": "CAVA",
+    "name": "CAVA Group, Inc.",
+    "summary": "CAVA Group (CAVA) reported earnings of $0.16 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.13 per share on  revenue of $286.56 million. The Earnings Whisper number was $0.15 per share. The company beat expectations by 6.67%.<br /><br />CAVA  is the category-defining Mediterranean fast-casual restaurant brand, bringing together healthful food and bold, satisfying flavors at scale. ",
+    "subject": "CAVA Group Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508121347",
+    "eps": 0.16,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.13,
+    "whisper": 0.15,
+    "highEstimate": 0.15,
+    "lowEstimate": 0.11,
+    "revenue": null,
+    "revenueEstimate": 286.56,
+    "earningsGrowth": -0.058823529411764705,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.06666666666666667,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.28115178798946744
   }
 ]
