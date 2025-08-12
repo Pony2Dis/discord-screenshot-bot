@@ -9886,5 +9886,29 @@
     "revenueSurprise": 0.12295185185185185,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": null
+  },
+  {
+    "epsDate": "2025-08-12T16:15:00",
+    "ticker": "DMAC",
+    "name": "DiaMedica Therapeutics Inc.",
+    "summary": "DiaMedica Therapeutics (DMAC) reported a loss of $0.18 per share on revenue of $0.00 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.18 per share. The company reported in-line with consensus estimates.<br /><br />DiaMedica Therapeutics Inc. (Nasdaq: DMAC) is a clinical stage biopharmaceutical company focused on developing novel treatments to improve the lives of patients with neurological and chronic kidney diseases. ",
+    "subject": "DiaMedica Therapeutics Reported In-line with Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508123500",
+    "eps": -0.18,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.18,
+    "whisper": 999,
+    "highEstimate": -0.18,
+    "lowEstimate": -0.18,
+    "revenue": 0,
+    "revenueEstimate": null,
+    "earningsGrowth": -0.38461538461538464,
+    "revenueGrowth": null,
+    "earningsSurprise": 0,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": null
   }
 ]
