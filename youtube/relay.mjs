@@ -25,15 +25,18 @@ function loadJson(file, fallback) {
   } catch {}
   return fallback;
 }
-function saveJson(file, obj) {
-  fs.writeFileSync(file, JSON.stringify(obj, null, 2));
+function saveJsonAtomic(file, obj) {
+  const tmp = `${file}.tmp`;
+  fs.writeFileSync(tmp, JSON.stringify(obj, null, 2));
+  fs.renameSync(tmp, file);
 }
 const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
 
 // --- load config/state ---
 let routes;
 try {
-  routes = JSON.parse(RELAY_ROUTS || "[]"); // [{ source: "123", target: "456" | "https://discord.com/api/webhooks/..." }]
+  // [{ source: "123", target: "456" | "https://discord.com/api/webhooks/..." }]
+  routes = JSON.parse(RELAY_ROUTS || "[]");
 } catch (err) {
   console.error("❌ Failed to parse RELAY_ROUTS JSON:", err.message);
   process.exit(1);
@@ -51,17 +54,17 @@ const lastMap = loadJson(STATE_FILE, {}); // { [sourceId]: lastId }
     for (const { source, target } of routes) {
       if (!source || !target) continue;
 
-      console.log(`\n=== Route: ${source} -> ${target} ===`);
       const lastId = lastMap[source] || null;
       const options = lastId ? { after: lastId, limit: 100 } : { limit: 100 };
+
+      console.log(`\n=== Route: ${source} -> ${target} ===`);
       console.log(`Fetching messages with options:`, options);
 
       // GET messages via REST (no Gateway)
       const fetched = await rest.get(Routes.channelMessages(source), { query: options });
-      const sorted = [...fetched].sort(
-        (a, b) => a.timestamp - b.timestamp // API returns ISO strings; but discord.js wraps as createdTimestamp. Here we use raw REST.
-      );
 
+      // Sort ASC by snowflake so we send oldest→newest and can save the max id
+      const sorted = [...fetched].sort((a, b) => BigInt(a.id) - BigInt(b.id));
       console.log(`Fetched ${sorted.length} new messages`);
 
       // Helper to send to target (webhook or channel ID)
@@ -77,31 +80,30 @@ const lastMap = loadJson(STATE_FILE, {}); // { [sourceId]: lastId }
         }
       }
 
+      let maxId = lastId ? BigInt(lastId) : 0n;
+
       for (const msg of sorted) {
         const id = msg.id;
         if (!id) continue;
+
+        const idBig = BigInt(id);
+        // Guard: even if API ever includes the boundary item, don't resend
+        if (lastId && idBig <= BigInt(lastId)) continue;
 
         const content = (msg.content || "").trim();
         const embeds = Array.isArray(msg.embeds) ? msg.embeds : [];
         const attachments = Array.isArray(msg.attachments) ? msg.attachments : [];
 
         if (!content && embeds.length === 0 && attachments.length === 0) {
-          lastMap[source] = id;
+          if (idBig > maxId) maxId = idBig;
           continue;
         }
 
-        // Build payload:
-        // - Keep content as-is
-        // - Forward embeds (up to 10)
-        // - Attachments: re-uploading would require fetching binaries; instead, append URLs to content
+        // Build payload
         let finalContent = content;
         if (attachments.length) {
-          const urls = attachments
-            .map((a) => a?.url)
-            .filter(Boolean);
-          if (urls.length) {
-            finalContent = [finalContent, ...urls].filter(Boolean).join("\n");
-          }
+          const urls = attachments.map((a) => a?.url).filter(Boolean);
+          if (urls.length) finalContent = [finalContent, ...urls].filter(Boolean).join("\n");
         }
 
         const payload = {
@@ -112,13 +114,20 @@ const lastMap = loadJson(STATE_FILE, {}); // { [sourceId]: lastId }
         console.log(`Relaying message ${id} -> ${target}`);
         await sendToTarget(payload);
 
-        lastMap[source] = id;
+        if (idBig > maxId) maxId = idBig;
         await sleep(200);
+      }
+
+      if (maxId > (lastId ? BigInt(lastId) : 0n)) {
+        lastMap[source] = String(maxId);
+        console.log(`Updated lastId for ${source}: ${lastId} -> ${lastMap[source]}`);
+      } else {
+        console.log(`No advance for ${source} (lastId stays ${lastId ?? "null"})`);
       }
     }
 
     console.log("\nSaving state...");
-    saveJson(STATE_FILE, lastMap);
+    saveJsonAtomic(STATE_FILE, lastMap);
   } catch (err) {
     console.error("Relay error:", err);
   } finally {
