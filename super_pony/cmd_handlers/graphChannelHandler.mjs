@@ -32,7 +32,7 @@ const DEFAULT_BLACKLIST = ["RSI", "ATR", "ATH", "MACD", "SEE"];
 let _blacklistSet = null;
 function getBlacklistSet() {
   if (_blacklistSet) return _blacklistSet;
-  const raw = (process.env.TICKER_BLACKLIST || DEFAULT_BLACKLIST.join(","));
+  const raw = (process.env.TICKER_BLACKLIST.join("\n") || DEFAULT_BLACKLIST.join(","));
   const list = raw
     .split(/[,\s]+/)
     .map(s => s.trim().toUpperCase())
