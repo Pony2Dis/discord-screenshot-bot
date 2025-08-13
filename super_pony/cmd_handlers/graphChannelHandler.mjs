@@ -289,28 +289,28 @@ export async function runBackfillOnce({
     );
 
     for (const message of msgs) {
-      if (message.author?.bot) continue;
+      if (!message.author?.bot) {
+        const mentionsBot =
+          (client.user?.id && message.mentions.users.has(client.user.id)) ||
+          message.content?.includes("@SuperPony");
+        if (!mentionsBot) {
+          await handleGraphChannelMessage({
+            message,
+            allTickersFile,
+            dbPath,
+            silent: true,
+            updateCheckpoint: false,
+            commitAfterWrite: false, // <= no per-message commits during backfill
+          });
 
-      const mentionsBot =
-        (client.user?.id && message.mentions.users.has(client.user.id)) ||
-        message.content?.includes("@SuperPony");
-      if (mentionsBot) continue;
-
-      await handleGraphChannelMessage({
-        message,
-        allTickersFile,
-        dbPath,
-        silent: true,
-        updateCheckpoint: false,
-        commitAfterWrite: false, // <= no per-message commits during backfill
-      });
-
-      await updateCheckpoint(
-        dbPath,
-        channelId,
-        message.id,
-        new Date(message.createdTimestamp).toISOString()
-      );
+          await updateCheckpoint(
+            dbPath,
+            channelId,
+            message.id,
+            new Date(message.createdTimestamp).toISOString()
+          );
+        }
+      }
 
       afterId = message.id;
       scanned++;
