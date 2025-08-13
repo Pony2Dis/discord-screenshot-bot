@@ -9,6 +9,7 @@ const DISCORD_EPOCH = 1420070400000n; // 2015-01-01
 
 /** Cache the tickers set in-memory to avoid rereads */
 let _tickerSet = null;
+let _blacklistSet = null;
 let _tickerFilePath = null;
 
 /** Simple write queue to serialize db.json writes */
@@ -28,15 +29,20 @@ const TICKER_RE_FALLBACK = /(?:^|[^A-Za-z0-9])\$?([A-Za-z]{1,5}(?:[.-][A-Za-z]{1
 const exec = promisify(execCb);
 
 /** -------- blacklist -------- */
-const DEFAULT_BLACKLIST = ["RSI", "ATR", "ATH", "MACD", "SEE"];
-let _blacklistSet = null;
 function getBlacklistSet() {
   if (_blacklistSet) return _blacklistSet;
-  const raw = (process.env.TICKER_BLACKLIST.join("\n") || DEFAULT_BLACKLIST.join(","));
+
+  // Env is a single string (possibly multiline). If absent, fall back to defaults.
+  const rawEnv = process.env.TICKER_BLACKLIST;
+  const raw = (typeof rawEnv === "string" && rawEnv.trim().length > 0)
+    ? rawEnv
+    : DEFAULT_BLACKLIST.join("\n");
+
   const list = raw
-    .split(/[,\s]+/)
+    .split(/[\s,;]+/)              // split on newlines, spaces, commas, semicolons
     .map(s => s.trim().toUpperCase())
     .filter(Boolean);
+
   _blacklistSet = new Set(list);
   return _blacklistSet;
 }
@@ -67,13 +73,14 @@ async function loadTickerSet(allTickersFile) {
 function extractTickers(text, tickerSet) {
   if (!text) return [];
   const found = new Set();
+  const blacklistSet = getBlacklistSet();
 
   // try main regex
   TICKER_RE.lastIndex = 0;
   let m;
   while ((m = TICKER_RE.exec(text)) !== null) {
     const cand = m[1].toUpperCase().replace(/-/g, ".");
-    if (tickerSet.has(cand)) found.add(cand);
+    if (tickerSet.has(cand) && !blacklistSet.has(cand)) found.add(cand);
   }
 
   // optional fallback if nothing matched (older runtimes)
@@ -81,7 +88,7 @@ function extractTickers(text, tickerSet) {
     TICKER_RE_FALLBACK.lastIndex = 0;
     while ((m = TICKER_RE_FALLBACK.exec(text)) !== null) {
       const cand = m[1].toUpperCase().replace(/-/g, ".");
-      if (tickerSet.has(cand)) found.add(cand);
+      if (tickerSet.has(cand) && !blacklistSet.has(cand)) found.add(cand);
     }
   }
   return [...found];
