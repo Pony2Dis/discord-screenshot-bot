@@ -104,15 +104,18 @@ client.once("ready", async () => {
     } else {
       console.warn("Bot channel not found, skipping scanning message.");
     }
-
-    await runBackfillOnce({
-      client,
-      channelId: GRAPHS_CHANNEL_ID,
-      allTickersFile: ALL_TICKERS_PATH,
-      dbPath: DB_PATH,
-      lookbackDays: 14,
-    });
-
+    try {
+      await runBackfillOnce({
+        client,
+        channelId: GRAPHS_CHANNEL_ID,
+        allTickersFile: ALL_TICKERS_PATH,
+        dbPath: DB_PATH,
+        lookbackDays: 14,
+      });
+    } catch (e) {
+      console.error("Backfill failed:", e);
+    }
+  
     LIVE_LISTENING_ENABLED = true;
     console.log("✅ Backfill done; now listening for new messages.");
     if (botChannel) {
@@ -121,7 +124,7 @@ client.once("ready", async () => {
       console.warn("Bot channel not found, skipping ready message.");
     }
   } catch (e) {
-    console.error("Backfill failed:", e);
+    console.error("Error occured:", e);
     LIVE_LISTENING_ENABLED = true;
   }
 });
