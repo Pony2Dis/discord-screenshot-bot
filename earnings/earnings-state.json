@@ -10174,5 +10174,29 @@
     "revenueSurprise": -0.035611145007118164,
     "prevEarningsGrowth": -4.833333333333333,
     "prevRevenueGrowth": -0.08128856712501822
+  },
+  {
+    "epsDate": "2025-08-13T07:00:00",
+    "ticker": "SSYS",
+    "name": "Stratasys Ltd.",
+    "summary": "Stratasys (SSYS) reported earnings of $0.03 per share on revenue of $138.09 million for the  second quarter ended June 2025.  The consensus earnings estimate was $0.03 per share on  revenue of $137.43 million. The Earnings Whisper number was $0.05 per share. The company missed expectations by 40.00% while revenue grew 0.03% on a year-over-year basis.<br /><br />The company  said it expects  2025 non-GAAP earnings of $0.13 to $0.16 per share on revenue of $550.0 million to $560.0 million. The company's previous guidance was earnings of $0.30 to $0.37 per share on revenue of $570.0 million to $585.0 million, and the current consensus earnings estimate is $0.33 per share on revenue of $570.04 million for the year ending December 31, 2025.<br /><br />Stratasys Ltd provides additive manufacturing solutions for the creation of parts used in the processes of designing and manufacturing products and for the direct manufacture of end parts. It offers 3D printers and 3D production systems.",
+    "subject": "Stratasys Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508139731",
+    "eps": 0.03,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.03,
+    "whisper": 0.05,
+    "highEstimate": 0.03,
+    "lowEstimate": 0.02,
+    "revenue": 138.086,
+    "revenueEstimate": 137.43,
+    "earningsGrowth": 1.2142857142857142,
+    "revenueGrowth": 0.00032599010438927567,
+    "earningsSurprise": -0.4,
+    "revenueSurprise": 0.004773339154478644,
+    "prevEarningsGrowth": -2.1875,
+    "prevRevenueGrowth": -0.05556404026379729
   }
 ]
