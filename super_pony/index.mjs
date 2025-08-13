@@ -213,14 +213,21 @@ client.on("messageCreate", async (message) => {
     const otherMentions = message.mentions.users.filter(u => u.id !== client.user.id);
 
     // Mine
-    if (content.includes("טיקרים שלי") || content.includes("שלי")) {
+    if (otherMentions.size == 0 && (content.includes("טיקרים שלי") || content.includes("שלי"))) {
       console.log(`📈 User ${message.author.tag} requested their tickers`);
       await listMyTickers({ message, dbPath: DB_PATH });
       return;
     }
 
+    // List all tickers
+    if (otherMentions.size == 0 && (content.includes("כל הטיקרים") || content.includes("כל טיקרים"))) {
+      console.log(`📜 User ${message.author.tag} requested the full ticker list`);
+      await listAllTickers({ message, dbPath: DB_PATH});
+      return;
+    }
+
     // Dashboard (primary entrypoint)
-    if (content.includes("טיקרים")) {
+    if (otherMentions.size == 0 && content.includes("טיקרים")) {
       console.log(`📊 User ${message.author.tag} requested the dashboard`);
       await showTickersDashboard({ message, dbPath: DB_PATH });
       return;
@@ -231,13 +238,6 @@ client.on("messageCreate", async (message) => {
       console.log(`🔍 User ${message.author.tag} requested tickers for: ${otherMentions.map(u => u.tag).join(", ")}`);
       const targetUser = otherMentions.first();
       await listFirstByUser({ message, dbPath: DB_PATH, targetUser });
-      return;
-    }
-
-    // List all tickers
-    if (content.includes("כל הטיקרים") || content.includes("כל טיקרים")) {
-      console.log(`📜 User ${message.author.tag} requested the full ticker list`);
-      await listAllTickers({ message, dbPath: DB_PATH});
       return;
     }
 
