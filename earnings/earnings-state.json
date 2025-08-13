@@ -10318,5 +10318,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.009805914948486774
+  },
+  {
+    "epsDate": "2025-08-13T16:15:00",
+    "ticker": "ALVO",
+    "name": "Alvotech",
+    "summary": "Alvotech (ALVO) reported earnings of $0.14 per share on revenue of $173.34 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.26 per share on  revenue of $115.40 million. The company beat consensus estimates by 153.85% while revenue fell 12.79% compared to the same quarter a year ago.<br /><br />Alvotech is a biotech company focused solely on the development and manufacture of biosimilar medicines for patients worldwide. ",
+    "subject": "Alvotech Beat Consensus Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508132755",
+    "eps": 0.14,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.26,
+    "whisper": 999,
+    "highEstimate": -0.26,
+    "lowEstimate": -0.26,
+    "revenue": 173.341,
+    "revenueEstimate": 115.4,
+    "earningsGrowth": -0.5,
+    "revenueGrowth": -0.12785718957701267,
+    "earningsSurprise": 1.5384615384615385,
+    "revenueSurprise": 0.5020883882149046,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 2.5996639019894836
   }
 ]
