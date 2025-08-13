@@ -10150,5 +10150,29 @@
     "revenueSurprise": 0.043734920634920633,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.21998763152763504
+  },
+  {
+    "epsDate": "2025-08-13T09:37:00",
+    "ticker": "DDD",
+    "name": "3D Systems Corporation",
+    "summary": "3D Systems (DDD) reported a loss of $0.07 per share on revenue of $94.84 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.13 per share on  revenue of $98.34 million. The Earnings Whisper number was a loss of $0.14 per share. The company beat expectations by 50.00% while revenue fell 16.26% compared to the same quarter a year ago.<br /><br />3D Systems Corp through its subsidiaries is engaged in providing 3D printing centric solutions, including 3D printers, print materials and cloud sourced custom parts.",
+    "subject": "3D Systems Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508139973",
+    "eps": -0.07,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.13,
+    "whisper": -0.14,
+    "highEstimate": -0.12,
+    "lowEstimate": -0.14,
+    "revenue": 94.838,
+    "revenueEstimate": 98.34,
+    "earningsGrowth": 0.5882352941176471,
+    "revenueGrowth": -0.16259315508776886,
+    "earningsSurprise": 0.5,
+    "revenueSurprise": -0.035611145007118164,
+    "prevEarningsGrowth": -4.833333333333333,
+    "prevRevenueGrowth": -0.08128856712501822
   }
 ]
