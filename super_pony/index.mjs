@@ -212,24 +212,38 @@ client.on("messageCreate", async (message) => {
 
     const otherMentions = message.mentions.users.filter(u => u.id !== client.user.id);
 
+    // Dashboard (primary entrypoint)
     if (content.includes("טיקרים")) {
+      console.log(`📊 User ${message.author.tag} requested the dashboard`);
       await showTickersDashboard({ message, dbPath: DB_PATH });
       return;
     }
+
+    // Mine
     if (content.includes("טיקרים שלי") || content.includes("שלי")) {
+      console.log(`📈 User ${message.author.tag} requested their tickers`);
       await listMyTickers({ message, dbPath: DB_PATH });
       return;
     }
+
+    // Other user tickers
     if (otherMentions.size > 0 && (content.includes("טיקרים") || content.includes("הטיקרים") || content.includes("של"))) {
+      console.log(`🔍 User ${message.author.tag} requested tickers for: ${otherMentions.map(u => u.tag).join(", ")}`);
       const targetUser = otherMentions.first();
       await listFirstByUser({ message, dbPath: DB_PATH, targetUser });
       return;
     }
+
+    // List all tickers
     if (content.includes("כל הטיקרים") || content.includes("כל טיקרים")) {
+      console.log(`📜 User ${message.author.tag} requested the full ticker list`);
       await listAllTickers({ message, dbPath: DB_PATH});
       return;
     }
+
+    // Earnings
     if (content.includes("דיווחים 500")) {
+      console.log(`📈 User ${message.author.tag} requested S&P 500 earnings`);
       await handleTodaysEarnings({
         client,
         interaction: { channel: message.channel, followUp: (t) => message.channel.send(t) },
@@ -239,7 +253,10 @@ client.on("messageCreate", async (message) => {
       });
       return;
     }
+
+    // List all tickers as an image
     if (content.includes("תמונת דיווחים") || content.includes("תמונה")) {
+      console.log(`🖼️ User ${message.author.tag} requested anticipated earnings image`);
       await handleAnticipatedImage({
         client,
         interaction: { followUp: (t) => message.channel.send(t) },
@@ -247,7 +264,10 @@ client.on("messageCreate", async (message) => {
       });
       return;
     }
+
+    // All earnings
     if (content.includes("דיווחים") || content.includes("מדווחות")) {
+      console.log(`📈 User ${message.author.tag} requested all earnings`);
       await handleTodaysEarnings({
         client,
         interaction: { channel: message.channel, followUp: (t) => message.channel.send(t) },
@@ -257,7 +277,10 @@ client.on("messageCreate", async (message) => {
       });
       return;
     }
+
+    // did not match any command - return help
     await sendHelp({ channel: message.channel });
+
   } catch (err) {
     console.error("messageCreate handler error:", err);
     if (message?.channel?.send) {
