@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-13T19:39:49.868Z",
+  "updated": "2025-08-13T20:01:27.065Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -2860,12 +2860,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1405274668461592697",
       "timestamp": "2025-08-13T19:39:49.702Z",
       "content": "CHWY\nחוזרת לתעלה שלה, עד הגאפ 11%"
+    },
+    {
+      "ticker": "PGY",
+      "user": {
+        "id": "1339671554371485789",
+        "name": "MrKnowAll"
+      },
+      "messageId": "1405280109476184274",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1405280109476184274",
+      "timestamp": "2025-08-13T20:01:26.941Z",
+      "content": "PGY above 34"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1405272958586589356",
-      "lastProcessedAt": "2025-08-13T19:33:02.036Z"
+      "lastProcessedId": "1405279452195328082",
+      "lastProcessedAt": "2025-08-13T19:58:50.233Z"
     }
   }
 }
