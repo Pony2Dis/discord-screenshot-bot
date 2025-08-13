@@ -33,5 +33,5 @@ jobs:
       - name: Run screenshot bot
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-          DISCORD_FEAR_GREED_WEBHOOK:    ${{ secrets.DISCORD_FEAR_GREED_WEBHOOK }}
+          DISCORD_FEAR_GREED_WEBHOOK:    ${{ vars.DISCORD_FEAR_GREED_WEBHOOK }}
         run: node screenshot.js
