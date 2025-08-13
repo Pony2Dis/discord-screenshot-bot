@@ -10006,5 +10006,29 @@
     "revenueSurprise": -0.005484051482932289,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": null
+  },
+  {
+    "epsDate": "2025-08-13T06:45:00",
+    "ticker": "EAT",
+    "name": "Brinker International, Inc.",
+    "summary": "Brinker International (EAT) reported earnings of $2.49 per share on  for the  fiscal fourth quarter ended June 2025.  The consensus earnings estimate was $2.43 per share on  revenue of $1.43 billion. The Earnings Whisper number was $2.54 per share. The company missed expectations by 1.97%.<br /><br />Brinker International Inc is a dining restaurant company. The Company is engaged in the ownership, operation, development, and franchising of the Chili’s Grill & Bar and Maggianos Little Italy restaurant brands.",
+    "subject": "Brinker International Missed Expectations",
+    "quarter": " fiscal fourth quarter ended June 2025",
+    "fileName": "2508130341",
+    "eps": 2.49,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 2.43,
+    "whisper": 2.54,
+    "highEstimate": 2.72,
+    "lowEstimate": 2.18,
+    "revenue": null,
+    "revenueEstimate": 1430,
+    "earningsGrowth": 0.546583850931677,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.01968503937007874,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.27206998125502097
   }
 ]
