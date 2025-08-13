@@ -45,8 +45,8 @@ async function main() {
       await agreeLink.waitFor({ timeout: 10_000 });
       await agreeLink.click({ force: true });
       await page.waitForTimeout(10_000);
-    } catch {
-      console.log('⚠️ “Agree” link not found — continuing anyway');
+    } catch (err) {
+      console.log('⚠️ “Agree” link not found — continuing anyway: ', err.message);
     }
 
     // 5) Screenshot & send via webhook
