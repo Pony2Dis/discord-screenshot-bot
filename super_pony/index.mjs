@@ -212,17 +212,17 @@ client.on("messageCreate", async (message) => {
 
     const otherMentions = message.mentions.users.filter(u => u.id !== client.user.id);
 
-    // Dashboard (primary entrypoint)
-    if (content.includes("טיקרים")) {
-      console.log(`📊 User ${message.author.tag} requested the dashboard`);
-      await showTickersDashboard({ message, dbPath: DB_PATH });
-      return;
-    }
-
     // Mine
     if (content.includes("טיקרים שלי") || content.includes("שלי")) {
       console.log(`📈 User ${message.author.tag} requested their tickers`);
       await listMyTickers({ message, dbPath: DB_PATH });
+      return;
+    }
+
+    // Dashboard (primary entrypoint)
+    if (content.includes("טיקרים")) {
+      console.log(`📊 User ${message.author.tag} requested the dashboard`);
+      await showTickersDashboard({ message, dbPath: DB_PATH });
       return;
     }
 
