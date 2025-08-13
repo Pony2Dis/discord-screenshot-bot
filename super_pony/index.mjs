@@ -98,6 +98,13 @@ const client = new Client({
 client.once("ready", async () => {
   console.log(`✅ Logged in as ${client.user.tag}`);
   try {
+    const botChannel = client.channels.cache.get(BOT_CHANNEL_ID);
+    if (botChannel) {
+      await botChannel.send("🔵 מבצע סריקה של הטיקרים בחדר גרפים...");
+    } else {
+      console.warn("Bot channel not found, skipping scanning message.");
+    }
+
     await runBackfillOnce({
       client,
       channelId: GRAPHS_CHANNEL_ID,
@@ -105,11 +112,11 @@ client.once("ready", async () => {
       dbPath: DB_PATH,
       lookbackDays: 14,
     });
+
     LIVE_LISTENING_ENABLED = true;
     console.log("✅ Backfill done; now listening for new messages.");
-    const botChannel = client.channels.cache.get(BOT_CHANNEL_ID);
     if (botChannel) {
-      await botChannel.send("🔵 חזרתי לפעילות, אני זמין, שלחו לי הודעה!");
+      await botChannel.send("🟢 חזרתי לפעילות, אני זמין, שלחו לי הודעה!");
     } else {
       console.warn("Bot channel not found, skipping ready message.");
     }
@@ -170,11 +177,13 @@ client.on("messageCreate", async (message) => {
       return; // ignore other webhook messages
     }
 
+    // if the message is from a bot, ignore it
     if (message.author.bot) return;
 
     const inBotRoom    = message.channel.id === BOT_CHANNEL_ID;
     const inGraphsRoom = message.channel.id === GRAPHS_CHANNEL_ID;
 
+    // if the message is sent in the graphs room, handle it
     if (inGraphsRoom) {
       if (!LIVE_LISTENING_ENABLED) return;
       const mentionsBot =
@@ -192,9 +201,13 @@ client.on("messageCreate", async (message) => {
       return;
     }
 
+    // if the message is sent in a room other than the bot room, ignore it
     if (!inBotRoom) return;
+
+    // if the message has the bot name or mentions the bot, handle it
     const content = message.content?.toLowerCase() || "";
-    const mentionsBot = (client.user?.id && message.mentions.users.has(client.user.id)) || message.content?.includes("@SuperPony");
+    const mentionsBot = (client.user?.id && message.mentions.users.has(client.user.id)) || content.includes("@superpony");
+    console.log(`🔔 Message from ${message.author.tag} in ${message.channel.name}:`, content);
     if (!mentionsBot) return;
 
     const otherMentions = message.mentions.users.filter(u => u.id !== client.user.id);
