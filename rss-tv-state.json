@@ -1757,7 +1757,14 @@
     "https://finance.yahoo.com/news/softbank-shares-surge-ai-hope-020505542.html",
     "https://finance.yahoo.com/news/wall-st-futures-steady-investors-100441649.html",
     "https://finance.yahoo.com/news/ai-stock-soaring-not-too-092500745.html",
-    "https://finance.yahoo.com/news/analysis-companies-plan-stablecoins-under-100640489.html"
+    "https://finance.yahoo.com/news/analysis-companies-plan-stablecoins-under-100640489.html",
+    "https://finance.yahoo.com/news/barrick-mining-reports-increased-production-093917376.html",
+    "https://finance.yahoo.com/news/8-ethereum-supply-now-sitting-093452401.html",
+    "https://finance.yahoo.com/news/3-reasons-buy-sofi-technologies-094300972.html",
+    "https://finance.yahoo.com/news/cfo-built-cannabis-dispensary-expanding-093536788.html",
+    "https://finance.yahoo.com/news/trump-executive-order-means-alts-101000277.html",
+    "https://finance.yahoo.com/news/dubai-crane-leasing-provider-mycrane-093517288.html",
+    "https://finance.yahoo.com/news/openai-ceo-sam-altman-just-094500768.html"
   ],
   "http://rss.cnn.com/rss/money_latest.rss": [],
   "https://rss.politico.com/economy.xml": [],
@@ -1780,7 +1787,8 @@
     "https://www.foxbusiness.com/economy/kodak-says-theres-substantial-doubt-can-stay-business",
     "https://www.foxbusiness.com/economy/us-national-debt-hits-record-37-trillion",
     "https://www.foxbusiness.com/economy/ge-appliances-invests-3b-us-manufacturing-operations",
-    "https://www.foxbusiness.com/economy/fda-may-revoke-pfizer-covid-19-vaccine-authorization-kids-under-certain-age"
+    "https://www.foxbusiness.com/economy/fda-may-revoke-pfizer-covid-19-vaccine-authorization-kids-under-certain-age",
+    "https://www.foxbusiness.com/economy/treasurys-bessent-says-he-doesnt-support-suspending-monthly-jobs-reports"
   ],
   "https://moxie.foxbusiness.com/google-publisher/markets.xml": [
     "https://www.foxbusiness.com/markets/gold-prices-soar-record-high-trump-tariffs-threaten-bullion-trade",
@@ -1858,6 +1866,7 @@
     "https://www.nytimes.com/2025/08/13/business/ai-business-payoff-lags.html",
     "https://www.nytimes.com/2025/08/13/business/dealbook/market-rally-interest-rates-trump.html",
     "https://www.nytimes.com/2025/08/13/business/media/hollywood-micro-drama-quibi.html",
-    "https://www.nytimes.com/2025/08/13/us/politics/trump-tariffs-case-federal-court.html"
+    "https://www.nytimes.com/2025/08/13/us/politics/trump-tariffs-case-federal-court.html",
+    "https://www.nytimes.com/2025/08/13/arts/design/mario-paglino-gianni-grossi-dead.html"
   ]
 }
