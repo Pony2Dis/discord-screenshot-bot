@@ -10030,5 +10030,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.27206998125502097
+  },
+  {
+    "epsDate": "2025-08-13T07:00:00",
+    "ticker": "MRX",
+    "name": "Marex Group Plc",
+    "summary": "Marex Group Plc (MRX) reported earnings of $1.02 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.92 per share on  revenue of $466.60 million. The company beat consensus estimates by 10.87%.<br /><br /> Medicis is an independent pharmaceutical company focusing exclusively on the treatment of dermatological conditions. Medicis offers prescription, over-the-counter and physician-dispensed dermatology products, emphasizing the clinical effectiveness, quality, affordability and cosmetic elegance of its products. Medicis has achieved a leading position in branded products for the treatment of acne, acne-related conditions, psoriatic conditions and pruritic conditions, while also offering the leading over-the-counter topical analgesic and fade cream product in the U.S.   \n",
+    "subject": "Marex Group Plc Beat Consensus Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508132666",
+    "eps": 1.02,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.92,
+    "whisper": 999,
+    "highEstimate": 1,
+    "lowEstimate": 0.85,
+    "revenue": null,
+    "revenueEstimate": 466.6,
+    "earningsGrowth": 0.13333333333333333,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.10869565217391304,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": null
   }
 ]
