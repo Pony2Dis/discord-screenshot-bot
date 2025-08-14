@@ -1,4 +1,4 @@
-/ utils/anonymizeTradingView.mjs
+// utils/anonymizeTradingView.mjs
 import sharp from "sharp";
 import Tesseract from "tesseract.js";
 const DEBUG = process.env.TESS_DEBUG === "1";
