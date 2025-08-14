@@ -10894,5 +10894,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.06894225580140313
+  },
+  {
+    "epsDate": "2025-08-14T04:30:00",
+    "ticker": "NTES",
+    "name": "NetEase, Inc.",
+    "summary": "NetEase (NTES) reported earnings of $2.06 per share on revenue of $3.89 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $2.04 per share on  revenue of $3.86 billion. The Earnings Whisper number was $2.17 per share. The company missed expectations by 5.07% while revenue grew 11.02% on a year-over-year basis.<br /><br />NetEase Inc operates an interactive online community in China and is a major provider of Chinese language content and services through its online games, Internet portal, e-mail and wireless value-added services businesses.",
+    "subject": "NetEase Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508141418",
+    "eps": 2.06,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 2.04,
+    "whisper": 2.17,
+    "highEstimate": 2.04,
+    "lowEstimate": 2.03,
+    "revenue": 3893.526,
+    "revenueEstimate": 3860,
+    "earningsGrowth": 0.4405594405594406,
+    "revenueGrowth": 0.1102272821241627,
+    "earningsSurprise": -0.05069124423963134,
+    "revenueSurprise": 0.008685492227979274,
+    "prevEarningsGrowth": 9.045454545454545,
+    "prevRevenueGrowth": 0.06823400215600055
   }
 ]
