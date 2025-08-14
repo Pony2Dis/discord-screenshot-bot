@@ -11,7 +11,7 @@ import { logFailure } from "../../utils/logFailure.mjs";
  * @param {import('discord.js').Message} message
  * @param {import('discord.js').TextChannel} botLogChannel - private/admin-only channel
  */
-export async function deleteAndRepost(message, botLogChannel) {
+export async function deleteAndRepost(message, botLogChannel, userInitials) {
   // Skip bots/webhooks
   if (!message || message.author?.bot || message.webhookId) return;
   if (!botLogChannel) throw new Error("botChannel is required");
@@ -43,7 +43,7 @@ export async function deleteAndRepost(message, botLogChannel) {
 
   // 4) Repost in original channel
   try {
-    await repostMessage(message, files);
+    await repostMessage(message, files, userInitials);
     // 5) Success -> delete the forward copy
     await forwardMsg.delete().catch(() => {});
   } catch (err) {
