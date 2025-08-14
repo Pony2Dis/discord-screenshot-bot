@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-14T16:34:47.896Z",
+  "updated": "2025-08-14T17:35:31.656Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -2951,12 +2951,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1405590491441139723",
       "timestamp": "2025-08-14T16:34:47.768Z",
       "content": "Aeva מתקרבת לסטופ"
+    },
+    {
+      "ticker": "U",
+      "user": {
+        "id": "1339671554371485789",
+        "name": "MrKnowAll"
+      },
+      "messageId": "1405605773966315674",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1405605773966315674",
+      "timestamp": "2025-08-14T17:35:31.406Z",
+      "content": "U above 39"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1405584236496424960",
-      "lastProcessedAt": "2025-08-14T16:09:56.473Z"
+      "lastProcessedId": "1405592668372861009",
+      "lastProcessedAt": "2025-08-14T16:43:26.789Z"
     }
   }
 }
