@@ -1,27 +1,39 @@
+// utils/anonymizeTradingView.mjs
 import sharp from "sharp";
 import { createWorker } from "tesseract.js";
 
 // Toggle detailed logs with env: TESS_DEBUG=1
 const DEBUG = process.env.TESS_DEBUG === "1";
+// Timeout for any Tesseract OCR operation (in milliseconds)
 const OCR_TIMEOUT_MS = Number(process.env.TESS_TIMEOUT_MS || 10000);
 
-const IMAGE_EXT_RE = /\.(png|jpg|jpeg|webp)$/i;
+// File extension regexes
+const IMAGE_EXT_RE = /\.(png|jpe?g|webp)$/i;
 const SKIP_EXT_RE  = /\.(gif|apng)$/i;
 
 let workerPromise;
+
+/**
+ * Conditional debug logger
+ */
 function dlog(...args) {
   if (DEBUG) console.log("[anonymizer]", ...args);
 }
 
+/**
+ * Lazily create and initialize a single Tesseract worker.
+ * In v6, loadLanguage takes an array.
+ */
 async function getWorker() {
   if (!workerPromise) {
     workerPromise = (async () => {
       dlog("creating tesseract worker…");
       const worker = createWorker({
-        logger: DEBUG ? (m) => console.log("[tesseract]", m) : undefined
+        logger: DEBUG ? (m) => console.log("[tesseract]", m) : undefined,
       });
+      // load the core WASM, then the language data
       await worker.load();
-      await worker.loadLanguage("eng");
+      await worker.loadLanguage(["eng"]);
       await worker.initialize("eng");
       return worker;
     })();
@@ -29,21 +41,32 @@ async function getWorker() {
   return workerPromise;
 }
 
+/**
+ * Wrap a promise with a timeout.
+ */
 function withTimeout(promise, ms, label = "operation") {
-  let t;
-  const timeout = new Promise((_, rej) =>
-    (t = setTimeout(() => rej(new Error(`${label} timeout after ${ms}ms`)), ms))
-  );
-  return Promise.race([promise, timeout]).finally(() => clearTimeout(t));
+  let timeoutId;
+  const timeout = new Promise((_, reject) => {
+    timeoutId = setTimeout(() => {
+      reject(new Error(`${label} timed out after ${ms}ms`));
+    }, ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timeoutId));
 }
 
+/**
+ * Run OCR on the top slice of the image to detect where the TradingView header ends.
+ * Returns { shouldCrop, cropTopPx }.
+ */
 async function detectTradingViewHeaderTop(buffer) {
   try {
     const img = sharp(buffer);
     const { width, height } = await img.metadata();
+
+    // Take top 15% of height
     const ocrHeight = Math.round(height * 0.15);
-    const prep = img.extract({ left: 0, top: 0, width, height: ocrHeight });
-    const topSlice = await prep
+    const topSlice = await img
+      .extract({ left: 0, top: 0, width, height: ocrHeight })
       .greyscale()
       .normalize()
       .sharpen()
@@ -58,19 +81,27 @@ async function detectTradingViewHeaderTop(buffer) {
       "tesseract.recognize"
     );
 
+    // Find maximum bottom Y of any detected word
     let maxBottom = 0;
-    for (const w of data?.words || []) {
-      const y1 = w.bbox?.y1 || 0;
-      maxBottom = Math.max(maxBottom, y1);
+    for (const w of data.words || []) {
+      if (w.bbox && typeof w.bbox.y1 === "number") {
+        maxBottom = Math.max(maxBottom, w.bbox.y1);
+      }
     }
-    const cropTopPx = Math.round(maxBottom / (width / width));
+
+    // If the header is more than 10px tall, crop it
+    const cropTopPx = Math.round(maxBottom);
     return { shouldCrop: cropTopPx > 10, cropTopPx };
   } catch (err) {
-    console.error("[anonymizer] OCR failed → sending original image:", err);
+    console.error("[anonymizer] OCR failed — will not crop:", err);
     return { shouldCrop: false, cropTopPx: 0 };
   }
 }
 
+/**
+ * Determine if this file object has an image attachment we can process.
+ * We expect { name, attachment: Buffer }.
+ */
 function isProcessableImage(file) {
   const name = file.name || "";
   if (SKIP_EXT_RE.test(name)) return false;
@@ -78,6 +109,10 @@ function isProcessableImage(file) {
   return Buffer.isBuffer(file.attachment);
 }
 
+/**
+ * If the image is a TradingView chart with a header, crop off the header.
+ * Otherwise return the original file object.
+ */
 export async function anonymizeTradingViewIfNeeded(file) {
   try {
     if (!isProcessableImage(file) || !Buffer.isBuffer(file.attachment)) {
@@ -85,20 +120,27 @@ export async function anonymizeTradingViewIfNeeded(file) {
     }
 
     const { shouldCrop, cropTopPx } = await detectTradingViewHeaderTop(file.attachment);
-    if (!shouldCrop || cropTopPx <= 0) return file;
+    if (!shouldCrop || cropTopPx <= 0) {
+      dlog("no cropping needed");
+      return file;
+    }
 
+    // Read metadata again to crop correctly
     const img = sharp(file.attachment);
     const { width, height } = await img.metadata();
-    if (cropTopPx >= height - 10) return file;
+    if (cropTopPx >= height - 10) {
+      dlog("detected crop height too large, skipping");
+      return file;
+    }
 
-    const cropped = await img
+    const croppedBuffer = await img
       .extract({ left: 0, top: cropTopPx, width, height: height - cropTopPx })
       .toBuffer();
 
-    dlog("cropped", { removedTopPx: cropTopPx, newHeight: height - cropTopPx });
-    return { ...file, attachment: cropped };
+    dlog("cropped image", { removedTopPx: cropTopPx, newHeight: height - cropTopPx });
+    return { ...file, attachment: croppedBuffer };
   } catch (err) {
-    console.error("[anonymizer] anonymizeTradingViewIfNeeded failed → send original:", err);
+    console.error("[anonymizer] anonymizeTradingViewIfNeeded failed — sending original:", err);
     return file;
   }
 }
