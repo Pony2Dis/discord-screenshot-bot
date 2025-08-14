@@ -210,7 +210,9 @@ client.on("messageCreate", async (message) => {
 
         // then delete the original message and repost it in this channel as the bot
         const USERS_TO_PROTECT = ["cubby", "sprunknwn", "mr_know_all", "kimhiempire", "manana9690"];
-        if(USERS_TO_PROTECT.includes(message.author.username.toLowerCase())) {
+        console.log(`📥 New message in #${message.channel.name} from ${message.author.username}`);
+        // if USERS_TO_PROTECT strings are in the message author username, delete and repost the message
+        if(USERS_TO_PROTECT.some(u => message.author.username.toLowerCase().includes(u))) {
           try {
             await deleteAndRepost(message, botLogChannel);
             console.log(`🔄 Reposted message from ${message.author.tag} in #${message.channel.name}`);
