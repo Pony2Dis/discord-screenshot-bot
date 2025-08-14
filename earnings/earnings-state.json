@@ -10870,5 +10870,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.25895068678225625
+  },
+  {
+    "epsDate": "2025-08-14T06:45:00",
+    "ticker": "TPR",
+    "name": "Tapestry, Inc.",
+    "summary": "Tapestry (TPR) reported earnings of $1.04 per share on  for the  fiscal fourth quarter ended June 2025.  The consensus earnings estimate was $1.01 per share on  revenue of $1.68 billion. The Earnings Whisper number was $1.08 per share. The company missed expectations by 3.70%.<br /><br />The company  said it expects fiscal  2026  earnings of $5.30 to $5.45 per share on revenue of up to $7.20 billion. The current consensus earnings estimate is $5.47 per share on revenue of $7.17 billion for the year ending June 30, 2026.<br /><br />Tapestry, Inc. is a New York-based house of modern luxury lifestyle brands. The Company’s portfolio includes Coach, Kate Spade and Stuart Weitzman.",
+    "subject": "Tapestry Missed Expectations",
+    "quarter": " fiscal fourth quarter ended June 2025",
+    "fileName": "2508143486",
+    "eps": 1.04,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 1.01,
+    "whisper": 1.08,
+    "highEstimate": 1.07,
+    "lowEstimate": 0.97,
+    "revenue": null,
+    "revenueEstimate": 1680,
+    "earningsGrowth": 0.13043478260869565,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.037037037037037035,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.06894225580140313
   }
 ]
