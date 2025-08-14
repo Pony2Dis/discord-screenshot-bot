@@ -2631,7 +2631,9 @@
     "https://www.barrons.com/articles/stocks-rates-trump-tariffs-tech-acd770df?siteid=yhoof2&yptr=yahoo",
     "https://finance.yahoo.com/news/xrp-peaks-3-33-double-145753725.html",
     "https://finance.yahoo.com/news/ai-cuts-monthly-financial-close-145916388.html",
-    "https://finance.yahoo.com/news/ford-recalls-312k-vehicles-loss-150000589.html"
+    "https://finance.yahoo.com/news/ford-recalls-312k-vehicles-loss-150000589.html",
+    "https://finance.yahoo.com/news/colombia-ecopetrol-sees-significant-profit-150531659.html",
+    "https://finance.yahoo.com/news/trump-cost-cutting-efficiency-national-150459331.html"
   ],
   "http://rss.cnn.com/rss/money_latest.rss": [],
   "https://rss.politico.com/economy.xml": [],
@@ -2666,7 +2668,8 @@
   "https://moxie.foxbusiness.com/google-publisher/markets.xml": [
     "https://www.foxbusiness.com/markets/gold-prices-soar-record-high-trump-tariffs-threaten-bullion-trade",
     "https://www.foxbusiness.com/markets/gm-restarts-driverless-car-program-more-than-year-after-cruise-robotaxi-incident",
-    "https://www.foxbusiness.com/markets/spirit-airlines-warns-may-not-survive-another-year"
+    "https://www.foxbusiness.com/markets/spirit-airlines-warns-may-not-survive-another-year",
+    "https://www.foxbusiness.com/markets/exchange-miax-soars-wall-street-debut-plans-miami-expansion"
   ],
   "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml": [
     "https://www.nytimes.com/2025/08/09/business/morton-meyerson-dead.html",
