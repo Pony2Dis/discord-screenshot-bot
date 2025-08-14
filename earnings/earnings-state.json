@@ -10990,5 +10990,29 @@
     "revenueSurprise": -0.9631578947368421,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 1.7777777777777777
+  },
+  {
+    "epsDate": "2025-08-14T16:01:00",
+    "ticker": "TMC",
+    "name": "TMC the metals company Inc.",
+    "summary": "TMC the metals company (TMC) reported a loss of $0.07 per share on revenue of $0.00 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.06 per share. The Earnings Whisper number was a loss of $0.05 per share. The company missed expectations by 40.00%.<br /><br />The Metals Company is an explorer of lower-impact battery metals from seafloor polymetallic nodules, on a dual mission: (1) supply metals for the clean energy transition with the least possible negative environmental and social impact and (2) accelerate the transition to a circular metal economy.",
+    "subject": "TMC the metals company Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508142934",
+    "eps": -0.07,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.06,
+    "whisper": -0.05,
+    "highEstimate": -0.06,
+    "lowEstimate": -0.06,
+    "revenue": 0,
+    "revenueEstimate": null,
+    "earningsGrowth": -0.16666666666666666,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.4,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": null
   }
 ]
