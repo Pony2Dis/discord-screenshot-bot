@@ -21,6 +21,7 @@ async function detectCrop(buffer) {
     .normalize()
     .sharpen()
     .threshold(180)
+    .negate() // Invert to make text black on white for better OCR
     .toBuffer();
 
   dlog("OCR slice:", { width, sliceHeight });
