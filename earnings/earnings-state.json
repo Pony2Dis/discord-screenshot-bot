@@ -10702,5 +10702,29 @@
     "revenueSurprise": 0.005442592157783518,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.040068176704058524
+  },
+  {
+    "epsDate": "2025-08-14T06:27:00",
+    "ticker": "DE",
+    "name": "Deere & Company",
+    "summary": "Deere (DE) reported earnings of $4.75 per share on  for the  fiscal third quarter ended July 2025.  The consensus earnings estimate was $4.62 per share on  revenue of $10.26 billion. The Earnings Whisper number was $4.81 per share. The company missed expectations by 1.25%.<br /><br />Deere & Company is a world leader in providing advanced products, technology and services for customers whose work is revolutionizing agriculture and construction.",
+    "subject": "Deere Missed Expectations",
+    "quarter": " fiscal third quarter ended July 2025",
+    "fileName": "2508149296",
+    "eps": 4.75,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 4.62,
+    "whisper": 4.81,
+    "highEstimate": 5.11,
+    "lowEstimate": 4.2,
+    "revenue": null,
+    "revenueEstimate": 10260,
+    "earningsGrowth": -0.24483306836248012,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.012474012474012475,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.16225795864785034
   }
 ]
