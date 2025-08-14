@@ -1,5 +1,5 @@
 // /utils/repostMessage.js
-import { anonymizeTradingViewIfNeeded } from "./anonymizeTradingView.js";
+import { anonymizeTradingViewIfNeeded } from "./anonymizeTradingView.mjs";
 
 // Repost the message as the bot in the original channel, preserving reply + stickers.
 export async function repostMessage(message, files, userInitials) {
