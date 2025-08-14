@@ -11110,5 +11110,29 @@
     "revenueSurprise": 0.018888317035512095,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.3908950881396543
+  },
+  {
+    "epsDate": "2025-08-14T16:05:00",
+    "ticker": "RCAT",
+    "name": "Red Cat Holdings Inc",
+    "summary": "Red Cat Holdings (RCAT) reported a loss of $0.14 per share on revenue of $3.22 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.12 per share on  revenue of $7.00 million. The company missed consensus estimates by 16.67%.<br /><br />Red Cat provides products, services and solutions to the drone industry through its four wholly owned subsidiaries. ",
+    "subject": "Red Cat Holdings Missed Consensus Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508142949",
+    "eps": -0.14,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.12,
+    "whisper": 999,
+    "highEstimate": -0.12,
+    "lowEstimate": -0.12,
+    "revenue": 3.219,
+    "revenueEstimate": 7,
+    "earningsGrowth": null,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.16666666666666666,
+    "revenueSurprise": -0.5401428571428571,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": null
   }
 ]
