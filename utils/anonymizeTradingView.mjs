@@ -13,8 +13,6 @@ async function getWorker() {
       const worker = await createWorker('eng', 1, {
         logger: m => console.log(m) // ✅ allowed, but must be outside worker.postMessage()
       });
-      await worker.loadLanguage("eng");
-      await worker.initialize("eng");
       return worker;
     })();
   }
