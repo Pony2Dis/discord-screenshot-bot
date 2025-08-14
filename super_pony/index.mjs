@@ -17,6 +17,7 @@ import { listMyTickers } from "./cmd_handlers/listMyTickers.mjs";
 import { listFirstByUser } from "./cmd_handlers/listFirstByUser.mjs";
 import { handleGraphChannelMessage, runBackfillOnce } from "./cmd_handlers/graphChannelHandler.mjs";
 import { showTickersDashboard, handleDashboardInteraction } from "./cmd_handlers/tickersDashboard.mjs";
+import { deleteAndRepost } from "./cmd_handlers/deleteAndRepost.mjs";
 
 // paths
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -39,6 +40,9 @@ const {
 
 // shared state
 let LIVE_LISTENING_ENABLED = false;
+
+let botLogChannel = null; // channel for bot logs
+let botChannel = null; // channel for bot interactions
 
 // graceful shutdown (NEW)
 async function shutdown(reason = "discord-webhook") {
@@ -98,12 +102,18 @@ const client = new Client({
 client.once("ready", async () => {
   console.log(`✅ Logged in as ${client.user.tag}`);
   try {
-    const botChannel = client.channels.cache.get(BOT_CHANNEL_ID);
+    botLogChannel = client.channels.cache.get(LOG_CHANNEL_ID);
+    if (!botLogChannel) {
+      console.warn("Bot Log channel not found, wont be able to delete and repost.");
+    }
+
+    botChannel = client.channels.cache.get(BOT_CHANNEL_ID);
     if (botChannel) {
       await botChannel.send("🔵 מבצע סריקה של הטיקרים בחדר גרפים...");
     } else {
       console.warn("Bot channel not found, skipping scanning message.");
     }
+
     try {
       await runBackfillOnce({
         client,
@@ -168,7 +178,6 @@ client.on("messageCreate", async (message) => {
         if (text === `shutdown ${SHUTDOWN_SECRET}`) {
           // send a message to the bot channel before shutdown
           console.log("🔴 Shutdown command received via webhook, shutting down...");
-          const botChannel = client.channels.cache.get(BOT_CHANNEL_ID);
           if (botChannel) {
             await botChannel.send("🔴 אני יורד לדקה של תחזוקה...");
           } else {
@@ -189,17 +198,28 @@ client.on("messageCreate", async (message) => {
     // if the message is sent in the graphs room, handle it
     if (inGraphsRoom) {
       if (!LIVE_LISTENING_ENABLED) return;
-      const mentionsBot =
-        (client.user?.id && message.mentions.users.has(client.user.id)) ||
-        message.content?.includes("@SuperPony");
-      if (!mentionsBot && message.content?.trim()) {
+      if (message.content?.trim()) {
+        // first log user's message in the DB
         await handleGraphChannelMessage({
           message,
           allTickersFile: ALL_TICKERS_PATH,
           dbPath: DB_PATH,
-          silent: false,
+          silent: true,
           updateCheckpoint: true,
         });
+
+        // then delete the original message and repost it in this channel as the bot
+        if(message.author.username === "Cubby") {
+          try {
+            await deleteAndRepost(message, botLogChannel);
+            console.log(`🔄 Reposted message from ${message.author.tag} in #${message.channel.name}`);
+          } catch (err) {
+            console.error(`❌ Failed to repost message from ${message.author.tag} in #${message.channel.name}:`, err);
+            if (message.channel.send) {
+              await message.channel.send(`❌ לא הצלחתי לפרסם את ההודעה שלך, אנא נסה שוב, או פנה למנהל השרת.`);
+            }
+          }
+        }
       }
       return;
     }
