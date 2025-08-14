@@ -321,5 +321,18 @@ client.on("messageCreate", async (message) => {
   }
 });
 
+
+// global error handlers
+process.on("unhandledRejection", (err) => {
+  console.error("UnhandledRejection:", err);
+  shutdown();
+});
+
+process.on("uncaughtException", (err) => {
+  console.error("UncaughtException:", err);
+  shutdown();
+});
+
+
 await registerSlashCommands();
 client.login(DISCORD_TOKEN);
