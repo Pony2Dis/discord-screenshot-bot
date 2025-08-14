@@ -11134,5 +11134,29 @@
     "revenueSurprise": -0.5401428571428571,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": null
+  },
+  {
+    "epsDate": "2025-08-14T16:05:00",
+    "ticker": "NNE",
+    "name": "Nano Nuclear Energy Inc",
+    "summary": "Nano Nuclear Energy (NNE) reported a loss of $0.19 per share on revenue of $0.00 million for the  fiscal third quarter ended June 2025.  The consensus estimate was a loss of $0.27 per share on  revenue of $0.20 million. The company beat consensus estimates by 29.63%.<br /><br />NANO Nuclear Energy Inc. is an advanced technology-driven nuclear energy company seeking to become a commercially focused, diversified, and vertically integrated company across five business lines: (i) cutting edge portable and other microreactor technologies, (ii) nuclear fuel fabrication, (iii) nuclear fuel transportation, (iv) nuclear applications for space and (v) nuclear industry consulting services. ",
+    "subject": "Nano Nuclear Energy Beat Consensus Estimates",
+    "quarter": " fiscal third quarter ended June 2025",
+    "fileName": "2508142896",
+    "eps": -0.19,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.27,
+    "whisper": 999,
+    "highEstimate": -0.14,
+    "lowEstimate": -0.4,
+    "revenue": 0,
+    "revenueEstimate": 0.2,
+    "earningsGrowth": -0.11764705882352941,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.2962962962962963,
+    "revenueSurprise": -1,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": null
   }
 ]
