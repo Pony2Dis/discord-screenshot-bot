@@ -13,34 +13,41 @@ function dlog(...args) {
 async function detectCrop(buffer) {
   const image = sharp(buffer);
   const { width, height } = await image.metadata();
-  const sliceHeight = Math.round(height * 0.15);
+  const sliceHeight = Math.round(height * 0.05);
 
   const topSlice = await image
     .extract({ left: 0, top: 0, width, height: sliceHeight })
     .greyscale()
     .normalize()
     .sharpen()
-    .threshold(180)
-    .negate() // Invert to make text black on white for better OCR
+    .threshold(128)
+    .negate()
+    .resize(width * 2, sliceHeight * 2)
     .toBuffer();
 
   dlog("OCR slice:", { width, sliceHeight });
   let ocrResult;
   try {
-    const ocrOptions = {};
-    if (DEBUG) {
-      ocrOptions.logger = (m) => console.log("[ocr]", m);
-    }
+    const worker = await Tesseract.createWorker("eng", 1, {
+      logger: DEBUG ? (m) => console.log("[ocr]", m) : undefined,
+    });
+    await worker.setParameters({
+      tessedit_pageseg_mode: Tesseract.PSM.SINGLE_LINE,
+    });
     ocrResult = await Promise.race([
-      Tesseract.recognize(topSlice, "eng", ocrOptions),
+      worker.recognize(topSlice),
       new Promise((_, rej) =>
         setTimeout(() => rej(new Error("OCR timeout")), OCR_TIMEOUT_MS)
       ),
     ]);
+    await worker.terminate();
   } catch (err) {
     console.error("[anonymizer] OCR failed:", err);
     return 0;
   }
+
+  const extractedText = ocrResult?.data?.text?.trim() || "";
+  dlog("OCR extracted text:", extractedText || "No text extracted");
 
   const words = ocrResult?.data?.words || [];
   let maxY = 0;
@@ -48,6 +55,7 @@ async function detectCrop(buffer) {
     if (w.bbox?.y1 > maxY) maxY = w.bbox.y1;
   }
 
+  maxY = Math.floor(maxY / 2);
   const cropPx = Math.min(maxY, height - 1);
   return cropPx > 10 ? cropPx : 0;
 }
