@@ -10918,5 +10918,29 @@
     "revenueSurprise": 0.008685492227979274,
     "prevEarningsGrowth": 9.045454545454545,
     "prevRevenueGrowth": 0.06823400215600055
+  },
+  {
+    "epsDate": "2025-08-14T16:01:00",
+    "ticker": "AMAT",
+    "name": "Applied Materials, Inc.",
+    "summary": "Applied Materials (AMAT) reported earnings of $2.48 per share on  for the  fiscal third quarter ended July 2025.  The consensus earnings estimate was $2.34 per share on  revenue of $7.20 billion. The Earnings Whisper number was $2.40 per share. The company beat expectations by 3.33%.<br /><br />Applied Materials Inc provides manufacturing equipment, services and software to the global semiconductor, flat panel display, solar photovoltaic and related industries.",
+    "subject": "Applied Materials Beat Expectations",
+    "quarter": " fiscal third quarter ended July 2025",
+    "fileName": "2508142882",
+    "eps": 2.48,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 2.34,
+    "whisper": 2.4,
+    "highEstimate": 2.39,
+    "lowEstimate": 2.23,
+    "revenue": null,
+    "revenueEstimate": 7200,
+    "earningsGrowth": 0.16981132075471697,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.03333333333333333,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.06831176647607584
   }
 ]
