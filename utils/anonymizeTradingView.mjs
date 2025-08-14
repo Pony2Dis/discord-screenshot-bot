@@ -26,10 +26,12 @@ async function detectCrop(buffer) {
   dlog("OCR slice:", { width, sliceHeight });
   let ocrResult;
   try {
+    const ocrOptions = {};
+    if (DEBUG) {
+      ocrOptions.logger = (m) => console.log("[ocr]", m);
+    }
     ocrResult = await Promise.race([
-      Tesseract.recognize(topSlice, "eng", {
-        logger: DEBUG ? (m) => console.log("[ocr]", m) : undefined,
-      }),
+      Tesseract.recognize(topSlice, "eng", ocrOptions),
       new Promise((_, rej) =>
         setTimeout(() => rej(new Error("OCR timeout")), OCR_TIMEOUT_MS)
       ),
