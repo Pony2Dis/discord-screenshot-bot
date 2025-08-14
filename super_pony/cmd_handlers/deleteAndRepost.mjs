@@ -1,8 +1,8 @@
 import { PermissionFlagsBits } from "discord.js";
-import { downloadAttachments } from "../../utils/downloadAttachments.js";
-import { forwardMessage } from "../../utils/forwardMessage.js";
-import { repostMessage } from "../../utils/repostMessage.js";
-import { logFailure } from "../../utils/logFailure.js";
+import { downloadAttachments } from "../../utils/downloadAttachments.mjs";
+import { forwardMessage } from "../../utils/forwardMessage.mjs";
+import { repostMessage } from "../../utils/repostMessage.mjs";
+import { logFailure } from "../../utils/logFailure.mjs";
 
 /**
  * Forward -> Delete original -> Repost -> Delete forward on success.
