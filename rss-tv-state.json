@@ -2244,7 +2244,17 @@
     "https://finance.yahoo.com/news/zscaler-inc-zs-acquires-red-035627324.html",
     "https://finance.yahoo.com/news/verisign-inc-vrsn-reports-results-035704709.html",
     "https://finance.yahoo.com/news/india-plans-end-state-monopoly-114300491.html",
-    "https://finance.yahoo.com/news/barclays-raises-pt-aon-plc-043501265.html"
+    "https://finance.yahoo.com/news/barclays-raises-pt-aon-plc-043501265.html",
+    "https://finance.yahoo.com/news/more-us-companies-skip-lender-120918569.html",
+    "https://finance.yahoo.com/news/fintech-scotland-adds-mastercard-law-121031455.html",
+    "https://finance.yahoo.com/news/moody-corporation-mco-reports-q2-043350847.html",
+    "https://finance.yahoo.com/news/ubs-reduces-pt-charter-communications-044009568.html",
+    "https://finance.yahoo.com/news/bofa-upgrades-national-fuel-gas-044220975.html",
+    "https://finance.yahoo.com/news/morning-bid-stock-markets-celebrate-043832222.html",
+    "https://finance.yahoo.com/news/lennar-corporation-len-announces-change-043948733.html",
+    "https://finance.yahoo.com/news/mizuho-raises-pt-hf-sinclair-044150181.html",
+    "https://finance.yahoo.com/news/3-reasons-xrp-surging-now-115300002.html",
+    "https://finance.yahoo.com/news/kroger-co-kr-announces-leadership-043931766.html"
   ],
   "http://rss.cnn.com/rss/money_latest.rss": [],
   "https://rss.politico.com/economy.xml": [],
@@ -2270,7 +2280,8 @@
     "https://www.foxbusiness.com/economy/ge-appliances-invests-3b-us-manufacturing-operations",
     "https://www.foxbusiness.com/economy/fda-may-revoke-pfizer-covid-19-vaccine-authorization-kids-under-certain-age",
     "https://www.foxbusiness.com/economy/treasurys-bessent-says-he-doesnt-support-suspending-monthly-jobs-reports",
-    "https://www.foxbusiness.com/economy/feds-current-monetary-policy-stance-exactly-where-we-want-be-official-says"
+    "https://www.foxbusiness.com/economy/feds-current-monetary-policy-stance-exactly-where-we-want-be-official-says",
+    "https://www.foxbusiness.com/economy/starbucks-ceo-sets-new-time-goal-baristas-making-your-order"
   ],
   "https://moxie.foxbusiness.com/google-publisher/markets.xml": [
     "https://www.foxbusiness.com/markets/gold-prices-soar-record-high-trump-tariffs-threaten-bullion-trade",
@@ -2361,6 +2372,7 @@
     "https://www.nytimes.com/2025/08/14/travel/amtrak-riders-passengers-disabilities.html",
     "https://www.nytimes.com/2025/08/14/business/energy-environment/ai-data-centers-electricity-costs.html",
     "https://www.nytimes.com/2025/08/14/business/fed-interest-rates-inflation.html",
-    "https://www.nytimes.com/2025/08/14/business/dealbook/trump-nvidia-chips-deal-trade-policy.html"
+    "https://www.nytimes.com/2025/08/14/business/dealbook/trump-nvidia-chips-deal-trade-policy.html",
+    "https://www.nytimes.com/2025/08/14/business/media/taylor-swift-podcast-celebrity-interviews.html"
   ]
 }
