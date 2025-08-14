@@ -209,7 +209,7 @@ client.on("messageCreate", async (message) => {
         });
 
         // then delete the original message and repost it in this channel as the bot
-        if(message.author.username === "Cubby") {
+        if(message.author.username.toLowerCase().includes("cubby")) {
           try {
             await deleteAndRepost(message, botLogChannel);
             console.log(`🔄 Reposted message from ${message.author.tag} in #${message.channel.name}`);
