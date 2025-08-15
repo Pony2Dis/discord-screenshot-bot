@@ -11350,5 +11350,29 @@
     "revenueSurprise": 0.06664999374765537,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": null
+  },
+  {
+    "epsDate": "2025-08-14T16:15:00",
+    "ticker": "KULR",
+    "name": "KULR Technology Group, Inc.",
+    "summary": "KULR Technology Group (KULR) reported a loss of $0.15 per share on revenue of $3.97 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.12 per share on  revenue of $3.45 million. The company missed consensus estimates by 25.00% while revenue grew 63.36% on a year-over-year basis.<br /><br />KULR Technology Group Inc.  develops, manufactures and licenses next-generation carbon fiber thermal management technologies for batteries and electronic systems. ",
+    "subject": "KULR Technology Group Missed Consensus Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508142865",
+    "eps": -0.15,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.12,
+    "whisper": 999,
+    "highEstimate": -0.08,
+    "lowEstimate": -0.16,
+    "revenue": 3.973,
+    "revenueEstimate": 3.45,
+    "earningsGrowth": -4,
+    "revenueGrowth": 0.6336348684210527,
+    "earningsSurprise": -0.25,
+    "revenueSurprise": 0.15159420289855072,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.40022870211549455
   }
 ]
