@@ -11374,5 +11374,29 @@
     "revenueSurprise": 0.15159420289855072,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.40022870211549455
+  },
+  {
+    "epsDate": "2025-08-15T06:00:00",
+    "ticker": "FUFU",
+    "name": "BitFuFu Inc. ",
+    "summary": "BitFuFu Inc. (FUFU) reported earnings of $0.09 per share on revenue of $115.40 million for the  second quarter ended June 2025.  The consensus earnings estimate was $0.06 per share on  revenue of $123.78 million. The company beat consensus estimates by 50.00% while revenue fell 10.84% compared to the same quarter a year ago.<br /><br />BitFuFu Inc. is a global leader in Bitcoin mining and comprehensive mining services, providing customers with one-stop solutions including cloud-mining. ",
+    "subject": "BitFuFu Inc. Beat Consensus Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508153151",
+    "eps": 0.09,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.06,
+    "whisper": 999,
+    "highEstimate": 0.17,
+    "lowEstimate": -0.01,
+    "revenue": 115.395,
+    "revenueEstimate": 123.78,
+    "earningsGrowth": 8,
+    "revenueGrowth": -0.10837499323911884,
+    "earningsSurprise": 0.5,
+    "revenueSurprise": -0.06774115365971886,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.4595702543435057
   }
 ]
