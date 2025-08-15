@@ -11398,5 +11398,29 @@
     "revenueSurprise": -0.06774115365971886,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.4595702543435057
+  },
+  {
+    "epsDate": "2025-08-15T07:00:00",
+    "ticker": "FLO",
+    "name": "Flowers Foods Inc.",
+    "summary": "Flowers Foods (FLO) reported earnings of $0.30 per share on revenue of $1.24 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $0.29 per share on  revenue of $1.27 billion. The Earnings Whisper number was $0.30 per share. The company reported in-line with expectations while revenue grew 1.46% on a year-over-year basis.<br /><br />Flowers Foods Inc is a producer and marketer of packaged bakery foods. It consists of two business segments direct-store-delivery and warehouse delivery. Its brands include Nature' Own, Whitewheat, Wonder Bread,Cobblestone Bread Co., among others.",
+    "subject": "Flowers Foods Reported In-line with Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508151362",
+    "eps": 0.3,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.29,
+    "whisper": 0.3,
+    "highEstimate": 0.31,
+    "lowEstimate": 0.28,
+    "revenue": 1242.835,
+    "revenueEstimate": 1270,
+    "earningsGrowth": -0.16666666666666666,
+    "revenueGrowth": 0.014573263465697074,
+    "earningsSurprise": 0,
+    "revenueSurprise": -0.02138976377952756,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.014325052098593496
   }
 ]
