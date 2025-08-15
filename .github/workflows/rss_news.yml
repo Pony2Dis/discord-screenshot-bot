@@ -38,7 +38,7 @@ jobs:
       - name: Run rss bot
         env:
           DISCORD_TOKEN:   ${{ secrets.DISCORD_TOKEN }}
-          DISCORD_NEWS_RSS_WEBHOOK: ${{ secrets.DISCORD_NEWS_RSS_WEBHOOK }}
+          DISCORD_NEWS_RSS_WEBHOOK: ${{ vars.DISCORD_NEWS_RSS_WEBHOOK }}
           RSS_FEEDS:       ${{ vars.RSS_FEEDS }}
           EMBED_HOSTS:     ${{ vars.EMBED_HOSTS }}
           JSON_FILE:    rss-state.json
