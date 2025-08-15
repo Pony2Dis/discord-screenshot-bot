@@ -12,7 +12,7 @@ export async function repostMessage(message, files, userInitials) {
     : undefined;
 
   const options = {
-    content: (`[@${userInitials}](https://discord.com/channels/1397974486581772494/1397977551078686871)\n${message.content}` ?? "") || (processedFiles?.length ? "" : "(no content)"),
+    content: (`[@${userInitials}](https://discord.com/channels/1397974486581772494/1397977551078686871)\n${message.content}\n\n> אין באמור משום ייעוץ השקעות או ייעוץ פיננסי, וכל פעולה שתבצעו היא על אחריותכם בלבד.` ?? "") || (processedFiles?.length ? "" : "(no content)"),
     files: processedFiles,
     allowedMentions: { parse: [] }, // avoid accidental pings; tweak if needed
     reply: replyTargetId
