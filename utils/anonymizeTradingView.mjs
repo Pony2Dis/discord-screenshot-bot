@@ -132,6 +132,10 @@ async function detectCrop(buffer) {
       if (heightToCrop === -1) {
         console.log(`\n❌ None of the methods successfully detected TradingView text`);
       }
+      else {
+        console.log(`✅ Detected TradingView header at height: ${heightToCrop}px`);
+        break; // We found a valid crop height
+      }
     }
   } catch (error) {
     console.error("[debug] Error processing image:", error);
