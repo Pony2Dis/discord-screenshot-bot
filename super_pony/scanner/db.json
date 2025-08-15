@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-15T02:47:14.157Z",
+  "updated": "2025-08-15T14:44:13.936Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -3081,6 +3081,19 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1405744616392622151",
       "timestamp": "2025-08-15T02:47:14.020Z",
       "content": "x-TWLO above 105.75\nx-כניסה לגאפ"
+    },
+    {
+      "ticker": "OKLO",
+      "user": {
+        "id": "1147127141524328579",
+        "name": "David Bakal"
+      },
+      "messageId": "1405925054717362267",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1405925054717362267",
+      "timestamp": "2025-08-15T14:44:13.869Z",
+      "content": "OKLO ABOVE  73"
     }
   ],
   "checkpoints": {
