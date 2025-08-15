@@ -219,7 +219,7 @@ client.on("messageCreate", async (message) => {
           // const userIndex = USERS_TO_PROTECT.findIndex(u => message.author.username.toLowerCase().includes(u));
           // const userInitials = USER_INITIALS[userIndex] || "user"; // default to "user" if not found
           // remove from username all the letters a,i,o,e,u and replace with empty string, then take the first three letters and make that the user initials
-          const userInitials = message.author.username.replace(/[aeiou]/g, "").toLowerCase() || "pny"; // default to "user" if empty
+          let userInitials = message.author.username.replace(/[aeiou]/g, "").toLowerCase() || "pny"; // default to "user" if empty
           // if the user initials are longer than 3 characters, truncate to 3
           if (userInitials.length > 3) {
             userInitials = userInitials.substring(0, 3);
