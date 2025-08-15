@@ -209,14 +209,21 @@ client.on("messageCreate", async (message) => {
         });
 
         // then delete the original message and repost it in this channel as the bot
-        const USERS_TO_PROTECT = ["cubby", "sprunknwn", "mr_know_all", "kimhiempire", "manana9690"];
-        const USER_INITIALS = ["cb", "bi", "mka", "ki", "mn"]; // initials for the users to protect
+        // const USERS_TO_PROTECT = ["pony"];
+        // initials for the users to protect
+        // const USER_INITIALS = ["pny"];
 
         console.log(`📥 New message in #${message.channel.name} from ${message.author.username}`);
         // if USERS_TO_PROTECT strings are in the message author username, delete and repost the message
-        if(USERS_TO_PROTECT.some(u => message.author.username.toLowerCase().includes(u))) {
-          const userIndex = USERS_TO_PROTECT.findIndex(u => message.author.username.toLowerCase().includes(u));
-          const userInitials = USER_INITIALS[userIndex] || "user"; // default to "user" if not found
+        // if(USERS_TO_PROTECT.some(u => message.author.username.toLowerCase().includes(u))) {
+          // const userIndex = USERS_TO_PROTECT.findIndex(u => message.author.username.toLowerCase().includes(u));
+          // const userInitials = USER_INITIALS[userIndex] || "user"; // default to "user" if not found
+          // remove from username all the letters a,i,o,e,u and replace with empty string, then take the first three letters and make that the user initials
+          const userInitials = message.author.username.replace(/[aeiou]/g, "").toLowerCase() || "pny"; // default to "user" if empty
+          // if the user initials are longer than 3 characters, truncate to 3
+          if (userInitials.length > 3) {
+            userInitials = userInitials.substring(0, 3);
+          }
           console.log(`🔄 Reposting message from ${message.author.tag} in #${message.channel.name} as ${userInitials}`);
           
           try {
@@ -228,7 +235,7 @@ client.on("messageCreate", async (message) => {
               await message.channel.send(`❌ לא הצלחתי לפרסם את ההודעה שלך, אנא נסה שוב, או פנה למנהל השרת.`);
             }
           }
-        }
+        // }
       }
       return;
     }
