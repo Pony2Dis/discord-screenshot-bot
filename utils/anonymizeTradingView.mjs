@@ -24,8 +24,13 @@ async function detectCrop(buffer) {
     .negate()
     .resize(width * 2, sliceHeight * 2)
     .toBuffer();
-    dlog("OCR slice:", { width, sliceHeight });
 
+  // send top slice to discord for debugging
+  if (DEBUG) {
+    const topSlicePath = `./debug_top_slice_${Date.now()}.png`;
+    await sharp(topSlice).toFile(topSlicePath);
+    console.log("[anonymizer] Top slice saved for debugging:", topSlicePath);
+  }
 
   dlog("OCR slice:", { width, sliceHeight });
   let ocrResult;
@@ -46,6 +51,8 @@ async function detectCrop(buffer) {
   }
 
   const words = ocrResult?.data?.words || [];
+  dlog("OCR words:", words.length, words.slice(0, 10));
+
   let maxY = 0;
   for (const w of words) {
     if (w.bbox?.y1 > maxY) maxY = w.bbox.y1;
@@ -61,7 +68,7 @@ export async function anonymizeTradingViewIfNeeded(file) {
     if (!Buffer.isBuffer(file.attachment)) return file;
 
     const cropTop = await detectCrop(file.attachment);
-    if (!cropTop) return file;
+    // if (!cropTop) return file;
 
     const image = sharp(file.attachment);
     const { width, height } = await image.metadata();
