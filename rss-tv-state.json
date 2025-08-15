@@ -2936,7 +2936,9 @@
     "https://finance.yahoo.com/research/reports/ARGUS_44411_TopBottomInsiderActivity_1755253709000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
     "https://finance.yahoo.com/news/signs-wealthier-think-152349259.html",
     "https://finance.yahoo.com/research/reports/ARGUS_44410_InsiderActivity_1755253709000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
-    "https://finance.yahoo.com/news/clsa-maintains-buy-rating-infosys-035100943.html"
+    "https://finance.yahoo.com/news/clsa-maintains-buy-rating-infosys-035100943.html",
+    "https://finance.yahoo.com/news/paramount-skydance-being-called-latest-033141370.html",
+    "https://finance.yahoo.com/news/stocks-were-pushing-dow-toward-033211490.html"
   ],
   "http://rss.cnn.com/rss/money_latest.rss": [],
   "https://rss.politico.com/economy.xml": [],
@@ -2972,7 +2974,8 @@
     "https://www.foxbusiness.com/markets/gold-prices-soar-record-high-trump-tariffs-threaten-bullion-trade",
     "https://www.foxbusiness.com/markets/gm-restarts-driverless-car-program-more-than-year-after-cruise-robotaxi-incident",
     "https://www.foxbusiness.com/markets/spirit-airlines-warns-may-not-survive-another-year",
-    "https://www.foxbusiness.com/markets/exchange-miax-soars-wall-street-debut-plans-miami-expansion"
+    "https://www.foxbusiness.com/markets/exchange-miax-soars-wall-street-debut-plans-miami-expansion",
+    "https://www.foxbusiness.com/markets/business-travel-surges-companies-prioritize-face-to-face-meetings"
   ],
   "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml": [
     "https://www.nytimes.com/2025/08/09/business/morton-meyerson-dead.html",
@@ -3070,6 +3073,7 @@
     "https://www.nytimes.com/2025/08/15/business/tariffs-are-high-so-is-the-stock-market.html",
     "https://www.nytimes.com/2025/08/15/business/investing-fund-returns-interfere.html",
     "https://www.nytimes.com/2025/08/15/technology/spacex-musk-government-contracts-taxes.html",
-    "https://www.nytimes.com/2025/08/15/business/tariffs-stock-market-records.html"
+    "https://www.nytimes.com/2025/08/15/business/tariffs-stock-market-records.html",
+    "https://www.nytimes.com/2025/08/15/business/dealbook/trump-putin-talks-business.html"
   ]
 }
