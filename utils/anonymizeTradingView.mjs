@@ -3,7 +3,7 @@ import sharp from "sharp";
 import Tesseract from "tesseract.js";
 
 const DEBUG = true;
-const OCR_TIMEOUT_MS = Number(process.env.TESS_TIMEOUT_MS || 10000);
+const OCR_TIMEOUT_MS = 15000;
 const PROCESSABLE = /\.(png|jpe?g|webp)$/i;
 
 function dlog(...args) {
@@ -11,55 +11,125 @@ function dlog(...args) {
 }
 
 async function detectCrop(buffer) {
-  const image = sharp(buffer);
-  const { width, height } = await image.metadata();
-  const sliceHeight = Math.round(height * 0.15);
-
-  const topSlice = await image
-    .extract({ left: 0, top: 0, width, height: sliceHeight })
-    .greyscale()
-    .normalize()
-    .sharpen()
-    .threshold(128)
-    .negate()
-    .resize(width * 2, sliceHeight * 2)
-    .toBuffer();
-
-  // send top slice to discord for debugging
-  if (DEBUG) {
-    const topSlicePath = `./debug_top_slice_${Date.now()}.png`;
-    await sharp(topSlice).toFile(topSlicePath);
-    console.log("[anonymizer] Top slice saved for debugging:", topSlicePath);
-  }
-
-  dlog("OCR slice:", { width, sliceHeight });
-  let ocrResult;
+  let heightToCrop = -1;
   try {
-    const ocrOptions = {};
-    if (DEBUG) {
-      ocrOptions.logger = (m) => console.log("[ocr]", m);
+    const image = sharp(buffer);
+    const { width, height } = await image.metadata();
+    dlog(`Image dimensions: ${width}x${height}`);
+    
+    const sliceHeight = Math.round(height * 0.05);
+    dlog(`Slice height: ${sliceHeight}px`);
+    
+    // Try different preprocessing approaches
+    const methods = [
+      {
+        name: "raw",
+        process: async (img) => img.toBuffer()
+      },
+      {
+        name: "upscale_only",
+        process: async (img) => img.resize(width * 3, sliceHeight * 3, { kernel: 'cubic' }).toBuffer()
+      },
+      {
+        name: "greyscale_upscale",
+        process: async (img) => img.greyscale().resize(width * 3, sliceHeight * 3, { kernel: 'cubic' }).toBuffer()
+      },
+      {
+        name: "normalize_upscale",
+        process: async (img) => img.greyscale().normalize().resize(width * 3, sliceHeight * 3, { kernel: 'cubic' }).toBuffer()
+      },
+      {
+        name: "sharpen_upscale",
+        process: async (img) => img.greyscale().normalize().sharpen().resize(width * 3, sliceHeight * 3, { kernel: 'cubic' }).toBuffer()
+      },
+      {
+        name: "gentle_threshold",
+        process: async (img) => img.greyscale().normalize().threshold(100).resize(width * 3, sliceHeight * 3, { kernel: 'cubic' }).toBuffer()
+      },
+      {
+        name: "contrast_boost",
+        process: async (img) => img.greyscale().linear(2.0, -128).resize(width * 3, sliceHeight * 3, { kernel: 'cubic' }).toBuffer()
+      }
+    ];
+    
+    for (const method of methods) {
+      try {
+        console.log(`\n--- Testing method: ${method.name} ---`);
+        
+        const topSlice = await method.process(
+          image.clone().extract({ left: 0, top: 0, width, height: sliceHeight })
+        );
+                
+        // Try OCR with whitelist for common TradingView text
+        const ocrResult = await Promise.race([
+          Tesseract.recognize(topSlice, "eng", {
+            logger: (m) => {
+              if (m.status === 'recognizing text') {
+                process.stdout.write(`\rOCR Progress: ${Math.round(m.progress * 100)}%`);
+              }
+            },
+            tessedit_pageseg_mode: 6, // Single uniform block
+            tessedit_char_whitelist: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,:-+()% '
+          }),
+          new Promise((_, rej) =>
+            setTimeout(() => rej(new Error("OCR timeout")), OCR_TIMEOUT_MS)
+          ),
+        ]);
+        
+        console.log(`\nOCR Complete!`);
+        
+        const text = ocrResult.data.text.trim();
+        const confidence = ocrResult.data.confidence;
+        const words = ocrResult.data.words || [];
+        
+        console.log(`Text: "${text}"`);
+        console.log(`Confidence: ${confidence.toFixed(1)}%`);
+        console.log(`Words found: ${words.length}`);
+        
+        if (words.length > 0) {
+          console.log(`First few words:`);
+          words.slice(0, 5).forEach((word, i) => {
+            console.log(`  ${i+1}: "${word.text}" (confidence: ${word.confidence.toFixed(1)})`);
+          });
+        }
+        
+        // Check for TradingView indicators (case insensitive)
+        const textLower = text.toLowerCase();
+        const indicators = [
+          "created with tradingview",
+          "tradingview.com",
+          "tradingview",
+          "created with",
+          "נוצר עם tradingview.com",
+          "נוצר עם tradingview",
+          "נוצר עם",
+        ];
+        
+        const found = indicators.find(indicator => textLower.includes(indicator));
+        
+        if (found) {
+          console.log(`✅ FOUND indicator: "${found}"`);
+          console.log(`Method that worked: ${method.name}`);
+          heightToCrop = sliceHeight; // This is the height we want to crop from the top
+        } else {
+          console.log(`❌ No TradingView indicators found`);
+          heightToCrop = 0; // No indicators found, so no crop needed
+        }
+      } catch (err) {
+        console.log(`Method ${method.name} failed: ${err.message}`);
+        // Try the next method
+      }
     }
-    ocrResult = await Promise.race([
-      Tesseract.recognize(topSlice, "eng", ocrOptions),
-      new Promise((_, rej) =>
-        setTimeout(() => rej(new Error("OCR timeout")), OCR_TIMEOUT_MS)
-      ),
-    ]);
-  } catch (err) {
-    console.error("[anonymizer] OCR failed:", err);
-    return 0;
+
+    if (heightToCrop === -1) {
+      console.log(`\n❌ None of the methods successfully detected TradingView text`);
+    }
+  } catch (error) {
+    console.error("[debug] Error processing image:", error);
+    heightToCrop = -1;
   }
 
-  const words = ocrResult?.data?.words || [];
-  dlog("OCR words:", words.length, words.slice(0, 10));
-
-  let maxY = 0;
-  for (const w of words) {
-    if (w.bbox?.y1 > maxY) maxY = w.bbox.y1;
-  }
-
-  const cropPx = Math.min(maxY, height - 1);
-  return cropPx > 10 ? cropPx : 0;
+  return heightToCrop;
 }
 
 export async function anonymizeTradingViewIfNeeded(file) {
@@ -68,7 +138,7 @@ export async function anonymizeTradingViewIfNeeded(file) {
     if (!Buffer.isBuffer(file.attachment)) return file;
 
     const cropTop = await detectCrop(file.attachment);
-    // if (!cropTop) return file;
+    if (!cropTop || cropTop == -1) return file;
 
     const image = sharp(file.attachment);
     const { width, height } = await image.metadata();

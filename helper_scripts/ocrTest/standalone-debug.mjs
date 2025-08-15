@@ -1,0 +1,156 @@
+// simple-ocr-fix.mjs
+import sharp from "sharp";
+import Tesseract from "tesseract.js";
+import fs from "fs";
+
+const DEBUG = true;
+const OCR_TIMEOUT_MS = 15000;
+const INPUT_FILE = "test.png";
+
+function dlog(...args) {
+  if (DEBUG) console.log("[debug]", ...args);
+}
+
+async function processImage() {
+  try {
+    const buffer = fs.readFileSync(INPUT_FILE);
+    dlog(`Reading file: ${INPUT_FILE}`);
+    
+    const image = sharp(buffer);
+    const { width, height } = await image.metadata();
+    dlog(`Image dimensions: ${width}x${height}`);
+    
+    const sliceHeight = Math.round(height * 0.05);
+    dlog(`Slice height: ${sliceHeight}px`);
+    
+    // Try different preprocessing approaches
+    const methods = [
+      {
+        name: "raw",
+        process: async (img) => img.toBuffer()
+      },
+      {
+        name: "upscale_only",
+        process: async (img) => img.resize(width * 3, sliceHeight * 3, { kernel: 'cubic' }).toBuffer()
+      },
+      {
+        name: "greyscale_upscale",
+        process: async (img) => img.greyscale().resize(width * 3, sliceHeight * 3, { kernel: 'cubic' }).toBuffer()
+      },
+      {
+        name: "normalize_upscale",
+        process: async (img) => img.greyscale().normalize().resize(width * 3, sliceHeight * 3, { kernel: 'cubic' }).toBuffer()
+      },
+      {
+        name: "sharpen_upscale",
+        process: async (img) => img.greyscale().normalize().sharpen().resize(width * 3, sliceHeight * 3, { kernel: 'cubic' }).toBuffer()
+      },
+      {
+        name: "gentle_threshold",
+        process: async (img) => img.greyscale().normalize().threshold(100).resize(width * 3, sliceHeight * 3, { kernel: 'cubic' }).toBuffer()
+      },
+      {
+        name: "contrast_boost",
+        process: async (img) => img.greyscale().linear(2.0, -128).resize(width * 3, sliceHeight * 3, { kernel: 'cubic' }).toBuffer()
+      }
+    ];
+    
+    for (const method of methods) {
+      try {
+        console.log(`\n--- Testing method: ${method.name} ---`);
+        
+        const topSlice = await method.process(
+          image.clone().extract({ left: 0, top: 0, width, height: sliceHeight })
+        );
+        
+        // Save for visual inspection
+        const debugPath = `debug_${method.name}_${Date.now()}.png`;
+        await sharp(topSlice).toFile(debugPath);
+        console.log(`Saved: ${debugPath}`);
+        
+        // Try OCR with whitelist for common TradingView text
+        const ocrResult = await Promise.race([
+          Tesseract.recognize(topSlice, "eng", {
+            logger: (m) => {
+              if (m.status === 'recognizing text') {
+                process.stdout.write(`\rOCR Progress: ${Math.round(m.progress * 100)}%`);
+              }
+            },
+            tessedit_pageseg_mode: 6, // Single uniform block
+            tessedit_char_whitelist: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,:-+()% '
+          }),
+          new Promise((_, rej) =>
+            setTimeout(() => rej(new Error("OCR timeout")), OCR_TIMEOUT_MS)
+          ),
+        ]);
+        
+        console.log(`\nOCR Complete!`);
+        
+        const text = ocrResult.data.text.trim();
+        const confidence = ocrResult.data.confidence;
+        const words = ocrResult.data.words || [];
+        
+        console.log(`Text: "${text}"`);
+        console.log(`Confidence: ${confidence.toFixed(1)}%`);
+        console.log(`Words found: ${words.length}`);
+        
+        if (words.length > 0) {
+          console.log(`First few words:`);
+          words.slice(0, 5).forEach((word, i) => {
+            console.log(`  ${i+1}: "${word.text}" (confidence: ${word.confidence.toFixed(1)})`);
+          });
+        }
+        
+        // Check for TradingView indicators (case insensitive)
+        const textLower = text.toLowerCase();
+        const indicators = [
+          "created with tradingview",
+          "tradingview.com",
+          "tradingview",
+          "created with",
+          "נוצר עם tradingview.com",
+          "נוצר עם tradingview",
+          "נוצר עם",
+        ];
+        
+        const found = indicators.find(indicator => textLower.includes(indicator));
+        
+        if (found) {
+          console.log(`✅ FOUND indicator: "${found}"`);
+          
+          // Create cropped image
+          const croppedBuffer = await image
+            .extract({ 
+              left: 0, 
+              top: sliceHeight, 
+              width, 
+              height: height - sliceHeight 
+            })
+            .toBuffer();
+          
+          const croppedPath = `SUCCESS_cropped_${Date.now()}.png`;
+          await sharp(croppedBuffer).toFile(croppedPath);
+          console.log(`🎉 SUCCESS! Cropped image saved: ${croppedPath}`);
+          console.log(`Method that worked: ${method.name}`);
+          return;
+        } else {
+          console.log(`❌ No TradingView indicators found`);
+        }
+        
+      } catch (err) {
+        console.log(`Method ${method.name} failed: ${err.message}`);
+      }
+    }
+    
+    console.log(`\n❌ None of the methods successfully detected TradingView text`);
+    
+  } catch (error) {
+    console.error("[debug] Error processing image:", error);
+  }
+}
+
+processImage().then(() => {
+  console.log("\n[debug] Processing complete");
+}).catch(err => {
+  console.error("[debug] Processing failed:", err);
+});
