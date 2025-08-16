@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-16T14:13:58.656Z",
+  "updated": "2025-08-16T14:16:44.751Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -3289,12 +3289,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406279828436684932",
       "timestamp": "2025-08-16T14:13:58.515Z",
       "content": "TEM above 75"
+    },
+    {
+      "ticker": "SOFI",
+      "user": {
+        "id": "1036214332993847347",
+        "name": "Omer k"
+      },
+      "messageId": "1406280524816842773",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406280524816842773",
+      "timestamp": "2025-08-16T14:16:44.545Z",
+      "content": "SOFI above 25"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1406279557174005935",
-      "lastProcessedAt": "2025-08-16T14:12:53.841Z"
+      "lastProcessedId": "1406279828436684932",
+      "lastProcessedAt": "2025-08-16T14:13:58.515Z"
     }
   }
 }
