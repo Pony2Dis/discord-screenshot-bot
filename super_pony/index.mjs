@@ -206,7 +206,11 @@ client.on("messageCreate", async (message) => {
     // Stream-log messages (only if channel allowed)
     const shouldLog = chatRooms.length > 0 && chatRooms.includes(message.channel.id);
     if (shouldLog) {
-      await appendToLog(message);
+      try {
+        await appendToLog(message);
+      } catch (err) {
+        console.error("Failed to log message: ", err);
+      }
     }
 
     // if the message is sent in the graphs room, handle it
