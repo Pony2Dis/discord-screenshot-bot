@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-16T14:51:46.996Z",
+  "updated": "2025-08-16T15:22:30.833Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -3367,12 +3367,38 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406289342716182648",
       "timestamp": "2025-08-16T14:51:46.896Z",
       "content": "PONY above 16"
+    },
+    {
+      "ticker": "BTC",
+      "user": {
+        "id": "326680778283024394",
+        "name": "Shade"
+      },
+      "messageId": "1406297076219908186",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406297076219908186",
+      "timestamp": "2025-08-16T15:22:30.707Z",
+      "content": "btc-usd Below 115\n\nייתכן ש BTCUSD ירד לפני העליה הגדולה ?\n\n(test)"
+    },
+    {
+      "ticker": "USD",
+      "user": {
+        "id": "326680778283024394",
+        "name": "Shade"
+      },
+      "messageId": "1406297076219908186",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406297076219908186",
+      "timestamp": "2025-08-16T15:22:30.707Z",
+      "content": "btc-usd Below 115\n\nייתכן ש BTCUSD ירד לפני העליה הגדולה ?\n\n(test)"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1406288566815948980",
-      "lastProcessedAt": "2025-08-16T14:48:41.907Z"
+      "lastProcessedId": "1406295236971466762",
+      "lastProcessedAt": "2025-08-16T15:15:12.196Z"
     }
   }
 }
