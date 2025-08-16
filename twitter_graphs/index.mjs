@@ -37,7 +37,7 @@ async function main() {
       try {
         const stateFile = `./twitter_graphs/last_link_${username}.json`;
         const sent = await loadSent(stateFile);
-        const links = await fetchLatestPosts(username, 10);
+        const links = await fetchLatestPosts(username, 10, 7, true);
         console.log(`Fetched links for ${username}:`, links);
 
         // --- URL normalization to avoid duplicates ---

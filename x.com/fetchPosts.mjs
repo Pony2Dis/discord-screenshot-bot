@@ -2,7 +2,7 @@
 
 import { firefox } from "playwright";
 
-export async function fetchLatestPosts(username, limit = 10, days = 7) {
+export async function fetchLatestPosts(username, limit = 10, days = 7, returnOnlyWithOmage = false) {
   let results = [];
   let noNewCount = 0;
   const seenUrls = new Set();
@@ -47,6 +47,8 @@ export async function fetchLatestPosts(username, limit = 10, days = 7) {
             const link = a.querySelector('a[href*="/status/"]')?.href;
             const date = a.querySelector("time")?.getAttribute("datetime");
             const text = a.querySelector("div[lang]")?.textContent?.trim();
+            const img = a.querySelector("img[alt='Image']");
+            if(returnOnlyWithOmage && !img) return null; // skip if no image is present
             return link && date ? { url: link, date, text } : null;
           })
           .filter(Boolean)
