@@ -2,7 +2,7 @@
 
 import { firefox } from "playwright";
 
-export async function fetchLatestPosts(username, limit = 10, days = 7, returnOnlyWithOmage = false) {
+export async function fetchLatestPosts(username, limit = 10, days = 7, returnOnlyWithImage = false) {
   let results = [];
   let noNewCount = 0;
   const seenUrls = new Set();
@@ -41,17 +41,18 @@ export async function fetchLatestPosts(username, limit = 10, days = 7, returnOnl
       await page.evaluate(() => window.scrollBy(0, 700));
       await page.waitForTimeout(1000);
 
-      const itemsRaw = await page.$$eval("article", articles =>
+      const itemsRaw = await page.$$eval("article", (articles, returnOnlyWithImage) =>
         articles
           .map(a => {
             const link = a.querySelector('a[href*="/status/"]')?.href;
             const date = a.querySelector("time")?.getAttribute("datetime");
             const text = a.querySelector("div[lang]")?.textContent?.trim();
             const img = a.querySelector("img[alt='Image']");
-            if(returnOnlyWithOmage && !img) return null; // skip if no image is present
+            if(returnOnlyWithImage && !img) return null; // skip if no image is present
             return link && date ? { url: link, date, text } : null;
           })
-          .filter(Boolean)
+          .filter(Boolean),
+          returnOnlyWithImage
       );
 
       console.log(`Found ${itemsRaw.length} posts in this scroll`);
