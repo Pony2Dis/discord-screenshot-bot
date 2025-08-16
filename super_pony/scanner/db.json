@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-16T13:37:52.273Z",
+  "updated": "2025-08-16T13:42:07.888Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -3172,12 +3172,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406270741162496153",
       "timestamp": "2025-08-16T13:37:51.940Z",
       "content": "LMND above 55"
+    },
+    {
+      "ticker": "BULL",
+      "user": {
+        "id": "1036214332993847347",
+        "name": "Omer k"
+      },
+      "messageId": "1406271814082101300",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406271814082101300",
+      "timestamp": "2025-08-16T13:42:07.744Z",
+      "content": "BULL above 16.65"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1406269580564762745",
-      "lastProcessedAt": "2025-08-16T13:33:15.232Z"
+      "lastProcessedId": "1406270741162496153",
+      "lastProcessedAt": "2025-08-16T13:37:51.940Z"
     }
   }
 }
