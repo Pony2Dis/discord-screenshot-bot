@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-16T13:57:55.885Z",
+  "updated": "2025-08-16T14:00:31.422Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -3237,12 +3237,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406275789787369503",
       "timestamp": "2025-08-16T13:57:55.626Z",
       "content": "INTC above 26"
+    },
+    {
+      "ticker": "TSLA",
+      "user": {
+        "id": "1036214332993847347",
+        "name": "Omer k"
+      },
+      "messageId": "1406276442634981418",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406276442634981418",
+      "timestamp": "2025-08-16T14:00:31.277Z",
+      "content": "TSLA above 350"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1406275017574191165",
-      "lastProcessedAt": "2025-08-16T13:54:51.516Z"
+      "lastProcessedId": "1406275789787369503",
+      "lastProcessedAt": "2025-08-16T13:57:55.626Z"
     }
   }
 }
