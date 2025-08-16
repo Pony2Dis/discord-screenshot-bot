@@ -36,6 +36,7 @@ const {
   DISCORD_GUILD_ID,
   DISCORD_APPLICATION_ID,
   SHUTDOWN_SECRET,
+  CHATROOM_IDS
 } = process.env;
 
 // shared state
@@ -194,6 +195,17 @@ client.on("messageCreate", async (message) => {
 
     const inBotRoom    = message.channel.id === BOT_CHANNEL_ID;
     const inGraphsRoom = message.channel.id === GRAPHS_CHANNEL_ID;
+    // Limit logging to certain channel IDs (line separated). If empty => log None.
+    const chatRooms = (CHATROOM_IDS || "")
+      .split(/[\n]+/)
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    // Stream-log messages (only if channel allowed)
+    const shouldLog = chatRooms.length > 0 && chatRooms.includes(message.channel.id);
+    if (shouldLog) {
+      await appendToLog(message);
+    }
 
     // if the message is sent in the graphs room, handle it
     if (inGraphsRoom) {

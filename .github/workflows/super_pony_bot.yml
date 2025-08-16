@@ -43,5 +43,6 @@ jobs:
           TICKER_BLACKLIST:       ${{ vars.TICKER_BLACKLIST }}
           DISCORD_SHUTDOWN_WEBHOOK: ${{ vars.DISCORD_SHUTDOWN_WEBHOOK }}
           SHUTDOWN_SECRET: ${{ secrets.SHUTDOWN_SECRET }}
+          CHATROOM_IDS: ${{ vars.CHATROOM_IDS }}
                   
         run: node super_pony/index.mjs
