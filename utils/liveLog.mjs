@@ -1,6 +1,7 @@
 // utils/liveLog.mjs
 import fs from "fs/promises";
 import path from "path";
+import { promisify } from "util";
 import { exec as execCb } from "child_process";
 
 const LOG_DIR = process.env.SUPERPONY_LOG_DIR || "./data/logs";
