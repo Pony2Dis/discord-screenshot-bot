@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-16T15:42:07.766Z",
+  "updated": "2025-08-16T15:54:43.576Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -3445,12 +3445,38 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406302012072788009",
       "timestamp": "2025-08-16T15:42:07.506Z",
       "content": "ACHR above 19 (2027 MOVE)"
+    },
+    {
+      "ticker": "BTC",
+      "user": {
+        "id": "326680778283024394",
+        "name": "Shade"
+      },
+      "messageId": "1406305182740119582",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406305182740119582",
+      "timestamp": "2025-08-16T15:54:43.452Z",
+      "content": "btc-usd above 1 \ntest"
+    },
+    {
+      "ticker": "USD",
+      "user": {
+        "id": "326680778283024394",
+        "name": "Shade"
+      },
+      "messageId": "1406305182740119582",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406305182740119582",
+      "timestamp": "2025-08-16T15:54:43.452Z",
+      "content": "btc-usd above 1 \ntest"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1406300552874295470",
-      "lastProcessedAt": "2025-08-16T15:36:19.606Z"
+      "lastProcessedId": "1406302012072788009",
+      "lastProcessedAt": "2025-08-16T15:42:07.506Z"
     }
   }
 }
