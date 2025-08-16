@@ -66,9 +66,10 @@ async function main() {
 
           console.log(`Fetched ${tag}-week link for ${username}:`, imageUrl, "at post:", postUrl);
           await webhook.send({
-            content: `מדווחות בשבוע ${cal_date}:\n${imageUrl}`,
+            content: `@everyone \nמדווחות בשבוע ${cal_date}:\n${imageUrl}`,
             allowed_mentions: { parse: [] }
           });
+
           await sleep(1000);
           sent.push(postUrl);
         } catch (err) {
@@ -104,7 +105,7 @@ async function main() {
         const formatted = `${monthNames[monday.getMonth()]} ${monday.getDate()}, ${monday.getFullYear()}`;
 
         await webhook.send({
-          content: `"Implied Move" לשבוע: ${formatted}\n${imageUrl}\n`,
+          content: `@everyone \n"Implied Move" לשבוע: ${formatted}\n${imageUrl}\n`,
           allowed_mentions: { parse: [] }
         });
         impliedSent.push(postUrl);
