@@ -19,7 +19,7 @@ function glog(...a){ if (GEMINI_DEBUG) console.log("[askGemini]", ...a); }
 
 const CHATROOM_IDS = (process.env.CHATROOM_IDS || "").split(/[\s,]+/).filter(Boolean);
 const CONTEXT_CHANNEL_ID = process.env.CONTEXT_CHANNEL_ID || CHATROOM_IDS[0] || "";
-const CONTEXT_LAST_N = Math.max(1, Math.min(1000, parseInt(process.env.GEMINI_CONTEXT_LAST_N || "400", 10)));
+const CONTEXT_LAST_N = 100;
 
 // Israel-time formatter for prompt
 const IL_TZ = "Asia/Jerusalem";
@@ -69,7 +69,7 @@ function buildPrompt(userPrompt, recentMessages) {
 export async function askGemini(userPrompt) {
   try {
     const channelId = CONTEXT_CHANNEL_ID;
-    glog("contextChannel:", channelId, "lastN:", CONTEXT_LAST_N);
+    glog("contextChannel:", channelId);
 
     const recentMessages = await readLastNFromLatestFile(channelId, CONTEXT_LAST_N);
     glog("records:", recentMessages.length);
@@ -92,11 +92,6 @@ export async function askGemini(userPrompt) {
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: bodyStr
     });
-
-    if (res.ok) {
-        console.log("askGemini response text:", await res.text());
-        glog("askGemini response text received successfully");
-    }
 
     glog("http.status:", res.status);
     const json = await res.json().catch(e => { glog("json.parse.error", e?.message); return null; });
