@@ -84,6 +84,7 @@ export async function askGemini(userPrompt) {
       generationConfig: { temperature: 0.2, maxOutputTokens: 512 }
     };
     const bodyStr = JSON.stringify(body);
+    console.log("askGemini.body:", bodyStr);
     glog("http.body.bytes:", Buffer.byteLength(bodyStr, "utf8"));
 
     const res = await fetch(url, {
