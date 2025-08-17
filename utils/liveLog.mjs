@@ -6,6 +6,23 @@ import { exec as execCb } from "child_process";
 const LOG_DIR = process.env.SUPERPONY_LOG_DIR || "./data/logs";
 const exec = promisify(execCb);
 
+// ===== Israel timezone helpers (no deps) =====
+const IL_TZ = "Asia/Jerusalem";
+
+function israelDateString(d = new Date()) {
+  const parts = new Intl.DateTimeFormat("sv-SE", {
+    timeZone: IL_TZ, year: "numeric", month: "2-digit", day: "2-digit"
+  }).formatToParts(d);
+  const y = parts.find(p => p.type === "year")?.value ?? "0000";
+  const m = parts.find(p => p.type === "month")?.value ?? "01";
+  const day = parts.find(p => p.type === "day")?.value ?? "01";
+  return `${y}-${m}-${day}`; // YYYY-MM-DD in Israel local time
+}
+
+function israelCutoffMillis(minutes) {
+  return Date.now() - minutes * 60 * 1000; // absolute time window
+}
+
 async function ensureDir() {
     try { await fs.mkdir(LOG_DIR, { recursive: true }); } catch { }
 }
@@ -39,7 +56,7 @@ async function commitLogIfChanged(logPath) {
 }
 
 function getDailyLogPath(channelId, date) {
-    const formattedDate = date.toISOString().split("T")[0]; // YYYY-MM-DD
+    const formattedDate = israelDateString(date); // YYYY-MM-DD in Israel time
     return path.join(LOG_DIR, `${channelId}_${formattedDate}.jsonl`);
 }
 
@@ -92,7 +109,7 @@ export async function appendToLog(msg) {
 
 export async function readRecent(channelId, minutes = 60, maxLines = 4000) {
     const now = new Date();
-    const cutoff = now.getTime() - minutes * 60 * 1000;
+    const cutoff = israelCutoffMillis(minutes);
 
     const todayPath = getDailyLogPath(channelId, now);
     const yesterday = new Date(now);
@@ -110,7 +127,7 @@ export async function readRecent(channelId, minutes = 60, maxLines = 4000) {
             continue; // missing file is fine
         }
         if (!raw.trim()) continue;
-        const lines = raw.trim().split("\n");
+        const lines = raw.split(/\r?\n/).filter(Boolean);
         // We cap after merging both days
         for (let i = Math.max(0, lines.length - maxLines); i < lines.length; i++) {
             const line = lines[i];
@@ -141,15 +158,15 @@ export async function backfillLastDayMessages(client, channelId) {
     const now = new Date();
     const cutoff = new Date(now.getTime() - 24 * 60 * 60 * 1000); // 24 hours ago
 
-    // Build a per-day bucket so each message is written to its correct daily log
+    // Build a per-day bucket so each message is written to its correct daily log (Israel local day)
     const dayBuckets = new Map();
 
-    function yyyy_mm_dd(d) {
-        return d.toISOString().split("T")[0];
+    function yyyy_mm_dd_IL(d) {
+        return israelDateString(d);
     }
 
     async function ensureBucketFor(dateObj) {
-        const key = yyyy_mm_dd(dateObj);
+        const key = yyyy_mm_dd_IL(dateObj);
         if (dayBuckets.has(key)) return dayBuckets.get(key);
         const pathForDay = getDailyLogPath(channelId, dateObj);
         const bucket = { path: pathForDay, existingIds: new Set(), records: [] };
@@ -185,9 +202,10 @@ export async function backfillLastDayMessages(client, channelId) {
             if (msg.author.bot) continue;
             if (!shouldLogMessage(msg)) continue;
 
-            const key = yyyy_mm_dd(msg.createdAt);
-            // Construct a date object for path derivation
-            const dtForBucket = new Date(key + "T12:00:00Z");
+            const key = yyyy_mm_dd_IL(msg.createdAt);
+            // Construct a date object for path derivation (any time during that IL day is fine)
+            const parts = key.split("-"); // [yyyy, mm, dd]
+            const dtForBucket = new Date(`${parts[0]}-${parts[1]}-${parts[2]}T12:00:00Z`);
             const bucket = await ensureBucketFor(dtForBucket);
 
             const msgId = msg.id;

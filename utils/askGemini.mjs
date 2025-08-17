@@ -2,10 +2,10 @@ import fetch from "node-fetch";
 import { readRecent } from "./liveLog.mjs";
 
 /**
- * Ask Google Gemini 1.5 Flash with a user prompt, using recent messages as context.
+ * Ask Google Gemini 1.5/2.5 with a user prompt, using recent messages as context.
  * Env:
  *   - GEMINI_API_KEY (required)
- *   - GEMINI_MODEL (optional, default: gemini-1.5-flash)
+ *   - GEMINI_MODEL (optional, default: gemini-2.5-flash)
  *   - BOT_CHANNEL_ID (optional, default channel for context if not provided)
  */
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -17,6 +17,16 @@ if (!GEMINI_API_KEY) {
   throw new Error("GEMINI_API_KEY is not set in environment variables");
 }
 
+// ===== Israel timezone helpers (no deps) =====
+const IL_TZ = "Asia/Jerusalem";
+function israelFormatShort(iso) {
+  const d = typeof iso === "string" ? new Date(iso) : iso;
+  return new Intl.DateTimeFormat("he-IL", {
+    timeZone: IL_TZ, year: "2-digit", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", hour12: false
+  }).format(d); // "17/08/25, 21:07"
+}
+
 function buildPrompt(userPrompt, recentMessages) {
   const systemPrompt = [
     "אתה עוזר חכם שמספק תשובות מדויקות ומועילות לשאלות משתמשים בהקשר של שיחות בדיסקורד.",
@@ -25,11 +35,10 @@ function buildPrompt(userPrompt, recentMessages) {
     "הדגש tickers אם קיימים, ואזכור של חדשות אם ישנן."
   ].join("\n");
 
-  const context = recentMessages.map(r => {
+  const context = (recentMessages || []).map(r => {
     const author = r.author;
-    const when = r.createdAt;
-    const text = r.content.trim();
-    const msgLink = r.msgLink;
+    const when = israelFormatShort(r.createdAt);
+    const text = (r.content || "").trim().replace(/\s+/g, " ");
     return `- ${when} | ${author}: ${text}`;
   }).join("\n") || "אין הקשר זמין";
 
@@ -45,7 +54,6 @@ function buildPrompt(userPrompt, recentMessages) {
   ].join("\n");
 
   console.log("🔍 Gemini prompt built:", prompt);
-
   return prompt;
 }
 
