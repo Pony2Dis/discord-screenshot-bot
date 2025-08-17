@@ -47,7 +47,7 @@ let LIVE_LISTENING_ENABLED = false;
 let botLogChannel = null; // channel for bot logs
 let botChannel = null; // channel for bot interactions
 
-// graceful shutdown (NEW)
+// graceful shutdown
 async function shutdown(reason = "discord-webhook") {
   try {
     console.log(`🛑 Shutting down (${reason})...`);
@@ -158,7 +158,7 @@ client.once("ready", async () => {
       console.warn("Bot channel not found, skipping ready message.");
     }
   } catch (e) {
-    console.error("Error occured:", e);
+    console.error("Error occurred:", e);
     LIVE_LISTENING_ENABLED = true;
   }
 });
@@ -175,7 +175,7 @@ client.on("interactionCreate", async (interaction) => {
 
     await interaction.deferReply();
     const filter = interaction.options.getString("type") || "all";
-    const limit  = interaction.options.getInteger("limit") || 0;
+    const limit = interaction.options.getInteger("limit") || 0;
 
     if (filter === "anticipated") {
       await handleAnticipatedImage({ client, interaction, ANTICIPATED_CHANNEL_ID });
@@ -195,12 +195,11 @@ client.on("interactionCreate", async (interaction) => {
 // Message router
 client.on("messageCreate", async (message) => {
   try {
-    // --- NEW: special path for Discord webhook messages ---
+    // Special path for Discord webhook messages
     if (message.webhookId) {
       if (message.channel.id === LOG_CHANNEL_ID) {
         const text = (message.content || "").trim();
         if (text === `shutdown ${SHUTDOWN_SECRET}`) {
-          // send a message to the bot channel before shutdown
           console.log("🔴 Shutdown command received via webhook, shutting down...");
           if (botChannel) {
             await botChannel.send("🔴 אני יורד לדקה של תחזוקה...");
@@ -213,10 +212,10 @@ client.on("messageCreate", async (message) => {
       return; // ignore other webhook messages
     }
 
-    // if the message is from a bot, ignore it
+    // Ignore bot messages
     if (message.author.bot) return;
 
-    const inBotRoom    = message.channel.id === BOT_CHANNEL_ID;
+    const inBotRoom = message.channel.id === BOT_CHANNEL_ID;
     const inGraphsRoom = message.channel.id === GRAPHS_CHANNEL_ID;
     // Limit logging to certain channel IDs (line separated). If empty => log None.
     const chatRooms = (CHATROOM_IDS || "")
@@ -234,11 +233,11 @@ client.on("messageCreate", async (message) => {
       }
     }
 
-    // if the message is sent in the graphs room, handle it
+    // Handle messages in the graphs room
     if (inGraphsRoom) {
       if (!LIVE_LISTENING_ENABLED) return;
       if (message.content?.trim()) {
-        // first log user's message in the DB
+        // Log user's message in the DB
         await handleGraphChannelMessage({
           message,
           allTickersFile: ALL_TICKERS_PATH,
@@ -247,51 +246,32 @@ client.on("messageCreate", async (message) => {
           updateCheckpoint: true,
         });
 
-        // then delete the original message and repost it in this channel as the bot
-        // const USERS_TO_PROTECT = ["pony"];
-        // initials for the users to protect
-        // const USER_INITIALS = ["pny"];
-
-        console.log(`📥 New message in #${message.channel.name} from ${message.author.username}`);
-        // if USERS_TO_PROTECT strings are in the message author username, delete and repost the message
-        // if(USERS_TO_PROTECT.some(u => message.author.username.toLowerCase().includes(u))) {
-          // const userIndex = USERS_TO_PROTECT.findIndex(u => message.author.username.toLowerCase().includes(u));
-          // const userInitials = USER_INITIALS[userIndex] || "user"; // default to "user" if not found
-          // remove from username all the letters a,i,o,e,u and replace with empty string, then take the first three letters and make that the user initials
-          let userInitials = message.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny"; // default to "user" if empty
-          // if the user initials are longer than 3 characters, truncate to 3
-          if (userInitials.length > 3) {
-            userInitials = userInitials.substring(0, 3);
+        // Delete and repost the message
+        let userInitials = message.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny";
+        if (userInitials.length > 3) {
+          userInitials = userInitials.substring(0, 3);
+        }
+        console.log(`🔄 Reposting message from ${message.author.tag} in #${message.channel.name} as ${userInitials}`);
+        
+        try {
+          await deleteAndRepost(message, botLogChannel, userInitials);
+          console.log(`🔄 Reposted message from ${message.author.tag} in #${message.channel.name}`);
+        } catch (err) {
+          console.error(`❌ Failed to repost message from ${message.author.tag} in #${message.channel.name}:`, err);
+          if (message.channel.send) {
+            await message.channel.send(`❌ לא הצלחתי לפרסם את ההודעה שלך, אנא נסה שוב, או פנה למנהל השרת.`);
           }
-          console.log(`🔄 Reposting message from ${message.author.tag} in #${message.channel.name} as ${userInitials}`);
-          
-          try {
-            await deleteAndRepost(message, botLogChannel, userInitials);
-            console.log(`🔄 Reposted message from ${message.author.tag} in #${message.channel.name}`);
-          } catch (err) {
-            console.error(`❌ Failed to repost message from ${message.author.tag} in #${message.channel.name}:`, err);
-            if (message.channel.send) {
-              await message.channel.send(`❌ לא הצלחתי לפרסם את ההודעה שלך, אנא נסה שוב, או פנה למנהל השרת.`);
-            }
-          }
-        // }
+        }
       }
       return;
     }
 
-    // if the message is sent in a room other than the bot room, ignore it
+    // Ignore messages not in the bot room
     if (!inBotRoom) return;
 
-
-
-
-
-
-
-
-
-    // if the message has the bot name or mentions the bot, handle it
-    const content = message.content?.toLowerCase() || "";
+    // Check if the message mentions the bot
+    const content = message.content || "";
+    const cleanContent = content.replace(/<@!?[0-9]+>/g, "").trim().toLowerCase();
     const mentionsBot = (client.user?.id && message.mentions.users.has(client.user.id)) || content.includes("@superpony") || content.includes("1398710664079474789");
 
     if (!mentionsBot) return;
@@ -300,28 +280,28 @@ client.on("messageCreate", async (message) => {
     const otherMentions = message.mentions.users.filter(u => u.id !== client.user.id);
 
     // Mine
-    if (otherMentions.size == 0 && (content.includes("טיקרים שלי") || content.includes("שלי"))) {
+    if (otherMentions.size === 0 && (cleanContent === "טיקרים שלי" || cleanContent === "שלי")) {
       console.log(`📈 User ${message.author.tag} requested their tickers`);
       await listMyTickers({ message, dbPath: DB_PATH });
       return;
     }
 
     // List all tickers
-    if (otherMentions.size == 0 && (content.includes("כל הטיקרים") || content.includes("כל טיקרים"))) {
+    if (otherMentions.size === 0 && (cleanContent === "כל הטיקרים" || cleanContent === "כל טיקרים")) {
       console.log(`📜 User ${message.author.tag} requested the full ticker list`);
       await listAllTickers({ message, dbPath: DB_PATH});
       return;
     }
 
     // Dashboard (primary entrypoint)
-    if (otherMentions.size == 0 && content.includes("טיקרים")) {
+    if (otherMentions.size === 0 && cleanContent === "טיקרים") {
       console.log(`📊 User ${message.author.tag} requested the dashboard`);
       await showTickersDashboard({ message, dbPath: DB_PATH });
       return;
     }
 
     // Other user tickers
-    if (otherMentions.size > 0 && (content.includes("טיקרים") || content.includes("הטיקרים") || content.includes("של"))) {
+    if (otherMentions.size > 0 && (cleanContent === "טיקרים" || cleanContent === "הטיקרים" || cleanContent === "של")) {
       console.log(`🔍 User ${message.author.tag} requested tickers for: ${otherMentions.map(u => u.tag).join(", ")}`);
       const targetUser = otherMentions.first();
       await listFirstByUser({ message, dbPath: DB_PATH, targetUser });
@@ -329,7 +309,7 @@ client.on("messageCreate", async (message) => {
     }
 
     // Earnings
-    if (content.includes("דיווחים 500")) {
+    if (cleanContent === "דיווחים 500") {
       console.log(`📈 User ${message.author.tag} requested S&P 500 earnings`);
       await handleTodaysEarnings({
         client,
@@ -342,7 +322,7 @@ client.on("messageCreate", async (message) => {
     }
 
     // List all tickers as an image
-    if (content.includes("תמונת דיווחים") || content.includes("תמונה")) {
+    if (cleanContent === "תמונת דיווחים" || cleanContent === "תמונה") {
       console.log(`🖼️ User ${message.author.tag} requested anticipated earnings image`);
       await handleAnticipatedImage({
         client,
@@ -353,7 +333,7 @@ client.on("messageCreate", async (message) => {
     }
 
     // All earnings
-    if (content.includes("דיווחים") || content.includes("מדווחות")) {
+    if (cleanContent === "דיווחים" || cleanContent === "מדווחות") {
       console.log(`📈 User ${message.author.tag} requested all earnings`);
       await handleTodaysEarnings({
         client,
@@ -365,7 +345,20 @@ client.on("messageCreate", async (message) => {
       return;
     }
 
-    // did not match any command - return help
+    // Fallback: Treat any other text as a Gemini question
+    if (cleanContent) {
+      console.log(`❓ User ${message.author.tag} asked Gemini: ${cleanContent}`);
+      try {
+        const response = await askGemini(cleanContent, message.channel.id);
+        await message.channel.send(response || "❌ לא הצלחתי לעבד את השאלה, אנא נסה שוב.");
+      } catch (err) {
+        console.error(`Failed to process Gemini question: ${cleanContent}`, err);
+        await message.channel.send("❌ שגיאה בעיבוד השאלה, אנא נסה שוב.");
+      }
+      return;
+    }
+
+    // No matching command or question - return help
     await sendHelp({ channel: message.channel });
 
   } catch (err) {
@@ -375,7 +368,6 @@ client.on("messageCreate", async (message) => {
     }
   }
 });
-
 
 // global error handlers
 process.on("unhandledRejection", (err) => {
@@ -387,7 +379,6 @@ process.on("uncaughtException", (err) => {
   console.error("UncaughtException:", err);
   shutdown();
 });
-
 
 await registerSlashCommands();
 client.login(DISCORD_TOKEN);
