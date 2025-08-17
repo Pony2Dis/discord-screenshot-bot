@@ -117,6 +117,20 @@ client.once("ready", async () => {
       console.warn("Bot channel not found, skipping scanning message.");
     }
 
+    // Backfill messages from the last day for specified chat rooms
+    const chatRooms = (CHATROOM_IDS || "")
+      .split(/[\n]+/)
+      .map(s => s.trim())
+      .filter(Boolean);
+    for (const channelId of chatRooms) {
+      try {
+        await backfillLastDayMessages(client, channelId);
+        console.log(`✅ Backfilled last day's messages for channel ${channelId}`);
+      } catch (e) {
+        console.error(`Backfill failed for channel ${channelId}:`, e);
+      }
+    }
+
     try {
       await runBackfillOnce({
         client,
