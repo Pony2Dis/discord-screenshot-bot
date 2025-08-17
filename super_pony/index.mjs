@@ -356,6 +356,7 @@ client.on("messageCreate", async (message) => {
       console.log(`❓ User ${message.author.tag} asked Gemini: ${cleanContent}`);
       try {
         const response = await askGemini(cleanContent, message.channel.id);
+        console.log("[Discord.send] chars:", (response || "").length, "preview:", (response || "").slice(0,300).replace(/\n/g," "));
         await message.channel.send(response || "❌ לא הצלחתי לעבד את השאלה, אנא נסה שוב.");
       } catch (err) {
         console.error(`Failed to process Gemini question: ${cleanContent}`, err);

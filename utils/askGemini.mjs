@@ -1,22 +1,25 @@
 import fetch from "node-fetch";
-import { readRecent } from "./liveLog.mjs";
+import { readLastNFromLatestFile } from "./liveLog.mjs";
 
 /**
- * Ask Google Gemini 1.5/2.5 with a user prompt, using recent messages as context.
  * Env:
  *   - GEMINI_API_KEY (required)
  *   - GEMINI_MODEL (optional, default: gemini-2.5-flash)
- *   - BOT_CHANNEL_ID (optional)
- *   - CONTEXT_CHANNEL_ID (optional)  <-- new, use this if you log a different room
+ *   - CHATROOM_IDS (space/newline/comma separated)
+ *   - CONTEXT_CHANNEL_ID (optional, overrides)
+ *   - GEMINI_CONTEXT_LAST_N (optional, default 400, max 1000)
+ *   - GEMINI_DEBUG (1/true to enable verbose logs)
  */
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
-const CHATROOM_IDS = process.env.CHATROOM_IDS || "";
+if (!GEMINI_API_KEY) { throw new Error("GEMINI_API_KEY is not set"); }
 
-if (!GEMINI_API_KEY) {
-  console.error("❌ Missing GEMINI_API_KEY");
-  throw new Error("GEMINI_API_KEY is not set in environment variables");
-}
+const GEMINI_DEBUG = (process.env.GEMINI_DEBUG === "1" || (process.env.GEMINI_DEBUG || "").toLowerCase() === "true");
+function glog(...a){ if (GEMINI_DEBUG) console.log("[askGemini]", ...a); }
+
+const CHATROOM_IDS = (process.env.CHATROOM_IDS || "").split(/[\s,]+/).filter(Boolean);
+const CONTEXT_CHANNEL_ID = process.env.CONTEXT_CHANNEL_ID || CHATROOM_IDS[0] || "";
+const CONTEXT_LAST_N = Math.max(1, Math.min(1000, parseInt(process.env.GEMINI_CONTEXT_LAST_N || "400", 10)));
 
 // Israel-time formatter for prompt
 const IL_TZ = "Asia/Jerusalem";
@@ -28,6 +31,20 @@ function israelFormatShort(iso) {
   }).format(d);
 }
 
+function sanitizeContent(s, max = 400) {
+  return String(s || "")
+    .replace(/https?:\/\/\S+/g, "")
+    .replace(/<@[!&]?\d+>/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, max);
+}
+
+function buildContext(records) {
+  const arr = [...(records || [])];
+  return arr.map(r => `- ${israelFormatShort(r.createdAt)} | ${r.author}: ${sanitizeContent(r.content)}`).join("\n");
+}
+
 function buildPrompt(userPrompt, recentMessages) {
   const systemPrompt = [
     "אתה עוזר חכם שמספק תשובות מדויקות ומועילות לשאלות משתמשים בהקשר של שיחות בדיסקורד.",
@@ -36,52 +53,57 @@ function buildPrompt(userPrompt, recentMessages) {
     "הדגש tickers אם קיימים, ואזכור של חדשות אם ישנן."
   ].join("\n");
 
-  const context = (recentMessages || []).map(r => {
-    const author = r.author;
-    const when = israelFormatShort(r.createdAt);
-    const text = (r.content || "").trim().replace(/\s+/g, " ");
-    return `- ${when} | ${author}: ${text}`;
-  }).join("\n") || "אין הקשר זמין";
-
+  const context = buildContext(recentMessages) || "אין הקשר זמין";
   const prompt = [
     systemPrompt, "",
     "### הקשר (הודעות אחרונות):",
     context, "",
-    `### שאלה: ${userPrompt}`, "",
+    `### שאלה: ${sanitizeContent(userPrompt, 300)}`, "",
     "נא להשיב בעברית קצר ותכליתי."
   ].join("\n");
 
-  console.log("🔍 Gemini prompt built:", prompt);
+  glog("prompt.chars:", prompt.length);
   return prompt;
 }
 
 export async function askGemini(userPrompt) {
   try {
-    const recentMessages = await readRecent(CHATROOM_IDS, 60, 100);
-    console.log(`🧠 Gemini using context from channel ${CHATROOM_IDS}`);
+    const channelId = CONTEXT_CHANNEL_ID;
+    glog("contextChannel:", channelId, "lastN:", CONTEXT_LAST_N);
+
+    const recentMessages = await readLastNFromLatestFile(channelId, CONTEXT_LAST_N);
+    glog("records:", recentMessages.length);
+    if (recentMessages[0]) glog("firstRec.ts:", recentMessages[0].createdAt);
+    if (recentMessages.at(-1)) glog("lastRec.ts:", recentMessages.at(-1).createdAt);
 
     const prompt = buildPrompt(userPrompt, recentMessages);
 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(GEMINI_MODEL)}:generateContent?key=${GEMINI_API_KEY}`;
+    const body = {
+      contents: [{ role: "user", parts: [{ text: prompt }] }],
+      generationConfig: { temperature: 0.2, maxOutputTokens: 512 }
+    };
+    const bodyStr = JSON.stringify(body);
+    glog("http.body.bytes:", Buffer.byteLength(bodyStr, "utf8"));
+
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: JSON.stringify({
-        contents: [{ role: "user", parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.2, maxOutputTokens: 512 }
-      })
+      body: bodyStr
     });
 
-    if (!res.ok) {
-      const txt = await res.text().catch(() => "");
-      throw new Error(`Gemini HTTP ${res.status}: ${txt}`);
-    }
+    glog("http.status:", res.status);
+    const json = await res.json().catch(e => { glog("json.parse.error", e?.message); return null; });
+    glog("resp.hasCandidates:", !!json?.candidates, "resp.len.bytes:", Buffer.byteLength(JSON.stringify(json || {}), "utf8"));
 
-    const data = await res.json();
-    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
-    return text.trim() || "לא מצאתי מידע רלוונטי בשעה האחרונה.";
+    const raw = json?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+    glog("raw.answer.chars:", raw.length, "preview:", raw.slice(0, 180).replace(/\n/g," "));
+
+    const finalText = (raw.trim() || "לא מצאתי מידע רלוונטי בשורות האחרונות בקובץ.");
+    glog("finalText.chars:", finalText.length, "preview:", finalText.slice(0, 180).replace(/\n/g," "));
+    return finalText;
   } catch (error) {
     console.error(`Error in askGemini for prompt "${userPrompt}":`, error.message);
-    throw new Error("Failed to get response from Gemini API");
+    return "❌ שגיאת Gemini.";
   }
 }
