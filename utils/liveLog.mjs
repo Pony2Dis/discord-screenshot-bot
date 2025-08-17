@@ -244,7 +244,7 @@ export async function backfillLastDayMessages(client, channelId) {
   }
 
   const now = new Date();
-  const cutoff = new Date(now.getTime() - 24 * 60 * 60 * 1000); // 24 hours ago
+  const cutoff = new Date(now.getTime() - 5 * 24 * 60 * 60 * 1000); // 24 hours ago
 
   // Build a per-day bucket so each message is written to its correct daily log (Israel local day)
   const dayBuckets = new Map();
