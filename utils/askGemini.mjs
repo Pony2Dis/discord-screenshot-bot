@@ -19,7 +19,7 @@ function glog(...a){ if (GEMINI_DEBUG) console.log("[askGemini]", ...a); }
 
 const CHATROOM_IDS = (process.env.CHATROOM_IDS || "").split(/[\s,]+/).filter(Boolean);
 const CONTEXT_CHANNEL_ID = process.env.CONTEXT_CHANNEL_ID || CHATROOM_IDS[0] || "";
-const CONTEXT_LAST_N = 100;
+const CONTEXT_LAST_N = 400;
 
 // Israel-time formatter for prompt
 const IL_TZ = "Asia/Jerusalem";
