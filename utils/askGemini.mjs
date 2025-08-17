@@ -98,7 +98,7 @@ export async function askGemini(userPrompt) {
     glog("resp.hasCandidates:", !!json?.candidates, "resp.len.bytes:", Buffer.byteLength(JSON.stringify(json || {}), "utf8"));
 
     const raw = json?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
-    glog("raw.answer.chars:", raw.length, "preview:", raw.slice(0, 180).replace(/\n/g," "));
+    glog("raw.answer.chars:", raw.length, "preview:", raw);
 
     const finalText = (raw.trim() || "לא מצאתי מידע רלוונטי בשורות האחרונות בקובץ.");
     glog("finalText.chars:", finalText.length, "preview:", finalText.slice(0, 180).replace(/\n/g," "));
