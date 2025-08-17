@@ -95,29 +95,29 @@ export async function readRecent(channelId, minutes = 60, maxLines = 4000) {
     const yesterday = new Date(now);
     yesterday.setDate(now.getDate() - 1);
 
-    const logPaths = [
-        getDailyLogPath(channelId, yesterday),
-        getDailyLogPath(channelId, now),
-    ];
+    const logPath = channelLogPath(msg.channelId);
 
     const items = [];
     const cutoff = Date.now() - minutes * 60 * 1000;
 
-    for (const logPath of logPaths) {
-        let raw = "";
+    let raw = "";
+    try {
+        raw = await fs.readFile(logPath, "utf-8");
+    } catch {
+        console.warn(`Log file not found for channel ${channelId}: ${logPath}`);
+        return items; // Return empty if no log file exists
+    }
+
+    const lines = raw.trim().split("\n").slice(-maxLines);
+    for (const line of lines) {
         try {
-            raw = await fs.readFile(logPath, "utf-8");
+            const o = JSON.parse(line);
+            if (new Date(o.createdAt).getTime() >= cutoff) {
+                items.push(o);
+            }
         } catch {
-            continue; // Skip if file doesn't exist
-        }
-        const lines = raw.trim().split("\n").slice(-maxLines);
-        for (const line of lines) {
-            try {
-                const o = JSON.parse(line);
-                if (new Date(o.createdAt).getTime() >= cutoff) {
-                    items.push(o);
-                }
-            } catch { }
+            console.warn(`Failed to parse line in log: ${line}`);
+            continue; // Skip malformed lines
         }
     }
     return items;

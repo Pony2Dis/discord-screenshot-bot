@@ -26,9 +26,10 @@ function buildPrompt(userPrompt, recentMessages) {
   ].join("\n");
 
   const context = recentMessages.map(r => {
-    const author = r.author ? `@${r.author}` : (r.authorId || "unknown");
-    const when = new Date(r.createdAt).toLocaleString("he-IL");
-    const text = (r.content || "").replace(/\s+/g, " ").trim();
+    const author = r.author;
+    const when = r.createdAt;
+    const text = r.content.trim();
+    const msgLink = r.msgLink;
     return `- ${when} | ${author}: ${text}`;
   }).join("\n") || "אין הקשר זמין";
 
