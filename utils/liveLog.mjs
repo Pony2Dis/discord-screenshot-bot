@@ -47,7 +47,23 @@ function channelLogPath(channelId) {
     return getDailyLogPath(channelId, new Date());
 }
 
+function shouldLogMessage(msg) {
+    const content = msg.content?.trim() || "";
+    if (!content) return false; // Skip empty content, even with attachments
+
+    // Check if only emojis
+    const withoutEmojis = content.replace(/[\p{Emoji}\p{Emoji_Modifier}\p{Emoji_Modifier_Base}\p{Emoji_Component}\p{Emoji_Presentation}]/gu, '').trim();
+    if (!withoutEmojis) return false; // Only emojis, skip
+
+    // Check if it's just a GIF link (e.g., tenor.com)
+    if (content.startsWith('https://tenor.com/')) return false; // Skip animated GIF links
+
+    return true; // Has text or regular links, log it
+}
+
 export async function appendToLog(msg) {
+    if (!shouldLogMessage(msg)) return; // Skip if no text or only emojis/GIF
+
     await ensureDir();
 
     let userInitials = msg.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny"; // default to "pny" if empty
@@ -145,11 +161,13 @@ export async function backfillLastDayMessages(client, channelId) {
         const messages = await channel.messages.fetch(options);
         if (messages.size === 0) break;
 
+        let stop = false;
         for (const msg of messages.values()) {
             if (msg.createdAt < cutoff) {
-                break; // Stop if we reach messages older than 24 hours
+                stop = true;
+                break;
             }
-            if (!existingMessageIds.has(msg.id) && !msg.author.bot) {
+            if (!existingMessageIds.has(msg.id) && !msg.author.bot && shouldLogMessage(msg)) {
                 let userInitials = msg.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny";
                 if (userInitials.length > 3) {
                     userInitials = userInitials.substring(0, 3);
@@ -171,6 +189,7 @@ export async function backfillLastDayMessages(client, channelId) {
                 messagesToLog.push(rec);
             }
         }
+        if (stop) break;
         lastId = messages.last().id;
     }
 
