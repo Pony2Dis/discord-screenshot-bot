@@ -2,8 +2,12 @@ import fs from "fs/promises";
 import path from "path";
 import { promisify } from "util";
 import { exec as execCb } from "child_process";
+import { fileURLToPath } from "url";
 
-const LOG_DIR = process.env.SUPERPONY_LOG_DIR || "../data/logs";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const LOG_DIR = process.env.SUPERPONY_LOG_DIR
+  ? path.resolve(process.env.SUPERPONY_LOG_DIR)
+  : path.resolve(__dirname, "..", "data", "logs");
 const exec = promisify(execCb);
 
 // ===== debug + Israel timezone helpers (no deps) =====

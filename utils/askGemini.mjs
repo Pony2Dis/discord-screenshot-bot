@@ -6,25 +6,27 @@ import { readRecent } from "./liveLog.mjs";
  * Env:
  *   - GEMINI_API_KEY (required)
  *   - GEMINI_MODEL (optional, default: gemini-2.5-flash)
- *   - BOT_CHANNEL_ID (optional, default channel for context if not provided)
+ *   - BOT_CHANNEL_ID (optional)
+ *   - CONTEXT_CHANNEL_ID (optional)  <-- new, use this if you log a different room
  */
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 const BOT_CHANNEL_ID = process.env.BOT_CHANNEL_ID;
+const CONTEXT_CHANNEL_ID = process.env.CONTEXT_CHANNEL_ID || "";
 
 if (!GEMINI_API_KEY) {
   console.error("❌ Missing GEMINI_API_KEY");
   throw new Error("GEMINI_API_KEY is not set in environment variables");
 }
 
-// ===== Israel timezone helpers (no deps) =====
+// Israel-time formatter for prompt
 const IL_TZ = "Asia/Jerusalem";
 function israelFormatShort(iso) {
   const d = typeof iso === "string" ? new Date(iso) : iso;
   return new Intl.DateTimeFormat("he-IL", {
     timeZone: IL_TZ, year: "2-digit", month: "2-digit", day: "2-digit",
     hour: "2-digit", minute: "2-digit", hour12: false
-  }).format(d); // "17/08/25, 21:07"
+  }).format(d);
 }
 
 function buildPrompt(userPrompt, recentMessages) {
@@ -43,13 +45,10 @@ function buildPrompt(userPrompt, recentMessages) {
   }).join("\n") || "אין הקשר זמין";
 
   const prompt = [
-    systemPrompt,
-    "",
+    systemPrompt, "",
     "### הקשר (הודעות אחרונות):",
-    context,
-    "",
-    `### שאלה: ${userPrompt}`,
-    "",
+    context, "",
+    `### שאלה: ${userPrompt}`, "",
     "נא להשיב בעברית קצר ותכליתי."
   ].join("\n");
 
@@ -57,16 +56,12 @@ function buildPrompt(userPrompt, recentMessages) {
   return prompt;
 }
 
-/**
- * Calls the Gemini API with a user prompt and context from recent messages.
- * @param {string} userPrompt - User's question or input
- * @param {string} [channelId] - Optional channel ID for fetching recent messages
- * @returns {Promise<string>} - The response from Gemini
- */
 export async function askGemini(userPrompt, channelId = BOT_CHANNEL_ID) {
   try {
-    // Fetch recent messages for context (last 60 minutes, up to 100 messages)
-    const recentMessages = await readRecent(channelId, 60, 100);
+    const contextChannel = CONTEXT_CHANNEL_ID || channelId;
+    const recentMessages = await readRecent(contextChannel, 60, 100);
+    console.log(`🧠 Gemini using context from channel ${contextChannel} (asked in ${channelId})`);
+
     const prompt = buildPrompt(userPrompt, recentMessages);
 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(GEMINI_MODEL)}:generateContent?key=${GEMINI_API_KEY}`;
