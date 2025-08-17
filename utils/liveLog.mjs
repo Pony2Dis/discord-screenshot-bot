@@ -95,7 +95,7 @@ export async function readRecent(channelId, minutes = 60, maxLines = 4000) {
     const yesterday = new Date(now);
     yesterday.setDate(now.getDate() - 1);
 
-    const logPath = channelLogPath(msg.channelId);
+    const logPath = channelLogPath(channelId);
 
     const items = [];
     const cutoff = Date.now() - minutes * 60 * 1000;
