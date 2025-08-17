@@ -44,5 +44,6 @@ jobs:
           DISCORD_SHUTDOWN_WEBHOOK: ${{ vars.DISCORD_SHUTDOWN_WEBHOOK }}
           SHUTDOWN_SECRET: ${{ secrets.SHUTDOWN_SECRET }}
           CHATROOM_IDS: ${{ vars.CHATROOM_IDS }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
                   
         run: node super_pony/index.mjs

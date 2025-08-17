@@ -9,7 +9,7 @@ import { readRecent } from "./liveLog.mjs";
  *   - BOT_CHANNEL_ID (optional, default channel for context if not provided)
  */
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-1.5-flash";
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 const BOT_CHANNEL_ID = process.env.BOT_CHANNEL_ID;
 
 if (!GEMINI_API_KEY) {
