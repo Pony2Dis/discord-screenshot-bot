@@ -135,7 +135,8 @@ export async function backfillLastDayMessages(client, channelId) {
         // File may not exist yet, which is fine
     }
 
-    // Fetch messages from Discord
+    // Collect messages to append
+    const messagesToLog = [];
     let lastId;
     while (true) {
         const options = { limit: 100 };
@@ -146,12 +147,40 @@ export async function backfillLastDayMessages(client, channelId) {
 
         for (const msg of messages.values()) {
             if (msg.createdAt < cutoff) {
-                return; // Stop if we reach messages older than 24 hours
+                break; // Stop if we reach messages older than 24 hours
             }
             if (!existingMessageIds.has(msg.id) && !msg.author.bot) {
-                await appendToLog(msg);
+                let userInitials = msg.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny";
+                if (userInitials.length > 3) {
+                    userInitials = userInitials.substring(0, 3);
+                }
+
+                let referenceMessageLink = "";
+                if (msg.reference?.messageId) {
+                    referenceMessageLink = `https://discord.com/channels/1397974486581772494/${msg.channelId}/${msg.reference?.messageId}`;
+                }
+
+                const rec = {
+                    msgLink: `https://discord.com/channels/1397974486581772494/${msg.channelId}/${msg.id}`,
+                    refMsgLink: referenceMessageLink,
+                    author: userInitials || "אנונימי",
+                    content: msg.content || "",
+                    createdAt: msg.createdAt?.toISOString?.() || new Date().toISOString(),
+                    attachments: [...(msg.attachments?.values?.() || [])].map(a => ({ url: a.url, name: a.name })),
+                };
+                messagesToLog.push(rec);
             }
         }
         lastId = messages.last().id;
+    }
+
+    // Write all collected messages at once
+    if (messagesToLog.length > 0) {
+        const logData = messagesToLog.map(rec => JSON.stringify(rec)).join("\n") + "\n";
+        await fs.appendFile(logPath, logData, "utf-8");
+        await commitLogIfChanged(logPath);
+        console.log(`✅ Backfilled ${messagesToLog.length} messages for channel ${channelId}`);
+    } else {
+        console.log(`No new messages to backfill for channel ${channelId}`);
     }
 }
