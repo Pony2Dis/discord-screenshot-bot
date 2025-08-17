@@ -4222,7 +4222,13 @@
     "https://finance.yahoo.com/news/amazon-com-inc-amzn-bull-024329139.html",
     "https://finance.yahoo.com/news/fair-isaac-corporation-fico-bull-024619767.html",
     "https://finance.yahoo.com/news/willscot-holdings-corporation-wsc-bear-024634215.html",
-    "https://finance.yahoo.com/news/atlassian-corporation-team-bull-case-024649686.html"
+    "https://finance.yahoo.com/news/atlassian-corporation-team-bull-case-024649686.html",
+    "https://finance.yahoo.com/news/uipath-path-launches-generative-extractions-203353147.html",
+    "https://finance.yahoo.com/news/sentinelone-expands-mimecast-partnership-advance-203046812.html",
+    "https://finance.yahoo.com/news/citigroup-slashes-confluent-cflt-price-202933157.html",
+    "https://finance.yahoo.com/news/gitlab-gtlb-signs-three-strategic-202817706.html",
+    "https://finance.yahoo.com/news/marvell-technology-inc-mrvl-bear-033859270.html",
+    "https://finance.yahoo.com/news/jamf-holding-corp-jamf-bull-034040857.html"
   ],
   "http://rss.cnn.com/rss/money_latest.rss": [],
   "https://rss.politico.com/economy.xml": [],
@@ -4265,7 +4271,8 @@
     "https://www.foxbusiness.com/markets/exchange-miax-soars-wall-street-debut-plans-miami-expansion",
     "https://www.foxbusiness.com/markets/business-travel-surges-companies-prioritize-face-to-face-meetings",
     "https://www.foxbusiness.com/markets/buffett-sparks-unitedhealths-biggest-stock-surge-17-years",
-    "https://www.foxbusiness.com/markets/buffett-sparks-unitedhealths-biggest-weekly-stock-surge-16-years"
+    "https://www.foxbusiness.com/markets/buffett-sparks-unitedhealths-biggest-weekly-stock-surge-16-years",
+    "https://www.foxbusiness.com/markets/air-canada-strike-continues-flight-attendants-reject-government-return-to-work-order"
   ],
   "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml": [
     "https://www.nytimes.com/2025/08/09/business/morton-meyerson-dead.html",
