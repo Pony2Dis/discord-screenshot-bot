@@ -69,14 +69,16 @@ function buildPrompt(userPrompt, context) {
 }
 
 async function getDateFromQuestion(userPrompt) {
+  const now = new Date().toISOString().split("T")[0]; // Current date: 2025-08-18
   const datePrompt = [
     "אתה עוזר חכם שמנתח שאלות של משתמשים.",
     "בדוק את השאלה הבאה והחזר את התאריך המפורש או המרומז בה, בפורמט YYYY-MM-DD.",
+    "התאריך הנוכחי הוא " + now + ", והאזור הזמני הוא Israel Daylight Time (IDT, UTC+3).",
+    "אם יש מונחים יחסיים (כגון 'אתמול', 'לפני יומיים'), חשב את התאריך בהתבסס על התאריך הנוכחי (" + now + ") תוך שימוש באזור הזמני IDT.",
     "אם אין תאריך מפורש או מרומז, השתמש בתאריך הנוכחי כברירת מחדל.",
+    "החזר רק את התאריך בפורמט YYYY-MM-DD.",
     "",
-    `### שאלה: ${sanitizeContent(userPrompt, 300)}`,
-    "",
-    "החזר רק את התאריך בפורמט YYYY-MM-DD."
+    `### שאלה: ${sanitizeContent(userPrompt, 300)}`
   ].join("\n");
 
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(GEMINI_MODEL)}:generateContent?key=${GEMINI_API_KEY}`;
@@ -99,12 +101,19 @@ async function getDateFromQuestion(userPrompt) {
     // Validate date format
     const dateMatch = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
     if (dateMatch) {
-      return raw; // Return YYYY-MM-DD if valid
+      const extractedDate = new Date(raw);
+      const minDate = new Date("2025-08-01"); // Arbitrary min date, adjust as needed
+      const maxDate = new Date(); // Current date
+      if (extractedDate >= minDate && extractedDate <= maxDate) {
+        return raw; // Return valid date within range
+      } else {
+        glog("extracted date out of range, using current date:", now);
+        return now;
+      }
     }
   }
   // Fallback to current date if extraction fails
-  const now = new Date().toISOString().split("T")[0];
-  glog("fallback to current date:", now);
+  glog("date extraction failed, using current date:", now);
   return now;
 }
 
@@ -179,7 +188,7 @@ export async function askGemini(userPrompt) {
         finalText = "❌ הגעת לגבול השאלות היומי של ג'מיני. נסו שוב מאוחר יותר.";
       }
       if (e.status === 400 && String(e.message).includes("exceeds the maximum number of tokens")) {
-        finalText = "❌ השאלה ארוכה מדי. נסו לשאול שאלה קצרה יותר, או לשאול על פרק זמן קצר יותר (כ כמו השעה האחרונה, או היום האחרון).";
+        finalText = "❌ השאלה ארוכה מדי. נסו לשאול שאלה קצרה יותר, או לשאול על פרק זמן קצר יותר (כמו השעה האחרונה, או היום האחרון).";
       }
     }
 
