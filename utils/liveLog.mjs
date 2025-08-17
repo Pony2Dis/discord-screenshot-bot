@@ -1,3 +1,4 @@
+// utils/liveLog.mjs
 import fs from "fs/promises";
 import path from "path";
 import { promisify } from "util";
@@ -5,33 +6,49 @@ import { exec as execCb } from "child_process";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const LOG_DIR = path.resolve(__dirname, "../data/logs");  // adjust if needed
-
+const LOG_DIR = path.resolve(__dirname, "../data/logs"); // <repo>/data/logs
 const exec = promisify(execCb);
 
-// ===== debug + Israel timezone helpers (no deps) =====
-const LOG_DEBUG = true; // Set to false to disable debug logs
+// ===== Debug + Israel timezone helpers (no deps) =====
+const LOG_DEBUG =
+  String(process.env.SUPERPONY_LOG_DEBUG || "").toLowerCase() === "true" ||
+  process.env.SUPERPONY_LOG_DEBUG === "1" ||
+  false; // set to true here if you want always-on
+
 const IL_TZ = "Asia/Jerusalem";
-function dlog(...args) { if (LOG_DEBUG) console.log("[liveLog.readRecent]", ...args); }
+function dlog(...args) {
+  if (LOG_DEBUG) console.log("[liveLog]", ...args);
+}
 function israelDateString(d = new Date()) {
   const parts = new Intl.DateTimeFormat("sv-SE", {
-    timeZone: IL_TZ, year: "numeric", month: "2-digit", day: "2-digit"
+    timeZone: IL_TZ,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
   }).formatToParts(d);
-  const y = parts.find(p => p.type === "year")?.value ?? "0000";
-  const m = parts.find(p => p.type === "month")?.value ?? "01";
-  const day = parts.find(p => p.type === "day")?.value ?? "01";
+  const y = parts.find((p) => p.type === "year")?.value ?? "0000";
+  const m = parts.find((p) => p.type === "month")?.value ?? "01";
+  const day = parts.find((p) => p.type === "day")?.value ?? "01";
   return `${y}-${m}-${day}`; // YYYY-MM-DD in Israel local time
 }
 function israelFormat(isoOrDate) {
   const d = typeof isoOrDate === "string" ? new Date(isoOrDate) : isoOrDate;
   return new Intl.DateTimeFormat("he-IL", {
-    timeZone: IL_TZ, year: "numeric", month: "2-digit", day: "2-digit",
-    hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false
+    timeZone: IL_TZ,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
   }).format(d);
 }
 
 async function ensureDir() {
-  try { await fs.mkdir(LOG_DIR, { recursive: true }); } catch {}
+  try {
+    await fs.mkdir(LOG_DIR, { recursive: true });
+  } catch {}
 }
 
 /** Git commit helper (safe to call when nothing changed) */
@@ -68,7 +85,7 @@ function getDailyLogPath(channelId, date) {
 }
 
 function channelLogPath(channelId) {
-    return getDailyLogPath(channelId, new Date());
+  return getDailyLogPath(channelId, new Date());
 }
 
 function shouldLogMessage(msg) {
@@ -76,21 +93,26 @@ function shouldLogMessage(msg) {
   if (!content) return false; // Skip empty content, even with attachments
 
   // Check if only emojis
-  const withoutEmojis = content.replace(/[\p{Emoji}\p{Emoji_Modifier}\p{Emoji_Modifier_Base}\p{Emoji_Component}\p{Emoji_Presentation}]/gu, '').trim();
+  const withoutEmojis = content
+    .replace(
+      /[\p{Emoji}\p{Emoji_Modifier}\p{Emoji_Modifier_Base}\p{Emoji_Component}\p{Emoji_Presentation}]/gu,
+      ""
+    )
+    .trim();
   if (!withoutEmojis) return false; // Only emojis, skip
 
   // Check if it's just a GIF link (e.g., tenor.com)
-  if (content.startsWith('https://tenor.com/')) return false; // Skip animated GIF links
+  if (content.startsWith("https://tenor.com/")) return false; // Skip animated GIF links
 
   return true; // Has text or regular links, log it
 }
 
 export async function appendToLog(msg) {
   if (!shouldLogMessage(msg)) return; // Skip if no text or only emojis/GIF
-
   await ensureDir();
 
-  let userInitials = msg.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny"; // default to "pny" if empty
+  let userInitials =
+    msg.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny"; // default to "pny" if empty
   if (userInitials.length > 3) {
     userInitials = userInitials.substring(0, 3);
   }
@@ -106,43 +128,46 @@ export async function appendToLog(msg) {
     author: userInitials || "אנונימי",
     content: msg.content || "",
     createdAt: msg.createdAt?.toISOString?.() || new Date().toISOString(),
-    attachments: [...(msg.attachments?.values?.() || [])].map(a => ({ url: a.url, name: a.name })),
+    attachments: [...(msg.attachments?.values?.() || [])].map((a) => ({
+      url: a.url,
+      name: a.name,
+    })),
   };
 
   const logPath = channelLogPath(msg.channelId);
-  console.log("Appending to log:", logPath, "record:", rec);
+  dlog("appendToLog →", logPath, "record.createdAt=", israelFormat(rec.createdAt));
   await fs.appendFile(logPath, JSON.stringify(rec) + "\n", "utf-8");
   await commitLogIfChanged(logPath);
 }
 
+/**
+ * Read recent items from today & yesterday files by cutoff minutes.
+ */
 export async function readRecent(channelId, minutes = 60, maxLines = 4000) {
   const now = new Date();
   const cutoffMs = Date.now() - minutes * 60 * 1000;
-  const todayPath = getDailyLogPath(channelId, now);
-  console.log("Reading recent messages for channel:", channelId, "from", minutes, "minutes ago");
 
+  const todayPath = getDailyLogPath(channelId, now);
   const y = new Date(now);
   y.setDate(y.getDate() - 1);
   const yesterdayPath = getDailyLogPath(channelId, y);
-  console.log("Yesterday's log path:", yesterdayPath);
 
-  dlog("channelId:", channelId);
-  dlog("IL now:", israelFormat(now), "| window(min):", minutes);
-  dlog("Cutoff >= ", israelFormat(new Date(cutoffMs)));
-  dlog("Today file:", todayPath);
-  dlog("Yesterday file:", yesterdayPath);
+  dlog("[readRecent] channelId:", channelId);
+  dlog("[readRecent] IL now:", israelFormat(now), "| window(min):", minutes);
+  dlog("[readRecent] Cutoff >= ", israelFormat(new Date(cutoffMs)));
+  dlog("[readRecent] Today file:", todayPath);
+  dlog("[readRecent] Yesterday file:", yesterdayPath);
 
   const items = [];
   const files = [todayPath, yesterdayPath];
 
   for (const p of files) {
-    let statOk = false;
     try {
       const st = await fs.stat(p);
-      statOk = st.isFile();
-      dlog("  → stat", p, statOk ? `OK, size=${st.size}` : "not a file");
+      dlog("  → stat", p, st.isFile() ? `OK, size=${st.size}` : "not a file");
     } catch {
       dlog("  → stat", p, "not found");
+      continue;
     }
 
     let raw = "";
@@ -151,12 +176,18 @@ export async function readRecent(channelId, minutes = 60, maxLines = 4000) {
     } catch {
       continue; // missing file is fine
     }
-    if (!raw.trim()) { dlog("  → empty file", p); continue; }
+    if (!raw.trim()) {
+      dlog("  → empty file", p);
+      continue;
+    }
 
     const lines = raw.split(/\r?\n/).filter(Boolean);
     const start = Math.max(0, lines.length - maxLines);
-    let parsed = 0, kept = 0, malformed = 0;
-    let firstTs = null, lastTs = null;
+    let parsed = 0,
+      kept = 0,
+      malformed = 0;
+    let firstTs = null,
+      lastTs = null;
 
     for (let i = start; i < lines.length; i++) {
       const line = lines[i];
@@ -167,14 +198,19 @@ export async function readRecent(channelId, minutes = 60, maxLines = 4000) {
         if (Number.isFinite(t)) {
           if (!firstTs || t < firstTs) firstTs = t;
           if (!lastTs || t > lastTs) lastTs = t;
-          if (t >= cutoffMs) { items.push(o); kept++; }
+          if (t >= cutoffMs) {
+            items.push(o);
+            kept++;
+          }
         }
       } catch {
         malformed++;
       }
     }
 
-    dlog("  → file summary:", p,
+    dlog(
+      "  → file summary:",
+      p,
       `lines=${lines.length}, parsed=${parsed}, kept>=cutoff=${kept}, malformed=${malformed}`,
       firstTs ? `first=${israelFormat(new Date(firstTs))}` : "first=–",
       lastTs ? `last=${israelFormat(new Date(lastTs))}` : "last=–"
@@ -184,12 +220,94 @@ export async function readRecent(channelId, minutes = 60, maxLines = 4000) {
   items.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
   const out = items.slice(-maxLines);
 
-  dlog("TOTAL kept:", out.length,
-       out.length ? `range=${israelFormat(out[0].createdAt)} → ${israelFormat(out[out.length-1].createdAt)}` : "");
+  dlog(
+    "[readRecent] TOTAL kept:",
+    out.length,
+    out.length
+      ? `range=${israelFormat(out[0].createdAt)} → ${israelFormat(out[out.length - 1].createdAt)}`
+      : ""
+  );
 
   return out;
 }
 
+/**
+ * NEW: Read the last N records from the newest (today or yesterday) file.
+ * Keeps original ordering (oldest→newest) in the returned array.
+ */
+export async function readLastNFromLatestFile(channelId, n = 400) {
+  const now = new Date();
+  const todayPath = getDailyLogPath(channelId, now);
+  const y = new Date(now);
+  y.setDate(y.getDate() - 1);
+  const yesterdayPath = getDailyLogPath(channelId, y);
+
+  // Gather candidates that actually exist
+  const candidates = [];
+  for (const p of [todayPath, yesterdayPath]) {
+    try {
+      const st = await fs.stat(p);
+      if (st.isFile()) candidates.push({ p, mtime: st.mtimeMs, size: st.size });
+    } catch {}
+  }
+
+  if (candidates.length === 0) {
+    dlog("[readLastNFromLatestFile] no files for channel", channelId);
+    return [];
+  }
+
+  candidates.sort((a, b) => b.mtime - a.mtime);
+  const chosen = candidates[0].p;
+  dlog("[readLastNFromLatestFile] chosen file:", chosen);
+
+  let raw = "";
+  try {
+    raw = await fs.readFile(chosen, "utf-8");
+  } catch {
+    return [];
+  }
+
+  const lines = raw.split(/\r?\n/).filter(Boolean);
+  const slice = lines.slice(Math.max(0, lines.length - n));
+
+  let parsed = 0,
+    malformed = 0;
+  const out = [];
+  for (const line of slice) {
+    try {
+      out.push(JSON.parse(line));
+      parsed++;
+    } catch {
+      malformed++;
+    }
+  }
+  dlog(
+    "[readLastNFromLatestFile] lines:",
+    lines.length,
+    "taking last:",
+    slice.length,
+    "parsed:",
+    parsed,
+    "malformed:",
+    malformed
+  );
+
+  // chronological order
+  out.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+  if (out[0] && out.at(-1)) {
+    dlog(
+      "[readLastNFromLatestFile] range:",
+      israelFormat(out[0].createdAt),
+      "→",
+      israelFormat(out.at(-1).createdAt)
+    );
+  }
+  return out;
+}
+
+/**
+ * Backfill last day and bucket per Israel local day.
+ */
 export async function backfillLastDayMessages(client, channelId) {
   await ensureDir();
   const channel = client.channels.cache.get(channelId);
@@ -242,7 +360,10 @@ export async function backfillLastDayMessages(client, channelId) {
 
     let stop = false;
     for (const msg of messages.values()) {
-      if (msg.createdAt < cutoff) { stop = true; break; }
+      if (msg.createdAt < cutoff) {
+        stop = true;
+        break;
+      }
       if (msg.author.bot) continue;
       if (!shouldLogMessage(msg)) continue;
 
@@ -269,7 +390,10 @@ export async function backfillLastDayMessages(client, channelId) {
         author: userInitials || "אנונימי",
         content: msg.content || "",
         createdAt: msg.createdAt?.toISOString?.() || new Date().toISOString(),
-        attachments: [...(msg.attachments?.values?.() || [])].map(a => ({ url: a.url, name: a.name })),
+        attachments: [...(msg.attachments?.values?.() || [])].map((a) => ({
+          url: a.url,
+          name: a.name,
+        })),
       };
       bucket.records.push(rec);
       bucket.existingIds.add(msgId);
@@ -282,14 +406,16 @@ export async function backfillLastDayMessages(client, channelId) {
   let total = 0;
   for (const { path: p, records } of dayBuckets.values()) {
     if (records.length === 0) continue;
-    const logData = records.map(r => JSON.stringify(r)).join("\n") + "\n";
+    const logData = records.map((r) => JSON.stringify(r)).join("\n") + "\n";
     await fs.appendFile(p, logData, "utf-8");
     await commitLogIfChanged(p);
     total += records.length;
   }
 
   if (total > 0) {
-    console.log(`✅ Backfilled ${total} messages for channel ${channelId} across ${dayBuckets.size} day file(s).`);
+    console.log(
+      `✅ Backfilled ${total} messages for channel ${channelId} across ${dayBuckets.size} day file(s).`
+    );
   } else {
     console.log(`No new messages to backfill for channel ${channelId}`);
   }
