@@ -112,7 +112,7 @@ client.once("ready", async () => {
 
     botChannel = client.channels.cache.get(BOT_CHANNEL_ID);
     if (botChannel) {
-      await botChannel.send("🔵 מבצע סריקה של הטיקרים בחדר גרפים...");
+      await botChannel.send("🔵 שומר הודעות מחדר בלה-בלה...");
     } else {
       console.warn("Bot channel not found, skipping scanning message.");
     }
@@ -129,6 +129,13 @@ client.once("ready", async () => {
       } catch (e) {
         console.error(`Backfill failed for channel ${channelId}:`, e);
       }
+    }
+
+    botChannel = client.channels.cache.get(BOT_CHANNEL_ID);
+    if (botChannel) {
+      await botChannel.send("🔵 מבצע סריקה של הטיקרים בחדר גרפים...");
+    } else {
+      console.warn("Bot channel not found, skipping scanning message.");
     }
 
     try {
