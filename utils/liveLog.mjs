@@ -5,9 +5,8 @@ import { exec as execCb } from "child_process";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const LOG_DIR = process.env.SUPERPONY_LOG_DIR
-  ? path.resolve(process.env.SUPERPONY_LOG_DIR)
-  : path.resolve(__dirname, "..", "data", "logs");
+const LOG_DIR = path.resolve(__dirname, "../data/logs");  // adjust if needed
+
 const exec = promisify(execCb);
 
 // ===== debug + Israel timezone helpers (no deps) =====
@@ -69,7 +68,7 @@ function getDailyLogPath(channelId, date) {
 }
 
 function channelLogPath(channelId) {
-  return getDailyLogPath(channelId, new Date());
+    return getDailyLogPath(channelId, new Date());
 }
 
 function shouldLogMessage(msg) {
@@ -111,6 +110,7 @@ export async function appendToLog(msg) {
   };
 
   const logPath = channelLogPath(msg.channelId);
+  console.log("Appending to log:", logPath, "record:", rec);
   await fs.appendFile(logPath, JSON.stringify(rec) + "\n", "utf-8");
   await commitLogIfChanged(logPath);
 }
@@ -118,11 +118,13 @@ export async function appendToLog(msg) {
 export async function readRecent(channelId, minutes = 60, maxLines = 4000) {
   const now = new Date();
   const cutoffMs = Date.now() - minutes * 60 * 1000;
-
   const todayPath = getDailyLogPath(channelId, now);
+  console.log("Reading recent messages for channel:", channelId, "from", minutes, "minutes ago");
+
   const y = new Date(now);
   y.setDate(y.getDate() - 1);
   const yesterdayPath = getDailyLogPath(channelId, y);
+  console.log("Yesterday's log path:", yesterdayPath);
 
   dlog("channelId:", channelId);
   dlog("IL now:", israelFormat(now), "| window(min):", minutes);
@@ -210,6 +212,7 @@ export async function backfillLastDayMessages(client, channelId) {
     const key = yyyy_mm_dd_IL(dateObj);
     if (dayBuckets.has(key)) return dayBuckets.get(key);
     const pathForDay = getDailyLogPath(channelId, dateObj);
+    console.log("reading/writing to daily log path:", pathForDay);
     const bucket = { path: pathForDay, existingIds: new Set(), records: [] };
 
     // Load existing IDs for that day to prevent duplicates
