@@ -92,35 +92,42 @@ export async function appendToLog(msg) {
 
 export async function readRecent(channelId, minutes = 60, maxLines = 4000) {
     const now = new Date();
+    const cutoff = now.getTime() - minutes * 60 * 1000;
+
+    const todayPath = getDailyLogPath(channelId, now);
     const yesterday = new Date(now);
     yesterday.setDate(now.getDate() - 1);
+    const yesterdayPath = getDailyLogPath(channelId, yesterday);
 
-    const logPath = channelLogPath(channelId);
+    const pathsToRead = [todayPath, yesterdayPath];
 
     const items = [];
-    const cutoff = Date.now() - minutes * 60 * 1000;
-
-    let raw = "";
-    try {
-        raw = await fs.readFile(logPath, "utf-8");
-    } catch {
-        console.warn(`Log file not found for channel ${channelId}: ${logPath}`);
-        return items; // Return empty if no log file exists
-    }
-
-    const lines = raw.trim().split("\n").slice(-maxLines);
-    for (const line of lines) {
+    for (const p of pathsToRead) {
+        let raw = "";
         try {
-            const o = JSON.parse(line);
-            if (new Date(o.createdAt).getTime() >= cutoff) {
-                items.push(o);
-            }
+            raw = await fs.readFile(p, "utf-8");
         } catch {
-            console.warn(`Failed to parse line in log: ${line}`);
-            continue; // Skip malformed lines
+            continue; // missing file is fine
+        }
+        if (!raw.trim()) continue;
+        const lines = raw.trim().split("\n");
+        // We cap after merging both days
+        for (let i = Math.max(0, lines.length - maxLines); i < lines.length; i++) {
+            const line = lines[i];
+            try {
+                const o = JSON.parse(line);
+                const t = new Date(o.createdAt).getTime();
+                if (!Number.isFinite(t)) continue;
+                if (t >= cutoff) items.push(o);
+            } catch {
+                // malformed line — skip
+            }
         }
     }
-    return items;
+
+    // Sort ascending by time and cap to maxLines
+    items.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    return items.slice(-maxLines);
 }
 
 export async function backfillLastDayMessages(client, channelId) {
@@ -133,26 +140,37 @@ export async function backfillLastDayMessages(client, channelId) {
 
     const now = new Date();
     const cutoff = new Date(now.getTime() - 24 * 60 * 60 * 1000); // 24 hours ago
-    const logPath = getDailyLogPath(channelId, now);
 
-    // Read existing messages in today's log to avoid duplicates
-    let existingMessageIds = new Set();
-    try {
-        const raw = await fs.readFile(logPath, "utf-8");
-        const lines = raw.trim().split("\n");
-        for (const line of lines) {
-            try {
-                const o = JSON.parse(line);
-                const msgId = o.msgLink.split("/").pop();
-                existingMessageIds.add(msgId);
-            } catch { }
-        }
-    } catch {
-        // File may not exist yet, which is fine
+    // Build a per-day bucket so each message is written to its correct daily log
+    const dayBuckets = new Map();
+
+    function yyyy_mm_dd(d) {
+        return d.toISOString().split("T")[0];
     }
 
-    // Collect messages to append
-    const messagesToLog = [];
+    async function ensureBucketFor(dateObj) {
+        const key = yyyy_mm_dd(dateObj);
+        if (dayBuckets.has(key)) return dayBuckets.get(key);
+        const pathForDay = getDailyLogPath(channelId, dateObj);
+        const bucket = { path: pathForDay, existingIds: new Set(), records: [] };
+
+        // Load existing IDs for that day to prevent duplicates
+        try {
+            const raw = await fs.readFile(pathForDay, "utf-8");
+            const lines = raw.trim() ? raw.trim().split("\n") : [];
+            for (const line of lines) {
+                try {
+                    const o = JSON.parse(line);
+                    const msgId = o.msgLink?.split?.("/")?.pop?.();
+                    if (msgId) bucket.existingIds.add(msgId);
+                } catch { }
+            }
+        } catch { }
+
+        dayBuckets.set(key, bucket);
+        return bucket;
+    }
+
     let lastId;
     while (true) {
         const options = { limit: 100 };
@@ -163,42 +181,53 @@ export async function backfillLastDayMessages(client, channelId) {
 
         let stop = false;
         for (const msg of messages.values()) {
-            if (msg.createdAt < cutoff) {
-                stop = true;
-                break;
-            }
-            if (!existingMessageIds.has(msg.id) && !msg.author.bot && shouldLogMessage(msg)) {
-                let userInitials = msg.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny";
-                if (userInitials.length > 3) {
-                    userInitials = userInitials.substring(0, 3);
-                }
+            if (msg.createdAt < cutoff) { stop = true; break; }
+            if (msg.author.bot) continue;
+            if (!shouldLogMessage(msg)) continue;
 
-                let referenceMessageLink = "";
-                if (msg.reference?.messageId) {
-                    referenceMessageLink = `https://discord.com/channels/1397974486581772494/${msg.channelId}/${msg.reference?.messageId}`;
-                }
+            const key = yyyy_mm_dd(msg.createdAt);
+            // Construct a date object for path derivation
+            const dtForBucket = new Date(key + "T12:00:00Z");
+            const bucket = await ensureBucketFor(dtForBucket);
 
-                const rec = {
-                    msgLink: `https://discord.com/channels/1397974486581772494/${msg.channelId}/${msg.id}`,
-                    refMsgLink: referenceMessageLink,
-                    author: userInitials || "אנונימי",
-                    content: msg.content || "",
-                    createdAt: msg.createdAt?.toISOString?.() || new Date().toISOString(),
-                    attachments: [...(msg.attachments?.values?.() || [])].map(a => ({ url: a.url, name: a.name })),
-                };
-                messagesToLog.push(rec);
+            const msgId = msg.id;
+            if (bucket.existingIds.has(msgId)) continue;
+
+            let userInitials = msg.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny";
+            if (userInitials.length > 3) userInitials = userInitials.substring(0, 3);
+
+            let referenceMessageLink = "";
+            if (msg.reference?.messageId) {
+                referenceMessageLink = `https://discord.com/channels/1397974486581772494/${msg.channelId}/${msg.reference?.messageId}`;
             }
+
+            const rec = {
+                msgLink: `https://discord.com/channels/1397974486581772494/${msg.channelId}/${msg.id}`,
+                refMsgLink: referenceMessageLink,
+                author: userInitials || "אנונימי",
+                content: msg.content || "",
+                createdAt: msg.createdAt?.toISOString?.() || new Date().toISOString(),
+                attachments: [...(msg.attachments?.values?.() || [])].map(a => ({ url: a.url, name: a.name })),
+            };
+            bucket.records.push(rec);
+            bucket.existingIds.add(msgId);
         }
         if (stop) break;
         lastId = messages.last().id;
     }
 
-    // Write all collected messages at once
-    if (messagesToLog.length > 0) {
-        const logData = messagesToLog.map(rec => JSON.stringify(rec)).join("\n") + "\n";
-        await fs.appendFile(logPath, logData, "utf-8");
-        await commitLogIfChanged(logPath);
-        console.log(`✅ Backfilled ${messagesToLog.length} messages for channel ${channelId}`);
+    // Write per-day and commit
+    let total = 0;
+    for (const { path: p, records } of dayBuckets.values()) {
+        if (records.length === 0) continue;
+        const logData = records.map(r => JSON.stringify(r)).join("\n") + "\n";
+        await fs.appendFile(p, logData, "utf-8");
+        await commitLogIfChanged(p);
+        total += records.length;
+    }
+
+    if (total > 0) {
+        console.log(`✅ Backfilled ${total} messages for channel ${channelId} across ${dayBuckets.size} day file(s).`);
     } else {
         console.log(`No new messages to backfill for channel ${channelId}`);
     }
