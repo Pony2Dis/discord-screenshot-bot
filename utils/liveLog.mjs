@@ -3,7 +3,7 @@ import path from "path";
 import { promisify } from "util";
 import { exec as execCb } from "child_process";
 
-const LOG_DIR = process.env.SUPERPONY_LOG_DIR || "/data/logs";
+const LOG_DIR = process.env.SUPERPONY_LOG_DIR || "../data/logs";
 const exec = promisify(execCb);
 
 // ===== debug + Israel timezone helpers (no deps) =====
