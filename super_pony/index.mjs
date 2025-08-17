@@ -271,7 +271,13 @@ client.on("messageCreate", async (message) => {
 
     // Check if the message mentions the bot
     const content = message.content || "";
-    const cleanContent = content.replace(/<@!?[0-9]+>/g, "").trim().toLowerCase();
+    if (!content.trim()) return; // Ignore empty messages
+    // Clean the content: remove mentions and normalize
+    let cleanContent = content.replace(/<@!?[0-9]+>/g, "").trim().toLowerCase();
+    // also remove "@superpony" and the bot's ID
+    cleanContent = cleanContent.replace(/@superpony/g, "").replace(/1398710664079474789/g, "").trim();
+
+    // Check if the message mentions the bot or contains its ID
     const mentionsBot = (client.user?.id && message.mentions.users.has(client.user.id)) || content.includes("@superpony") || content.includes("1398710664079474789");
 
     if (!mentionsBot) return;

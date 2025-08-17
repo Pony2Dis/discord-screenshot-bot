@@ -43,6 +43,8 @@ function buildPrompt(userPrompt, recentMessages) {
     "נא להשיב בעברית קצר ותכליתי."
   ].join("\n");
 
+  console.log("🔍 Gemini prompt built:", prompt);
+
   return prompt;
 }
 
