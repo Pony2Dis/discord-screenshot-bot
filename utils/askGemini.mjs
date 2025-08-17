@@ -93,6 +93,11 @@ export async function askGemini(userPrompt) {
       body: bodyStr
     });
 
+    if (res.ok) {
+        console.log("askGemini response text:", await res.text());
+        glog("askGemini response text received successfully");
+    }
+
     glog("http.status:", res.status);
     const json = await res.json().catch(e => { glog("json.parse.error", e?.message); return null; });
     glog("resp.hasCandidates:", !!json?.candidates, "resp.len.bytes:", Buffer.byteLength(JSON.stringify(json || {}), "utf8"));
