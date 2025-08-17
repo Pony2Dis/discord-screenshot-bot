@@ -282,11 +282,20 @@ client.on("messageCreate", async (message) => {
     // if the message is sent in a room other than the bot room, ignore it
     if (!inBotRoom) return;
 
+
+
+
+
+
+
+
+
     // if the message has the bot name or mentions the bot, handle it
     const content = message.content?.toLowerCase() || "";
     const mentionsBot = (client.user?.id && message.mentions.users.has(client.user.id)) || content.includes("@superpony") || content.includes("1398710664079474789");
-    // console.log(`🔔 Message from: ${message.author.tag}, in channel: ${message.channel.name}, mentions: ${message.mentions.users}, content: `, content);
+
     if (!mentionsBot) return;
+    console.log(`🔔 Message from: ${message.author.tag}, in channel: ${message.channel.name}, mentions: ${message.mentions.users}, content: `, content);
 
     const otherMentions = message.mentions.users.filter(u => u.id !== client.user.id);
 
