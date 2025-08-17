@@ -11,8 +11,7 @@ import { readRecent } from "./liveLog.mjs";
  */
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
-const BOT_CHANNEL_ID = process.env.BOT_CHANNEL_ID;
-const CONTEXT_CHANNEL_ID = process.env.CONTEXT_CHANNEL_ID || "";
+const CHATROOM_IDS = process.env.CHATROOM_IDS || "";
 
 if (!GEMINI_API_KEY) {
   console.error("❌ Missing GEMINI_API_KEY");
@@ -56,11 +55,10 @@ function buildPrompt(userPrompt, recentMessages) {
   return prompt;
 }
 
-export async function askGemini(userPrompt, channelId = BOT_CHANNEL_ID) {
+export async function askGemini(userPrompt) {
   try {
-    const contextChannel = CONTEXT_CHANNEL_ID || channelId;
-    const recentMessages = await readRecent(contextChannel, 60, 100);
-    console.log(`🧠 Gemini using context from channel ${contextChannel} (asked in ${channelId})`);
+    const recentMessages = await readRecent(CHATROOM_IDS, 60, 100);
+    console.log(`🧠 Gemini using context from channel ${CHATROOM_IDS}`);
 
     const prompt = buildPrompt(userPrompt, recentMessages);
 
