@@ -201,49 +201,57 @@ export async function readLastNFromLatestFile(channelId, n = 400, date = null) {
     const todayPath = getDailyLogPath(channelId, now);
     const y = new Date(now); y.setDate(y.getDate() - 1);
     const yesterdayPath = getDailyLogPath(channelId, y);
-
+  
     const candidates = [];
     if (date) {
-        const targetPath = getDailyLogPath(channelId, new Date(date));
-        try {
-            const st = await fs.stat(targetPath);
-            if (st.isFile()) candidates.push({ p: targetPath, mtime: st.mtimeMs, size: st.size });
-        } catch { }
+      const targetPath = getDailyLogPath(channelId, new Date(date));
+      try {
+        const st = await fs.stat(targetPath);
+        if (st.isFile()) candidates.push({ p: targetPath, mtime: st.mtimeMs, size: st.size });
+      } catch {}
     } else {
-        for (const p of [todayPath, yesterdayPath]) {
-            try {
-                const st = await fs.stat(p);
-                if (st.isFile()) candidates.push({ p, mtime: st.mtimeMs, size: st.size });
-            } catch { }
-        }
+      for (const p of [todayPath, yesterdayPath]) {
+        try {
+          const st = await fs.stat(p);
+          if (st.isFile()) candidates.push({ p, mtime: st.mtimeMs, size: st.size });
+        } catch {}
+      }
     }
     if (candidates.length === 0) {
-        dlog("readLastNFromLatestFile: no files for channel", channelId);
-        return [];
+      dlog("readLastNFromLatestFile: no files for channel", channelId);
+      return [];
     }
     candidates.sort((a, b) => b.mtime - a.mtime);
     const chosen = candidates[0].p;
-
+  
     dlog("readLastNFromLatestFile: chosen file:", chosen);
-
+  
     let raw = "";
-    try { raw = await fs.readFile(chosen, "utf-8"); } catch { return []; }
-    const lines = raw.split(/\r?\n/).filter(Boolean).slice(Math.max(0, lines.length - n));
-
+    try {
+      raw = await fs.readFile(chosen, "utf-8");
+    } catch {
+      return [];
+    }
+    const lines = raw.split(/\r?\n/).filter(Boolean).slice(Math.max(0, lines.length - n)); // Ensure lines is initialized here
+  
     let parsed = 0, malformed = 0;
     const out = [];
     for (const line of lines) {
-        try { out.push(JSON.parse(line)); parsed++; } catch { malformed++; }
+      try {
+        out.push(JSON.parse(line));
+        parsed++;
+      } catch {
+        malformed++;
+      }
     }
     dlog("readLastNFromLatestFile: lines:", lines.length, "taking last:", lines.length, "parsed:", parsed, "malformed:", malformed);
-
+  
     out.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
     if (out[0] && out.at(-1)) {
-        dlog("readLastNFromLatestFile: range:", israelFormat(out[0].createdAt), "→", israelFormat(out.at(-1).createdAt));
+      dlog("readLastNFromLatestFile: range:", israelFormat(out[0].createdAt), "→", israelFormat(out.at(-1).createdAt));
     }
     return out;
-}
-
+  }
 export async function backfillLastDayMessages(client, channelId) {
     await ensureDir();
     const channel = client.channels.cache.get(channelId);
