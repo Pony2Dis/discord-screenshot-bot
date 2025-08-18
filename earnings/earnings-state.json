@@ -12070,5 +12070,29 @@
     "revenueSurprise": -0.43703703703703706,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.15610859728506787
+  },
+  {
+    "epsDate": "2025-08-18T16:15:00",
+    "ticker": "XP",
+    "name": "XP Inc.",
+    "summary": "XP (XP) reported earnings of $0.47 per share on revenue of $824.08 million for the  second quarter ended June 2025.  The consensus earnings estimate was $0.43 per share on  revenue of $834.73 million. The Earnings Whisper number was $0.45 per share. The company beat expectations by 4.44% while revenue grew 1.80% on a year-over-year basis.<br /><br />XP is a leading, technology-driven financial services platform and a trusted provider of low-fee financial products and services in Brazil. ",
+    "subject": "XP Beat Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508187397",
+    "eps": 0.47,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.43,
+    "whisper": 0.45,
+    "highEstimate": 0.43,
+    "lowEstimate": 0.42,
+    "revenue": 824.083,
+    "revenueEstimate": 834.73,
+    "earningsGrowth": 0.20512820512820512,
+    "revenueGrowth": 0.017978355315251215,
+    "earningsSurprise": 0.044444444444444446,
+    "revenueSurprise": -0.012755022582152312,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.050193408822864403
   }
 ]
