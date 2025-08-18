@@ -98,7 +98,7 @@ export async function appendToLog(msg) {
     // }
 
     // insread of msg.author.username get the display name of the user
-    const userInitials = msg.member.displayname || msg.author.username;
+    const userInitials = msg.member.displayName || msg.member.nickname || msg.author.username;
 
     let referenceMessageLink = "";
     if (msg.reference?.messageId) {
@@ -267,7 +267,7 @@ export async function backfillLastDayMessages(client, channelId) {
     }
 
     const now = new Date();
-    const cutoff = new Date(now.getTime() - 6 * 24 * 60 * 60 * 1000); // 24 hours ago
+    const cutoff = new Date(now.getTime() - 10 * 24 * 60 * 60 * 1000); // 24 hours ago
 
     // Build a per-day bucket so each message is written to its correct daily log (Israel local day)
     const dayBuckets = new Map();
@@ -330,7 +330,7 @@ export async function backfillLastDayMessages(client, channelId) {
             // if (userInitials.length > 3) userInitials = userInitials.substring(0, 3);
 
             // insread of msg.author.username get the display name of the user
-            const userInitials = msg.member.displayname || msg.author.username;
+            const userInitials = msg.member.displayName || msg.member.nickname || msg.author.username;
 
             let referenceMessageLink = "";
             if (msg.reference?.messageId) {
