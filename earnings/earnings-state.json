@@ -11998,5 +11998,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": 0.2692307692307692,
     "prevRevenueGrowth": 0.15326481257557437
+  },
+  {
+    "epsDate": "2025-08-18T16:10:00",
+    "ticker": "FLXS",
+    "name": "Flexsteel Industries Inc.",
+    "summary": "Flexsteel Industries (FLXS) reported earnings of $1.40 per share on  for the  fiscal fourth quarter ended June 2025.  The consensus earnings estimate was $0.84 per share on  revenue of $111.82 million. The company beat consensus estimates by 66.67%.<br /><br />The company  said it expects first-quarter revenue of $105.0 million to $110.0 million. The current consensus revenue estimate is $104.1 million for the quarter ending September 30, 2025.<br /><br /> Flexsteel Industries Inc. is engaged in the design, manufacture and sale of a broad line of quality upholstered furniture for residential, commercial, and recreational vehicle seating use.  Flexsteel primarily distributes its products throughout most of the United States through their sales force to furniture dealers, department stores, recreational vehicle manufacturers and van converters, and hospitality and healthcare facilities. The products are also sold to several national chains, some of which sell on a private label basis.   \n",
+    "subject": "Flexsteel Industries Beat Consensus Estimates",
+    "quarter": " fiscal fourth quarter ended June 2025",
+    "fileName": "2508181534",
+    "eps": 1.4,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.84,
+    "whisper": 999,
+    "highEstimate": 0.84,
+    "lowEstimate": 0.84,
+    "revenue": null,
+    "revenueEstimate": 111.82,
+    "earningsGrowth": 0.8666666666666667,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.6666666666666666,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.0629832399108367
   }
 ]
