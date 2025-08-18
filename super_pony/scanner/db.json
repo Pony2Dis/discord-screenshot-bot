@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-18T12:13:26.164Z",
+  "updated": "2025-08-18T12:50:39.178Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -3666,12 +3666,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406974269266727026",
       "timestamp": "2025-08-18T12:13:26.111Z",
       "content": "https://x.com/chenhofit13/status/1957395873840922823?s=46"
+    },
+    {
+      "ticker": "UPST",
+      "user": {
+        "id": "812474718237884477",
+        "name": "itay_s_"
+      },
+      "messageId": "1406983634727993374",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406983634727993374",
+      "timestamp": "2025-08-18T12:50:39.011Z",
+      "content": "UPST\nצריכה להשאר בתוך התעלה"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1406974106267811881",
-      "lastProcessedAt": "2025-08-18T12:12:47.249Z"
+      "lastProcessedId": "1406974269266727026",
+      "lastProcessedAt": "2025-08-18T12:13:26.111Z"
     }
   }
 }
