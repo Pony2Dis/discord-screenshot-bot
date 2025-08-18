@@ -150,7 +150,6 @@ client.once("ready", async () => {
       console.error("Backfill failed:", e);
     }
   
-    LIVE_LISTENING_ENABLED = true;
     console.log("✅ Backfill done; now listening for new messages.");
     if (botChannel) {
       await botChannel.send("🟢 חזרתי לפעילות, אני זמין, שלחו לי הודעה!");
@@ -159,7 +158,6 @@ client.once("ready", async () => {
     }
   } catch (e) {
     console.error("Error occurred:", e);
-    LIVE_LISTENING_ENABLED = true;
   }
 });
 
