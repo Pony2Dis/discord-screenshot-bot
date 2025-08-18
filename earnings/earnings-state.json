@@ -11926,5 +11926,29 @@
     "revenueSurprise": -0.17281077770973668,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.40602155656047056
+  },
+  {
+    "epsDate": "2025-08-18T07:15:00",
+    "ticker": "BTDR",
+    "name": "Bitdeer Technologies Group",
+    "summary": "Bitdeer Technologies Group (BTDR) reported a loss of $0.76 per share on revenue of $155.58 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.19 per share on  revenue of $80.62 million. The Earnings Whisper number was a loss of $0.16 per share. The company missed expectations by 375.00% while revenue grew 56.79% on a year-over-year basis.",
+    "subject": "Bitdeer Technologies Group Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508184048",
+    "eps": -0.76,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.19,
+    "whisper": -0.16,
+    "highEstimate": -0.17,
+    "lowEstimate": -0.21,
+    "revenue": 155.582,
+    "revenueEstimate": 80.62,
+    "earningsGrowth": -24.333333333333332,
+    "revenueGrowth": 0.56790857511413,
+    "earningsSurprise": -3.75,
+    "revenueSurprise": 0.9298189034978913,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.4131842752665138
   }
 ]
