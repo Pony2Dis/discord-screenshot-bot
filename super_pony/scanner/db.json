@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-18T16:36:02.279Z",
+  "updated": "2025-08-18T18:15:16.160Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -3692,12 +3692,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1407040354196127876",
       "timestamp": "2025-08-18T16:36:01.986Z",
       "content": "HUT\nנכנסת לגאפ שלה + פורצת קאפ אנד הנדל"
+    },
+    {
+      "ticker": "GDRX",
+      "user": {
+        "id": "1339671554371485789",
+        "name": "MrKnowAll"
+      },
+      "messageId": "1407065326956318740",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1407065326956318740",
+      "timestamp": "2025-08-18T18:15:15.956Z",
+      "content": "GDRX above 5.42"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1406974269266727026",
-      "lastProcessedAt": "2025-08-18T12:13:26.111Z"
+      "lastProcessedId": "1407040354196127876",
+      "lastProcessedAt": "2025-08-18T16:36:01.986Z"
     }
   }
 }
