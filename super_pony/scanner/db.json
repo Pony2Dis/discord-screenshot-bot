@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-18T12:12:38.377Z",
+  "updated": "2025-08-18T12:12:47.330Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -3614,12 +3614,38 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406974068829327501",
       "timestamp": "2025-08-18T12:12:38.323Z",
       "content": "https://x.com/chenhofit13/status/1957400996071829960?s=46"
+    },
+    {
+      "ticker": "COM",
+      "user": {
+        "id": "1306341288420966504",
+        "name": "CHEN HOFIT"
+      },
+      "messageId": "1406974106267811881",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406974106267811881",
+      "timestamp": "2025-08-18T12:12:47.249Z",
+      "content": "https://x.com/chenhofit13/status/1957400086582849926?s=46"
+    },
+    {
+      "ticker": "S",
+      "user": {
+        "id": "1306341288420966504",
+        "name": "CHEN HOFIT"
+      },
+      "messageId": "1406974106267811881",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1406974106267811881",
+      "timestamp": "2025-08-18T12:12:47.249Z",
+      "content": "https://x.com/chenhofit13/status/1957400086582849926?s=46"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1406973774150238318",
-      "lastProcessedAt": "2025-08-18T12:11:28.066Z"
+      "lastProcessedId": "1406974068829327501",
+      "lastProcessedAt": "2025-08-18T12:12:38.323Z"
     }
   }
 }
