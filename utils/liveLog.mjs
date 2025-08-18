@@ -98,7 +98,7 @@ export async function appendToLog(msg) {
     // }
 
     // insread of msg.author.username get the display name of the user
-    const userInitials = msg.member.displayName || msg.member.nickname || msg.author.username;
+    const userInitials = msg.member?.displayName || msg.member?.nickname || msg.author.displayName || msg.author.username;
 
     let referenceMessageLink = "";
     if (msg.reference?.messageId) {
@@ -330,8 +330,8 @@ export async function backfillLastDayMessages(client, channelId) {
             // if (userInitials.length > 3) userInitials = userInitials.substring(0, 3);
 
             // insread of msg.author.username get the display name of the user
-            const userInitials = msg.member.displayName || msg.member.nickname || msg.author.username;
-
+            const userInitials = msg.member?.displayName || msg.member?.nickname || msg.author.displayName || msg.author.username;
+            
             let referenceMessageLink = "";
             if (msg.reference?.messageId) {
                 referenceMessageLink = `https://discord.com/channels/1397974486581772494/${msg.channelId}/${msg.reference?.messageId}`;
