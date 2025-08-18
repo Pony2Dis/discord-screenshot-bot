@@ -12094,5 +12094,29 @@
     "revenueSurprise": -0.012755022582152312,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.050193408822864403
+  },
+  {
+    "epsDate": "2025-08-18T18:00:00",
+    "ticker": "API",
+    "name": "Agora, Inc.",
+    "summary": "Agora (API) reported earnings of $0.01 per share on revenue of $34.26 million for the  second quarter ended June 2025. . Revenue grew 0.15% on a year-over-year basis.<br /><br />Advanced Photonix Inc is engaged in the development and manufacturing of optoelectronic devices and value-added sub-systems and systems. It has two manufacturing facilities located in Camarillo, California and Ann Arbor, Michigan.",
+    "subject": "Agora Reported Earnings",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508184108",
+    "eps": 0.01,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 999,
+    "whisper": 999,
+    "highEstimate": 999,
+    "lowEstimate": 999,
+    "revenue": 34.259,
+    "revenueEstimate": null,
+    "earningsGrowth": 1.1,
+    "revenueGrowth": 0.001461603671548423,
+    "earningsSurprise": null,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.0075103721873958995
   }
 ]
