@@ -232,7 +232,10 @@ export async function readLastNFromLatestFile(channelId, n = 400, date = null) {
     } catch {
       return [];
     }
-    const lines = raw.split(/\r?\n/).filter(Boolean).slice(Math.max(0, lines.length - n)); // Ensure lines is initialized here
+    
+    let rawLines = raw.split(/\r?\n/).filter(Boolean);
+    const startIndex = Math.max(0, rawLines.length - n);
+    const lines = rawLines.slice(startIndex);
   
     let parsed = 0, malformed = 0;
     const out = [];
