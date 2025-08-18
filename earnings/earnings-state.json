@@ -11974,5 +11974,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.44756175468483816
+  },
+  {
+    "epsDate": "2025-08-18T16:05:00",
+    "ticker": "PANW",
+    "name": "Palo Alto Networks, Inc.",
+    "summary": "Palo Alto Networks (PANW) reported earnings of $0.95 per share on  for the  fiscal fourth quarter ended July 2025.  The consensus earnings estimate was $0.89 per share on  revenue of $2.50 billion. The Earnings Whisper number was $0.90 per share. The company beat expectations by 5.56%.<br /><br />The company  said it expects  first quarter  non-GAAP earnings of $0.88 to $0.90 per share on revenue of $2.45 billion to $2.47 billion. The current consensus earnings estimate is $0.91 per share on revenue of $2.44 billion for the quarter ending October 31, 2025. The company said it expects fiscal  2026 non-GAAP earnings of $3.75 to $3.85 per share on revenue of $10.475 billion to $10.525 billion. The current consensus earnings estimate is $3.62 per share on revenue of $10.45 billion for the year ending July 31, 2026.<br /><br />Palo Alto Networks is the global cybersecurity leader, committed to making each day safer than the one before with industry-leading, AI-powered solutions in network security, cloud security and security operations. ",
+    "subject": "Palo Alto Networks Beat Expectations",
+    "quarter": " fiscal fourth quarter ended July 2025",
+    "fileName": "2508183709",
+    "eps": 0.95,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.89,
+    "whisper": 0.9,
+    "highEstimate": 0.9,
+    "lowEstimate": 0.87,
+    "revenue": null,
+    "revenueEstimate": 2500,
+    "earningsGrowth": 0.11764705882352941,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.05555555555555555,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": 0.2692307692307692,
+    "prevRevenueGrowth": 0.15326481257557437
   }
 ]
