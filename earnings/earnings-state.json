@@ -11950,5 +11950,29 @@
     "revenueSurprise": 0.9298189034978913,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.4131842752665138
+  },
+  {
+    "epsDate": "2025-08-18T16:02:00",
+    "ticker": "BLNK",
+    "name": "Blink Charging Co.",
+    "summary": "Blink Charging (BLNK) reported a loss of $0.26 per share on  for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.17 per share on  revenue of $23.03 million. The Earnings Whisper number was a loss of $0.15 per share. The company missed expectations by 73.33%.<br /><br />Blink Charging Co. is a global leader in electric vehicle (EV) charging equipment and services, enabling drivers, hosts, and fleets to easily transition to electric transportation through innovative charging solutions. ",
+    "subject": "Blink Charging Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508184340",
+    "eps": -0.26,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.17,
+    "whisper": -0.15,
+    "highEstimate": -0.17,
+    "lowEstimate": -0.17,
+    "revenue": null,
+    "revenueEstimate": 23.03,
+    "earningsGrowth": -0.4444444444444444,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.7333333333333333,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.44756175468483816
   }
 ]
