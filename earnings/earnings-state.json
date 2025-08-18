@@ -11854,5 +11854,29 @@
     "revenueSurprise": 0.03790677966101695,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.01775922679018484
+  },
+  {
+    "epsDate": "2025-08-18T06:50:00",
+    "ticker": "RSKD",
+    "name": "Riskified Ltd.",
+    "summary": "Riskified (RSKD) reported earnings of $0.02 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.02 per share on  revenue of $80.08 million. The Earnings Whisper number was $0.03 per share. The company missed expectations by 33.33%.<br /><br />Riskified empowers businesses to realize the full potential of eCommerce by making it safe, accessible, and frictionless. Riskified has built a next-generation eCommerce risk management platform that allows online merchants to create trusted relationships with their consumers. ",
+    "subject": "Riskified Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508184432",
+    "eps": 0.02,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.02,
+    "whisper": 0.03,
+    "highEstimate": 0.03,
+    "lowEstimate": 0.01,
+    "revenue": null,
+    "revenueEstimate": 80.08,
+    "earningsGrowth": 1.5,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.3333333333333333,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": -1.6875,
+    "prevRevenueGrowth": 0.0782509684849754
   }
 ]
