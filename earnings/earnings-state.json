@@ -12046,5 +12046,29 @@
     "revenueSurprise": 0.030088776157260622,
     "prevEarningsGrowth": 10.58974358974359,
     "prevRevenueGrowth": 0.19173928793564218
+  },
+  {
+    "epsDate": "2025-08-18T16:10:00",
+    "ticker": "NYXH",
+    "name": "Nyxoah SA",
+    "summary": "Nyxoah SA (NYXH) reported a loss of $0.63 per share on revenue of $1.52 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.62 per share on  revenue of $2.70 million. The company missed consensus estimates by 1.61% while revenue grew 83.13% on a year-over-year basis.<br /><br />Nyxoah is a medical technology company focused on the development and commercialization of innovative solutions to treat Obstructive Sleep Apnea (OSA).",
+    "subject": "Nyxoah SA Missed Consensus Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508183459",
+    "eps": -0.63,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.62,
+    "whisper": 999,
+    "highEstimate": -0.57,
+    "lowEstimate": -0.69,
+    "revenue": 1.52,
+    "revenueEstimate": 2.7,
+    "earningsGrowth": -0.3695652173913043,
+    "revenueGrowth": 0.8313253012048193,
+    "earningsSurprise": -0.016129032258064516,
+    "revenueSurprise": -0.43703703703703706,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.15610859728506787
   }
 ]
