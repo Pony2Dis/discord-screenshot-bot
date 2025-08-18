@@ -233,7 +233,6 @@ client.on("messageCreate", async (message) => {
 
     // Handle messages in the graphs room
     if (inGraphsRoom) {
-      if (!LIVE_LISTENING_ENABLED) return;
       if (message.content?.trim()) {
         // Log user's message in the DB
         await handleGraphChannelMessage({
@@ -245,6 +244,7 @@ client.on("messageCreate", async (message) => {
         });
 
         // Delete and repost the message
+        if (!LIVE_LISTENING_ENABLED) return;
         let userInitials = message.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny";
         if (userInitials.length > 3) {
           userInitials = userInitials.substring(0, 3);
