@@ -92,10 +92,13 @@ export async function appendToLog(msg) {
 
     await ensureDir();
 
-    let userInitials = msg.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny"; // default to "pny" if empty
-    if (userInitials.length > 3) {
-        userInitials = userInitials.substring(0, 3);
-    }
+    // let userInitials = msg.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny"; // default to "pny" if empty
+    // if (userInitials.length > 3) {
+    //     userInitials = userInitials.substring(0, 3);
+    // }
+    
+    // insread of msg.author.username get the display name of the user
+    const userInitials = msg.member.displayname || msg.author.username;
 
     let referenceMessageLink = "";
     if (msg.reference?.messageId) {
@@ -323,8 +326,11 @@ export async function backfillLastDayMessages(client, channelId) {
             const msgId = msg.id;
             if (bucket.existingIds.has(msgId)) continue;
 
-            let userInitials = msg.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny";
-            if (userInitials.length > 3) userInitials = userInitials.substring(0, 3);
+            // let userInitials = msg.author.username.replace(/[aeiou\.]/g, "").toLowerCase() || "pny";
+            // if (userInitials.length > 3) userInitials = userInitials.substring(0, 3);
+
+            // insread of msg.author.username get the display name of the user
+            const userInitials = msg.member.displayname || msg.author.username;
 
             let referenceMessageLink = "";
             if (msg.reference?.messageId) {
