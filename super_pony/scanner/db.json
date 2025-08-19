@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-19T10:17:08.990Z",
+  "updated": "2025-08-19T11:22:05.900Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -3731,12 +3731,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1407307392009633916",
       "timestamp": "2025-08-19T10:17:08.762Z",
       "content": "ANF above 105.77"
+    },
+    {
+      "ticker": "LEU",
+      "user": {
+        "id": "1147127141524328579",
+        "name": "David Bakal"
+      },
+      "messageId": "1407323736704679986",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1407323736704679986",
+      "timestamp": "2025-08-19T11:22:05.641Z",
+      "content": "LEUחוזרת מהחושך"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1407249884926447617",
-      "lastProcessedAt": "2025-08-19T06:28:38.005Z"
+      "lastProcessedId": "1407323388447555615",
+      "lastProcessedAt": "2025-08-19T11:20:42.610Z"
     }
   }
 }
