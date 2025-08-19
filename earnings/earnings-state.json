@@ -12190,5 +12190,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.2448220475103559
+  },
+  {
+    "epsDate": "2025-08-19T06:30:00",
+    "ticker": "PINC",
+    "name": "Premier, Inc.",
+    "summary": "Premier (PINC) reported earnings of $0.46 per share on  for the  fiscal fourth quarter ended June 2025.  The consensus earnings estimate was $0.27 per share on  revenue of $242.42 million. The company beat consensus estimates by 70.37%.<br /><br />Premier Inc is a healthcare alliance. It unites hospitals, health systems, physicians and other healthcare providers. The Company has two business segments: supply chain services and performance services.",
+    "subject": "Premier Beat Consensus Estimates",
+    "quarter": " fiscal fourth quarter ended June 2025",
+    "fileName": "2508194448",
+    "eps": 0.46,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.27,
+    "whisper": 999,
+    "highEstimate": 0.35,
+    "lowEstimate": 0.33,
+    "revenue": null,
+    "revenueEstimate": 242.42,
+    "earningsGrowth": -0.3333333333333333,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.7037037037037037,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.23705472334761643
   }
 ]
