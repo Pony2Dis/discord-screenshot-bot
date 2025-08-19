@@ -30,7 +30,7 @@ function israelFormatShort(iso) {
     }).format(d);
 }
 
-function sanitizeContent(s, max = 400) {
+function sanitizeContent(s, max = 700) {
     return String(s || "")
         .replace(/https?:\/\/\S+/g, "")
         .replace(/<@[!&]?\d+>/g, "")
