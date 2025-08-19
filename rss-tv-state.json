@@ -5091,7 +5091,9 @@
     "https://www.barrons.com/articles/palantir-stock-slump-ai-601b8587?siteid=yhoof2&yptr=yahoo",
     "https://finance.yahoo.com/news/why-intel-stock-soaring-today-154852878.html",
     "https://www.barrons.com/articles/caterpillar-stock-upgrade-outlook-3dd96a8d?siteid=yhoof2&yptr=yahoo",
-    "https://finance.yahoo.com/news/warren-buffett-once-revealed-key-161300212.html"
+    "https://finance.yahoo.com/news/warren-buffett-once-revealed-key-161300212.html",
+    "https://finance.yahoo.com/news/kohl-failed-pay-8m-worth-160448233.html",
+    "https://finance.yahoo.com/news/techcrunch-mobility-ford-big-bet-160200621.html"
   ],
   "http://rss.cnn.com/rss/money_latest.rss": [],
   "https://rss.politico.com/economy.xml": [],
@@ -5144,7 +5146,8 @@
     "https://www.foxbusiness.com/markets/buffett-sparks-unitedhealths-biggest-weekly-stock-surge-16-years",
     "https://www.foxbusiness.com/markets/air-canada-strike-continues-flight-attendants-reject-government-return-to-work-order",
     "https://www.foxbusiness.com/markets/white-house-mulls-10-intel-stake",
-    "https://www.foxbusiness.com/markets/white-house-mulls-10-stake-intel-after-ceo-meeting"
+    "https://www.foxbusiness.com/markets/white-house-mulls-10-stake-intel-after-ceo-meeting",
+    "https://www.foxbusiness.com/markets/intel-gets-2-billion-from-softbank-white-house-mulls-stake"
   ],
   "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml": [
     "https://www.nytimes.com/2025/08/09/business/morton-meyerson-dead.html",
@@ -5278,6 +5281,7 @@
     "https://www.nytimes.com/2025/08/19/business/dealbook/trump-capitalism-intel.html",
     "https://www.nytimes.com/2025/08/19/business/air-canada-strike-boarding-pay.html",
     "https://www.nytimes.com/2025/08/19/us/politics/church-endorsements-irs-kenosha.html",
-    "https://www.nytimes.com/2025/08/19/business/trump-tariffs-keen-footwear.html"
+    "https://www.nytimes.com/2025/08/19/business/trump-tariffs-keen-footwear.html",
+    "https://www.nytimes.com/2025/08/19/business/media/nexstar-tegna-deal.html"
   ]
 }
