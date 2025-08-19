@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-19T11:23:07.663Z",
+  "updated": "2025-08-19T11:25:10.995Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -3757,12 +3757,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1407323996256469104",
       "timestamp": "2025-08-19T11:23:07.523Z",
       "content": "ARRY סולר ווליום יפה נראית טוב"
+    },
+    {
+      "ticker": "APLD",
+      "user": {
+        "id": "1147127141524328579",
+        "name": "David Bakal"
+      },
+      "messageId": "1407324513372471418",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1407324513372471418",
+      "timestamp": "2025-08-19T11:25:10.813Z",
+      "content": "APLD יש פריצה"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1407323914534654075",
-      "lastProcessedAt": "2025-08-19T11:22:48.039Z"
+      "lastProcessedId": "1407323996256469104",
+      "lastProcessedAt": "2025-08-19T11:23:07.523Z"
     }
   }
 }
