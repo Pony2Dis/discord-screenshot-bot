@@ -12334,5 +12334,29 @@
     "revenueSurprise": -1,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": null
+  },
+  {
+    "epsDate": "2025-08-19T16:05:00",
+    "ticker": "KEYS",
+    "name": "Keysight Technologies, Inc.",
+    "summary": "Keysight Technologies (KEYS) reported earnings of $1.72 per share on  for the  fiscal third quarter ended July 2025.  The consensus earnings estimate was $1.67 per share on  revenue of $1.31 billion. The Earnings Whisper number was $1.70 per share. The company beat expectations by 1.18%.<br /><br />Keysight Technologies Inc provides measurement solutions to\r\ncommunications and electronics industries in United States. The Company provides\r\nelectronic measurement instruments and systems and related software, software\r\ndesign tools, & related services.",
+    "subject": "Keysight Technologies Beat Expectations",
+    "quarter": " fiscal third quarter ended July 2025",
+    "fileName": "2508190355",
+    "eps": 1.72,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 1.67,
+    "whisper": 1.7,
+    "highEstimate": 1.69,
+    "lowEstimate": 1.66,
+    "revenue": null,
+    "revenueEstimate": 1310,
+    "earningsGrowth": 0.2112676056338028,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.011764705882352941,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": 5.658536585365853,
+    "prevRevenueGrowth": 0.07957342083675144
   }
 ]
