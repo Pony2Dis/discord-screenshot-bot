@@ -12262,5 +12262,29 @@
     "revenueSurprise": -0.7772045414847162,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 1.4024265052083964
+  },
+  {
+    "epsDate": "2025-08-19T07:00:00",
+    "ticker": "OPRA",
+    "name": "Opera Limited",
+    "summary": "Opera Limited (OPRA) reported earnings of $0.24 per share on revenue of $142.96 million for the  second quarter ended June 2025.  The consensus earnings estimate was $0.26 per share on  revenue of $137.81 million. The Earnings Whisper number was $0.29 per share. The company missed expectations by 17.24% while revenue grew 30.28% on a year-over-year basis.<br /><br />The company  said it expects  third quarter  revenue of $146.0 million to $149.0 million and 2025 revenue of $585.0 million to $597.0 million. The company's previous guidance was  2025 revenue of $567.0 million to $582.0 million. The current consensus revenue estimate is $141.45 million for the quarter ending September 30, 2025 and revenue of $579.91 million for the year ending December 31, 2025.<br /><br />Opera is a global web innovator. Opera's browsers, news products and fintech solutions are the trusted choice of more than 380 million monthly active users worldwide.",
+    "subject": "Opera Limited Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508194438",
+    "eps": 0.24,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.26,
+    "whisper": 0.29,
+    "highEstimate": 0.27,
+    "lowEstimate": 0.27,
+    "revenue": 142.962,
+    "revenueEstimate": 137.81,
+    "earningsGrowth": 0.09090909090909091,
+    "revenueGrowth": 0.3028049647328996,
+    "earningsSurprise": -0.1724137931034483,
+    "revenueSurprise": 0.037384805166533634,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.4009580744274622
   }
 ]
