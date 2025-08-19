@@ -12430,5 +12430,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -0.034681757020122744
+  },
+  {
+    "epsDate": "2025-08-19T16:30:00",
+    "ticker": "ALC",
+    "name": "Alcon Inc.",
+    "summary": "Alcon (ALC) reported earnings of $0.76 per share on  for the  second quarter ended June 2025.  The consensus earnings estimate was $0.71 per share on  revenue of $2.61 billion. The company beat consensus estimates by 7.04%.<br /><br /> Alcon Inc. researches, develops, manufactures, distributes, and sells a full suite of eye care products. Alcon operates within two segments, Surgical and Vision Care. The Surgical segment is focused on ophthalmic products for cataract surgery, vitreoretinal surgery, refractive laser surgery and glaucoma surgery, and includes implantables, consumables, and surgical equipment required for these procedures. The Vision Care segment comprises daily disposable, reusable and color-enhancing contact lenses, and a comprehensive portfolio of ocular health products, including products for dry eye, contact lens care, and ocular allergies, as well as ocular vitamins and redness relievers.   \n",
+    "subject": "Alcon Beat Consensus Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508190420",
+    "eps": 0.76,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.71,
+    "whisper": 999,
+    "highEstimate": 0.77,
+    "lowEstimate": 0.68,
+    "revenue": null,
+    "revenueEstimate": 2610,
+    "earningsGrowth": 0.02702702702702703,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.07042253521126761,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.0056933712891419274
   }
 ]
