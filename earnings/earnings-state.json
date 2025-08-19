@@ -12286,5 +12286,29 @@
     "revenueSurprise": 0.037384805166533634,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.4009580744274622
+  },
+  {
+    "epsDate": "2025-08-19T07:00:00",
+    "ticker": "VIK",
+    "name": "Viking Holdings Ltd",
+    "summary": "Viking Holdings (VIK) reported earnings of $0.99 per share on revenue of $1.88 billion for the  second quarter ended June 2025.  The consensus earnings estimate was $0.99 per share on  revenue of $1.83 billion. The Earnings Whisper number was $1.03 per share. The company missed expectations by 3.88% while revenue grew 18.47% on a year-over-year basis.",
+    "subject": "Viking Holdings Missed Expectations",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508191505",
+    "eps": 0.99,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.99,
+    "whisper": 1.03,
+    "highEstimate": 1.02,
+    "lowEstimate": 0.92,
+    "revenue": 1880.367,
+    "revenueEstimate": 1830,
+    "earningsGrowth": 0.3026315789473684,
+    "revenueGrowth": 0.1846615017946009,
+    "earningsSurprise": -0.038834951456310676,
+    "revenueSurprise": 0.02752295081967213,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.24911196050991777
   }
 ]
