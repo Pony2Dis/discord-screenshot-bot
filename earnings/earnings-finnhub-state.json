@@ -12566,5 +12566,873 @@
   {
     "symbol": "API",
     "date": "2025-08-18"
+  },
+  {
+    "symbol": "HOTH",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "CTOR",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "ADAG",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "CTXR",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "LUCD",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "MBRX",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "SKYH",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "XBIO",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "NKTX",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "NLST",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "KAPA",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "PGEN",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "SBFM",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "ISPO",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "MHGU",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "VOR",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "ZVRA",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "GBIO",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "AEON",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "KSCP",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "ALTS",
+    "date": "2025-08-12"
+  },
+  {
+    "symbol": "LOCL",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "TENX",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "ADAP",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "SXTP",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "AIRO",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "FOSL",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "ICCM",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "ABP",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "ANRO",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "GRO",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "SGMT",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "APLT",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "DC",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "BKYI",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "RDZN",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "HTCR",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "AURA",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "PAGS",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "BOC",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "GIFT",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "ADIL",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "SCYX",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "CXAI",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "INBX",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "LIQT",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "ICU",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "AKTX",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "AFYA",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "SONN",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "AIRJ",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "AARD",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "DWTX",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "MRSN",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "TIL",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "KZR",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "IRD",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "CTGO",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "TNON",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "IMTX",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "JBIO",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "SSKN",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "OVID",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "DLPN",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "KLRS",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "UCL",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "VANI",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "ODYS",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "DRMA",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "SOPA",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "LINK",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "KOD",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "LTRN",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "IMRX",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "CDZI",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "CNTB",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "BFRI",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "ACRV",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "BTCS",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "TRML",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "ENSC",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "SPWR",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "ELVN",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "SVRA",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "STRR",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "ARTL",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "PAVM",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "PTHS",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "PMN",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "INDP",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "XOMA",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "BOXL",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "ALMS",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "AMIX",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "LVTX",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "JSPR",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "AEMD",
+    "date": "2025-08-13"
+  },
+  {
+    "symbol": "MIGI",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "TVRD",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "HSDT",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "HOWL",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "ELDN",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "HSAI",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "ANNX",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "CLRB",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "DFLI",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "JAGX",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "SBIG",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "PRLD",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "COCP",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "GLSI",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "LXEO",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "ZIVO",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "BLGO",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "MLSS",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "ABEO",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "CLNN",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "ATAI",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "XELB",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "RNTX",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "VYNE",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "FBRX",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "GAME",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "QXO",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "BPTH",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "IPSC",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "MGTX",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "TYRA",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "STRZ",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "GWH",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "HURA",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "LRMR",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "DARE",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "MNOV",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "ACTU",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "JRSH",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "CCRD",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "XXII",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "GTBP",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "RVYL",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "EDBL",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "AMPG",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "NERV",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "TIC",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "ZURA",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "GRI",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "XTIA",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "UNCY",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "RDI",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "NDRA",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "RVPH",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "EVAX",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "LMFA",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "SYTA",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "FORA",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "XLO",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "IOBT",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "CNVS",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "AREN",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "BNZI",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "BCLI",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "IVVD",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "INV",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "QMCI",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "FBIO",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "HCWC",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "BOLT",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "SPRB",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "APDN",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "BBLG",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "SNGX",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "IGC",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "SLE",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "IKT",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "PED",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "LPTX",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "CAMP",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "ASPI",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "MRKR",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "JBS",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "PYXS",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "LUCY",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "RKDA",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "TELO",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "BTCY",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "VIPS",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "YCBD",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "MGNX",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "AIRE",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "BKTI",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "CADL",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "ASNS",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "CNSP",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "RCAT",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "BIAF",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "EONR",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "IDAI",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "VNRX",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "QFIN",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "GALT",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "OTLK",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "PSTV",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "MIRA",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "CAN",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "EVOK",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "TRNR",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "DDS",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "STTK",
+    "date": "2025-08-14"
+  },
+  {
+    "symbol": "GIPR",
+    "date": "2025-08-15"
+  },
+  {
+    "symbol": "WKHS",
+    "date": "2025-08-15"
+  },
+  {
+    "symbol": "CAPS",
+    "date": "2025-08-15"
+  },
+  {
+    "symbol": "ALLR",
+    "date": "2025-08-15"
+  },
+  {
+    "symbol": "AZUL",
+    "date": "2025-08-15"
+  },
+  {
+    "symbol": "HCWB",
+    "date": "2025-08-18"
+  },
+  {
+    "symbol": "DOYU",
+    "date": "2025-08-18"
+  },
+  {
+    "symbol": "ACOG",
+    "date": "2025-08-18"
+  },
+  {
+    "symbol": "NRXP",
+    "date": "2025-08-18"
   }
 ]
