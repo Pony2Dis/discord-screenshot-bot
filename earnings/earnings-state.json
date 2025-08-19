@@ -12118,5 +12118,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.0075103721873958995
+  },
+  {
+    "epsDate": "2025-08-18T08:30:00",
+    "ticker": "WKHS",
+    "name": "Workhorse Group Inc.",
+    "summary": "Workhorse Group (WKHS) reported a loss of $1.67 per share on revenue of $5.67 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $3.98 per share. The company beat consensus estimates by 58.04% while revenue grew 573.40% on a year-over-year basis.<br /><br />Workhorse is a technology company focused on providing electric vehicles and drones to the last-mile delivery sector. ",
+    "subject": "Workhorse Group Beat Consensus Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508183887",
+    "eps": -1.67,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -3.98,
+    "whisper": 999,
+    "highEstimate": null,
+    "lowEstimate": null,
+    "revenue": 5.67,
+    "revenueEstimate": null,
+    "earningsGrowth": -0.19285714285714287,
+    "revenueGrowth": 5.73396674584323,
+    "earningsSurprise": 0.5804020100502513,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.5212845407020165
   }
 ]
