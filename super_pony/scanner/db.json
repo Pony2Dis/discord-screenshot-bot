@@ -1,5 +1,5 @@
 {
-  "updated": "2025-08-19T14:08:38.933Z",
+  "updated": "2025-08-19T14:10:58.446Z",
   "entries": [
     {
       "ticker": "SBET",
@@ -3783,12 +3783,25 @@
       "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1407365650598330542",
       "timestamp": "2025-08-19T14:08:38.692Z",
       "content": "ACHR\nעל הממוצע 150"
+    },
+    {
+      "ticker": "INTC",
+      "user": {
+        "id": "1309511619138682943",
+        "name": "Omer"
+      },
+      "messageId": "1407366236198932542",
+      "channelId": "1397977551078686871",
+      "guildId": "1397974486581772494",
+      "link": "https://discord.com/channels/1397974486581772494/1397977551078686871/1407366236198932542",
+      "timestamp": "2025-08-19T14:10:58.310Z",
+      "content": "INTC"
     }
   ],
   "checkpoints": {
     "1397977551078686871": {
-      "lastProcessedId": "1407324513372471418",
-      "lastProcessedAt": "2025-08-19T11:25:10.813Z"
+      "lastProcessedId": "1407365650598330542",
+      "lastProcessedAt": "2025-08-19T14:08:38.692Z"
     }
   }
 }
