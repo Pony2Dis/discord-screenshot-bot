@@ -12358,5 +12358,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": 5.658536585365853,
     "prevRevenueGrowth": 0.07957342083675144
+  },
+  {
+    "epsDate": "2025-08-19T16:15:00",
+    "ticker": "LZB",
+    "name": "La-Z-Boy, Inc.",
+    "summary": "La-Z-Boy (LZB) reported earnings of $0.47 per share on  for the  fiscal first quarter ended July 2025.  The consensus earnings estimate was $0.53 per share on  revenue of $531.60 million. The company missed consensus estimates by 11.32%.<br /><br />La-Z-Boy Inc through its subsidiaries manufactures, markets, imports, distributes and retails upholstery furniture products.",
+    "subject": "La-Z-Boy Missed Consensus Estimates",
+    "quarter": " fiscal first quarter ended July 2025",
+    "fileName": "2508195064",
+    "eps": 0.47,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 0.53,
+    "whisper": 999,
+    "highEstimate": 0.6,
+    "lowEstimate": 0.6,
+    "revenue": null,
+    "revenueEstimate": 531.6,
+    "earningsGrowth": -0.24193548387096775,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.11320754716981132,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -1
   }
 ]
