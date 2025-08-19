@@ -12382,5 +12382,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": -1
+  },
+  {
+    "epsDate": "2025-08-19T16:17:00",
+    "ticker": "JKHY",
+    "name": "Jack Henry & Associates, Inc.",
+    "summary": "Jack Henry & Associates (JKHY) reported earnings of $1.75 per share on  for the  fiscal fourth quarter ended June 2025.  The consensus earnings estimate was $1.46 per share on  revenue of $602.59 million. The Earnings Whisper number was $1.50 per share. The company beat expectations by 16.67%.<br /><br />Jack Henry & Associates, Inc is a provider of information processing solutions for community banks. Its products and services includes processing transactions, automating business processes and managing information.",
+    "subject": "Jack Henry & Associates Beat Expectations",
+    "quarter": " fiscal fourth quarter ended June 2025",
+    "fileName": "2508194936",
+    "eps": 1.75,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 1.46,
+    "whisper": 1.5,
+    "highEstimate": 1.47,
+    "lowEstimate": 1.44,
+    "revenue": null,
+    "revenueEstimate": 602.59,
+    "earningsGrowth": 0.26811594202898553,
+    "revenueGrowth": null,
+    "earningsSurprise": 0.16666666666666666,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": 0.0863874539978684
   }
 ]
