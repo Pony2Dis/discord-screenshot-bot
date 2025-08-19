@@ -12310,5 +12310,29 @@
     "revenueSurprise": 0.02752295081967213,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.24911196050991777
+  },
+  {
+    "epsDate": "2025-08-19T08:45:00",
+    "ticker": "CING",
+    "name": "Cingulate Inc.",
+    "summary": "Cingulate (CING) reported a loss of $1.09 per share on revenue of $0.00 million for the  second quarter ended June 2025.  The consensus estimate was a loss of $0.82 per share on  revenue of $6.24 million. The company missed consensus estimates by 32.93%.<br /><br />Cingulate Inc. is a biopharmaceutical company utilizing its proprietary Precision Timed Release™ (PTR™) drug delivery platform technology to build and advance a pipeline of next-generation pharmaceutical products, designed to improve the lives of patients suffering from frequently diagnosed conditions characterized by burdensome daily dosing regimens and suboptimal treatment outcomes.",
+    "subject": "Cingulate Missed Consensus Estimates",
+    "quarter": " second quarter ended June 2025",
+    "fileName": "2508194424",
+    "eps": -1.09,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": -0.82,
+    "whisper": 999,
+    "highEstimate": -0.62,
+    "lowEstimate": -0.9,
+    "revenue": 0,
+    "revenueEstimate": 6.24,
+    "earningsGrowth": 0.8007312614259597,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.32926829268292684,
+    "revenueSurprise": -1,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": null
   }
 ]
