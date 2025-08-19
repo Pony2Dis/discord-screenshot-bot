@@ -12406,5 +12406,29 @@
     "revenueSurprise": null,
     "prevEarningsGrowth": null,
     "prevRevenueGrowth": 0.0863874539978684
+  },
+  {
+    "epsDate": "2025-08-19T16:30:00",
+    "ticker": "TOL",
+    "name": "Toll Brothers, Inc.",
+    "summary": "Toll Brothers (TOL) reported earnings of $3.73 per share on  for the  fiscal third quarter ended July 2025.  The consensus earnings estimate was $3.59 per share on  revenue of $2.85 billion. The Earnings Whisper number was $3.81 per share. The company missed expectations by 2.10%.<br /><br />Toll Brothers Inc designs, builds, markets and arranges financing for single-family detached and attached homes in luxury residential communities.",
+    "subject": "Toll Brothers Missed Expectations",
+    "quarter": " fiscal third quarter ended July 2025",
+    "fileName": "2508195040",
+    "eps": 3.73,
+    "ewGrade": null,
+    "pwrRating": null,
+    "estimate": 3.59,
+    "whisper": 3.81,
+    "highEstimate": 3.91,
+    "lowEstimate": 3.5,
+    "revenue": null,
+    "revenueEstimate": 2850,
+    "earningsGrowth": 0.03611111111111111,
+    "revenueGrowth": null,
+    "earningsSurprise": -0.02099737532808399,
+    "revenueSurprise": null,
+    "prevEarningsGrowth": null,
+    "prevRevenueGrowth": -0.034681757020122744
   }
 ]
