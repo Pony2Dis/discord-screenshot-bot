@@ -104,7 +104,7 @@ const { CookieJar, Cookie } = require('tough-cookie');
     console.warn('⚠️ Cookie header is empty! Check cookie attributes or login status.');
   }
 
-  const outPath = path.resolve(process.cwd(), 'x.com/cookies.txt');
+  const outPath = path.resolve(process.cwd(), 'cookies.txt');
   try {
     fs.writeFileSync(outPath, header, { encoding: 'utf-8', flag: 'w' });
     console.log('✅ cookies.txt written to:', outPath);
